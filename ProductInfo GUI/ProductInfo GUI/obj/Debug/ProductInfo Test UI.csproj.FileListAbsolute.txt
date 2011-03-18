@@ -1,0 +1,17 @@
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ResolveAssemblyReference.cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo Test UI.csproj.GenerateResource.Cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\DataProvider.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\ProductInfo_UI.exe.config
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\ProductInfo_UI.exe
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\ProductInfo_UI.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.Properties.Resources.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.exe
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddBuyer_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.ProductInfo_Main_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddProductList_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddRemainders_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddSupplier_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddZednadebi_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.ProductAdd.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.Sell_Form.resources

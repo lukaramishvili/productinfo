@@ -1,0 +1,14 @@
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Release\ProductInfo Test UI.exe
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Release\ProductInfo Test UI.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ResolveAssemblyReference.cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ProductInfo_Test_UI.Properties.Resources.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ProductInfo Test UI.csproj.GenerateResource.Cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ProductInfo Test UI.exe
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ProductInfo Test UI.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Release\DataProvider.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ProductInfo_Test_UI.ProductAdd.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ProductInfo_Test_UI.ProductInfo_Main_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ProductInfo_Test_UI.AddProductList_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ProductInfo_Test_UI.AddRemainders_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Release\ProductInfo_Test_UI.AddSupplier_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Release\ProductInfo Test UI.exe.config

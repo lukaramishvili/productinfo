@@ -1,0 +1,12 @@
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\Utilities\bin\Debug\Utilities.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\Utilities\bin\Debug\Utilities.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\Utilities\obj\Debug\ResolveAssemblyReference.cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\Utilities\obj\Debug\Utilities.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\Utilities\obj\Debug\Utilities.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\Utilities.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\Utilities.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Utilities.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Utilities.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Utilities\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Utilities\obj\Debug\Utilities.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Utilities\obj\Debug\Utilities.pdb

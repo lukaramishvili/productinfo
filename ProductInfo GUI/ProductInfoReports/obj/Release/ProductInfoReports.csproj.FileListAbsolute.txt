@@ -1,0 +1,24 @@
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfoReports\bin\Release\ProductInfoReports.exe
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfoReports\bin\Release\ProductInfoReports.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfoReports\obj\Release\ResolveAssemblyReference.cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.Form1.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.Properties.Resources.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.csproj.GenerateResource.Cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.exe
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfoReports\bin\Release\ProductInfoReports.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfoReports\bin\Release\ProductInfoReports.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfoReports\obj\Release\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.Form1.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.Properties.Resources.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.csproj.GenerateResource.Cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfoReports\obj\Release\ProductInfoReports.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\bin\Release\ProductInfoReports.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\bin\Release\ProductInfoReports.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Release\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Release\ProductInfoReports.Form1.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Release\ProductInfoReports.Properties.Resources.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Release\ProductInfoReports.csproj.GenerateResource.Cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Release\ProductInfoReports.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Release\ProductInfoReports.pdb

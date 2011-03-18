@@ -1,0 +1,8 @@
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\bin\Debug\ProductInfoReports.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\bin\Debug\ProductInfoReports.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Debug\ProductInfoReports.Form1.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Debug\ProductInfoReports.Properties.Resources.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Debug\ProductInfoReports.csproj.GenerateResource.Cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Debug\ProductInfoReports.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfoReports\obj\Debug\ProductInfoReports.pdb

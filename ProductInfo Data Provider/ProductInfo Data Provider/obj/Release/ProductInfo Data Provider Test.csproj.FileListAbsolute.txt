@@ -1,0 +1,6 @@
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\bin\Release\ProductInfo Data Provider Test.dll.config
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\bin\Release\ProductInfo Data Provider Test.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\bin\Release\ProductInfo Data Provider Test.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\obj\Release\ResolveAssemblyReference.cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\obj\Release\ProductInfo Data Provider Test.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\obj\Release\ProductInfo Data Provider Test.pdb

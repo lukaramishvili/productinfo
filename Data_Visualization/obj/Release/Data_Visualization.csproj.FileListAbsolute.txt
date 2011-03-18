@@ -1,0 +1,18 @@
+d:\My Documents\Visual Studio 2008\Projects\Test\Data_Visualization\bin\Release\Data_Visualization.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\Data_Visualization\bin\Release\Data_Visualization.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\Data_Visualization\bin\Release\DataProvider.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\Data_Visualization\bin\Release\Utilities.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\Data_Visualization\bin\Release\Utilities.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\Data_Visualization\bin\Release\DataProvider.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Release\Data_Visualization.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Release\Data_Visualization.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\Data_Visualization\obj\Release\ResolveAssemblyReference.cache
+d:\My Documents\Visual Studio 2008\Projects\Test\Data_Visualization\obj\Release\Data_Visualization.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\Data_Visualization\obj\Release\Data_Visualization.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfo Test UI\bin\Release\Data_Visualization.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfo Test UI\bin\Release\Data_Visualization.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\Data_Visualization.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\Data_Visualization.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Data_Visualization\obj\Release\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Data_Visualization\obj\Release\Data_Visualization.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Data_Visualization\obj\Release\Data_Visualization.pdb

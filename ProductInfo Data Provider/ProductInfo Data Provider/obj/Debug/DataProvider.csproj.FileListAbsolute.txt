@@ -1,0 +1,18 @@
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\bin\Debug\DataProvider.dll.config
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\bin\Debug\DataProvider.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\bin\Debug\DataProvider.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\DataProvider.dll.config
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\DataProvider.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\DataProvider.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\obj\Debug\ResolveAssemblyReference.cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\obj\Debug\DataProvider.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Data Provider Test\ProductInfo Data Provider Test\obj\Debug\DataProvider.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\DataProvider.dll.config
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\DataProvider.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\DataProvider.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Provider\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Provider\obj\Debug\DataProvider.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Provider\obj\Debug\DataProvider.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\DataProvider.dll.config
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\DataProvider.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\DataProvider.pdb

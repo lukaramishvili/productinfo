@@ -1,0 +1,49 @@
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\ProductInfo_UI.exe.config
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\ProductInfo_UI.exe
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\ProductInfo_UI.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\Data_Visualization.dll
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\Data_Visualization.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\DataProvider.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ResolveAssemblyReference.cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddBuyer_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddProductList_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddRemainders_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddSupplier_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.EditProduct_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.ProductInfo_Main_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.AddProduct_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.Properties.Resources.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.Sell_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo UI.csproj.GenerateResource.Cache
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.exe
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.PrintPreview_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.MoneyTransfer_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.SellOrderDetails_Form.resources
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\bin\Debug\Utilities.pdb
+d:\My Documents\Visual Studio 2008\Projects\Test\ProductInfo Test UI\ProductInfo Test UI\obj\Debug\ProductInfo_UI.EditSoldRemainder_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\ProductInfo_UI.exe.config
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\ProductInfo_UI.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\ProductInfo_UI.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Data_Visualization.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Utilities.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\DataProvider.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.AddBuyer_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.AddProductList_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.AddRemainders_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.AddRemainderItem_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.AddSupplier_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.EditProduct_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.EditSoldRemainder_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.ProductInfo_Main_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.MoneyTransfer_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.PrintPreview_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.AddProduct_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.Properties.Resources.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.Sell_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.SellOrderDetails_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo_UI.SplitRemainder_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Debug\ProductInfo UI.csproj.GenerateResource.Cache
