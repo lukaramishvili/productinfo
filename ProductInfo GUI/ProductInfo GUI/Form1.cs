@@ -558,6 +558,29 @@ namespace ProductInfo_UI
         void prod_add_frm_FormClosed(object sender, FormClosedEventArgs e)
         {
             RefreshTabs();
+
+            //update remainders
+            all_valid_rems = conn.GetValidRemainders(ActiveStoreID, UsingCheck);
+            //update product names
+            all_products = conn.GetProductSuggestions("");
+            //refresh list with updated names
+            if (all_valid_rems.Length > 0)
+            {
+                sell_name_col.Items.Clear();
+
+                foreach (Remainder nrem in all_valid_rems)
+                {
+                    foreach (Product nprod in all_products)
+                    {
+                        if (nprod.barcode == nrem.product_barcode && !sell_name_col.Items.Contains(nprod.name))
+                        {
+                            sell_name_col.Items.Add(nprod.name);
+                            break;
+                        }
+                    }
+                }
+            }
+            //
         }
 
         private void mm_productlist_add_Click(object sender, EventArgs e)
@@ -571,6 +594,29 @@ namespace ProductInfo_UI
         void prodlist_add_frm_FormClosed(object sender, FormClosedEventArgs e)
         {
             RefreshTabs();
+
+            //update remainders
+            all_valid_rems = conn.GetValidRemainders(ActiveStoreID, UsingCheck);
+            //update product names
+            all_products = conn.GetProductSuggestions("");
+            //refresh list with updated names
+            if (all_valid_rems.Length > 0)
+            {
+                sell_name_col.Items.Clear();
+
+                foreach (Remainder nrem in all_valid_rems)
+                {
+                    foreach (Product nprod in all_products)
+                    {
+                        if (nprod.barcode == nrem.product_barcode && !sell_name_col.Items.Contains(nprod.name))
+                        {
+                            sell_name_col.Items.Add(nprod.name);
+                            break;
+                        }
+                    }
+                }
+            }
+            //
         }
 
         private void mm_add_supplier_Click(object sender, EventArgs e)
