@@ -307,12 +307,21 @@ namespace ProductInfo_UI
                         break;
                 }
             }
-            catch (Exception)
+            catch
             {
             }
 
-
-            if (DialogResult.OK == sfd.ShowDialog())
+            DialogResult sfd_ShowDialogResult = DialogResult.Cancel;
+            try
+            {
+                sfd_ShowDialogResult = sfd.ShowDialog();
+            }
+            catch
+            {
+                sfd.FileName = "";
+                sfd_ShowDialogResult = sfd.ShowDialog();
+            }
+            if (DialogResult.OK == sfd_ShowDialogResult)
             {
                 info savefile_info = Utilities.Externals.SaveCSV(sfd.FileName, csv_output);
                 if (0 != savefile_info.errcode)
