@@ -76,6 +76,9 @@ namespace Utilities
             catch (FormatException)
             {
             }
+            catch (OverflowException)
+            {
+            }
             return retVal;
         }
     }

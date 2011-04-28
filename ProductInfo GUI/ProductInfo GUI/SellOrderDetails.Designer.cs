@@ -118,7 +118,7 @@
             // SOd_barcode_col
             // 
             this.SOd_barcode_col.Text = "შტრიხ–კოდი";
-            this.SOd_barcode_col.Width = 87;
+            this.SOd_barcode_col.Width = 98;
             // 
             // SOd_prodname_col
             // 
@@ -128,11 +128,12 @@
             // SOd_count_col
             // 
             this.SOd_count_col.Text = "რ–ბა";
-            this.SOd_count_col.Width = 57;
+            this.SOd_count_col.Width = 42;
             // 
             // SOd_piece_cost_col
             // 
             this.SOd_piece_cost_col.Text = "საც. თვითღირ.";
+            this.SOd_piece_cost_col.Width = 80;
             // 
             // SOd_cost_col
             // 
@@ -141,16 +142,17 @@
             // SOd_piece_price_col
             // 
             this.SOd_piece_price_col.Text = "საც. ფასი";
-            this.SOd_piece_price_col.Width = 96;
+            this.SOd_piece_price_col.Width = 62;
             // 
             // SOd_whole_price_col
             // 
             this.SOd_whole_price_col.Text = "საერთო ფასი";
-            this.SOd_whole_price_col.Width = 52;
+            this.SOd_whole_price_col.Width = 75;
             // 
             // SOd_mogeba_col
             // 
             this.SOd_mogeba_col.Text = "მოგება";
+            this.SOd_mogeba_col.Width = 45;
             // 
             // SOd_cost_without_col
             // 

@@ -61,6 +61,10 @@ namespace ProductInfo_UI
                 {
                     SOd_mogeba_col_index = SOd_mogeba_col.Index;
                     sold_rem_list.Columns.Remove(SOd_mogeba_col);
+                    foreach (ListViewItem lvi in sold_rem_list.Items)
+                    {
+                        lvi.SubItems.RemoveAt(SOd_mogeba_col_index);
+                    }
                 }
 
                 /**/

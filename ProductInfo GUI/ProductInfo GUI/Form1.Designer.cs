@@ -30,11 +30,11 @@ namespace ProductInfo_UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.mm_nashtebi = new System.Windows.Forms.ToolStripMenuItem();
             this.mm_add_remainders = new System.Windows.Forms.ToolStripMenuItem();
@@ -171,6 +171,7 @@ namespace ProductInfo_UI
             this.sold_list = new System.Windows.Forms.ListView();
             this.sold_id_col = new System.Windows.Forms.ColumnHeader();
             this.sold_tarigi_col = new System.Windows.Forms.ColumnHeader();
+            this.sold_buyer_col = new System.Windows.Forms.ColumnHeader();
             this.sold_storeid_col = new System.Windows.Forms.ColumnHeader();
             this.sold_zed_ident_col = new System.Windows.Forms.ColumnHeader();
             this.sold_using_check_col = new System.Windows.Forms.ColumnHeader();
@@ -257,7 +258,6 @@ namespace ProductInfo_UI
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
-            this.sold_buyer_col = new System.Windows.Forms.ColumnHeader();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
             this.status_bar.SuspendLayout();
@@ -631,16 +631,16 @@ namespace ProductInfo_UI
             // 
             // sell_list
             // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Sylfaen", 11F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Sylfaen", 11F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.sell_list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sell_list.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sell_barcode_col,
@@ -728,9 +728,9 @@ namespace ProductInfo_UI
             // 
             // sell_initial_price_info_col
             // 
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle3;
             this.sell_initial_price_info_col.Frozen = true;
             this.sell_initial_price_info_col.HeaderText = "ასაღები ფასი (საცალო)";
             this.sell_initial_price_info_col.Name = "sell_initial_price_info_col";
@@ -738,16 +738,16 @@ namespace ProductInfo_UI
             // 
             // sell_remaining_col
             // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle4;
             this.sell_remaining_col.HeaderText = "დარჩ.";
             this.sell_remaining_col.Name = "sell_remaining_col";
             this.sell_remaining_col.ReadOnly = true;
             // 
             // sell_sum_price_col
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Gray;
-            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gray;
+            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle5;
             this.sell_sum_price_col.HeaderText = "ჯამი";
             this.sell_sum_price_col.Name = "sell_sum_price_col";
             this.sell_sum_price_col.ReadOnly = true;
@@ -1431,55 +1431,62 @@ namespace ProductInfo_UI
             // sold_id_col
             // 
             this.sold_id_col.Text = "id";
+            this.sold_id_col.Width = 23;
             // 
             // sold_tarigi_col
             // 
             this.sold_tarigi_col.Text = "თარიღი";
             this.sold_tarigi_col.Width = 127;
             // 
+            // sold_buyer_col
+            // 
+            this.sold_buyer_col.Text = "მყიდველი";
+            this.sold_buyer_col.Width = 132;
+            // 
             // sold_storeid_col
             // 
             this.sold_storeid_col.Text = "საწყობის N.";
-            this.sold_storeid_col.Width = 96;
+            this.sold_storeid_col.Width = 85;
             // 
             // sold_zed_ident_col
             // 
             this.sold_zed_ident_col.Text = "ზედნადების ნომერი";
-            this.sold_zed_ident_col.Width = 160;
+            this.sold_zed_ident_col.Width = 142;
             // 
             // sold_using_check_col
             // 
             this.sold_using_check_col.Text = "ჩეკით";
+            this.sold_using_check_col.Width = 49;
             // 
             // sold_cost_col
             // 
-            this.sold_cost_col.Text = "ღირებულება";
-            this.sold_cost_col.Width = 107;
+            this.sold_cost_col.Text = "ღირ.";
+            this.sold_cost_col.Width = 52;
             // 
             // sold_cost_withoutVAT_col
             // 
-            this.sold_cost_withoutVAT_col.Text = "ღირებულება დღგ–ს გარეშე";
-            this.sold_cost_withoutVAT_col.Width = 203;
+            this.sold_cost_withoutVAT_col.Text = "ღირ. დღგ–ს გარეშე";
+            this.sold_cost_withoutVAT_col.Width = 131;
             // 
             // sold_price_col
             // 
             this.sold_price_col.Text = "გასაყიდი ფასი";
-            this.sold_price_col.Width = 110;
+            this.sold_price_col.Width = 102;
             // 
             // sold_income_col
             // 
             this.sold_income_col.Text = "აღებული თანხა";
-            this.sold_income_col.Width = 123;
+            this.sold_income_col.Width = 110;
             // 
             // sold_roi_col
             // 
             this.sold_roi_col.Text = "მოგება";
-            this.sold_roi_col.Width = 71;
+            this.sold_roi_col.Width = 55;
             // 
             // sold_price_diff_withoutVAT_col
             // 
             this.sold_price_diff_withoutVAT_col.Text = "ფასთა სხვაობა დღგ–ს გარეშე";
-            this.sold_price_diff_withoutVAT_col.Width = 174;
+            this.sold_price_diff_withoutVAT_col.Width = 195;
             // 
             // cm_sold
             // 
@@ -2044,10 +2051,6 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Name = "tb_until_lbl";
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
-            // 
-            // sold_buyer_col
-            // 
-            this.sold_buyer_col.Text = "მყიდველი";
             // 
             // ProductInfo_Main_Form
             // 
