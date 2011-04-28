@@ -127,7 +127,7 @@ namespace ProductInfo_UI
             tb_store_chooser.SelectedIndex = ActiveStoreID;
             //
             tb_since_datepicker.Value = new DateTime(1990, 01, 01);
-            tb_until_datepicker.Value = DateTime.Now.AddDays(1);//new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
+            tb_until_datepicker.Value = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day);//new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
             tb_since_datepicker.ValueChanged += new EventHandler(tb_since_datepicker_ValueChanged);
             tb_until_datepicker.ValueChanged += new EventHandler(tb_until_datepicker_ValueChanged);
             DateFilterSince = tb_since_datepicker.Value;
