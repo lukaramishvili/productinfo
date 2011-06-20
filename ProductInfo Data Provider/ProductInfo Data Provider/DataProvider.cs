@@ -337,7 +337,7 @@ namespace ProductInfo
         };
 
 
-        public static SqlConnection SqlLink = new SqlConnection("Data Source=ZERO;Initial Catalog=productinfo_db;Integrated Security=True");
+        public static SqlConnection SqlLink = new SqlConnection("Data Source=ZERO\\MSSQLSERVER2008;Initial Catalog=productinfo_db;Integrated Security=True");
 
         /// <summary>
         /// user rights-is droebit chanacvleba. 
@@ -622,6 +622,7 @@ namespace ProductInfo
                 addRemSql.Parameters.Add(new SqlParameter("@remaining_pieces", addRem.remaining_pieces));
                 addRemSql.Parameters.Add(new SqlParameter("@capacity", addRem.pack_capacity));
                 addRemSql.Parameters.Add(new SqlParameter("@buy_price", addRem.buy_price));
+                addRemSql.Parameters.Add(new SqlParameter("@sell_price", addRem.sell_price));
                 addRemSql.Parameters.Add(new SqlParameter("@store_id", addRem.storehouse_id));
 
                 SqlParameter addrem_retval = new SqlParameter("@Return_Value", DbType.Int32);
@@ -1234,7 +1235,7 @@ namespace ProductInfo
             return sold_zeds_dt;
         }
 
-        public DataTable Rem_Statistics(int store_id)
+        public DataTable Rem_Statistics(int store_id, DateTime from_time, DateTime to_time)
         {
             DataTable rems_dt = new DataTable();
             rems_dt.Columns.Add("შტრიხ–კოდი");//product_barcode
@@ -1251,6 +1252,8 @@ namespace ProductInfo
             rem_statistics_sql.CommandType = CommandType.StoredProcedure;
 
             rem_statistics_sql.Parameters.Add(new SqlParameter("@StoreID", store_id));
+            rem_statistics_sql.Parameters.Add(new SqlParameter("@FromTime", from_time));
+            rem_statistics_sql.Parameters.Add(new SqlParameter("@ToTime", to_time));
 
             SqlDataReader rems_rdr = rem_statistics_sql.ExecuteReader();
             while (rems_rdr.Read())
@@ -1321,7 +1324,7 @@ namespace ProductInfo
             SqlDataReader validrems_rdr = getvalidrems_sql.ExecuteReader();
             while (validrems_rdr.Read())
             {
-                Remainder nextRem = new Remainder(); 
+                Remainder nextRem = new Remainder();
                 nextRem.product_barcode = validrems_rdr["product_barcode"].ToString();
                 nextRem.supplier_ident = validrems_rdr["supplier_ident"].ToString();
                 nextRem.zednadebis_nomeri = validrems_rdr["zednadebis_nomeri"].ToString();
@@ -2399,6 +2402,7 @@ namespace ProductInfo
             addRemSql.Parameters.Add(new SqlParameter("@remaining_pieces", add_rem_arg.remaining_pieces));
             addRemSql.Parameters.Add(new SqlParameter("@capacity", add_rem_arg.pack_capacity));
             addRemSql.Parameters.Add(new SqlParameter("@buy_price", add_rem_arg.buy_price));
+            addRemSql.Parameters.Add(new SqlParameter("@sell_price", add_rem_arg.sell_price));
             addRemSql.Parameters.Add(new SqlParameter("@store_id", add_rem_arg.storehouse_id));
 
             SqlParameter addrem_retval = new SqlParameter("@Return_Value", DbType.Int32);
@@ -2588,6 +2592,55 @@ namespace ProductInfo
 
             return gasavali_ret_dt;
         }
+
+        public DataTable AllStores()
+        {
+            DataTable AllStores_ret = new DataTable();
+            AllStores_ret.Columns.AddRange(new DataColumn[]{
+                  new DataColumn("id",typeof(int))
+                , new DataColumn("Name",typeof(string))
+                , new DataColumn("ParentID",typeof(int))
+                , new DataColumn("Address",typeof(string))
+                , new DataColumn("ResponsibleUserID",typeof(int))
+                , new DataColumn("HasOwnStorageSpace",typeof(bool))
+                , new DataColumn("CanSell",typeof(bool))
+            });
+
+            //there should always be a root (id=0) store
+
+            //TODO: Get from db, this code is a placeholder
+            /*
+            DataRow store0 = AllStores_ret.NewRow();
+            store0.ItemArray = new object[] { 0, "ყველა", -1, "Address Line 1", 0, 0, 0 };
+            DataRow store1 = AllStores_ret.NewRow();
+            store1.ItemArray = new object[] { 1, "პირველი", 0, "Store 1 Address", 0, 1, 1 };
+            DataRow store2 = AllStores_ret.NewRow();
+            store2.ItemArray = new object[] { 2, "მეორე", 0, "Store 2 Address", 0, 1, 1 };
+            
+            AllStores_ret.Rows.Add(store0);
+            AllStores_ret.Rows.Add(store1);
+            AllStores_ret.Rows.Add(store2);
+            */
+            //end placeholder code
+
+            SqlCommand AllStores_sql = new SqlCommand("SELECT * FROM dbo.stores", SqlLink);
+            AllStores_sql.CommandType = CommandType.Text;
+
+            SqlDataReader AllStores_res = AllStores_sql.ExecuteReader();
+            while (AllStores_res.Read())
+            {
+                DataRow nextRow = AllStores_ret.NewRow();
+                for (int i = 0; i < AllStores_res.FieldCount; i++)
+                {
+                    nextRow[i] = AllStores_res[i];
+                }
+                AllStores_ret.Rows.Add(nextRow);
+            }
+            AllStores_res.Close();
+
+            return AllStores_ret;
+        }
+
     } //DataProvider Class
 
 

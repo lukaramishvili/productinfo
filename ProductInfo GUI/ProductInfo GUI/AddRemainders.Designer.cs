@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbl_company_name = new System.Windows.Forms.Label();
             this.supplier_chooser = new System.Windows.Forms.ComboBox();
             this.lbl_zed_id_code = new System.Windows.Forms.Label();
@@ -60,10 +61,11 @@
             this.add_rem_name_col = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.add_rem_capacity_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.add_rem_count_type_col = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.add_rem_store1_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.add_rem_store2_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.add_rem_storeid_col = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.add_rem_piece_count_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.add_rem_piece_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.add_rem_sum_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.add_rem_sell_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.add_rem_delete_col = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -129,7 +131,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(938, 123);
+            this.panel1.Size = new System.Drawing.Size(999, 123);
             this.panel1.TabIndex = 4;
             // 
             // btn_find_supplier
@@ -254,7 +256,7 @@
             this.submit_btn.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.submit_btn.Location = new System.Drawing.Point(0, 518);
             this.submit_btn.Name = "submit_btn";
-            this.submit_btn.Size = new System.Drawing.Size(938, 42);
+            this.submit_btn.Size = new System.Drawing.Size(999, 42);
             this.submit_btn.TabIndex = 5;
             this.submit_btn.Text = "შენახვა";
             this.submit_btn.UseVisualStyleBackColor = true;
@@ -268,7 +270,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 123);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(938, 560);
+            this.panel2.Size = new System.Drawing.Size(999, 560);
             this.panel2.TabIndex = 6;
             // 
             // status_bar
@@ -279,21 +281,21 @@
             this.lbl_sum_price_without_vat});
             this.status_bar.Location = new System.Drawing.Point(0, 495);
             this.status_bar.Name = "status_bar";
-            this.status_bar.Size = new System.Drawing.Size(938, 23);
+            this.status_bar.Size = new System.Drawing.Size(999, 23);
             this.status_bar.TabIndex = 7;
             this.status_bar.Text = "statusStrip1";
             // 
             // status_bar_lbl
             // 
             this.status_bar_lbl.Name = "status_bar_lbl";
-            this.status_bar_lbl.Size = new System.Drawing.Size(154, 18);
+            this.status_bar_lbl.Size = new System.Drawing.Size(166, 18);
             this.status_bar_lbl.Text = "შეიყვანეთ მომწოდებლის სახელი";
             // 
             // lbl_sum_price
             // 
             this.lbl_sum_price.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbl_sum_price.Name = "lbl_sum_price";
-            this.lbl_sum_price.Size = new System.Drawing.Size(384, 18);
+            this.lbl_sum_price.Size = new System.Drawing.Size(409, 18);
             this.lbl_sum_price.Spring = true;
             this.lbl_sum_price.Text = "საერთო ფასი 0.0 ლარი";
             // 
@@ -301,7 +303,7 @@
             // 
             this.lbl_sum_price_without_vat.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
             this.lbl_sum_price_without_vat.Name = "lbl_sum_price_without_vat";
-            this.lbl_sum_price_without_vat.Size = new System.Drawing.Size(384, 18);
+            this.lbl_sum_price_without_vat.Size = new System.Drawing.Size(409, 18);
             this.lbl_sum_price_without_vat.Spring = true;
             this.lbl_sum_price_without_vat.Text = "ჯამი დღგ–ს გარეშე 0.0 ლარი";
             // 
@@ -313,15 +315,16 @@
             this.add_rem_name_col,
             this.add_rem_capacity_col,
             this.add_rem_count_type_col,
-            this.add_rem_store1_col,
-            this.add_rem_store2_col,
+            this.add_rem_storeid_col,
+            this.add_rem_piece_count_col,
             this.add_rem_piece_price_col,
             this.add_rem_sum_price_col,
+            this.add_rem_sell_price_col,
             this.add_rem_delete_col});
             this.add_remainders_list.Dock = System.Windows.Forms.DockStyle.Top;
             this.add_remainders_list.Location = new System.Drawing.Point(0, 0);
             this.add_remainders_list.Name = "add_remainders_list";
-            this.add_remainders_list.Size = new System.Drawing.Size(938, 495);
+            this.add_remainders_list.Size = new System.Drawing.Size(999, 495);
             this.add_remainders_list.TabIndex = 6;
             this.add_remainders_list.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.add_remainders_list_CellEndEdit);
             this.add_remainders_list.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.add_remainders_list_RowEnter);
@@ -368,23 +371,25 @@
             this.add_rem_count_type_col.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.add_rem_count_type_col.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // add_rem_store1_col
+            // add_rem_storeid_col
             // 
             dataGridViewCellStyle2.NullValue = "0";
-            this.add_rem_store1_col.DefaultCellStyle = dataGridViewCellStyle2;
-            this.add_rem_store1_col.Frozen = true;
-            this.add_rem_store1_col.HeaderText = "რაოდენობა (საწყობი 1)";
-            this.add_rem_store1_col.Name = "add_rem_store1_col";
-            this.add_rem_store1_col.Width = 70;
+            this.add_rem_storeid_col.DefaultCellStyle = dataGridViewCellStyle2;
+            this.add_rem_storeid_col.Frozen = true;
+            this.add_rem_storeid_col.HeaderText = "საწყობი";
+            this.add_rem_storeid_col.Name = "add_rem_storeid_col";
+            this.add_rem_storeid_col.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.add_rem_storeid_col.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.add_rem_storeid_col.Width = 70;
             // 
-            // add_rem_store2_col
+            // add_rem_piece_count_col
             // 
             dataGridViewCellStyle3.NullValue = "0";
-            this.add_rem_store2_col.DefaultCellStyle = dataGridViewCellStyle3;
-            this.add_rem_store2_col.Frozen = true;
-            this.add_rem_store2_col.HeaderText = "რაოდენობა (საწყობი 2)";
-            this.add_rem_store2_col.Name = "add_rem_store2_col";
-            this.add_rem_store2_col.Width = 70;
+            this.add_rem_piece_count_col.DefaultCellStyle = dataGridViewCellStyle3;
+            this.add_rem_piece_count_col.Frozen = true;
+            this.add_rem_piece_count_col.HeaderText = "საცალო რაოდენობა";
+            this.add_rem_piece_count_col.Name = "add_rem_piece_count_col";
+            this.add_rem_piece_count_col.Width = 70;
             // 
             // add_rem_piece_price_col
             // 
@@ -405,6 +410,14 @@
             this.add_rem_sum_price_col.ReadOnly = true;
             this.add_rem_sum_price_col.Width = 60;
             // 
+            // add_rem_sell_price_col
+            // 
+            dataGridViewCellStyle6.NullValue = "0";
+            this.add_rem_sell_price_col.DefaultCellStyle = dataGridViewCellStyle6;
+            this.add_rem_sell_price_col.Frozen = true;
+            this.add_rem_sell_price_col.HeaderText = "გასაყიდი ფასი";
+            this.add_rem_sell_price_col.Name = "add_rem_sell_price_col";
+            // 
             // add_rem_delete_col
             // 
             this.add_rem_delete_col.Frozen = true;
@@ -418,7 +431,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(938, 683);
+            this.ClientSize = new System.Drawing.Size(999, 683);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "AddRemainders_Form";
@@ -459,16 +472,17 @@
         private System.Windows.Forms.ToolStripStatusLabel lbl_sum_price;
         private System.Windows.Forms.CheckBox using_af_ckb;
         private System.Windows.Forms.ToolStripStatusLabel lbl_sum_price_without_vat;
+        private System.Windows.Forms.Button btn_add_suppliers;
+        private System.Windows.Forms.Button btn_find_supplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_barcode_col;
         private System.Windows.Forms.DataGridViewComboBoxColumn add_rem_name_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_capacity_col;
         private System.Windows.Forms.DataGridViewComboBoxColumn add_rem_count_type_col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_store1_col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_store2_col;
+        private System.Windows.Forms.DataGridViewComboBoxColumn add_rem_storeid_col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_piece_count_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_piece_price_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_sum_price_col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_sell_price_col;
         private System.Windows.Forms.DataGridViewButtonColumn add_rem_delete_col;
-        private System.Windows.Forms.Button btn_add_suppliers;
-        private System.Windows.Forms.Button btn_find_supplier;
     }
 }

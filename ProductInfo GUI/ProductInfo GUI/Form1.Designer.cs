@@ -30,11 +30,11 @@ namespace ProductInfo_UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.mm_nashtebi = new System.Windows.Forms.ToolStripMenuItem();
             this.mm_add_remainders = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,26 +50,21 @@ namespace ProductInfo_UI
             this.search_text = new System.Windows.Forms.ToolStripTextBox();
             this.lbl_tb_store = new System.Windows.Forms.ToolStripLabel();
             this.tb_store_chooser = new System.Windows.Forms.ToolStripComboBox();
-            this.tb_print_btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btn_export_csv = new System.Windows.Forms.ToolStripButton();
             this.tb_sep_after_csv_export_btn = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.status_bar = new System.Windows.Forms.StatusStrip();
             this.status_bar_text = new System.Windows.Forms.ToolStripStatusLabel();
             this.status_progress_bar = new System.Windows.Forms.ToolStripProgressBar();
             this.sb_sum_lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.sb_sum_withoutVAT_lbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.sb_refresh_btn = new System.Windows.Forms.ToolStripStatusLabel();
             this.tab_container = new System.Windows.Forms.TabControl();
             this.sell_tabpage = new System.Windows.Forms.TabPage();
             this.ckb_pay_method = new System.Windows.Forms.ComboBox();
-            this.lbl_xelze_myidveli = new System.Windows.Forms.Label();
             this.cmb_xelze_myidveli = new System.Windows.Forms.ComboBox();
-            this.sell_status_bar = new System.Windows.Forms.StatusStrip();
-            this.sell_status_lbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.sell_status_sum_price_lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbl_xelze_myidveli = new System.Windows.Forms.Label();
             this.using_check_ckb = new System.Windows.Forms.CheckBox();
-            this.sell_submit_btn = new System.Windows.Forms.Button();
+            this.sell_panel = new System.Windows.Forms.Panel();
             this.sell_list = new System.Windows.Forms.DataGridView();
             this.sell_barcode_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sell_name_col = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -83,6 +78,8 @@ namespace ProductInfo_UI
             this.sell_remaining_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sell_sum_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sell_delete_col = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.sell_status_bar = new System.Windows.Forms.StatusStrip();
+            this.sell_submit_btn = new System.Windows.Forms.Button();
             this.nashtebi_tabpage = new System.Windows.Forms.TabPage();
             this.rem_list = new System.Windows.Forms.ListView();
             this.rem_list_barcode_header = new System.Windows.Forms.ColumnHeader();
@@ -254,16 +251,21 @@ namespace ProductInfo_UI
             this.bought_af_std_date_col = new System.Windows.Forms.ColumnHeader();
             this.bought_af_std_supp_ident_col = new System.Windows.Forms.ColumnHeader();
             this.bought_af_std_VAT_col = new System.Windows.Forms.ColumnHeader();
+            this.sell_status_lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sell_status_sum_price_lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb_since_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
+            this.tb_print_btn = new System.Windows.Forms.ToolStripButton();
+            this.btn_export_csv = new System.Windows.Forms.ToolStripButton();
+            this.btn_export_list = new System.Windows.Forms.ToolStripButton();
+            this.sb_refresh_btn = new System.Windows.Forms.ToolStripStatusLabel();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
-            this.status_bar.SuspendLayout();
             this.tab_container.SuspendLayout();
             this.sell_tabpage.SuspendLayout();
-            this.sell_status_bar.SuspendLayout();
+            this.sell_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sell_list)).BeginInit();
             this.nashtebi_tabpage.SuspendLayout();
             this.cm_rem_list.SuspendLayout();
@@ -388,7 +390,9 @@ namespace ProductInfo_UI
             this.tb_print_btn,
             this.toolStripSeparator1,
             this.btn_export_csv,
-            this.tb_sep_after_csv_export_btn});
+            this.tb_sep_after_csv_export_btn,
+            this.btn_export_list,
+            this.toolStripSeparator2});
             this.toolbar.Location = new System.Drawing.Point(0, 26);
             this.toolbar.Name = "toolbar";
             this.toolbar.Size = new System.Drawing.Size(1215, 25);
@@ -412,38 +416,14 @@ namespace ProductInfo_UI
             // tb_store_chooser
             // 
             this.tb_store_chooser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tb_store_chooser.Items.AddRange(new object[] {
-            "ორივე",
-            "პირველი",
-            "მეორე"});
             this.tb_store_chooser.Name = "tb_store_chooser";
             this.tb_store_chooser.Size = new System.Drawing.Size(121, 25);
             this.tb_store_chooser.SelectedIndexChanged += new System.EventHandler(this.tb_store_chooser_SelectedIndexChanged);
-            // 
-            // tb_print_btn
-            // 
-            this.tb_print_btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tb_print_btn.Image = global::ProductInfo_UI.Properties.Resources.print_h22;
-            this.tb_print_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tb_print_btn.Name = "tb_print_btn";
-            this.tb_print_btn.Size = new System.Drawing.Size(23, 22);
-            this.tb_print_btn.Text = "ამობეჭდვა";
-            this.tb_print_btn.Click += new System.EventHandler(this.tb_print_btn_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btn_export_csv
-            // 
-            this.btn_export_csv.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btn_export_csv.Image = global::ProductInfo_UI.Properties.Resources.csv_22x22;
-            this.btn_export_csv.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_export_csv.Name = "btn_export_csv";
-            this.btn_export_csv.Size = new System.Drawing.Size(23, 22);
-            this.btn_export_csv.Text = "CSV ფაილის შენახვა";
-            this.btn_export_csv.Click += new System.EventHandler(this.btn_export_csv_Click);
             // 
             // tb_sep_after_csv_export_btn
             // 
@@ -451,14 +431,13 @@ namespace ProductInfo_UI
             this.tb_sep_after_csv_export_btn.Name = "tb_sep_after_csv_export_btn";
             this.tb_sep_after_csv_export_btn.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // status_bar
             // 
-            this.status_bar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.status_bar_text,
-            this.status_progress_bar,
-            this.sb_sum_lbl,
-            this.sb_sum_withoutVAT_lbl,
-            this.sb_refresh_btn});
             this.status_bar.Location = new System.Drawing.Point(0, 571);
             this.status_bar.Name = "status_bar";
             this.status_bar.Size = new System.Drawing.Size(1215, 22);
@@ -495,14 +474,6 @@ namespace ProductInfo_UI
             this.sb_sum_withoutVAT_lbl.Spring = true;
             this.sb_sum_withoutVAT_lbl.Text = "ჯამი დღგ–ს გარეშე: 0.0 ლარი";
             // 
-            // sb_refresh_btn
-            // 
-            this.sb_refresh_btn.Image = global::ProductInfo_UI.Properties.Resources.refresh_16x16;
-            this.sb_refresh_btn.IsLink = true;
-            this.sb_refresh_btn.Name = "sb_refresh_btn";
-            this.sb_refresh_btn.Size = new System.Drawing.Size(16, 17);
-            this.sb_refresh_btn.Click += new System.EventHandler(this.sb_refresh_btn_Click);
-            // 
             // tab_container
             // 
             this.tab_container.Controls.Add(this.sell_tabpage);
@@ -533,12 +504,12 @@ namespace ProductInfo_UI
             // sell_tabpage
             // 
             this.sell_tabpage.Controls.Add(this.ckb_pay_method);
-            this.sell_tabpage.Controls.Add(this.lbl_xelze_myidveli);
             this.sell_tabpage.Controls.Add(this.cmb_xelze_myidveli);
-            this.sell_tabpage.Controls.Add(this.sell_status_bar);
+            this.sell_tabpage.Controls.Add(this.lbl_xelze_myidveli);
             this.sell_tabpage.Controls.Add(this.using_check_ckb);
+            this.sell_tabpage.Controls.Add(this.sell_panel);
+            this.sell_tabpage.Controls.Add(this.sell_status_bar);
             this.sell_tabpage.Controls.Add(this.sell_submit_btn);
-            this.sell_tabpage.Controls.Add(this.sell_list);
             this.sell_tabpage.Location = new System.Drawing.Point(4, 52);
             this.sell_tabpage.Name = "sell_tabpage";
             this.sell_tabpage.Size = new System.Drawing.Size(1207, 464);
@@ -559,15 +530,6 @@ namespace ProductInfo_UI
             this.ckb_pay_method.Size = new System.Drawing.Size(84, 27);
             this.ckb_pay_method.TabIndex = 12;
             // 
-            // lbl_xelze_myidveli
-            // 
-            this.lbl_xelze_myidveli.AutoSize = true;
-            this.lbl_xelze_myidveli.Location = new System.Drawing.Point(76, 4);
-            this.lbl_xelze_myidveli.Name = "lbl_xelze_myidveli";
-            this.lbl_xelze_myidveli.Size = new System.Drawing.Size(89, 19);
-            this.lbl_xelze_myidveli.TabIndex = 5;
-            this.lbl_xelze_myidveli.Text = "მყიდველი: ";
-            // 
             // cmb_xelze_myidveli
             // 
             this.cmb_xelze_myidveli.FormattingEnabled = true;
@@ -578,30 +540,14 @@ namespace ProductInfo_UI
             this.cmb_xelze_myidveli.SelectedIndexChanged += new System.EventHandler(this.cmb_xelze_myidveli_SelectedIndexChanged);
             this.cmb_xelze_myidveli.TextChanged += new System.EventHandler(this.cmb_xelze_myidveli_TextChanged);
             // 
-            // sell_status_bar
+            // lbl_xelze_myidveli
             // 
-            this.sell_status_bar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sell_status_lbl,
-            this.sell_status_sum_price_lbl});
-            this.sell_status_bar.Location = new System.Drawing.Point(0, 399);
-            this.sell_status_bar.Name = "sell_status_bar";
-            this.sell_status_bar.Size = new System.Drawing.Size(1207, 23);
-            this.sell_status_bar.TabIndex = 3;
-            this.sell_status_bar.Text = "sell_statusstrip";
-            // 
-            // sell_status_lbl
-            // 
-            this.sell_status_lbl.Name = "sell_status_lbl";
-            this.sell_status_lbl.Size = new System.Drawing.Size(192, 18);
-            this.sell_status_lbl.Text = "შეიყვანეთ შტრიხ–კოდი ან დასახელება";
-            // 
-            // sell_status_sum_price_lbl
-            // 
-            this.sell_status_sum_price_lbl.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.sell_status_sum_price_lbl.Name = "sell_status_sum_price_lbl";
-            this.sell_status_sum_price_lbl.Size = new System.Drawing.Size(1000, 18);
-            this.sell_status_sum_price_lbl.Spring = true;
-            this.sell_status_sum_price_lbl.Text = "საერთო ფასი 0.0 ლარი";
+            this.lbl_xelze_myidveli.AutoSize = true;
+            this.lbl_xelze_myidveli.Location = new System.Drawing.Point(76, 4);
+            this.lbl_xelze_myidveli.Name = "lbl_xelze_myidveli";
+            this.lbl_xelze_myidveli.Size = new System.Drawing.Size(89, 19);
+            this.lbl_xelze_myidveli.TabIndex = 5;
+            this.lbl_xelze_myidveli.Text = "მყიდველი: ";
             // 
             // using_check_ckb
             // 
@@ -617,30 +563,27 @@ namespace ProductInfo_UI
             this.using_check_ckb.UseVisualStyleBackColor = true;
             this.using_check_ckb.CheckedChanged += new System.EventHandler(this.using_check_ckb_CheckedChanged);
             // 
-            // sell_submit_btn
+            // sell_panel
             // 
-            this.sell_submit_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.sell_submit_btn.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.sell_submit_btn.Location = new System.Drawing.Point(0, 422);
-            this.sell_submit_btn.Name = "sell_submit_btn";
-            this.sell_submit_btn.Size = new System.Drawing.Size(1207, 42);
-            this.sell_submit_btn.TabIndex = 1;
-            this.sell_submit_btn.Text = "გაყიდვა";
-            this.sell_submit_btn.UseVisualStyleBackColor = true;
-            this.sell_submit_btn.Click += new System.EventHandler(this.sell_submit_btn_Click);
+            this.sell_panel.Controls.Add(this.sell_list);
+            this.sell_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sell_panel.Location = new System.Drawing.Point(0, 0);
+            this.sell_panel.Name = "sell_panel";
+            this.sell_panel.Size = new System.Drawing.Size(1207, 400);
+            this.sell_panel.TabIndex = 13;
             // 
             // sell_list
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Sylfaen", 11F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Sylfaen", 11F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.sell_list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sell_list.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sell_barcode_col,
@@ -658,7 +601,7 @@ namespace ProductInfo_UI
             this.sell_list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sell_list.Location = new System.Drawing.Point(0, 0);
             this.sell_list.Name = "sell_list";
-            this.sell_list.Size = new System.Drawing.Size(1207, 464);
+            this.sell_list.Size = new System.Drawing.Size(1207, 400);
             this.sell_list.TabIndex = 0;
             this.sell_list.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.sell_list_RowEnter);
             this.sell_list.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.sell_list_CellEndEdit);
@@ -728,9 +671,9 @@ namespace ProductInfo_UI
             // 
             // sell_initial_price_info_col
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
+            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle23;
             this.sell_initial_price_info_col.Frozen = true;
             this.sell_initial_price_info_col.HeaderText = "ასაღები ფასი (საცალო)";
             this.sell_initial_price_info_col.Name = "sell_initial_price_info_col";
@@ -738,16 +681,16 @@ namespace ProductInfo_UI
             // 
             // sell_remaining_col
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle24;
             this.sell_remaining_col.HeaderText = "დარჩ.";
             this.sell_remaining_col.Name = "sell_remaining_col";
             this.sell_remaining_col.ReadOnly = true;
             // 
             // sell_sum_price_col
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gray;
-            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.Gray;
+            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle25;
             this.sell_sum_price_col.HeaderText = "ჯამი";
             this.sell_sum_price_col.Name = "sell_sum_price_col";
             this.sell_sum_price_col.ReadOnly = true;
@@ -760,6 +703,26 @@ namespace ProductInfo_UI
             this.sell_delete_col.Text = "ამოშლა";
             this.sell_delete_col.UseColumnTextForButtonValue = true;
             this.sell_delete_col.Width = 65;
+            // 
+            // sell_status_bar
+            // 
+            this.sell_status_bar.Location = new System.Drawing.Point(0, 400);
+            this.sell_status_bar.Name = "sell_status_bar";
+            this.sell_status_bar.Size = new System.Drawing.Size(1207, 22);
+            this.sell_status_bar.TabIndex = 3;
+            this.sell_status_bar.Text = "sell_statusstrip";
+            // 
+            // sell_submit_btn
+            // 
+            this.sell_submit_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.sell_submit_btn.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sell_submit_btn.Location = new System.Drawing.Point(0, 422);
+            this.sell_submit_btn.Name = "sell_submit_btn";
+            this.sell_submit_btn.Size = new System.Drawing.Size(1207, 42);
+            this.sell_submit_btn.TabIndex = 1;
+            this.sell_submit_btn.Text = "გაყიდვა";
+            this.sell_submit_btn.UseVisualStyleBackColor = true;
+            this.sell_submit_btn.Click += new System.EventHandler(this.sell_submit_btn_Click);
             // 
             // nashtebi_tabpage
             // 
@@ -791,7 +754,7 @@ namespace ProductInfo_UI
             this.rem_list.Location = new System.Drawing.Point(0, 0);
             this.rem_list.MultiSelect = false;
             this.rem_list.Name = "rem_list";
-            this.rem_list.Size = new System.Drawing.Size(1207, 464);
+            this.rem_list.Size = new System.Drawing.Size(1207, 488);
             this.rem_list.TabIndex = 0;
             this.rem_list.UseCompatibleStateImageBehavior = false;
             this.rem_list.View = System.Windows.Forms.View.Details;
@@ -890,7 +853,6 @@ namespace ProductInfo_UI
             this.zed_list.FullRowSelect = true;
             this.zed_list.GridLines = true;
             this.zed_list.Location = new System.Drawing.Point(0, 0);
-            this.zed_list.MultiSelect = false;
             this.zed_list.Name = "zed_list";
             this.zed_list.Size = new System.Drawing.Size(1207, 464);
             this.zed_list.TabIndex = 1;
@@ -1003,7 +965,6 @@ namespace ProductInfo_UI
             this.sold_zed_list.FullRowSelect = true;
             this.sold_zed_list.GridLines = true;
             this.sold_zed_list.Location = new System.Drawing.Point(0, 0);
-            this.sold_zed_list.MultiSelect = false;
             this.sold_zed_list.Name = "sold_zed_list";
             this.sold_zed_list.Size = new System.Drawing.Size(1207, 464);
             this.sold_zed_list.TabIndex = 2;
@@ -1137,7 +1098,7 @@ namespace ProductInfo_UI
             this.suppliers_list.Location = new System.Drawing.Point(0, 0);
             this.suppliers_list.MultiSelect = false;
             this.suppliers_list.Name = "suppliers_list";
-            this.suppliers_list.Size = new System.Drawing.Size(1207, 464);
+            this.suppliers_list.Size = new System.Drawing.Size(1207, 488);
             this.suppliers_list.TabIndex = 0;
             this.suppliers_list.UseCompatibleStateImageBehavior = false;
             this.suppliers_list.View = System.Windows.Forms.View.Details;
@@ -1238,7 +1199,7 @@ namespace ProductInfo_UI
             this.buyers_list.Location = new System.Drawing.Point(0, 0);
             this.buyers_list.MultiSelect = false;
             this.buyers_list.Name = "buyers_list";
-            this.buyers_list.Size = new System.Drawing.Size(1207, 464);
+            this.buyers_list.Size = new System.Drawing.Size(1207, 488);
             this.buyers_list.TabIndex = 1;
             this.buyers_list.UseCompatibleStateImageBehavior = false;
             this.buyers_list.View = System.Windows.Forms.View.Details;
@@ -1326,7 +1287,7 @@ namespace ProductInfo_UI
             this.prod_names_list.Location = new System.Drawing.Point(0, 0);
             this.prod_names_list.MultiSelect = false;
             this.prod_names_list.Name = "prod_names_list";
-            this.prod_names_list.Size = new System.Drawing.Size(1207, 464);
+            this.prod_names_list.Size = new System.Drawing.Size(1207, 488);
             this.prod_names_list.TabIndex = 1;
             this.prod_names_list.UseCompatibleStateImageBehavior = false;
             this.prod_names_list.View = System.Windows.Forms.View.Details;
@@ -1421,7 +1382,6 @@ namespace ProductInfo_UI
             this.sold_list.FullRowSelect = true;
             this.sold_list.GridLines = true;
             this.sold_list.Location = new System.Drawing.Point(0, 0);
-            this.sold_list.MultiSelect = false;
             this.sold_list.Name = "sold_list";
             this.sold_list.Size = new System.Drawing.Size(1207, 464);
             this.sold_list.TabIndex = 3;
@@ -1542,7 +1502,7 @@ namespace ProductInfo_UI
             this.agcera_rem_list.Location = new System.Drawing.Point(0, 0);
             this.agcera_rem_list.MultiSelect = false;
             this.agcera_rem_list.Name = "agcera_rem_list";
-            this.agcera_rem_list.Size = new System.Drawing.Size(1207, 464);
+            this.agcera_rem_list.Size = new System.Drawing.Size(1207, 488);
             this.agcera_rem_list.TabIndex = 1;
             this.agcera_rem_list.UseCompatibleStateImageBehavior = false;
             this.agcera_rem_list.View = System.Windows.Forms.View.Details;
@@ -1638,7 +1598,7 @@ namespace ProductInfo_UI
             this.bought_af_list.Location = new System.Drawing.Point(0, 0);
             this.bought_af_list.MultiSelect = false;
             this.bought_af_list.Name = "bought_af_list";
-            this.bought_af_list.Size = new System.Drawing.Size(1207, 464);
+            this.bought_af_list.Size = new System.Drawing.Size(1207, 488);
             this.bought_af_list.TabIndex = 2;
             this.bought_af_list.UseCompatibleStateImageBehavior = false;
             this.bought_af_list.View = System.Windows.Forms.View.Details;
@@ -2026,6 +1986,20 @@ namespace ProductInfo_UI
             // 
             this.bought_af_std_VAT_col.Text = "invoiceAmount";
             // 
+            // sell_status_lbl
+            // 
+            this.sell_status_lbl.Name = "sell_status_lbl";
+            this.sell_status_lbl.Size = new System.Drawing.Size(192, 18);
+            this.sell_status_lbl.Text = "შეიყვანეთ შტრიხ–კოდი ან დასახელება";
+            // 
+            // sell_status_sum_price_lbl
+            // 
+            this.sell_status_sum_price_lbl.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sell_status_sum_price_lbl.Name = "sell_status_sum_price_lbl";
+            this.sell_status_sum_price_lbl.Size = new System.Drawing.Size(1000, 18);
+            this.sell_status_sum_price_lbl.Spring = true;
+            this.sell_status_sum_price_lbl.Text = "საერთო ფასი 0.0 ლარი";
+            // 
             // tb_since_datepicker
             // 
             this.tb_since_datepicker.Location = new System.Drawing.Point(402, 29);
@@ -2052,6 +2026,44 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
             // 
+            // tb_print_btn
+            // 
+            this.tb_print_btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb_print_btn.Image = global::ProductInfo_UI.Properties.Resources.print_h22;
+            this.tb_print_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tb_print_btn.Name = "tb_print_btn";
+            this.tb_print_btn.Size = new System.Drawing.Size(23, 22);
+            this.tb_print_btn.Text = "ამობეჭდვა";
+            this.tb_print_btn.Click += new System.EventHandler(this.tb_print_btn_Click);
+            // 
+            // btn_export_csv
+            // 
+            this.btn_export_csv.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_export_csv.Image = global::ProductInfo_UI.Properties.Resources.csv_22x22;
+            this.btn_export_csv.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_export_csv.Name = "btn_export_csv";
+            this.btn_export_csv.Size = new System.Drawing.Size(23, 22);
+            this.btn_export_csv.Text = "CSV ფაილის შენახვა";
+            this.btn_export_csv.Click += new System.EventHandler(this.btn_export_csv_Click);
+            // 
+            // btn_export_list
+            // 
+            this.btn_export_list.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_export_list.Image = global::ProductInfo_UI.Properties.Resources.grocery_list_16x22;
+            this.btn_export_list.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_export_list.Name = "btn_export_list";
+            this.btn_export_list.Size = new System.Drawing.Size(23, 22);
+            this.btn_export_list.Text = "სიის ექსპორტი";
+            this.btn_export_list.Click += new System.EventHandler(this.btn_export_list_Click);
+            // 
+            // sb_refresh_btn
+            // 
+            this.sb_refresh_btn.Image = global::ProductInfo_UI.Properties.Resources.refresh_16x16;
+            this.sb_refresh_btn.IsLink = true;
+            this.sb_refresh_btn.Name = "sb_refresh_btn";
+            this.sb_refresh_btn.Size = new System.Drawing.Size(16, 17);
+            this.sb_refresh_btn.Click += new System.EventHandler(this.sb_refresh_btn_Click);
+            // 
             // ProductInfo_Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2071,13 +2083,10 @@ namespace ProductInfo_UI
             this.main_menu.PerformLayout();
             this.toolbar.ResumeLayout(false);
             this.toolbar.PerformLayout();
-            this.status_bar.ResumeLayout(false);
-            this.status_bar.PerformLayout();
             this.tab_container.ResumeLayout(false);
             this.sell_tabpage.ResumeLayout(false);
             this.sell_tabpage.PerformLayout();
-            this.sell_status_bar.ResumeLayout(false);
-            this.sell_status_bar.PerformLayout();
+            this.sell_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sell_list)).EndInit();
             this.nashtebi_tabpage.ResumeLayout(false);
             this.cm_rem_list.ResumeLayout(false);
@@ -2332,6 +2341,9 @@ namespace ProductInfo_UI
         private DataGridViewTextBoxColumn sell_sum_price_col;
         private DataGridViewButtonColumn sell_delete_col;
         private ColumnHeader sold_buyer_col;
+        private Panel sell_panel;
+        private ToolStripButton btn_export_list;
+        private ToolStripSeparator toolStripSeparator2;
 
 
 

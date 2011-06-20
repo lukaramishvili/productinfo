@@ -163,10 +163,6 @@
             // 
             this.cb_mt_store_id.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_mt_store_id.FormattingEnabled = true;
-            this.cb_mt_store_id.Items.AddRange(new object[] {
-            "ბიუჯეტი",
-            "პირველი",
-            "მეორე"});
             this.cb_mt_store_id.Location = new System.Drawing.Point(104, 146);
             this.cb_mt_store_id.Name = "cb_mt_store_id";
             this.cb_mt_store_id.Size = new System.Drawing.Size(118, 21);

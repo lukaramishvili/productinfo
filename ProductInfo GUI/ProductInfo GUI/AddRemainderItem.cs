@@ -33,6 +33,7 @@ namespace ProductInfo_UI
 
         AddRemainderItemMode AddRemMode = AddRemainderItemMode.BoughtZed;
 
+        DataTable all_stores = ProductInfo_Main_Form.conn.AllStores();
         Product[] all_prod_names = ProductInfo_Main_Form.conn.GetProductSuggestions("");
         Remainder[] all_valid_rems = ProductInfo_Main_Form.conn.GetValidRemainders(ProductInfo_Main_Form.ActiveStoreID, true);
 
@@ -111,7 +112,7 @@ namespace ProductInfo_UI
 
         private void btn_add_soldrem_Click(object sender, EventArgs e)
         {
-            if (0 == cb_addrem_store_id.SelectedIndex)
+            if (0 == (int)cb_addrem_store_id.SelectedValue)
             {
                 MessageBox.Show("გთხოვთ მონიშნოთ საწყობი!", "შეცდომა");
                 return;
@@ -122,7 +123,7 @@ namespace ProductInfo_UI
                 case AddRemainderItemMode.BoughtZed:
                     if (ValidateAddRemFields())
                     {
-                        Remainder RemToAdd = new Remainder(cmb_select_remainder.SelectedItem.ToString(), ClientIdent, ZedIdent, PieceCount, PackCapacity, PieceCount, PiecePrice, PiecePrice, 0.0m, 0.0m, cb_addrem_store_id.SelectedIndex);
+                        Remainder RemToAdd = new Remainder(cmb_select_remainder.SelectedItem.ToString(), ClientIdent, ZedIdent, PieceCount, PackCapacity, PieceCount, PiecePrice, PiecePrice, 0.0m, 0.0m, (int)cb_addrem_store_id.SelectedValue);
                         addrem_res = ProductInfo_Main_Form.conn.sOpAddRemainder(RemToAdd);
                     }
                     else
@@ -134,7 +135,7 @@ namespace ProductInfo_UI
                 case AddRemainderItemMode.SoldZed:
                     if (ValidateAddRemFields())
                     {
-                        Remainder RemToSell = new Remainder(cmb_select_remainder.SelectedItem.ToString(), ClientIdent, "", PieceCount, PackCapacity, PieceCount, 0.0m, 0.0m, PiecePrice, PiecePrice, cb_addrem_store_id.SelectedIndex);
+                        Remainder RemToSell = new Remainder(cmb_select_remainder.SelectedItem.ToString(), ClientIdent, "", PieceCount, PackCapacity, PieceCount, 0.0m, 0.0m, PiecePrice, PiecePrice, (int)cb_addrem_store_id.SelectedValue);
                         addrem_res = ProductInfo_Main_Form.conn.sOpSellRemainder(RemToSell, SellOrderID);
                     }
                     else
@@ -146,7 +147,7 @@ namespace ProductInfo_UI
                 case AddRemainderItemMode.SellOrder:
                     if (ValidateAddRemFields())
                     {
-                        Remainder RemToSell = new Remainder(cmb_select_remainder.SelectedItem.ToString(), ClientIdent, "", PieceCount, PackCapacity, PieceCount, 0.0m, 0.0m, PiecePrice, PiecePrice, cb_addrem_store_id.SelectedIndex);
+                        Remainder RemToSell = new Remainder(cmb_select_remainder.SelectedItem.ToString(), ClientIdent, "", PieceCount, PackCapacity, PieceCount, 0.0m, 0.0m, PiecePrice, PiecePrice, (int)cb_addrem_store_id.SelectedValue);
                         addrem_res = ProductInfo_Main_Form.conn.sOpSellRemainder(RemToSell, SellOrderID);
                     }
                     else
@@ -203,7 +204,12 @@ namespace ProductInfo_UI
 
         private void AddRemainderItem_Form_Load(object sender, EventArgs e)
         {
-            cb_addrem_store_id.SelectedIndex = ProductInfo_Main_Form.ActiveStoreID;
+            cb_addrem_store_id.DataSource = all_stores;
+            cb_addrem_store_id.ValueMember = "id";
+            cb_addrem_store_id.DisplayMember = "Name";
+
+
+            cb_addrem_store_id.SelectedValue = ProductInfo_Main_Form.ActiveStoreID;
 
             switch (this.AddRemMode)
             {

@@ -36,6 +36,7 @@
             this.submit_btn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cmb_select_remainder = new System.Windows.Forms.ComboBox();
+            this.cb_target_store_id = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lbl_rem_info
@@ -50,16 +51,16 @@
             // 
             // txt_store1_count
             // 
+            this.txt_store1_count.Enabled = false;
             this.txt_store1_count.Location = new System.Drawing.Point(6, 147);
             this.txt_store1_count.Name = "txt_store1_count";
             this.txt_store1_count.Size = new System.Drawing.Size(100, 20);
             this.txt_store1_count.TabIndex = 0;
             this.txt_store1_count.Text = "0";
-            this.txt_store1_count.TextChanged += new System.EventHandler(this.txt_store1_count_TextChanged);
             // 
             // txt_store2_count
             // 
-            this.txt_store2_count.Location = new System.Drawing.Point(6, 200);
+            this.txt_store2_count.Location = new System.Drawing.Point(6, 212);
             this.txt_store2_count.Name = "txt_store2_count";
             this.txt_store2_count.Size = new System.Drawing.Size(100, 20);
             this.txt_store2_count.TabIndex = 1;
@@ -72,26 +73,26 @@
             this.lbl_store1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbl_store1.Location = new System.Drawing.Point(3, 125);
             this.lbl_store1.Name = "lbl_store1";
-            this.lbl_store1.Size = new System.Drawing.Size(72, 16);
+            this.lbl_store1.Size = new System.Drawing.Size(234, 16);
             this.lbl_store1.TabIndex = 0;
-            this.lbl_store1.Text = "საწყობი 1";
+            this.lbl_store1.Text = "საწყობ 1–ში არსებული რაოდენობა";
             // 
             // lbl_store2
             // 
             this.lbl_store2.AutoSize = true;
             this.lbl_store2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl_store2.Location = new System.Drawing.Point(3, 180);
+            this.lbl_store2.Location = new System.Drawing.Point(3, 186);
             this.lbl_store2.Name = "lbl_store2";
-            this.lbl_store2.Size = new System.Drawing.Size(72, 16);
+            this.lbl_store2.Size = new System.Drawing.Size(183, 16);
             this.lbl_store2.TabIndex = 0;
-            this.lbl_store2.Text = "საწყობი 2";
+            this.lbl_store2.Text = "საწყობ                           –ში";
             // 
             // submit_btn
             // 
-            this.submit_btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.submit_btn.Location = new System.Drawing.Point(6, 243);
+            this.submit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.submit_btn.Location = new System.Drawing.Point(6, 249);
             this.submit_btn.Name = "submit_btn";
-            this.submit_btn.Size = new System.Drawing.Size(75, 24);
+            this.submit_btn.Size = new System.Drawing.Size(88, 29);
             this.submit_btn.TabIndex = 2;
             this.submit_btn.Text = "გადატანა";
             this.submit_btn.UseVisualStyleBackColor = true;
@@ -117,11 +118,22 @@
             this.cmb_select_remainder.TabIndex = 4;
             this.cmb_select_remainder.SelectedIndexChanged += new System.EventHandler(this.cmb_select_remainder_SelectedIndexChanged);
             // 
+            // cb_target_store_id
+            // 
+            this.cb_target_store_id.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_target_store_id.FormattingEnabled = true;
+            this.cb_target_store_id.Location = new System.Drawing.Point(59, 186);
+            this.cb_target_store_id.Name = "cb_target_store_id";
+            this.cb_target_store_id.Size = new System.Drawing.Size(93, 21);
+            this.cb_target_store_id.TabIndex = 5;
+            this.cb_target_store_id.SelectedIndexChanged += new System.EventHandler(this.cb_target_store_id_SelectedIndexChanged);
+            // 
             // SplitRemainder_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(273, 284);
+            this.ClientSize = new System.Drawing.Size(277, 295);
+            this.Controls.Add(this.cb_target_store_id);
             this.Controls.Add(this.cmb_select_remainder);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.submit_btn);
@@ -148,5 +160,6 @@
         private System.Windows.Forms.Button submit_btn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmb_select_remainder;
+        private System.Windows.Forms.ComboBox cb_target_store_id;
     }
 }

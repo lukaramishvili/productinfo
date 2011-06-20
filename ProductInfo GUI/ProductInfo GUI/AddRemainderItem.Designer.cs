@@ -227,10 +227,6 @@
             this.cb_addrem_store_id.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_addrem_store_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cb_addrem_store_id.FormattingEnabled = true;
-            this.cb_addrem_store_id.Items.AddRange(new object[] {
-            "მონიშნეთ საწყობი",
-            "პირველი",
-            "მეორე"});
             this.cb_addrem_store_id.Location = new System.Drawing.Point(95, 118);
             this.cb_addrem_store_id.Name = "cb_addrem_store_id";
             this.cb_addrem_store_id.Size = new System.Drawing.Size(144, 24);

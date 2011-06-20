@@ -73,6 +73,8 @@ namespace ProductInfo_UI
         public Supplier[] all_suppliers;
         public Buyer[] all_buyers;
 
+        DataTable all_stores;
+
         Remainder[] all_valid_rems = null;
 
         DataTable prodrem_list_dt = new DataTable();
@@ -101,7 +103,7 @@ namespace ProductInfo_UI
 
         public static int ActiveStoreID = 0;
 
-        DateTime DateFilterSince = new DateTime(1990, 01, 01);
+        DateTime DateFilterSince = DateTime.Now.AddMonths(-1);
         DateTime DateFilterUntil = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day);//new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
 
         bool UsingCheck = true;
@@ -123,11 +125,25 @@ namespace ProductInfo_UI
         {
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
 
-            ActiveStoreID = Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\zero\ProductInfo\1.0", "StoreID", 0));
-            tb_store_chooser.SelectedIndex = ActiveStoreID;
+            all_stores = conn.AllStores();
+
+            int StoreIDFromRegistry = Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\zero\ProductInfo\1.0", "StoreID", 0));
+            if (all_stores.Select("id = " + StoreIDFromRegistry).Length > 0)//check that the StoreID we are using actually exists in database
+            {
+                ActiveStoreID = StoreIDFromRegistry;
+            }
+            else
+            {
+                ActiveStoreID = 0;
+            }
+            tb_store_chooser.ComboBox.DataSource = all_stores;//romel qveyanashic mixval is qudi daixure =)))
+            tb_store_chooser.ComboBox.ValueMember = "id";
+            tb_store_chooser.ComboBox.DisplayMember = "Name";
+
+            tb_store_chooser.ComboBox.SelectedValue = ActiveStoreID;
             //
-            tb_since_datepicker.Value = new DateTime(1990, 01, 01);
-            tb_until_datepicker.Value = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day);//new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
+            tb_since_datepicker.Value = DateFilterSince;
+            tb_until_datepicker.Value = DateFilterUntil;
             tb_since_datepicker.ValueChanged += new EventHandler(tb_since_datepicker_ValueChanged);
             tb_until_datepicker.ValueChanged += new EventHandler(tb_until_datepicker_ValueChanged);
             DateFilterSince = tb_since_datepicker.Value;
@@ -144,7 +160,6 @@ namespace ProductInfo_UI
             sb_sum_withoutVAT_lbl.Visible = false;
 
             status_bar_text.Text = ProductInfo_Main_Form.conn.status.details;
-
 
 
 
@@ -1549,7 +1564,7 @@ namespace ProductInfo_UI
             {
                 //if (!WorkerThread.Spawn(delegate()
                 //{
-                rem_list_dt = conn.Rem_Statistics(ActiveStoreID);
+                rem_list_dt = conn.Rem_Statistics(ActiveStoreID, DateFilterSince, DateFilterUntil);
                 //}))
                 //{
                 //    MessageBox.Show("სერვერთან დაკავშირების პრობლემაა. სცადეთ თავიდან. ");
@@ -2120,6 +2135,27 @@ namespace ProductInfo_UI
             return lines;
         }
 
+        public static string DataTableToCSV(DataTable target_dt)
+        {
+            string lines = "";
+            //save headers
+            foreach (DataColumn ch in target_dt.Columns)
+            {
+                lines += "\"" + ch.Caption + "\"" + "\t";
+            }
+            lines += "\r\n";
+
+            foreach (DataRow dr in target_dt.Rows)
+            {
+                foreach (object o_O in dr.ItemArray)
+                {
+                    lines += "\"" + o_O.ToString() + "\"" + "\t";
+                }
+                lines += "\r\n";
+            }
+            return lines;
+        }
+
         public static string ListViewToDSV(ListView target_lv)
         {
             string lines = "";
@@ -2244,7 +2280,13 @@ namespace ProductInfo_UI
 
         private void tb_store_chooser_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ActiveStoreID = tb_store_chooser.SelectedIndex;
+            try
+            {
+                ActiveStoreID = (int)tb_store_chooser.ComboBox.SelectedValue;
+            }
+            catch (InvalidCastException)
+            {
+            }
 
             RefreshTabs();
             //
@@ -2607,7 +2649,7 @@ namespace ProductInfo_UI
                 string supplier_ident_str = (from all_s in all_suppliers
                                              where all_s.saxeli == zed_list.SelectedItems[0].SubItems[zed_supplier_col.Index].Text
                                              select all_s.saidentifikacio_kodi).ToArray()[0];
-                boughtzed_details_frm.ShowBoughtZedDetails(supplier_ident_str, zed_list.SelectedItems[0].Text, DateTime.Parse(zed_list.SelectedItems[0].SubItems[zed_date_col.Index].Text));
+                boughtzed_details_frm.ShowBoughtZedDetails(supplier_ident_str, zed_list.SelectedItems[0].SubItems[zed_ident_col.Index].Text, DateTime.Parse(zed_list.SelectedItems[0].SubItems[zed_date_col.Index].Text));
                 boughtzed_details_frm.FormClosed += new FormClosedEventHandler(boughtzed_details_frm_FormClosed);
             }
         }
@@ -2626,7 +2668,7 @@ namespace ProductInfo_UI
                 string buyer_ident_str = (from all_b in all_buyers
                                           where all_b.saxeli == sold_zed_list.SelectedItems[0].SubItems[sold_z_buyer_col.Index].Text
                                           select all_b.saidentifikacio_kodi).ToArray()[0];
-                soldzed_details_frm.ShowSoldZedDetails(buyer_ident_str, sold_zed_list.SelectedItems[0].Text, DateTime.Parse(sold_zed_list.SelectedItems[0].SubItems[sold_z_date_col.Index].Text));
+                soldzed_details_frm.ShowSoldZedDetails(buyer_ident_str, sold_zed_list.SelectedItems[0].SubItems[sold_z_ident_code_col.Index].Text, DateTime.Parse(sold_zed_list.SelectedItems[0].SubItems[sold_z_date_col.Index].Text));
                 soldzed_details_frm.FormClosed += new FormClosedEventHandler(soldzed_details_frm_FormClosed);
             }
         }
@@ -2683,7 +2725,7 @@ namespace ProductInfo_UI
                 string supplier_ident_str = (from all_s in all_suppliers
                                              where all_s.saxeli == zed_list.SelectedItems[0].SubItems[zed_supplier_col.Index].Text
                                              select all_s.saidentifikacio_kodi).ToArray()[0];
-                sod_details_frm.ShowBoughtZedDetails(supplier_ident_str, zed_list.SelectedItems[0].Text, DateTime.Parse(zed_list.SelectedItems[0].SubItems[zed_date_col.Index].Text));
+                sod_details_frm.ShowBoughtZedDetails(supplier_ident_str, zed_list.SelectedItems[0].SubItems[zed_ident_col.Index].Text, DateTime.Parse(zed_list.SelectedItems[0].SubItems[zed_date_col.Index].Text));
                 sod_details_frm.FormClosed += new FormClosedEventHandler(sod_details_frm_FormClosed);
             }
         }
@@ -2699,7 +2741,7 @@ namespace ProductInfo_UI
             {
                 SellOrderDetails_Form sold_details_frm = new SellOrderDetails_Form();
                 sold_details_frm.Show();
-                sold_details_frm.ShowSellOrderDetails(Int32.Parse(sold_list.SelectedItems[0].Text)
+                sold_details_frm.ShowSellOrderDetails(Int32.Parse(sold_list.SelectedItems[0].SubItems[sold_id_col.Index].Text)
                     , sold_list.SelectedItems[0].SubItems[sold_zed_ident_col.Index].Text
                     , sold_list.SelectedItems[0].SubItems[sold_using_check_col.Index].Text);
                 sold_details_frm.FormClosed += new FormClosedEventHandler(sold_details_frm_FormClosed);
@@ -2923,6 +2965,8 @@ namespace ProductInfo_UI
                 return;
             }
 
+            string file_to_save_name = tab_container.SelectedTab.Text + " - " + DateTime.Now.Day + " " + BitmapGenerator.GeorgianMonths[DateTime.Now.Month] + " " + DateTime.Now.Year + " " + DateTime.Now.Hour + "-" + DateTime.Now.Minute;
+
             string csv_output = "";
 
             if (productnames_tabpage == tab_container.SelectedTab)
@@ -2982,15 +3026,19 @@ namespace ProductInfo_UI
                 csv_output = ListViewToCSV(bought_af_standard_list);
             }
 
+            HandleFileSaveDialog(file_to_save_name, csv_output);
+        }
 
+        public void HandleFileSaveDialog(string FileName, string FileContents)
+        {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "csv files (*.csv)|*.csv|All files (*.*)|*.*";
-            sfd.FileName = tab_container.SelectedTab.Text + " - " + DateTime.Now.Day + " " + BitmapGenerator.GeorgianMonths[DateTime.Now.Month] + " " + DateTime.Now.Year + " " + DateTime.Now.Hour + "-" + DateTime.Now.Minute;
+            sfd.FileName = FileName;
             sfd.AddExtension = true;
 
             if (DialogResult.OK == sfd.ShowDialog())
             {
-                info savefile_info = Utilities.Externals.SaveCSV(sfd.FileName, csv_output);
+                info savefile_info = Utilities.Externals.SaveCSV(sfd.FileName, FileContents);
                 if (0 != savefile_info.errcode)
                 {
                     MessageBox.Show(savefile_info.details, savefile_info.errcode.ToString());
@@ -3010,6 +3058,79 @@ namespace ProductInfo_UI
                 dgrow.HeaderCell.Value = String.Format((dgrow.Index + 1).ToString(), "0");
             }
             sell_list.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+        }
+
+        private void btn_export_list_Click(object sender, EventArgs e)
+        {
+            if (zednadebebi_tabpage == tab_container.SelectedTab)
+            {
+                if (0 < zed_list.SelectedItems.Count)
+                {
+                    string all_zeds_names = "";
+                    string all_zeds_details = "";
+                    foreach (ListViewItem lvi in zed_list.SelectedItems)
+                    {
+                        if ("ჯამი" != lvi.Text)
+                        {
+                            string zed_ident_str = lvi.SubItems[zed_ident_col.Index].Text;
+                            string supplier_name = lvi.SubItems[zed_supplier_col.Index].Text;
+                            string supplier_ident_str = (from all_s in all_suppliers
+                                                         where all_s.saxeli == lvi.SubItems[zed_supplier_col.Index].Text
+                                                         select all_s.saidentifikacio_kodi).ToArray()[0];
+                            DataTable so_details = ProductInfo_Main_Form.conn.BoughtZedDetails(supplier_ident_str, zed_ident_str);
+                            so_details.Columns[0].Caption = "მომწოდებელი " + supplier_name + ", ზედნადები N. " + zed_ident_str;
+                            all_zeds_names += zed_ident_str + ",";
+                            all_zeds_details += DataTableToCSV(so_details);
+                        }
+                    }
+                    HandleFileSaveDialog(all_zeds_names, all_zeds_details);
+                }
+            }
+            if (sold_zednadebebi_tabpage == tab_container.SelectedTab)
+            {
+                if (0 < sold_zed_list.SelectedItems.Count)
+                {
+                    string all_zeds_names = "";
+                    string all_zeds_details = "";
+                    foreach (ListViewItem lvi in sold_zed_list.SelectedItems)
+                    {
+                        if ("ჯამი" != lvi.Text)
+                        {
+                            string zed_ident_str = lvi.SubItems[sold_z_ident_code_col.Index].Text;
+                            string buyer_name = lvi.SubItems[sold_z_buyer_col.Index].Text;
+                            string buyer_ident_str = (from all_b in all_buyers
+                                                      where all_b.saxeli == lvi.SubItems[sold_z_buyer_col.Index].Text
+                                                      select all_b.saidentifikacio_kodi).ToArray()[0];
+                            DataTable so_details = ProductInfo_Main_Form.conn.SoldZedDetails(buyer_ident_str, zed_ident_str);
+                            so_details.Columns[0].Caption = "მყიდველი " + buyer_name + ", ზედნადები N. " + zed_ident_str;
+                            all_zeds_names += zed_ident_str + ",";
+                            all_zeds_details += DataTableToCSV(so_details);
+                        }
+                    }
+                    HandleFileSaveDialog(all_zeds_names, all_zeds_details);
+                }
+            }
+            if (sold_tabpage == tab_container.SelectedTab)
+            {
+                if (0 < sold_list.SelectedItems.Count)
+                {
+                    string all_SO_ids = "";
+                    string all_SO_details = "";
+                    foreach (ListViewItem lvi in sold_list.SelectedItems)
+                    {
+                        if ("ჯამი" != lvi.Text)
+                        {
+                            int SO_id = Int32.Parse(lvi.SubItems[sold_id_col.Index].Text);
+                            DataTable so_details = ProductInfo_Main_Form.conn.SellOrderDetails(SO_id);
+                            so_details.Columns[0].Caption = "გაყიდვა N. " + SO_id;
+                            all_SO_ids += SO_id + ",";
+                            all_SO_details += DataTableToCSV(so_details);
+                        }
+                    }
+                    HandleFileSaveDialog(all_SO_ids, all_SO_details);
+                }
+            }
+            //
         }
 
 

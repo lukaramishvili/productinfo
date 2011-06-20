@@ -28,6 +28,7 @@ namespace ProductInfo_UI
             return Utilities.Utilities.ParseDecimal(arg);
         }
 
+        DataTable all_stores;
         Supplier[] all_suppliers = null;
         Buyer[] all_buyers = null;
 
@@ -41,6 +42,12 @@ namespace ProductInfo_UI
         {
             taking_txt.Enabled = false;
             rb_giving.Checked = true;
+
+            all_stores = ProductInfo_Main_Form.conn.AllStores();
+
+            cb_mt_store_id.DataSource = all_stores;
+            cb_mt_store_id.ValueMember = "id";
+            cb_mt_store_id.DisplayMember = "Name";
 
             all_suppliers = ProductInfo_Main_Form.conn.AllSuppliers();
             all_buyers = ProductInfo_Main_Form.conn.AllBuyers();
@@ -87,7 +94,7 @@ namespace ProductInfo_UI
                 }
             }
 
-            cb_mt_store_id.SelectedIndex = store_id_arg;
+            cb_mt_store_id.SelectedValue = store_id_arg;
 
             if (typeof(Supplier) == clienttype_arg)
             {
@@ -231,7 +238,7 @@ namespace ProductInfo_UI
 
 
 
-            info transfmoney_info = ProductInfo_Main_Form.conn.TransferMoney(procClientIdent, TransferMode, DateTime.Now, procAmount, ClientType, TransferPurpose, cb_mt_store_id.SelectedIndex, TargetType, TargetIdentCode);
+            info transfmoney_info = ProductInfo_Main_Form.conn.TransferMoney(procClientIdent, TransferMode, DateTime.Now, procAmount, ClientType, TransferPurpose, (int)cb_mt_store_id.SelectedValue, TargetType, TargetIdentCode);
             MessageBox.Show(transfmoney_info.details, transfmoney_info.errcode.ToString());
             if (0 == transfmoney_info.errcode)
             {

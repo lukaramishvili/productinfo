@@ -31,6 +31,8 @@ namespace ProductInfo_UI
         public delegate void AddRemsThreadSafeLoad();
         public AddRemsThreadSafeLoad mydelegate;
 
+        DataTable all_stores;
+
         Supplier[] all_suppliers = null;
         Product[] all_products = null;
 
@@ -46,12 +48,19 @@ namespace ProductInfo_UI
 
         public void AddRemainders_Form_Load_ThreadSafe()
         {
+            all_stores = ProductInfo_Main_Form.conn.AllStores();
+            add_rem_storeid_col.DataSource = all_stores;//romel qveyanashic mixval is qudi daixure =)))
+            add_rem_storeid_col.ValueMember = "id";
+            add_rem_storeid_col.DisplayMember = "Name";
+
+            //add_rem_storeid_col.DefaultCellStyle.NullValue = ProductInfo_Main_Form.ActiveStoreID;
+
+
             foreach (Supplier nextSupplier in all_suppliers)
             {
                 supplier_chooser.Items.Add(nextSupplier.saxeli);
 
             }
-
 
             if (all_products.Length > 0)
             {
@@ -114,13 +123,15 @@ namespace ProductInfo_UI
                 if (!nextRow.IsNewRow)
                 {
                     Remainder nextRemS1 = new Remainder();
-                    Remainder nextRemS2 = new Remainder();
 
-                    if (null == nextRow.Cells["add_rem_barcode_col"].Value |
-                        null == nextRow.Cells["add_rem_capacity_col"].Value |
-                        null == nextRow.Cells["add_rem_count_type_col"].Value |
-                        (null == nextRow.Cells["add_rem_store1_col"].Value && null == nextRow.Cells["add_rem_store2_col"].Value) |
-                        null == nextRow.Cells["add_rem_piece_price_col"].Value)
+                    if (null == nextRow.Cells[add_rem_barcode_col.Index].Value |
+                        null == nextRow.Cells[add_rem_capacity_col.Index].Value |
+                        null == nextRow.Cells[add_rem_count_type_col.Index].Value |
+                        null == nextRow.Cells[add_rem_storeid_col.Index].Value |
+                        0 >= Convert.ToInt32((nextRow.Cells[add_rem_storeid_col.Index].Value ?? 0).ToString()) |
+                        null == nextRow.Cells[add_rem_piece_count_col.Index].Value |
+                        null == nextRow.Cells[add_rem_piece_price_col.Index].Value |
+                        0 > ParseDecimal((nextRow.Cells[add_rem_sell_price_col.Index].Value ?? 0).ToString()))
                     {
                         HighlightNonCompleteFields(nextRow);
 
@@ -129,61 +140,42 @@ namespace ProductInfo_UI
                     }
                     else
                     {
-                        string nbarcode = nextRow.Cells["add_rem_barcode_col"].Value.ToString();
+                        string nbarcode = nextRow.Cells[add_rem_barcode_col.Index].Value.ToString();
                         string nzedid = zed_ident_code_txt.Text;
-                        decimal ncapacity = ParseDecimal(nextRow.Cells["add_rem_capacity_col"].Value.ToString());
-                        decimal npiece_price = ParseDecimal(nextRow.Cells["add_rem_piece_price_col"].Value.ToString());
+                        decimal ncapacity = ParseDecimal(nextRow.Cells[add_rem_capacity_col.Index].Value.ToString());
+                        decimal npiece_price = ParseDecimal(nextRow.Cells[add_rem_piece_price_col.Index].Value.ToString());
 
-                        decimal nstore1_count = 0.0m;
-                        decimal nstore2_count = 0.0m;
-                        if (null != nextRow.Cells["add_rem_store1_col"].Value)
-                        {
-                            nstore1_count = ParseDecimal(nextRow.Cells["add_rem_store1_col"].Value.ToString());
-                        }
-                        if (null != nextRow.Cells["add_rem_store2_col"].Value)
-                        {
-                            nstore2_count = ParseDecimal(nextRow.Cells["add_rem_store2_col"].Value.ToString());
-                        }
+                        int nstore_id = 0;
+                        decimal npiece_count = 0.0m;
+                        decimal nsell_price = 0.0m;
 
-                        if ("ყუთები" == nextRow.Cells["add_rem_count_type_col"].Value.ToString())
+                        nstore_id = Convert.ToInt32(nextRow.Cells[add_rem_storeid_col.Index].Value.ToString());
+                        npiece_count = ParseDecimal(nextRow.Cells[add_rem_piece_count_col.Index].Value.ToString());
+                        nsell_price = ParseDecimal((nextRow.Cells[add_rem_sell_price_col.Index].Value ?? 0).ToString());
+
+
+                        if ("ყუთები" == nextRow.Cells[add_rem_count_type_col.Index].Value.ToString())
                         {
-                            nstore1_count *= ncapacity;
-                            nstore2_count *= ncapacity;
+                            npiece_count *= ncapacity;
                         }
                         else
                         {
                         }
-                        nextRemS1.storehouse_id = 1;
+                        nextRemS1.storehouse_id = nstore_id;
                         nextRemS1.product_barcode = nbarcode;
                         nextRemS1.supplier_ident = all_suppliers[supplier_chooser.SelectedIndex].saidentifikacio_kodi;
                         nextRemS1.zednadebis_nomeri = nzedid;
                         nextRemS1.pack_capacity = ncapacity;
                         nextRemS1.buy_price = npiece_price;
                         nextRemS1.formal_buy_price = npiece_price;
-                        nextRemS1.sell_price = 0.0m;
-                        nextRemS1.formal_sell_price = 0.0m;
-                        nextRemS1.initial_pieces = nstore1_count;
-                        nextRemS1.remaining_pieces = nstore1_count;
+                        nextRemS1.sell_price = nsell_price;
+                        nextRemS1.formal_sell_price = nsell_price;
+                        nextRemS1.initial_pieces = npiece_count;
+                        nextRemS1.remaining_pieces = npiece_count;
 
-                        nextRemS2.storehouse_id = 2;
-                        nextRemS2.product_barcode = nbarcode;
-                        nextRemS2.supplier_ident = all_suppliers[supplier_chooser.SelectedIndex].saidentifikacio_kodi;
-                        nextRemS2.zednadebis_nomeri = nzedid;
-                        nextRemS2.pack_capacity = ncapacity;
-                        nextRemS2.buy_price = npiece_price;
-                        nextRemS2.formal_buy_price = npiece_price;
-                        nextRemS2.sell_price = 0.0m;
-                        nextRemS2.formal_sell_price = 0.0m;
-                        nextRemS2.initial_pieces = nstore2_count;
-                        nextRemS2.remaining_pieces = nstore2_count;
-
-                        if (nstore1_count > 0)
+                        if (npiece_count > 0)
                         {
                             zed_prod_list.Add(nextRemS1);
-                        }
-                        if (nstore2_count > 0)
-                        {
-                            zed_prod_list.Add(nextRemS2);
                         }
 
                     }
@@ -195,6 +187,12 @@ namespace ProductInfo_UI
                     //Last, unused row (IsNewRow)
                 }
             }//foreach datagridviewrow
+
+            if (!(zed_prod_list.Count > 0))
+            {
+                status_bar_lbl.Text = "პროდუქტების სიის გარეშე გაყიდვა არ მოხდება!";
+                return;
+            }
 
             PurchaseOrder shemotana_pur;
             if (using_af_ckb.Checked && "" != add_rem_af_seria.Text && "" != add_rem_af_nomeri.Text)
@@ -222,53 +220,53 @@ namespace ProductInfo_UI
 
         private void HighlightNonCompleteFields(DataGridViewRow nextRow)
         {
-            if (null == nextRow.Cells["add_rem_barcode_col"].Value)
+            if (null == nextRow.Cells[add_rem_barcode_col.Index].Value)
             {
-                nextRow.Cells["add_rem_barcode_col"].Style.BackColor = Color.Red;
+                nextRow.Cells[add_rem_barcode_col.Index].Style.BackColor = Color.Red;
             }
             else
             {
-                nextRow.Cells["add_rem_barcode_col"].Style.BackColor = Color.White;
+                nextRow.Cells[add_rem_barcode_col.Index].Style.BackColor = Color.White;
             }
-            if (null == nextRow.Cells["add_rem_capacity_col"].Value)
+            if (null == nextRow.Cells[add_rem_capacity_col.Index].Value)
             {
-                nextRow.Cells["add_rem_capacity_col"].Style.BackColor = Color.Red;
-            }
-            else
-            {
-                nextRow.Cells["add_rem_capacity_col"].Style.BackColor = Color.White;
-            }
-            if (null == nextRow.Cells["add_rem_count_type_col"].Value)
-            {
-                nextRow.Cells["add_rem_count_type_col"].Style.BackColor = Color.Red;
+                nextRow.Cells[add_rem_capacity_col.Index].Style.BackColor = Color.Red;
             }
             else
             {
-                nextRow.Cells["add_rem_count_type_col"].Style.BackColor = Color.White;
+                nextRow.Cells[add_rem_capacity_col.Index].Style.BackColor = Color.White;
             }
-            if (null == nextRow.Cells["add_rem_store1_col"].Value)
+            if (null == nextRow.Cells[add_rem_count_type_col.Index].Value)
             {
-                //nextRow.Cells["add_rem_store1_col"].Style.BackColor = Color.Red;
-            }
-            else
-            {
-                nextRow.Cells["add_rem_store1_col"].Style.BackColor = Color.White;
-            }
-            if (null == nextRow.Cells["add_rem_store2_col"].Value)
-            {
-                //nextRow.Cells["add_rem_store2_col"].Style.BackColor = Color.Red;
+                nextRow.Cells[add_rem_count_type_col.Index].Style.BackColor = Color.Red;
             }
             else
             {
-                nextRow.Cells["add_rem_store2_col"].Style.BackColor = Color.White;
+                nextRow.Cells[add_rem_count_type_col.Index].Style.BackColor = Color.White;
             }
-            if (null == nextRow.Cells["add_rem_piece_price_col"].Value)
+            if (null == nextRow.Cells[add_rem_storeid_col.Index].Value)
             {
-                nextRow.Cells["add_rem_piece_price_col"].Style.BackColor = Color.Red;
+                nextRow.Cells[add_rem_storeid_col.Index].Style.BackColor = Color.Red;
             }
             else
             {
-                nextRow.Cells["add_rem_piece_price_col"].Style.BackColor = Color.White;
+                nextRow.Cells[add_rem_storeid_col.Index].Style.BackColor = Color.White;
+            }
+            if (null == nextRow.Cells[add_rem_piece_count_col.Index].Value)
+            {
+                nextRow.Cells[add_rem_piece_count_col.Index].Style.BackColor = Color.Red;
+            }
+            else
+            {
+                nextRow.Cells[add_rem_piece_count_col.Index].Style.BackColor = Color.White;
+            }
+            if (null == nextRow.Cells[add_rem_piece_price_col.Index].Value)
+            {
+                nextRow.Cells[add_rem_piece_price_col.Index].Style.BackColor = Color.Red;
+            }
+            else
+            {
+                nextRow.Cells[add_rem_piece_price_col.Index].Style.BackColor = Color.White;
             }
         }
 
@@ -286,7 +284,7 @@ namespace ProductInfo_UI
                     int currentRowIndex = add_remainders_list.CurrentRow.Index;
                     add_remainders_list.ClearSelection();
                     add_remainders_list.EndEdit();
-                    add_remainders_list.Rows[currentRowIndex].Cells["add_rem_barcode_col"].Selected = true;
+                    add_remainders_list.Rows[currentRowIndex].Cells[add_rem_barcode_col.Index].Selected = true;
                 }
                 catch (NullReferenceException)
                 {
@@ -301,6 +299,10 @@ namespace ProductInfo_UI
             {
                 ComboBox cb = (ComboBox)e.Control;
                 cb.DropDownStyle = ComboBoxStyle.DropDown;
+            }
+            else if (add_rem_storeid_col.Index == add_remainders_list.CurrentCell.ColumnIndex)
+            {
+                ComboBox StoreIdChooser = (ComboBox)e.Control;
             }
 
             e.Control.KeyDown -= add_list_Control_KeyDown;
@@ -340,12 +342,12 @@ namespace ProductInfo_UI
                         Product[] prod_suggestions = ProductInfo_Main_Form.conn.GetProductSuggestions(pressed_name_keystrokes);
                         if (prod_suggestions.Length > 0)
                         {
-                            add_remainders_list.CurrentRow.Cells["add_rem_barcode_col"].Value = prod_suggestions[0].barcode;
+                            add_remainders_list.CurrentRow.Cells[add_rem_barcode_col.Index].Value = prod_suggestions[0].barcode;
                             foreach (object nextItem in add_rem_name_col.Items)
                             {
                                 if (nextItem.ToString() == prod_suggestions[0].name)
                                 {
-                                    add_remainders_list.CurrentRow.Cells["add_rem_name_col"].Value = nextItem.ToString();//prod_suggestions[0].name;
+                                    add_remainders_list.CurrentRow.Cells[add_rem_name_col.Index].Value = nextItem.ToString();//prod_suggestions[0].name;
                                     break;
                                 }
                             }
@@ -382,7 +384,7 @@ namespace ProductInfo_UI
                     int currentRowIndex = add_remainders_list.CurrentRow.Index;
                     add_remainders_list.ClearSelection();
                     add_remainders_list.EndEdit();
-                    add_remainders_list.Rows[currentRowIndex].Cells["add_rem_barcode_col"].Selected = true;
+                    add_remainders_list.Rows[currentRowIndex].Cells[add_rem_barcode_col.Index].Selected = true;
                 }
                 catch (NullReferenceException)
                 {
@@ -401,29 +403,29 @@ namespace ProductInfo_UI
             {
                 HighlightNonCompleteFields(add_remainders_list.Rows[e.RowIndex]);
             }
-            if (add_remainders_list.Columns["add_rem_barcode_col"].Index == e.ColumnIndex && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)
+            if (add_remainders_list.Columns[add_rem_barcode_col.Index].Index == e.ColumnIndex && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)
             {
-                Product ProdJustScanned = ProductInfo_Main_Form.conn.GetProductByBarCode(add_remainders_list.Rows[e.RowIndex].Cells["add_rem_barcode_col"].EditedFormattedValue.ToString());
+                Product ProdJustScanned = ProductInfo_Main_Form.conn.GetProductByBarCode(add_remainders_list.Rows[e.RowIndex].Cells[add_rem_barcode_col.Index].EditedFormattedValue.ToString());
                 if ("nameless" == ProdJustScanned.name)
                 {
                     if (DialogResult.Yes == MessageBox.Show("შტრიხ–კოდი არ არის დარეგისტრირებული. გსურთ პროდუქტის ბაზაში დამატება?", "შეცდომა!", MessageBoxButtons.YesNo))
                     {
                         AddProduct_Form add_scanned_frm = new AddProduct_Form();
                         add_scanned_frm.Show();
-                        add_scanned_frm.Controls["barcode_txt"].Text = add_remainders_list.Rows[e.RowIndex].Cells["add_rem_barcode_col"].Value.ToString();
+                        add_scanned_frm.Controls["barcode_txt"].Text = add_remainders_list.Rows[e.RowIndex].Cells[add_rem_barcode_col.Index].Value.ToString();
                         add_scanned_frm.Controls["name_txt"].Focus();
                         add_scanned_frm.Controls["prod_add_btn"].Click += new EventHandler(AddRemainders_Form_Click);
                     }
                     else
                     {
-                        add_remainders_list.Rows[e.RowIndex].Cells["add_rem_barcode_col"].Value = "000000000";
+                        add_remainders_list.Rows[e.RowIndex].Cells[add_rem_barcode_col.Index].Value = "000000000";
                     }
                 }
                 else
                 {
                     try
                     {
-                        add_remainders_list.Rows[e.RowIndex].Cells["add_rem_name_col"].Value = ProdJustScanned.name;
+                        add_remainders_list.Rows[e.RowIndex].Cells[add_rem_name_col.Index].Value = ProdJustScanned.name;
                     }
                     catch (System.ArgumentException)
                     {
@@ -434,13 +436,13 @@ namespace ProductInfo_UI
                 }
             }
 
-            if (add_remainders_list.Columns["add_rem_name_col"].Index == e.ColumnIndex && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)
+            if (add_remainders_list.Columns[add_rem_name_col.Index].Index == e.ColumnIndex && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)
             {
                 foreach (Product nXprod in all_products)
                 {
-                    if (add_remainders_list.Rows[e.RowIndex].Cells["add_rem_name_col"].Value.ToString() == nXprod.name)
+                    if (add_remainders_list.Rows[e.RowIndex].Cells[add_rem_name_col.Index].Value.ToString() == nXprod.name)
                     {
-                        add_remainders_list.Rows[e.RowIndex].Cells["add_rem_barcode_col"].Value = nXprod.barcode;
+                        add_remainders_list.Rows[e.RowIndex].Cells[add_rem_barcode_col.Index].Value = nXprod.barcode;
                         break;
                     }
                 }
@@ -448,30 +450,26 @@ namespace ProductInfo_UI
 
             try
             {
-                if (null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store1_col"].Value
-                | null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store2_col"].Value)
+                if (null != add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_count_col.Index].Value)
                 {
-                    if (null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_count_type_col"].Value)
+                    if (null != add_remainders_list.Rows[e.RowIndex].Cells[add_rem_count_type_col.Index].Value)
                     {
-                        if ("ცალობით" == add_remainders_list.Rows[e.RowIndex].Cells["add_rem_count_type_col"].Value.ToString())
+                        if ("ცალობით" == add_remainders_list.Rows[e.RowIndex].Cells[add_rem_count_type_col.Index].Value.ToString())
                         {
-                            decimal piece_price = 0.0m;
+                            decimal row_piece_price = 0.0m;
                             decimal row_sum_price = 0.0m;
-                            decimal store1count = 0.0m;
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store1_col"].Value)
+
+                            decimal row_piece_count = 0.0m;
+                            if (null != add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_count_col.Index].Value)
                             {
-                                store1count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store1_col"].Value.ToString());
+                                row_piece_count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_count_col.Index].Value.ToString());
                             }
-                            decimal store2count = 0.0m;
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store2_col"].Value)
+
+                            if (null != add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_price_col.Index].Value)
                             {
-                                store2count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store2_col"].Value.ToString());
-                            }
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_piece_price_col"].Value)
-                            {
-                                piece_price = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["add_rem_piece_price_col"].Value.ToString());
-                                row_sum_price = (store1count + store2count) * piece_price;
-                                add_remainders_list.Rows[e.RowIndex].Cells["add_rem_sum_price_col"].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store1_col"].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells["add_rem_piece_price_col"].Value);
+                                row_piece_price = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_price_col.Index].Value.ToString());
+                                row_sum_price = row_piece_count * row_piece_price;
+                                add_remainders_list.Rows[e.RowIndex].Cells[add_rem_sum_price_col.Index].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells[add_rem_storeid_col.Index].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_price_col.Index].Value);
                                 Row_Pricing[e.RowIndex] = row_sum_price;
                                 UpdateSumPrice();
                             }
@@ -479,24 +477,21 @@ namespace ProductInfo_UI
                         else
                         {
                             decimal pack_count = 0.0m;
-                            decimal piece_price = 0.0m;
+                            decimal row_piece_price = 0.0m;
                             decimal row_sum_price = 0.0m;
-                            decimal store1count = 0.0m;
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store1_col"].Value)
+
+                            decimal row_piece_count = 0.0m;
+                            if (null != add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_count_col.Index].Value)
                             {
-                                store1count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store1_col"].Value.ToString());
+                                row_piece_count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_count_col.Index].Value.ToString());
                             }
-                            decimal store2count = 0.0m;
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store2_col"].Value)
+
+                            if (null != add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_price_col.Index].Value && null != add_remainders_list.Rows[e.RowIndex].Cells[add_rem_capacity_col.Index].Value)
                             {
-                                store2count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store2_col"].Value.ToString());
-                            }
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_piece_price_col"].Value && null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_capacity_col"].Value)
-                            {
-                                piece_price = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["add_rem_piece_price_col"].Value.ToString());
-                                pack_count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["add_rem_capacity_col"].Value.ToString());
-                                row_sum_price = (store1count + store2count) * pack_count * piece_price;
-                                add_remainders_list.Rows[e.RowIndex].Cells["add_rem_sum_price_col"].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells["add_rem_store1_col"].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells["add_rem_piece_price_col"].Value);
+                                row_piece_price = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_price_col.Index].Value.ToString());
+                                pack_count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells[add_rem_capacity_col.Index].Value.ToString());
+                                row_sum_price = row_piece_count * pack_count * row_piece_price;
+                                add_remainders_list.Rows[e.RowIndex].Cells[add_rem_sum_price_col.Index].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells[add_rem_storeid_col.Index].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_price_col.Index].Value);
                                 Row_Pricing[e.RowIndex] = row_sum_price;
                                 UpdateSumPrice();
                             }
@@ -556,7 +551,7 @@ namespace ProductInfo_UI
                 {
                     if (null != add_remainders_list.Rows[index].Cells[add_rem_barcode_col.Index].Value)
                     {
-                        if (false == ProductInfo_Main_Form.conn.GetProductByBarCode(add_remainders_list.Rows[index].Cells["add_rem_barcode_col"].Value.ToString()).usesVAT)
+                        if (false == ProductInfo_Main_Form.conn.GetProductByBarCode(add_remainders_list.Rows[index].Cells[add_rem_barcode_col.Index].Value.ToString()).usesVAT)
                             VATforCurProd = 1.0m;
                     }
                 }
@@ -574,7 +569,7 @@ namespace ProductInfo_UI
             {
                 if (!add_remainders_list.Rows[e.RowIndex].IsNewRow && null != add_remainders_list.Rows[e.RowIndex])
                 {
-                    string deleting_row_prod_name = (null != add_remainders_list.Rows[e.RowIndex].Cells["add_rem_name_col"].Value) ? add_remainders_list.Rows[e.RowIndex].Cells["add_rem_name_col"].Value.ToString() : "პროდუქტი";
+                    string deleting_row_prod_name = (null != add_remainders_list.Rows[e.RowIndex].Cells[add_rem_name_col.Index].Value) ? add_remainders_list.Rows[e.RowIndex].Cells[add_rem_name_col.Index].Value.ToString() : "პროდუქტი";
                     if (DialogResult.Yes == MessageBox.Show("ნამდვილად გსურთ სიიდან " + deleting_row_prod_name + "-ს ამოშლა?", "დადასტურება", MessageBoxButtons.YesNo))
                     {
                         add_remainders_list.Rows.Remove(add_remainders_list.Rows[e.RowIndex]);
