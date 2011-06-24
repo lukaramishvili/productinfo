@@ -30,11 +30,11 @@ namespace ProductInfo_UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.mm_nashtebi = new System.Windows.Forms.ToolStripMenuItem();
             this.mm_add_remainders = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +50,11 @@ namespace ProductInfo_UI
             this.search_text = new System.Windows.Forms.ToolStripTextBox();
             this.lbl_tb_store = new System.Windows.Forms.ToolStripLabel();
             this.tb_store_chooser = new System.Windows.Forms.ToolStripComboBox();
+            this.tb_print_btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btn_export_csv = new System.Windows.Forms.ToolStripButton();
             this.tb_sep_after_csv_export_btn = new System.Windows.Forms.ToolStripSeparator();
+            this.btn_export_list = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.status_bar = new System.Windows.Forms.StatusStrip();
             this.status_bar_text = new System.Windows.Forms.ToolStripStatusLabel();
@@ -89,6 +92,7 @@ namespace ProductInfo_UI
             this.rem_list_store_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_packs_header = new System.Windows.Forms.ColumnHeader();
             this.rem_list_piece_price_col = new System.Windows.Forms.ColumnHeader();
+            this.rem_list_initial_whole_price_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_remaining_whole_price_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_cost_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
             this.cm_rem_list = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -257,9 +261,6 @@ namespace ProductInfo_UI
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
-            this.tb_print_btn = new System.Windows.Forms.ToolStripButton();
-            this.btn_export_csv = new System.Windows.Forms.ToolStripButton();
-            this.btn_export_list = new System.Windows.Forms.ToolStripButton();
             this.sb_refresh_btn = new System.Windows.Forms.ToolStripStatusLabel();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
@@ -420,16 +421,46 @@ namespace ProductInfo_UI
             this.tb_store_chooser.Size = new System.Drawing.Size(121, 25);
             this.tb_store_chooser.SelectedIndexChanged += new System.EventHandler(this.tb_store_chooser_SelectedIndexChanged);
             // 
+            // tb_print_btn
+            // 
+            this.tb_print_btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tb_print_btn.Image = global::ProductInfo_UI.Properties.Resources.print_h22;
+            this.tb_print_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tb_print_btn.Name = "tb_print_btn";
+            this.tb_print_btn.Size = new System.Drawing.Size(23, 22);
+            this.tb_print_btn.Text = "ამობეჭდვა";
+            this.tb_print_btn.Click += new System.EventHandler(this.tb_print_btn_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btn_export_csv
+            // 
+            this.btn_export_csv.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_export_csv.Image = global::ProductInfo_UI.Properties.Resources.csv_22x22;
+            this.btn_export_csv.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_export_csv.Name = "btn_export_csv";
+            this.btn_export_csv.Size = new System.Drawing.Size(23, 22);
+            this.btn_export_csv.Text = "CSV ფაილის შენახვა";
+            this.btn_export_csv.Click += new System.EventHandler(this.btn_export_csv_Click);
             // 
             // tb_sep_after_csv_export_btn
             // 
             this.tb_sep_after_csv_export_btn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.tb_sep_after_csv_export_btn.Name = "tb_sep_after_csv_export_btn";
             this.tb_sep_after_csv_export_btn.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btn_export_list
+            // 
+            this.btn_export_list.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_export_list.Image = global::ProductInfo_UI.Properties.Resources.grocery_list_16x22;
+            this.btn_export_list.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_export_list.Name = "btn_export_list";
+            this.btn_export_list.Size = new System.Drawing.Size(23, 22);
+            this.btn_export_list.Text = "სიის ექსპორტი";
+            this.btn_export_list.Click += new System.EventHandler(this.btn_export_list_Click);
             // 
             // toolStripSeparator2
             // 
@@ -438,6 +469,12 @@ namespace ProductInfo_UI
             // 
             // status_bar
             // 
+            this.status_bar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.status_bar_text,
+            this.status_progress_bar,
+            this.sb_sum_lbl,
+            this.sb_sum_withoutVAT_lbl,
+            this.sb_refresh_btn});
             this.status_bar.Location = new System.Drawing.Point(0, 571);
             this.status_bar.Name = "status_bar";
             this.status_bar.Size = new System.Drawing.Size(1215, 22);
@@ -574,16 +611,16 @@ namespace ProductInfo_UI
             // 
             // sell_list
             // 
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Sylfaen", 11F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Sylfaen", 11F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.sell_list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sell_list.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sell_barcode_col,
@@ -671,9 +708,9 @@ namespace ProductInfo_UI
             // 
             // sell_initial_price_info_col
             // 
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
-            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle3;
             this.sell_initial_price_info_col.Frozen = true;
             this.sell_initial_price_info_col.HeaderText = "ასაღები ფასი (საცალო)";
             this.sell_initial_price_info_col.Name = "sell_initial_price_info_col";
@@ -681,16 +718,16 @@ namespace ProductInfo_UI
             // 
             // sell_remaining_col
             // 
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle4;
             this.sell_remaining_col.HeaderText = "დარჩ.";
             this.sell_remaining_col.Name = "sell_remaining_col";
             this.sell_remaining_col.ReadOnly = true;
             // 
             // sell_sum_price_col
             // 
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.Gray;
-            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gray;
+            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle5;
             this.sell_sum_price_col.HeaderText = "ჯამი";
             this.sell_sum_price_col.Name = "sell_sum_price_col";
             this.sell_sum_price_col.ReadOnly = true;
@@ -744,6 +781,7 @@ namespace ProductInfo_UI
             this.rem_list_store_col,
             this.rem_list_packs_header,
             this.rem_list_piece_price_col,
+            this.rem_list_initial_whole_price_col,
             this.rem_list_remaining_whole_price_col,
             this.rem_list_cost_withoutVAT_col});
             this.rem_list.ContextMenuStrip = this.cm_rem_list;
@@ -754,7 +792,7 @@ namespace ProductInfo_UI
             this.rem_list.Location = new System.Drawing.Point(0, 0);
             this.rem_list.MultiSelect = false;
             this.rem_list.Name = "rem_list";
-            this.rem_list.Size = new System.Drawing.Size(1207, 488);
+            this.rem_list.Size = new System.Drawing.Size(1207, 464);
             this.rem_list.TabIndex = 0;
             this.rem_list.UseCompatibleStateImageBehavior = false;
             this.rem_list.View = System.Windows.Forms.View.Details;
@@ -795,9 +833,14 @@ namespace ProductInfo_UI
             this.rem_list_piece_price_col.Text = "საცალო ფასი";
             this.rem_list_piece_price_col.Width = 98;
             // 
+            // rem_list_initial_whole_price_col
+            // 
+            this.rem_list_initial_whole_price_col.Text = "საწყისი ღირ.";
+            this.rem_list_initial_whole_price_col.Width = 108;
+            // 
             // rem_list_remaining_whole_price_col
             // 
-            this.rem_list_remaining_whole_price_col.Text = "დარჩენილის ღირებულება";
+            this.rem_list_remaining_whole_price_col.Text = "დარჩენილის ღირ.";
             this.rem_list_remaining_whole_price_col.Width = 181;
             // 
             // rem_list_cost_withoutVAT_col
@@ -1098,7 +1141,7 @@ namespace ProductInfo_UI
             this.suppliers_list.Location = new System.Drawing.Point(0, 0);
             this.suppliers_list.MultiSelect = false;
             this.suppliers_list.Name = "suppliers_list";
-            this.suppliers_list.Size = new System.Drawing.Size(1207, 488);
+            this.suppliers_list.Size = new System.Drawing.Size(1207, 464);
             this.suppliers_list.TabIndex = 0;
             this.suppliers_list.UseCompatibleStateImageBehavior = false;
             this.suppliers_list.View = System.Windows.Forms.View.Details;
@@ -1199,7 +1242,7 @@ namespace ProductInfo_UI
             this.buyers_list.Location = new System.Drawing.Point(0, 0);
             this.buyers_list.MultiSelect = false;
             this.buyers_list.Name = "buyers_list";
-            this.buyers_list.Size = new System.Drawing.Size(1207, 488);
+            this.buyers_list.Size = new System.Drawing.Size(1207, 464);
             this.buyers_list.TabIndex = 1;
             this.buyers_list.UseCompatibleStateImageBehavior = false;
             this.buyers_list.View = System.Windows.Forms.View.Details;
@@ -1287,7 +1330,7 @@ namespace ProductInfo_UI
             this.prod_names_list.Location = new System.Drawing.Point(0, 0);
             this.prod_names_list.MultiSelect = false;
             this.prod_names_list.Name = "prod_names_list";
-            this.prod_names_list.Size = new System.Drawing.Size(1207, 488);
+            this.prod_names_list.Size = new System.Drawing.Size(1207, 464);
             this.prod_names_list.TabIndex = 1;
             this.prod_names_list.UseCompatibleStateImageBehavior = false;
             this.prod_names_list.View = System.Windows.Forms.View.Details;
@@ -1502,7 +1545,7 @@ namespace ProductInfo_UI
             this.agcera_rem_list.Location = new System.Drawing.Point(0, 0);
             this.agcera_rem_list.MultiSelect = false;
             this.agcera_rem_list.Name = "agcera_rem_list";
-            this.agcera_rem_list.Size = new System.Drawing.Size(1207, 488);
+            this.agcera_rem_list.Size = new System.Drawing.Size(1207, 464);
             this.agcera_rem_list.TabIndex = 1;
             this.agcera_rem_list.UseCompatibleStateImageBehavior = false;
             this.agcera_rem_list.View = System.Windows.Forms.View.Details;
@@ -1598,7 +1641,7 @@ namespace ProductInfo_UI
             this.bought_af_list.Location = new System.Drawing.Point(0, 0);
             this.bought_af_list.MultiSelect = false;
             this.bought_af_list.Name = "bought_af_list";
-            this.bought_af_list.Size = new System.Drawing.Size(1207, 488);
+            this.bought_af_list.Size = new System.Drawing.Size(1207, 464);
             this.bought_af_list.TabIndex = 2;
             this.bought_af_list.UseCompatibleStateImageBehavior = false;
             this.bought_af_list.View = System.Windows.Forms.View.Details;
@@ -2026,36 +2069,6 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
             // 
-            // tb_print_btn
-            // 
-            this.tb_print_btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tb_print_btn.Image = global::ProductInfo_UI.Properties.Resources.print_h22;
-            this.tb_print_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tb_print_btn.Name = "tb_print_btn";
-            this.tb_print_btn.Size = new System.Drawing.Size(23, 22);
-            this.tb_print_btn.Text = "ამობეჭდვა";
-            this.tb_print_btn.Click += new System.EventHandler(this.tb_print_btn_Click);
-            // 
-            // btn_export_csv
-            // 
-            this.btn_export_csv.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btn_export_csv.Image = global::ProductInfo_UI.Properties.Resources.csv_22x22;
-            this.btn_export_csv.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_export_csv.Name = "btn_export_csv";
-            this.btn_export_csv.Size = new System.Drawing.Size(23, 22);
-            this.btn_export_csv.Text = "CSV ფაილის შენახვა";
-            this.btn_export_csv.Click += new System.EventHandler(this.btn_export_csv_Click);
-            // 
-            // btn_export_list
-            // 
-            this.btn_export_list.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btn_export_list.Image = global::ProductInfo_UI.Properties.Resources.grocery_list_16x22;
-            this.btn_export_list.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_export_list.Name = "btn_export_list";
-            this.btn_export_list.Size = new System.Drawing.Size(23, 22);
-            this.btn_export_list.Text = "სიის ექსპორტი";
-            this.btn_export_list.Click += new System.EventHandler(this.btn_export_list_Click);
-            // 
             // sb_refresh_btn
             // 
             this.sb_refresh_btn.Image = global::ProductInfo_UI.Properties.Resources.refresh_16x16;
@@ -2344,6 +2357,7 @@ namespace ProductInfo_UI
         private Panel sell_panel;
         private ToolStripButton btn_export_list;
         private ToolStripSeparator toolStripSeparator2;
+        private ColumnHeader rem_list_initial_whole_price_col;
 
 
 

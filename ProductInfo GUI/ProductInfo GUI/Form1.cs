@@ -126,6 +126,10 @@ namespace ProductInfo_UI
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
 
             all_stores = conn.AllStores();
+            //DataSource-s ro vusvamt, SelectedIndexChanged-s idzaxebs
+            tb_store_chooser.ComboBox.DataSource = all_stores;//romel qveyanashic mixval is qudi daixure =)))
+            tb_store_chooser.ComboBox.ValueMember = "id";
+            tb_store_chooser.ComboBox.DisplayMember = "Name";
 
             int StoreIDFromRegistry = Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\zero\ProductInfo\1.0", "StoreID", 0));
             if (all_stores.Select("id = " + StoreIDFromRegistry).Length > 0)//check that the StoreID we are using actually exists in database
@@ -136,9 +140,6 @@ namespace ProductInfo_UI
             {
                 ActiveStoreID = 0;
             }
-            tb_store_chooser.ComboBox.DataSource = all_stores;//romel qveyanashic mixval is qudi daixure =)))
-            tb_store_chooser.ComboBox.ValueMember = "id";
-            tb_store_chooser.ComboBox.DisplayMember = "Name";
 
             tb_store_chooser.ComboBox.SelectedValue = ActiveStoreID;
             //
@@ -276,6 +277,10 @@ namespace ProductInfo_UI
         void tb_since_datepicker_ValueChanged(object sender, EventArgs e)
         {
             DateFilterSince = tb_since_datepicker.Value;
+            if (nashtebi_tabpage == tab_container.SelectedTab)
+            {
+                RefreshTabs();
+            }
             if (zednadebebi_tabpage == tab_container.SelectedTab)
             {
                 //if (!WorkerThread.Spawn(delegate()
@@ -379,6 +384,10 @@ namespace ProductInfo_UI
         void tb_until_datepicker_ValueChanged(object sender, EventArgs e)
         {
             DateFilterUntil = tb_until_datepicker.Value;
+            if (nashtebi_tabpage == tab_container.SelectedTab)
+            {
+                RefreshTabs();
+            }
             if (zednadebebi_tabpage == tab_container.SelectedTab)
             {
                 //if (!WorkerThread.Spawn(delegate()
@@ -3066,7 +3075,7 @@ namespace ProductInfo_UI
             {
                 if (0 < zed_list.SelectedItems.Count)
                 {
-                    string all_zeds_names = "";
+                    string all_zeds_names = "შემოსული ზედნადებები";
                     string all_zeds_details = "";
                     foreach (ListViewItem lvi in zed_list.SelectedItems)
                     {
@@ -3079,7 +3088,7 @@ namespace ProductInfo_UI
                                                          select all_s.saidentifikacio_kodi).ToArray()[0];
                             DataTable so_details = ProductInfo_Main_Form.conn.BoughtZedDetails(supplier_ident_str, zed_ident_str);
                             so_details.Columns[0].Caption = "მომწოდებელი " + supplier_name + ", ზედნადები N. " + zed_ident_str;
-                            all_zeds_names += zed_ident_str + ",";
+                            //all_zeds_names += zed_ident_str + ",";
                             all_zeds_details += DataTableToCSV(so_details);
                         }
                     }
@@ -3090,7 +3099,7 @@ namespace ProductInfo_UI
             {
                 if (0 < sold_zed_list.SelectedItems.Count)
                 {
-                    string all_zeds_names = "";
+                    string all_zeds_names = "გასული ზედნადებები";
                     string all_zeds_details = "";
                     foreach (ListViewItem lvi in sold_zed_list.SelectedItems)
                     {
@@ -3103,7 +3112,7 @@ namespace ProductInfo_UI
                                                       select all_b.saidentifikacio_kodi).ToArray()[0];
                             DataTable so_details = ProductInfo_Main_Form.conn.SoldZedDetails(buyer_ident_str, zed_ident_str);
                             so_details.Columns[0].Caption = "მყიდველი " + buyer_name + ", ზედნადები N. " + zed_ident_str;
-                            all_zeds_names += zed_ident_str + ",";
+                            //all_zeds_names += zed_ident_str + ",";
                             all_zeds_details += DataTableToCSV(so_details);
                         }
                     }
