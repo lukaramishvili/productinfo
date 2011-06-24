@@ -1243,6 +1243,7 @@ namespace ProductInfo
             rems_dt.Columns.Add("მომწოდებელი");
             rems_dt.Columns.Add("ტევ.");
             rems_dt.Columns.Add("საწყ.N");
+            rems_dt.Columns.Add("საწყისი");
             rems_dt.Columns.Add("დარჩენილია");
             rems_dt.Columns.Add("საც. ფასი");
             rems_dt.Columns.Add("ჯამ. ღირ.");
@@ -1262,7 +1263,7 @@ namespace ProductInfo
                 for (int i = 0; i < rems_rdr.FieldCount; i++)
                 {
                     nextRemRow[i] = rems_rdr[i];
-                    if ((3 == i | 6 == i | 7 == i | 8 == i) && "" != rems_rdr[i].ToString())
+                    if ((3 == i | 6 == i | 7 == i | 8 == i | 9 == i) && "" != rems_rdr[i].ToString())
                     {
                         try
                         {
