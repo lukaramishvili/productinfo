@@ -103,7 +103,7 @@ namespace ProductInfo_UI
 
         public static int ActiveStoreID = 0;
 
-        DateTime DateFilterSince = DateTime.Now.AddMonths(-1);
+        DateTime DateFilterSince = new DateTime(DateTime.Now.AddMonths(-1).Year, DateTime.Now.AddMonths(-1).Month, DateTime.Now.AddMonths(-1).Day);
         DateTime DateFilterUntil = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day);//new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
 
         bool UsingCheck = true;
@@ -340,6 +340,10 @@ namespace ProductInfo_UI
 
                 DataTableToListView(sold_zed_list, empty_sold_zed_list_dt, true);
             }
+            if (productnames_tabpage == tab_container.SelectedTab)
+            {
+                RefreshTabs();
+            }
             if (sold_tabpage == tab_container.SelectedTab)
             {
                 SetStatusText("მიმდინარეობს ინფორმაციის სერვერიდან ინფორმაციის მოწოდება..");
@@ -446,6 +450,10 @@ namespace ProductInfo_UI
                 #endregion
 
                 DataTableToListView(sold_zed_list, empty_sold_zed_list_dt, true);
+            }
+            if (productnames_tabpage == tab_container.SelectedTab)
+            {
+                RefreshTabs();
             }
             if (sold_tabpage == tab_container.SelectedTab)
             {
@@ -1463,7 +1471,7 @@ namespace ProductInfo_UI
             {
                 //if (!WorkerThread.Spawn(delegate()
                 //{
-                prodrem_list_dt = conn.GetRemaindersByProductName(ActiveStoreID);
+                prodrem_list_dt = conn.GetRemaindersByProductName(ActiveStoreID, DateFilterSince, DateFilterUntil);
                 //}))
                 //{
                 //    MessageBox.Show("სერვერთან დაკავშირების პრობლემაა. სცადეთ თავიდან. ");
@@ -2693,7 +2701,7 @@ namespace ProductInfo_UI
             {
                 info RemProdRes = conn.RemoveProduct(prod_names_list.SelectedItems[0].Text);
                 MessageBox.Show(RemProdRes.details, RemProdRes.errcode.ToString());
-                prodrem_list_dt = conn.GetRemaindersByProductName(ActiveStoreID);
+                prodrem_list_dt = conn.GetRemaindersByProductName(ActiveStoreID, DateFilterSince, DateFilterUntil);
                 DataTableToListView(prod_names_list, prodrem_list_dt, true);
             }
         }

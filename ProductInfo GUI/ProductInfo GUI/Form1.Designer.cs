@@ -30,11 +30,11 @@ namespace ProductInfo_UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.mm_nashtebi = new System.Windows.Forms.ToolStripMenuItem();
             this.mm_add_remainders = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +61,7 @@ namespace ProductInfo_UI
             this.status_progress_bar = new System.Windows.Forms.ToolStripProgressBar();
             this.sb_sum_lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.sb_sum_withoutVAT_lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sb_refresh_btn = new System.Windows.Forms.ToolStripStatusLabel();
             this.tab_container = new System.Windows.Forms.TabControl();
             this.sell_tabpage = new System.Windows.Forms.TabPage();
             this.ckb_pay_method = new System.Windows.Forms.ComboBox();
@@ -161,6 +162,7 @@ namespace ProductInfo_UI
             this.pnames_bcode_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_name_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_capacity_list = new System.Windows.Forms.ColumnHeader();
+            this.pnames_initial_count_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_remaining_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_piece_price_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_remaining_amount_col = new System.Windows.Forms.ColumnHeader();
@@ -261,9 +263,10 @@ namespace ProductInfo_UI
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
-            this.sb_refresh_btn = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pnames_initial_sum_cost_col = new System.Windows.Forms.ColumnHeader();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
+            this.status_bar.SuspendLayout();
             this.tab_container.SuspendLayout();
             this.sell_tabpage.SuspendLayout();
             this.sell_panel.SuspendLayout();
@@ -511,6 +514,14 @@ namespace ProductInfo_UI
             this.sb_sum_withoutVAT_lbl.Spring = true;
             this.sb_sum_withoutVAT_lbl.Text = "ჯამი დღგ–ს გარეშე: 0.0 ლარი";
             // 
+            // sb_refresh_btn
+            // 
+            this.sb_refresh_btn.Image = global::ProductInfo_UI.Properties.Resources.refresh_16x16;
+            this.sb_refresh_btn.IsLink = true;
+            this.sb_refresh_btn.Name = "sb_refresh_btn";
+            this.sb_refresh_btn.Size = new System.Drawing.Size(16, 17);
+            this.sb_refresh_btn.Click += new System.EventHandler(this.sb_refresh_btn_Click);
+            // 
             // tab_container
             // 
             this.tab_container.Controls.Add(this.sell_tabpage);
@@ -611,16 +622,16 @@ namespace ProductInfo_UI
             // 
             // sell_list
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Sylfaen", 11F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Sylfaen", 11F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.sell_list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sell_list.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sell_barcode_col,
@@ -708,9 +719,9 @@ namespace ProductInfo_UI
             // 
             // sell_initial_price_info_col
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle8;
             this.sell_initial_price_info_col.Frozen = true;
             this.sell_initial_price_info_col.HeaderText = "ასაღები ფასი (საცალო)";
             this.sell_initial_price_info_col.Name = "sell_initial_price_info_col";
@@ -718,16 +729,16 @@ namespace ProductInfo_UI
             // 
             // sell_remaining_col
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle9;
             this.sell_remaining_col.HeaderText = "დარჩ.";
             this.sell_remaining_col.Name = "sell_remaining_col";
             this.sell_remaining_col.ReadOnly = true;
             // 
             // sell_sum_price_col
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gray;
-            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Gray;
+            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle10;
             this.sell_sum_price_col.HeaderText = "ჯამი";
             this.sell_sum_price_col.Name = "sell_sum_price_col";
             this.sell_sum_price_col.ReadOnly = true;
@@ -1318,6 +1329,8 @@ namespace ProductInfo_UI
             this.pnames_bcode_col,
             this.pnames_name_col,
             this.pnames_capacity_list,
+            this.pnames_initial_count_col,
+            this.pnames_initial_sum_cost_col,
             this.pnames_remaining_col,
             this.pnames_piece_price_col,
             this.pnames_remaining_amount_col,
@@ -1344,28 +1357,33 @@ namespace ProductInfo_UI
             // pnames_name_col
             // 
             this.pnames_name_col.Text = "დასახელება";
-            this.pnames_name_col.Width = 180;
+            this.pnames_name_col.Width = 130;
             // 
             // pnames_capacity_list
             // 
             this.pnames_capacity_list.Text = "ტევადობა";
-            this.pnames_capacity_list.Width = 80;
+            this.pnames_capacity_list.Width = 75;
+            // 
+            // pnames_initial_count_col
+            // 
+            this.pnames_initial_count_col.Text = "საწყისი ჯამ. საცალო რაოდ.";
+            this.pnames_initial_count_col.Width = 181;
             // 
             // pnames_remaining_col
             // 
             this.pnames_remaining_col.Text = "დარჩენილია (ყუთი/ცალობით)";
             this.pnames_remaining_col.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.pnames_remaining_col.Width = 214;
+            this.pnames_remaining_col.Width = 201;
             // 
             // pnames_piece_price_col
             // 
             this.pnames_piece_price_col.Text = "საშუალო საცალო ფასი";
-            this.pnames_piece_price_col.Width = 175;
+            this.pnames_piece_price_col.Width = 152;
             // 
             // pnames_remaining_amount_col
             // 
             this.pnames_remaining_amount_col.Text = "დარჩენილის ღირებულება";
-            this.pnames_remaining_amount_col.Width = 181;
+            this.pnames_remaining_amount_col.Width = 178;
             // 
             // pnames_costwithoutVAT_col
             // 
@@ -2069,13 +2087,10 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
             // 
-            // sb_refresh_btn
+            // pnames_initial_sum_cost_col
             // 
-            this.sb_refresh_btn.Image = global::ProductInfo_UI.Properties.Resources.refresh_16x16;
-            this.sb_refresh_btn.IsLink = true;
-            this.sb_refresh_btn.Name = "sb_refresh_btn";
-            this.sb_refresh_btn.Size = new System.Drawing.Size(16, 17);
-            this.sb_refresh_btn.Click += new System.EventHandler(this.sb_refresh_btn_Click);
+            this.pnames_initial_sum_cost_col.Text = "საწყისი ჯამ. ღირ.";
+            this.pnames_initial_sum_cost_col.Width = 120;
             // 
             // ProductInfo_Main_Form
             // 
@@ -2096,6 +2111,8 @@ namespace ProductInfo_UI
             this.main_menu.PerformLayout();
             this.toolbar.ResumeLayout(false);
             this.toolbar.PerformLayout();
+            this.status_bar.ResumeLayout(false);
+            this.status_bar.PerformLayout();
             this.tab_container.ResumeLayout(false);
             this.sell_tabpage.ResumeLayout(false);
             this.sell_tabpage.PerformLayout();
@@ -2358,6 +2375,8 @@ namespace ProductInfo_UI
         private ToolStripButton btn_export_list;
         private ToolStripSeparator toolStripSeparator2;
         private ColumnHeader rem_list_initial_whole_price_col;
+        private ColumnHeader pnames_initial_count_col;
+        private ColumnHeader pnames_initial_sum_cost_col;
 
 
 

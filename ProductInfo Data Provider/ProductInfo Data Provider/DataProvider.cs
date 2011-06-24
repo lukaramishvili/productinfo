@@ -899,12 +899,14 @@ namespace ProductInfo
             return prod_suggestions.ToArray();
         }
 
-        public DataTable GetRemaindersByProductName(int store_id)
+        public DataTable GetRemaindersByProductName(int store_id, DateTime from_time, DateTime to_time)
         {
             DataTable prodrems_dt = new DataTable();
             prodrems_dt.Columns.Add("შტრიხ–კოდი");
             prodrems_dt.Columns.Add("დასახელება");
             prodrems_dt.Columns.Add("ტევადობა");
+            prodrems_dt.Columns.Add("საწყისი ჯამ. საცალო რაოდ.");
+            prodrems_dt.Columns.Add("საწყისი ღირებულება");
             prodrems_dt.Columns.Add("დარჩენილია");
             prodrems_dt.Columns.Add("საცალო ფასი");
             prodrems_dt.Columns.Add("დარჩენილის ღირებულება");
@@ -914,6 +916,8 @@ namespace ProductInfo
             byprodrems_sql.CommandType = CommandType.StoredProcedure;
 
             byprodrems_sql.Parameters.Add(new SqlParameter("@StoreID", store_id));
+            byprodrems_sql.Parameters.Add(new SqlParameter("@FromTime", from_time));
+            byprodrems_sql.Parameters.Add(new SqlParameter("@ToTime", to_time));
 
             SqlDataReader prodrems_rs = byprodrems_sql.ExecuteReader();
 
@@ -926,6 +930,9 @@ namespace ProductInfo
                 newRec["ტევადობა"] = prodrems_rs["rem_capacity"];
                 try { newRec["ტევადობა"] = Math.Round(Utilities.Utilities.ParseDecimal(prodrems_rs["rem_capacity"].ToString()), 4, MidpointRounding.AwayFromZero); }
                 catch (Exception) { }
+
+                newRec["საწყისი ჯამ. საცალო რაოდ."] = prodrems_rs["initial_pieces"];
+                newRec["საწყისი ღირებულება"] = prodrems_rs["sum_initial_cost"];
 
                 newRec["დარჩენილია"] = prodrems_rs["remaining_pieces"];
 
