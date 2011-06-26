@@ -754,6 +754,9 @@ namespace ProductInfo_UI
             // 
             // sell_status_bar
             // 
+            this.sell_status_bar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sell_status_lbl,
+            this.sell_status_sum_price_lbl});
             this.sell_status_bar.Location = new System.Drawing.Point(0, 400);
             this.sell_status_bar.Name = "sell_status_bar";
             this.sell_status_bar.Size = new System.Drawing.Size(1207, 22);
