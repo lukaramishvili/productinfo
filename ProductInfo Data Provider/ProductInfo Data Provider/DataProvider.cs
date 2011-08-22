@@ -653,7 +653,7 @@ namespace ProductInfo
             return return_info;
         }
 
-        public info AddSellOrder(SellOrder s_order_arg)
+        public info AddSellOrder(SellOrder s_order_arg, out int SellOrderInsertID_out_arg)
         {
             info return_info = info.niy();
 
@@ -690,6 +690,7 @@ namespace ProductInfo
             {
             }
             SellOrderInsertID = (Int32)AddSOInsertIdPar.Value;
+            SellOrderInsertID_out_arg = SellOrderInsertID;
             if ((Int32)AddSellRetVal.Value > 0)
             {
                 addsel_rdr.Close();
@@ -1250,11 +1251,12 @@ namespace ProductInfo
             rems_dt.Columns.Add("მომწოდებელი");
             rems_dt.Columns.Add("ტევ.");
             rems_dt.Columns.Add("საწყ.N");
-            rems_dt.Columns.Add("საწყისი");
             rems_dt.Columns.Add("დარჩენილია");
             rems_dt.Columns.Add("საც. ფასი");
-            rems_dt.Columns.Add("ჯამ. ღირ.");
-            rems_dt.Columns.Add("ღირ. დღგ–ს გარეშე");
+            rems_dt.Columns.Add("გასაყიდი ფასი");
+            rems_dt.Columns.Add("საწყ. ღირ");
+            rems_dt.Columns.Add("დარჩ. ღირ.");
+            rems_dt.Columns.Add("დარჩ. ღირ. დღგ–ს გარეშე");
 
             SqlCommand rem_statistics_sql = new SqlCommand("Rem_Statistics", SqlLink);
             rem_statistics_sql.CommandType = CommandType.StoredProcedure;
@@ -1467,7 +1469,7 @@ namespace ProductInfo
             return buyer_fin_dt;
         }
 
-        public info TransferMoney(string ClientID_arg, MoneyTransferType transferType_arg, DateTime dro_arg, decimal amount_arg, Type clientType_arg, DataProvider.MoneyTransferPurpose purpose_arg, int store_id_arg, Type targetType_arg, string target_ident_arg)
+        public info TransferMoney(string ClientID_arg, MoneyTransferType transferType_arg, DateTime dro_arg, decimal amount_arg, Type clientType_arg, DataProvider.MoneyTransferPurpose purpose_arg, int store_id_arg, Type targetType_arg, string target_ident_arg, int cashbox_id_arg, int cashier_id_arg)
         {
             info ret_info = info.niy();
 
@@ -1487,6 +1489,8 @@ namespace ProductInfo
             TransferMoneySql.Parameters.Add(new SqlParameter("@store_id", store_id_arg));
             TransferMoneySql.Parameters.Add(new SqlParameter("@target_type", (null != targetType_arg) ? targetType_arg.ToString() : null));
             TransferMoneySql.Parameters.Add(new SqlParameter("@target_ident", (null != target_ident_arg) ? target_ident_arg.ToString() : null));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@cashbox_id", cashbox_id_arg));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@cashier_id", cashier_id_arg));
 
             SqlParameter TransfMonRetVal = new SqlParameter("@Return_Value", DbType.Int32);
             TransfMonRetVal.Direction = ParameterDirection.ReturnValue;
@@ -1884,6 +1888,7 @@ namespace ProductInfo
             DataTable RemByID_ret_dt = new DataTable();
             RemByID_ret_dt.Columns.Add("საცალო რ–ბა");
             RemByID_ret_dt.Columns.Add("საცალო ფასი");
+            RemByID_ret_dt.Columns.Add("საცალო გასაყიდი ფასი");
             RemByID_ret_dt.Columns.Add("ტევადობა");
             RemByID_ret_dt.Columns.Add("შემომტანი");
             RemByID_ret_dt.Columns.Add("ზედ. თარიღი");
@@ -1911,7 +1916,7 @@ namespace ProductInfo
             return RemByID_ret_dt;
         }
 
-        public info UpdateRemainder(int rem_id, decimal piece_count_arg, decimal piece_price_arg, decimal capacity_arg)
+        public info UpdateRemainder(int rem_id, decimal piece_count_arg, decimal piece_price_arg, decimal capacity_arg, decimal piece_sell_price_arg)
         {
             info ret_info = info.niy();
 
@@ -1922,6 +1927,7 @@ namespace ProductInfo
             updrem_sql.Parameters.Add(new SqlParameter("@piece_count_arg", piece_count_arg));
             updrem_sql.Parameters.Add(new SqlParameter("@piece_price_arg", piece_price_arg));
             updrem_sql.Parameters.Add(new SqlParameter("@capacity_arg", capacity_arg));
+            updrem_sql.Parameters.Add(new SqlParameter("@piece_sell_price_arg", piece_sell_price_arg));
 
             SqlParameter updrem_ret = new SqlParameter("@Return_Value", DbType.Int32);
             updrem_ret.Direction = ParameterDirection.ReturnValue;
@@ -2130,6 +2136,8 @@ namespace ProductInfo
             mttransf_rems_dt.Columns.Add("საწყობის N.");
             mttransf_rems_dt.Columns.Add("დანიშნ. დოკუმენტის ტიპი");
             mttransf_rems_dt.Columns.Add("დანიშნ. დოკუმენტის იდენტ. კოდი");
+            mttransf_rems_dt.Columns.Add("სალაროს N.");
+            mttransf_rems_dt.Columns.Add("მოლარის N.");
 
             SqlCommand mttransf_sql = new SqlCommand("MoneyTransferStatistics", DataProvider.SqlLink);
             mttransf_sql.CommandType = CommandType.StoredProcedure;
@@ -2647,6 +2655,39 @@ namespace ProductInfo
             AllStores_res.Close();
 
             return AllStores_ret;
+        }
+
+        public DataTable CashBoxSummary(int cashbox_id_arg)
+        {
+            DataTable cashbox_sum_dt = new DataTable();
+            cashbox_sum_dt.Columns.Add("ნაღდი ფული");
+
+            SqlCommand cashbox_sum_sql = new SqlCommand("CashBoxSummary", DataProvider.SqlLink);
+            cashbox_sum_sql.CommandType = CommandType.StoredProcedure;
+            cashbox_sum_sql.Parameters.Add(new SqlParameter("@CashBoxID", cashbox_id_arg));
+
+            //store_sum_sql.Parameters.Add(new SqlParameter("@Since", since_arg));
+            //store_sum_sql.Parameters.Add(new SqlParameter("@Until", until_arg));
+
+            SqlDataReader cashbox_sum_rs = cashbox_sum_sql.ExecuteReader();
+
+            while (cashbox_sum_rs.Read())
+            {
+                DataRow newRec = cashbox_sum_dt.NewRow();
+                for (int i = 0; i < cashbox_sum_rs.FieldCount; i++)
+                {
+                    newRec[i] = cashbox_sum_rs[i];
+                    if ((0 == i) && "" != cashbox_sum_rs[i].ToString())
+                    {
+                        newRec[i] = Math.Round(Utilities.Utilities.ParseDecimal(cashbox_sum_rs[i].ToString()), 4, MidpointRounding.AwayFromZero);
+                    }
+                }
+                cashbox_sum_dt.Rows.Add(newRec);
+            }
+
+            cashbox_sum_rs.Close();
+
+            return cashbox_sum_dt;
         }
 
     } //DataProvider Class

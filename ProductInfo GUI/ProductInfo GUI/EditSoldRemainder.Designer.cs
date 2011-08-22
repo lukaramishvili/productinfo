@@ -42,8 +42,14 @@
             this.gpbox_sold_price = new System.Windows.Forms.GroupBox();
             this.lbl_tevadoba = new System.Windows.Forms.Label();
             this.capacity_txt = new System.Windows.Forms.TextBox();
+            this.gpbox_rem_sell_price = new System.Windows.Forms.GroupBox();
+            this.rem_sell_price_piece_txt = new System.Windows.Forms.TextBox();
+            this.rem_sell_price_pack_txt = new System.Windows.Forms.TextBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rb_rem_sell_price_packs = new System.Windows.Forms.RadioButton();
             this.gpbox_sold_count.SuspendLayout();
             this.gpbox_sold_price.SuspendLayout();
+            this.gpbox_rem_sell_price.SuspendLayout();
             this.SuspendLayout();
             // 
             // attributes_lbl
@@ -77,7 +83,7 @@
             // btn_update_soldrem
             // 
             this.btn_update_soldrem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn_update_soldrem.Location = new System.Drawing.Point(12, 345);
+            this.btn_update_soldrem.Location = new System.Drawing.Point(12, 465);
             this.btn_update_soldrem.Name = "btn_update_soldrem";
             this.btn_update_soldrem.Size = new System.Drawing.Size(101, 28);
             this.btn_update_soldrem.TabIndex = 6;
@@ -181,7 +187,7 @@
             // 
             this.lbl_tevadoba.AutoSize = true;
             this.lbl_tevadoba.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl_tevadoba.Location = new System.Drawing.Point(17, 307);
+            this.lbl_tevadoba.Location = new System.Drawing.Point(17, 428);
             this.lbl_tevadoba.Name = "lbl_tevadoba";
             this.lbl_tevadoba.Size = new System.Drawing.Size(70, 16);
             this.lbl_tevadoba.TabIndex = 9;
@@ -190,17 +196,73 @@
             // capacity_txt
             // 
             this.capacity_txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold);
-            this.capacity_txt.Location = new System.Drawing.Point(104, 304);
+            this.capacity_txt.Location = new System.Drawing.Point(104, 425);
             this.capacity_txt.Name = "capacity_txt";
             this.capacity_txt.Size = new System.Drawing.Size(100, 23);
             this.capacity_txt.TabIndex = 8;
+            // 
+            // gpbox_rem_sell_price
+            // 
+            this.gpbox_rem_sell_price.Controls.Add(this.rem_sell_price_piece_txt);
+            this.gpbox_rem_sell_price.Controls.Add(this.rem_sell_price_pack_txt);
+            this.gpbox_rem_sell_price.Controls.Add(this.radioButton1);
+            this.gpbox_rem_sell_price.Controls.Add(this.rb_rem_sell_price_packs);
+            this.gpbox_rem_sell_price.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gpbox_rem_sell_price.ForeColor = System.Drawing.Color.Black;
+            this.gpbox_rem_sell_price.Location = new System.Drawing.Point(12, 297);
+            this.gpbox_rem_sell_price.Name = "gpbox_rem_sell_price";
+            this.gpbox_rem_sell_price.Size = new System.Drawing.Size(206, 110);
+            this.gpbox_rem_sell_price.TabIndex = 9;
+            this.gpbox_rem_sell_price.TabStop = false;
+            this.gpbox_rem_sell_price.Text = "გასაყიდი ფასი";
+            // 
+            // rem_sell_price_piece_txt
+            // 
+            this.rem_sell_price_piece_txt.Location = new System.Drawing.Point(92, 63);
+            this.rem_sell_price_piece_txt.Name = "rem_sell_price_piece_txt";
+            this.rem_sell_price_piece_txt.Size = new System.Drawing.Size(100, 23);
+            this.rem_sell_price_piece_txt.TabIndex = 3;
+            // 
+            // rem_sell_price_pack_txt
+            // 
+            this.rem_sell_price_pack_txt.Enabled = false;
+            this.rem_sell_price_pack_txt.Location = new System.Drawing.Point(92, 33);
+            this.rem_sell_price_pack_txt.Name = "rem_sell_price_pack_txt";
+            this.rem_sell_price_pack_txt.Size = new System.Drawing.Size(100, 23);
+            this.rem_sell_price_pack_txt.TabIndex = 3;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton1.Location = new System.Drawing.Point(8, 64);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(75, 20);
+            this.radioButton1.TabIndex = 7;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "საცალო";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // rb_rem_sell_price_packs
+            // 
+            this.rb_rem_sell_price_packs.AutoSize = true;
+            this.rb_rem_sell_price_packs.Enabled = false;
+            this.rb_rem_sell_price_packs.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rb_rem_sell_price_packs.Location = new System.Drawing.Point(8, 34);
+            this.rb_rem_sell_price_packs.Name = "rb_rem_sell_price_packs";
+            this.rb_rem_sell_price_packs.Size = new System.Drawing.Size(66, 20);
+            this.rb_rem_sell_price_packs.TabIndex = 7;
+            this.rb_rem_sell_price_packs.Text = "ყუთის";
+            this.rb_rem_sell_price_packs.UseVisualStyleBackColor = true;
             // 
             // EditSoldRemainder_Form
             // 
             this.AcceptButton = this.btn_update_soldrem;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 387);
+            this.ClientSize = new System.Drawing.Size(317, 512);
+            this.Controls.Add(this.gpbox_rem_sell_price);
             this.Controls.Add(this.capacity_txt);
             this.Controls.Add(this.lbl_tevadoba);
             this.Controls.Add(this.gpbox_sold_price);
@@ -216,6 +278,8 @@
             this.gpbox_sold_count.PerformLayout();
             this.gpbox_sold_price.ResumeLayout(false);
             this.gpbox_sold_price.PerformLayout();
+            this.gpbox_rem_sell_price.ResumeLayout(false);
+            this.gpbox_rem_sell_price.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,5 +301,10 @@
         private System.Windows.Forms.GroupBox gpbox_sold_price;
         private System.Windows.Forms.Label lbl_tevadoba;
         private System.Windows.Forms.TextBox capacity_txt;
+        private System.Windows.Forms.GroupBox gpbox_rem_sell_price;
+        private System.Windows.Forms.TextBox rem_sell_price_piece_txt;
+        private System.Windows.Forms.TextBox rem_sell_price_pack_txt;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rb_rem_sell_price_packs;
     }
 }

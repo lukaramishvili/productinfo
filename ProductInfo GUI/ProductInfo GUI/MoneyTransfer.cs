@@ -236,9 +236,30 @@ namespace ProductInfo_UI
                 return;
             }
 
+            int CashBoxIDToRegister = 0;
+            int CashierIDToRegister = 0;
+            if (DataProvider.MoneyTransferPurpose.AddToCashBox == TransferPurpose
+                |
+                DataProvider.MoneyTransferPurpose.TakeFromCashBox == TransferPurpose)
+            {
+                CashBoxIDToRegister = ProductInfo_Main_Form.ActiveCashBoxID;
+                CashierIDToRegister = ProductInfo_Main_Form.ActiveCashierID;
+            }
 
-
-            info transfmoney_info = ProductInfo_Main_Form.conn.TransferMoney(procClientIdent, TransferMode, DateTime.Now, procAmount, ClientType, TransferPurpose, (int)cb_mt_store_id.SelectedValue, TargetType, TargetIdentCode);
+            info transfmoney_info = ProductInfo_Main_Form.conn.TransferMoney(
+                procClientIdent
+                , TransferMode
+                , DateTime.Now
+                , procAmount
+                , ClientType
+                , TransferPurpose
+                , (int)cb_mt_store_id.SelectedValue
+                , TargetType
+                , TargetIdentCode
+                //gaformdes marto salarodan gatana/shemotanis gadaricxvebi
+                , CashBoxIDToRegister
+                , CashierIDToRegister
+                );
             MessageBox.Show(transfmoney_info.details, transfmoney_info.errcode.ToString());
             if (0 == transfmoney_info.errcode)
             {

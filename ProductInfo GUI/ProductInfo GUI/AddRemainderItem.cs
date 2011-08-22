@@ -45,6 +45,8 @@ namespace ProductInfo_UI
         decimal PieceCount = 0.0m;
         decimal PiecePrice = 0.0m;
 
+        decimal RemSellPrice = 0.0m;
+
         public void LoadProdNamesList()
         {
             cmb_select_remainder.Items.Clear();
@@ -123,7 +125,7 @@ namespace ProductInfo_UI
                 case AddRemainderItemMode.BoughtZed:
                     if (ValidateAddRemFields())
                     {
-                        Remainder RemToAdd = new Remainder(cmb_select_remainder.SelectedItem.ToString(), ClientIdent, ZedIdent, PieceCount, PackCapacity, PieceCount, PiecePrice, PiecePrice, 0.0m, 0.0m, (int)cb_addrem_store_id.SelectedValue);
+                        Remainder RemToAdd = new Remainder(cmb_select_remainder.SelectedItem.ToString(), ClientIdent, ZedIdent, PieceCount, PackCapacity, PieceCount, PiecePrice, PiecePrice, RemSellPrice, RemSellPrice, (int)cb_addrem_store_id.SelectedValue);
                         addrem_res = ProductInfo_Main_Form.conn.sOpAddRemainder(RemToAdd);
                     }
                     else
@@ -215,6 +217,8 @@ namespace ProductInfo_UI
             {
                 case AddRemainderItemMode.BoughtZed:
                     btn_add_prodname.Visible = true;
+                    lbl_rem_sell_price.Visible = true;
+                    rem_sell_price_txt.Visible = true;
                     break;
                 case AddRemainderItemMode.SellOrder:
                 case AddRemainderItemMode.SoldZed:
@@ -249,6 +253,19 @@ namespace ProductInfo_UI
 
                     LoadProdNamesList();
                 };
+        }
+
+        private void rem_sell_price_txt_TextChanged(object sender, EventArgs e)
+        {
+            RemSellPrice = ParseDecimal(rem_sell_price_txt.Text);
+            if (0.0m == RemSellPrice)
+            {
+                rem_sell_price_txt.Text = "";
+            }
+            else
+            {
+                //rem_sell_price_txt.Text = RemSellPrice.ToString();
+            }
         }
 
 

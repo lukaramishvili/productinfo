@@ -83,6 +83,8 @@ namespace ProductInfo_UI
             this.sell_sum_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sell_delete_col = new System.Windows.Forms.DataGridViewButtonColumn();
             this.sell_status_bar = new System.Windows.Forms.StatusStrip();
+            this.sell_status_lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sell_status_sum_price_lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.sell_submit_btn = new System.Windows.Forms.Button();
             this.nashtebi_tabpage = new System.Windows.Forms.TabPage();
             this.rem_list = new System.Windows.Forms.ListView();
@@ -93,6 +95,7 @@ namespace ProductInfo_UI
             this.rem_list_store_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_packs_header = new System.Windows.Forms.ColumnHeader();
             this.rem_list_piece_price_col = new System.Windows.Forms.ColumnHeader();
+            this.rem_list_piece_sell_price_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_initial_whole_price_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_remaining_whole_price_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_cost_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
@@ -161,8 +164,9 @@ namespace ProductInfo_UI
             this.prod_names_list = new System.Windows.Forms.ListView();
             this.pnames_bcode_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_name_col = new System.Windows.Forms.ColumnHeader();
-            this.pnames_capacity_list = new System.Windows.Forms.ColumnHeader();
+            this.pnames_capacity_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_initial_count_col = new System.Windows.Forms.ColumnHeader();
+            this.pnames_initial_sum_cost_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_remaining_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_piece_price_col = new System.Windows.Forms.ColumnHeader();
             this.pnames_remaining_amount_col = new System.Windows.Forms.ColumnHeader();
@@ -257,13 +261,16 @@ namespace ProductInfo_UI
             this.bought_af_std_date_col = new System.Windows.Forms.ColumnHeader();
             this.bought_af_std_supp_ident_col = new System.Windows.Forms.ColumnHeader();
             this.bought_af_std_VAT_col = new System.Windows.Forms.ColumnHeader();
-            this.sell_status_lbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.sell_status_sum_price_lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.tb_since_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
-            this.pnames_initial_sum_cost_col = new System.Windows.Forms.ColumnHeader();
+            this.cmi_mt_edit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mt_cashbox_id_col = new System.Windows.Forms.ColumnHeader();
+            this.mt_cashier_id_col = new System.Windows.Forms.ColumnHeader();
+            this.cashbox_sum_txt = new System.Windows.Forms.TextBox();
+            this.lbl_cashbox_sum_currency = new System.Windows.Forms.Label();
+            this.lbl_cashbox_sum = new System.Windows.Forms.Label();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
             this.status_bar.SuspendLayout();
@@ -271,6 +278,7 @@ namespace ProductInfo_UI
             this.sell_tabpage.SuspendLayout();
             this.sell_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sell_list)).BeginInit();
+            this.sell_status_bar.SuspendLayout();
             this.nashtebi_tabpage.SuspendLayout();
             this.cm_rem_list.SuspendLayout();
             this.zednadebebi_tabpage.SuspendLayout();
@@ -617,7 +625,7 @@ namespace ProductInfo_UI
             this.sell_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sell_panel.Location = new System.Drawing.Point(0, 0);
             this.sell_panel.Name = "sell_panel";
-            this.sell_panel.Size = new System.Drawing.Size(1207, 400);
+            this.sell_panel.Size = new System.Drawing.Size(1207, 399);
             this.sell_panel.TabIndex = 13;
             // 
             // sell_list
@@ -649,7 +657,7 @@ namespace ProductInfo_UI
             this.sell_list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sell_list.Location = new System.Drawing.Point(0, 0);
             this.sell_list.Name = "sell_list";
-            this.sell_list.Size = new System.Drawing.Size(1207, 400);
+            this.sell_list.Size = new System.Drawing.Size(1207, 399);
             this.sell_list.TabIndex = 0;
             this.sell_list.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.sell_list_RowEnter);
             this.sell_list.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.sell_list_CellEndEdit);
@@ -757,11 +765,25 @@ namespace ProductInfo_UI
             this.sell_status_bar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sell_status_lbl,
             this.sell_status_sum_price_lbl});
-            this.sell_status_bar.Location = new System.Drawing.Point(0, 400);
+            this.sell_status_bar.Location = new System.Drawing.Point(0, 399);
             this.sell_status_bar.Name = "sell_status_bar";
-            this.sell_status_bar.Size = new System.Drawing.Size(1207, 22);
+            this.sell_status_bar.Size = new System.Drawing.Size(1207, 23);
             this.sell_status_bar.TabIndex = 3;
             this.sell_status_bar.Text = "sell_statusstrip";
+            // 
+            // sell_status_lbl
+            // 
+            this.sell_status_lbl.Name = "sell_status_lbl";
+            this.sell_status_lbl.Size = new System.Drawing.Size(192, 18);
+            this.sell_status_lbl.Text = "შეიყვანეთ შტრიხ–კოდი ან დასახელება";
+            // 
+            // sell_status_sum_price_lbl
+            // 
+            this.sell_status_sum_price_lbl.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sell_status_sum_price_lbl.Name = "sell_status_sum_price_lbl";
+            this.sell_status_sum_price_lbl.Size = new System.Drawing.Size(1000, 18);
+            this.sell_status_sum_price_lbl.Spring = true;
+            this.sell_status_sum_price_lbl.Text = "საერთო ფასი 0.0 ლარი";
             // 
             // sell_submit_btn
             // 
@@ -795,6 +817,7 @@ namespace ProductInfo_UI
             this.rem_list_store_col,
             this.rem_list_packs_header,
             this.rem_list_piece_price_col,
+            this.rem_list_piece_sell_price_col,
             this.rem_list_initial_whole_price_col,
             this.rem_list_remaining_whole_price_col,
             this.rem_list_cost_withoutVAT_col});
@@ -846,6 +869,11 @@ namespace ProductInfo_UI
             // 
             this.rem_list_piece_price_col.Text = "საცალო ფასი";
             this.rem_list_piece_price_col.Width = 98;
+            // 
+            // rem_list_piece_sell_price_col
+            // 
+            this.rem_list_piece_sell_price_col.Text = "გასაყიდი ფასი";
+            this.rem_list_piece_sell_price_col.Width = 105;
             // 
             // rem_list_initial_whole_price_col
             // 
@@ -1331,7 +1359,7 @@ namespace ProductInfo_UI
             this.prod_names_list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.pnames_bcode_col,
             this.pnames_name_col,
-            this.pnames_capacity_list,
+            this.pnames_capacity_col,
             this.pnames_initial_count_col,
             this.pnames_initial_sum_cost_col,
             this.pnames_remaining_col,
@@ -1360,21 +1388,26 @@ namespace ProductInfo_UI
             // pnames_name_col
             // 
             this.pnames_name_col.Text = "დასახელება";
-            this.pnames_name_col.Width = 130;
+            this.pnames_name_col.Width = 96;
             // 
-            // pnames_capacity_list
+            // pnames_capacity_col
             // 
-            this.pnames_capacity_list.Text = "ტევადობა";
-            this.pnames_capacity_list.Width = 75;
+            this.pnames_capacity_col.Text = "ტევადობა";
+            this.pnames_capacity_col.Width = 77;
             // 
             // pnames_initial_count_col
             // 
             this.pnames_initial_count_col.Text = "საწყისი ჯამ. საცალო რაოდ.";
             this.pnames_initial_count_col.Width = 181;
             // 
+            // pnames_initial_sum_cost_col
+            // 
+            this.pnames_initial_sum_cost_col.Text = "საწყისი ჯამ. ღირ.";
+            this.pnames_initial_sum_cost_col.Width = 120;
+            // 
             // pnames_remaining_col
             // 
-            this.pnames_remaining_col.Text = "დარჩენილია (ყუთი/ცალობით)";
+            this.pnames_remaining_col.Text = "დარჩენილია (ცალობით)";
             this.pnames_remaining_col.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.pnames_remaining_col.Width = 201;
             // 
@@ -1876,7 +1909,9 @@ namespace ProductInfo_UI
             this.mt_purpose_col,
             this.mt_storeid_col,
             this.mt_targettype_col,
-            this.mt_targetident_col});
+            this.mt_targetident_col,
+            this.mt_cashbox_id_col,
+            this.mt_cashier_id_col});
             this.moneytransfer_list.ContextMenuStrip = this.cm_moneytransfer;
             this.moneytransfer_list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.moneytransfer_list.Font = new System.Drawing.Font("Sylfaen", 10F);
@@ -1944,9 +1979,10 @@ namespace ProductInfo_UI
             // cm_moneytransfer
             // 
             this.cm_moneytransfer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmi_mt_edit,
             this.cmi_mt_remove});
             this.cm_moneytransfer.Name = "cm_moneytransfer";
-            this.cm_moneytransfer.Size = new System.Drawing.Size(171, 26);
+            this.cm_moneytransfer.Size = new System.Drawing.Size(171, 48);
             // 
             // cmi_mt_remove
             // 
@@ -1957,6 +1993,9 @@ namespace ProductInfo_UI
             // 
             // summary_tabpage
             // 
+            this.summary_tabpage.Controls.Add(this.cashbox_sum_txt);
+            this.summary_tabpage.Controls.Add(this.lbl_cashbox_sum_currency);
+            this.summary_tabpage.Controls.Add(this.lbl_cashbox_sum);
             this.summary_tabpage.Controls.Add(this.summary_cash_amount);
             this.summary_tabpage.Controls.Add(this.lbl_summary_currency);
             this.summary_tabpage.Controls.Add(this.lbl_summary_cash);
@@ -1970,7 +2009,7 @@ namespace ProductInfo_UI
             // summary_cash_amount
             // 
             this.summary_cash_amount.Enabled = false;
-            this.summary_cash_amount.Location = new System.Drawing.Point(199, 18);
+            this.summary_cash_amount.Location = new System.Drawing.Point(199, 149);
             this.summary_cash_amount.Name = "summary_cash_amount";
             this.summary_cash_amount.Size = new System.Drawing.Size(130, 27);
             this.summary_cash_amount.TabIndex = 1;
@@ -1979,7 +2018,7 @@ namespace ProductInfo_UI
             // 
             this.lbl_summary_currency.AutoSize = true;
             this.lbl_summary_currency.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl_summary_currency.Location = new System.Drawing.Point(331, 18);
+            this.lbl_summary_currency.Location = new System.Drawing.Point(331, 149);
             this.lbl_summary_currency.Name = "lbl_summary_currency";
             this.lbl_summary_currency.Size = new System.Drawing.Size(46, 18);
             this.lbl_summary_currency.TabIndex = 0;
@@ -1989,11 +2028,11 @@ namespace ProductInfo_UI
             // 
             this.lbl_summary_cash.AutoSize = true;
             this.lbl_summary_cash.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl_summary_cash.Location = new System.Drawing.Point(17, 19);
+            this.lbl_summary_cash.Location = new System.Drawing.Point(17, 150);
             this.lbl_summary_cash.Name = "lbl_summary_cash";
-            this.lbl_summary_cash.Size = new System.Drawing.Size(173, 18);
+            this.lbl_summary_cash.Size = new System.Drawing.Size(134, 18);
             this.lbl_summary_cash.TabIndex = 0;
-            this.lbl_summary_cash.Text = "სალაროში დარჩენილია";
+            this.lbl_summary_cash.Text = "სექციის ბალანსი:";
             // 
             // bought_af_standard_list_tabpage
             // 
@@ -2050,20 +2089,6 @@ namespace ProductInfo_UI
             // 
             this.bought_af_std_VAT_col.Text = "invoiceAmount";
             // 
-            // sell_status_lbl
-            // 
-            this.sell_status_lbl.Name = "sell_status_lbl";
-            this.sell_status_lbl.Size = new System.Drawing.Size(192, 18);
-            this.sell_status_lbl.Text = "შეიყვანეთ შტრიხ–კოდი ან დასახელება";
-            // 
-            // sell_status_sum_price_lbl
-            // 
-            this.sell_status_sum_price_lbl.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.sell_status_sum_price_lbl.Name = "sell_status_sum_price_lbl";
-            this.sell_status_sum_price_lbl.Size = new System.Drawing.Size(1000, 18);
-            this.sell_status_sum_price_lbl.Spring = true;
-            this.sell_status_sum_price_lbl.Text = "საერთო ფასი 0.0 ლარი";
-            // 
             // tb_since_datepicker
             // 
             this.tb_since_datepicker.Location = new System.Drawing.Point(402, 29);
@@ -2090,10 +2115,50 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
             // 
-            // pnames_initial_sum_cost_col
+            // cmi_mt_edit
             // 
-            this.pnames_initial_sum_cost_col.Text = "საწყისი ჯამ. ღირ.";
-            this.pnames_initial_sum_cost_col.Width = 120;
+            this.cmi_mt_edit.Name = "cmi_mt_edit";
+            this.cmi_mt_edit.Size = new System.Drawing.Size(170, 22);
+            this.cmi_mt_edit.Text = "ჩასწორება";
+            this.cmi_mt_edit.Click += new System.EventHandler(this.cmi_mt_edit_Click);
+            // 
+            // mt_cashbox_id_col
+            // 
+            this.mt_cashbox_id_col.Text = "სალაროს N.";
+            this.mt_cashbox_id_col.Width = 100;
+            // 
+            // mt_cashier_id_col
+            // 
+            this.mt_cashier_id_col.Text = "მოლარის N.";
+            this.mt_cashier_id_col.Width = 100;
+            // 
+            // cashbox_sum_txt
+            // 
+            this.cashbox_sum_txt.Enabled = false;
+            this.cashbox_sum_txt.Location = new System.Drawing.Point(199, 69);
+            this.cashbox_sum_txt.Name = "cashbox_sum_txt";
+            this.cashbox_sum_txt.Size = new System.Drawing.Size(130, 27);
+            this.cashbox_sum_txt.TabIndex = 4;
+            // 
+            // lbl_cashbox_sum_currency
+            // 
+            this.lbl_cashbox_sum_currency.AutoSize = true;
+            this.lbl_cashbox_sum_currency.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl_cashbox_sum_currency.Location = new System.Drawing.Point(331, 69);
+            this.lbl_cashbox_sum_currency.Name = "lbl_cashbox_sum_currency";
+            this.lbl_cashbox_sum_currency.Size = new System.Drawing.Size(46, 18);
+            this.lbl_cashbox_sum_currency.TabIndex = 3;
+            this.lbl_cashbox_sum_currency.Text = "ლარი";
+            // 
+            // lbl_cashbox_sum
+            // 
+            this.lbl_cashbox_sum.AutoSize = true;
+            this.lbl_cashbox_sum.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl_cashbox_sum.Location = new System.Drawing.Point(17, 70);
+            this.lbl_cashbox_sum.Name = "lbl_cashbox_sum";
+            this.lbl_cashbox_sum.Size = new System.Drawing.Size(179, 18);
+            this.lbl_cashbox_sum.TabIndex = 2;
+            this.lbl_cashbox_sum.Text = "სალაროში დარჩენილია:";
             // 
             // ProductInfo_Main_Form
             // 
@@ -2121,6 +2186,8 @@ namespace ProductInfo_UI
             this.sell_tabpage.PerformLayout();
             this.sell_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sell_list)).EndInit();
+            this.sell_status_bar.ResumeLayout(false);
+            this.sell_status_bar.PerformLayout();
             this.nashtebi_tabpage.ResumeLayout(false);
             this.cm_rem_list.ResumeLayout(false);
             this.zednadebebi_tabpage.ResumeLayout(false);
@@ -2221,7 +2288,6 @@ namespace ProductInfo_UI
         private System.Windows.Forms.ColumnHeader buyer_misacemi_col;
         private System.Windows.Forms.ToolStripButton tb_print_btn;
         private System.Windows.Forms.ColumnHeader af_operation_col;
-        private System.Windows.Forms.ColumnHeader pnames_capacity_list;
         private System.Windows.Forms.ColumnHeader pnames_piece_price_col;
         private System.Windows.Forms.ColumnHeader rem_list_piece_price_col;
         private System.Windows.Forms.ColumnHeader agcera_supplier_name_col;
@@ -2380,6 +2446,14 @@ namespace ProductInfo_UI
         private ColumnHeader rem_list_initial_whole_price_col;
         private ColumnHeader pnames_initial_count_col;
         private ColumnHeader pnames_initial_sum_cost_col;
+        private ColumnHeader pnames_capacity_col;
+        private ColumnHeader rem_list_piece_sell_price_col;
+        private ToolStripMenuItem cmi_mt_edit;
+        private ColumnHeader mt_cashbox_id_col;
+        private ColumnHeader mt_cashier_id_col;
+        private TextBox cashbox_sum_txt;
+        private Label lbl_cashbox_sum_currency;
+        private Label lbl_cashbox_sum;
 
 
 

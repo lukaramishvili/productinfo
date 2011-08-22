@@ -296,7 +296,9 @@ namespace ProductInfo_UI
             {
                 shemotana_SO = new SellOrder(gayidva_zed.dro, true, paying_method_now, all_buyers[buyer_chooser.SelectedIndex], gayidva_zed, zed_prod_list.ToArray(), null);
             }
-            info trans_res = ProductInfo_Main_Form.conn.AddSellOrder(shemotana_SO);
+            //this variable will be initialized by the AddSellOrder call, but not neccessery in this code because this SellOrder is Zednadebi (Invoice)
+            int SellOrderInsertID;
+            info trans_res = ProductInfo_Main_Form.conn.AddSellOrder(shemotana_SO, out SellOrderInsertID);
             MessageBox.Show("TODO in DataProvider: SPROC RETVAL??? " + trans_res.errcode.ToString() + ":" + trans_res.details);
             if (501 == trans_res.errcode | 0 == trans_res.errcode)
             {
@@ -312,7 +314,20 @@ namespace ProductInfo_UI
                         selling_rem_sum += next_selling_rem.sell_price * next_selling_rem.initial_pieces;
                     }
                     //gayidulis gadaricxva
-                    info payforsellingzed_info = ProductInfo_Main_Form.conn.TransferMoney(all_buyers[buyer_chooser.SelectedIndex].saidentifikacio_kodi, DataProvider.MoneyTransferType.Take, DateTime.Now, selling_rem_sum, typeof(Buyer), DataProvider.MoneyTransferPurpose.PayFor, cb_mt_store_id.SelectedIndex, typeof(Zednadebi), zed_ident_code_txt.Text);
+                    info payforsellingzed_info = ProductInfo_Main_Form.conn.TransferMoney(
+                        all_buyers[buyer_chooser.SelectedIndex].saidentifikacio_kodi
+                        , DataProvider.MoneyTransferType.Take
+                        , DateTime.Now
+                        , selling_rem_sum
+                        , typeof(Buyer)
+                        , DataProvider.MoneyTransferPurpose.PayFor
+                        , cb_mt_store_id.SelectedIndex
+                        , typeof(Zednadebi)
+                        , zed_ident_code_txt.Text
+                        //zednadebistvis gadaxdaze mgoni ar girs gaformeba cashier-ze da cashbox-ze
+                        , 0//ProductInfo_Main_Form.ActiveCashBoxID
+                        , 0//ProductInfo_Main_Form.ActiveCashierID
+                        );
                     MessageBox.Show(payforsellingzed_info.details, payforsellingzed_info.errcode.ToString());
                 }
                 this.Close();
@@ -695,9 +710,11 @@ namespace ProductInfo_UI
 
         void add_rem_list_Control_KeyDown(object sender, KeyEventArgs e)
         {
-
-
-
+            if (e.KeyCode == Keys.Home)
+            {
+                add_remainders_list.EndEdit();
+                add_remainders_list.CurrentCell = add_remainders_list.CurrentRow.Cells[0];
+            }
             if (e.KeyCode == Keys.F8)
             {
                 try

@@ -38,16 +38,18 @@ namespace ProductInfo_UI
         decimal PieceCount = 0.0m;
         decimal PiecePrice = 0.0m;
         decimal PackCapacity = 0.0m;
+        decimal PieceSellPrice = 0.0m;
         string BuyerName = "none";
         DateTime OrderTime = DateTime.Now;
         bool UsingCheck = false;
         string ZedIdentCode = "none";
 
-        public void LoadRemDetails(decimal piece_cnt_arg, decimal piece_price_arg, decimal pack_cap_arg, string supplier_name_arg, DateTime zed_date_arg, string zed_ident_arg)
+        public void LoadRemDetails(decimal piece_cnt_arg, decimal piece_price_arg, decimal pack_cap_arg, decimal piece_sell_price_arg, string supplier_name_arg, DateTime zed_date_arg, string zed_ident_arg)
         {
             PieceCount = piece_cnt_arg;
             PiecePrice = piece_price_arg;
             PackCapacity = pack_cap_arg;
+            PieceSellPrice = piece_sell_price_arg;
             BuyerName = supplier_name_arg;
             OrderTime = zed_date_arg;
             UsingCheck = true;
@@ -57,6 +59,7 @@ namespace ProductInfo_UI
             piece_count_txt.Text = PieceCount.ToString();
             piece_price_txt.Text = PiecePrice.ToString();
             capacity_txt.Text = PackCapacity.ToString();
+            rem_sell_price_piece_txt.Text = PieceSellPrice.ToString();
 
             DetailsLoaded = true;
         }
@@ -90,7 +93,7 @@ namespace ProductInfo_UI
             DataTable RemDetails = ProductInfo_Main_Form.conn.RemainderByID(soldrem_id);
             if (RemDetails.Rows.Count > 0)
             {
-                LoadRemDetails(ParseDecimal(RemDetails.Rows[0][0].ToString()), ParseDecimal(RemDetails.Rows[0][1].ToString()), ParseDecimal(RemDetails.Rows[0][2].ToString()), RemDetails.Rows[0][3].ToString(), DateTime.Parse(RemDetails.Rows[0][4].ToString()), RemDetails.Rows[0][5].ToString());
+                LoadRemDetails(ParseDecimal(RemDetails.Rows[0]["საცალო რ–ბა"].ToString()), ParseDecimal(RemDetails.Rows[0]["საცალო ფასი"].ToString()), ParseDecimal(RemDetails.Rows[0]["ტევადობა"].ToString()), ParseDecimal(RemDetails.Rows[0]["საცალო გასაყიდი ფასი"].ToString()), RemDetails.Rows[0]["შემომტანი"].ToString(), DateTime.Parse(RemDetails.Rows[0]["ზედ. თარიღი"].ToString()), RemDetails.Rows[0]["ზედ. ნომერი"].ToString());
             }
             else
             {
@@ -106,6 +109,12 @@ namespace ProductInfo_UI
 
             this.Text = "გაყიდული პროდუქტის შეცვლა";
             gpbox_sold_count.Text = "გაყიდული რაოდენობა";
+
+            gpbox_rem_sell_price.Visible = false;
+            lbl_tevadoba.Top -= 120;
+            capacity_txt.Top -= 120;
+            btn_update_soldrem.Top -= 120;
+            this.Height -= 125;
 
             capacity_txt.Enabled = false;
 
@@ -126,7 +135,7 @@ namespace ProductInfo_UI
             switch (EditType)
             {
                 case SoldRemainderEditType.Remainder:
-                    info updrem_ret = ProductInfo_Main_Form.conn.UpdateRemainder(EditingSoldRemID, ParseDecimal(piece_count_txt.Text), ParseDecimal(piece_price_txt.Text), ParseDecimal(capacity_txt.Text));
+                    info updrem_ret = ProductInfo_Main_Form.conn.UpdateRemainder(EditingSoldRemID, ParseDecimal(piece_count_txt.Text), ParseDecimal(piece_price_txt.Text), ParseDecimal(capacity_txt.Text), ParseDecimal(rem_sell_price_piece_txt.Text));
                     MessageBox.Show(updrem_ret.details, updrem_ret.errcode.ToString());
                     if (0 == updrem_ret.errcode)
                     {

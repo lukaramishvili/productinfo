@@ -90,6 +90,7 @@ namespace ProductInfo_UI
         DataTable sold_prodrem_list_dt = new DataTable();
         DataTable moneytransfers_dt = new DataTable();
         DataTable store_summary_dt = new DataTable();
+        DataTable cashbox_summary_dt = new DataTable();
         DataTable bought_af_standard_list_dt = new DataTable();
         //
         int sold_roi_col_index = -1;
@@ -102,6 +103,8 @@ namespace ProductInfo_UI
         //
 
         public static int ActiveStoreID = 0;
+        public static int ActiveCashBoxID = 0;
+        public static int ActiveCashierID = 0;
 
         DateTime DateFilterSince = new DateTime(DateTime.Now.AddMonths(-1).Year, DateTime.Now.AddMonths(-1).Month, DateTime.Now.AddMonths(-1).Day);
         DateTime DateFilterUntil = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day);//new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
@@ -140,6 +143,13 @@ namespace ProductInfo_UI
             {
                 ActiveStoreID = 0;
             }
+            //
+            int CashBoxIDFromRegistry = Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\zero\ProductInfo\1.0", "CashBoxID", 0));
+            ActiveCashBoxID = CashBoxIDFromRegistry;
+            //TODO: user authorization && get CashierID(current user id) from database && Registry.SetValue([CashierID that was read from database])
+            int CashierIDFromRegistry = Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\zero\ProductInfo\1.0", "CashierID", 0));
+            ActiveCashierID = CashierIDFromRegistry;
+            //
 
             tb_store_chooser.ComboBox.SelectedValue = ActiveStoreID;
             //
@@ -1347,6 +1357,11 @@ namespace ProductInfo_UI
 
         void sell_list_Control_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Home)
+            {
+                sell_list.EndEdit();
+                sell_list.CurrentCell = sell_list.CurrentRow.Cells[0];
+            }
             if (e.KeyCode == Keys.F8)
             {
                 try
@@ -1663,8 +1678,10 @@ namespace ProductInfo_UI
             if (summary_tabpage == tab_container.SelectedTab)
             {
                 store_summary_dt = conn.StoreSummary(ActiveStoreID);
-
                 summary_cash_amount.Text = store_summary_dt.Rows[0][0].ToString();
+
+                cashbox_summary_dt = conn.CashBoxSummary(ActiveCashBoxID);
+                cashbox_sum_txt.Text = cashbox_summary_dt.Rows[0][0].ToString();
             }
             if (bought_af_standard_list_tabpage == tab_container.SelectedTab)
             {
@@ -2431,7 +2448,9 @@ namespace ProductInfo_UI
             SellOrder shemotana_SO;
             shemotana_SO = new SellOrder(DateTime.Now, are_we_using_check, paying_method_now, xelze_myidveli, null, zed_prod_list.ToArray(), null);//passing null is normal, we there check for null reference to determine it was passed
 
-            info trans_res = ProductInfo_Main_Form.conn.AddSellOrder(shemotana_SO);
+            //this variable will be initialized by the AddSellOrder call
+            int SellOrderInsertID;
+            info trans_res = ProductInfo_Main_Form.conn.AddSellOrder(shemotana_SO, out SellOrderInsertID);
             MessageBox.Show("TODO in DataProvider: SPROC RETVAL??? " + trans_res.errcode.ToString() + ":" + trans_res.details);
             if (501 == trans_res.errcode | 0 == trans_res.errcode)
             {
@@ -2447,7 +2466,17 @@ namespace ProductInfo_UI
                         selling_rem_sum += next_selling_rem.sell_price * next_selling_rem.initial_pieces;
                     }
                     //gayidulis gadaricxva
-                    info payforsellingorder_info = ProductInfo_Main_Form.conn.TransferMoney(xelze_myidveli.saidentifikacio_kodi, DataProvider.MoneyTransferType.Take, DateTime.Now, selling_rem_sum, typeof(Buyer), DataProvider.MoneyTransferPurpose.PayFor, ActiveStoreID, null/*typeof(SellOrder)*/, null/*add_SO.id*/);
+                    info payforsellingorder_info = ProductInfo_Main_Form.conn.TransferMoney(
+                        xelze_myidveli.saidentifikacio_kodi
+                        , DataProvider.MoneyTransferType.Take
+                        , DateTime.Now, selling_rem_sum
+                        , typeof(Buyer)
+                        , DataProvider.MoneyTransferPurpose.PayFor
+                        , ActiveStoreID
+                        , typeof(SellOrder)
+                        , SellOrderInsertID.ToString()
+                        , ActiveCashBoxID
+                        , ActiveCashierID);
                     MessageBox.Show(payforsellingorder_info.details, payforsellingorder_info.errcode.ToString());
                 }
                 sell_list.Rows.Clear();
@@ -2777,6 +2806,10 @@ namespace ProductInfo_UI
                 SplitRemainder_Form splitrems_frm = new SplitRemainder_Form();
                 splitrems_frm.Show();
                 splitrems_frm.LoadRemainders(rem_list.SelectedItems[0].SubItems[rem_list_barcode_header.Index].Text);
+                splitrems_frm.FormClosed += new FormClosedEventHandler(delegate(object senderSplitRems, FormClosedEventArgs eSplitRems)
+                {
+                    RefreshTabs();
+                });
             }
         }
 
@@ -2866,7 +2899,20 @@ namespace ProductInfo_UI
                     string payfor_zed_ident = zed_list.SelectedItems[0].SubItems[zed_ident_col.Index].Text;
                     decimal payfor_zed_cost = Utilities.Utilities.ParseDecimal(zed_list.SelectedItems[0].SubItems[zed_list_costwithVAT_col.Index].Text);
 
-                    info payforincomingzed_info = ProductInfo_Main_Form.conn.TransferMoney(payfor_zed_supplier.saidentifikacio_kodi, DataProvider.MoneyTransferType.Give, DateTime.Now, payfor_zed_cost, typeof(Supplier), DataProvider.MoneyTransferPurpose.PayFor, ActiveStoreID, typeof(Zednadebi), payfor_zed_ident);
+                    info payforincomingzed_info = ProductInfo_Main_Form.conn.TransferMoney(
+                        payfor_zed_supplier.saidentifikacio_kodi
+                        , DataProvider.MoneyTransferType.Give
+                        , DateTime.Now
+                        , payfor_zed_cost
+                        , typeof(Supplier)
+                        , DataProvider.MoneyTransferPurpose.PayFor
+                        , ActiveStoreID
+                        , typeof(Zednadebi)
+                        , payfor_zed_ident
+                        //zednadebistvis gadaxdaze mgoni ar girs gaformeba cashier-ze da cashbox-ze
+                        , 0//ActiveCashBoxID
+                        , 0//ActiveCashierID
+                        );
                     MessageBox.Show(payforincomingzed_info.details, payforincomingzed_info.errcode.ToString());
 
                     RefreshTabs();
@@ -2896,7 +2942,20 @@ namespace ProductInfo_UI
                                                                                select nr["მოგება"]).ToArray()[0].ToString());
                     //gadasaxdelia girebulebas + mogeba (anu mosacemi tanxa)
                     decimal payfor_zed_amount = payfor_zed_cost + payfor_zed_roi;
-                    info payforsoldzed_info = ProductInfo_Main_Form.conn.TransferMoney(payfor_zed_buyer.saidentifikacio_kodi, DataProvider.MoneyTransferType.Take, DateTime.Now, payfor_zed_amount, typeof(Buyer), DataProvider.MoneyTransferPurpose.PayFor, ActiveStoreID, typeof(Zednadebi), payfor_zed_ident);
+                    info payforsoldzed_info = ProductInfo_Main_Form.conn.TransferMoney(
+                        payfor_zed_buyer.saidentifikacio_kodi
+                        , DataProvider.MoneyTransferType.Take
+                        , DateTime.Now
+                        , payfor_zed_amount
+                        , typeof(Buyer)
+                        , DataProvider.MoneyTransferPurpose.PayFor
+                        , ActiveStoreID
+                        , typeof(Zednadebi)
+                        , payfor_zed_ident
+                        //zednadebistvis gadaxdaze mgoni ar girs gaformeba cashier-ze da cashbox-ze
+                        , 0//ActiveCashBoxID
+                        , 0//ActiveCashierID
+                        );
                     MessageBox.Show(payforsoldzed_info.details, payforsoldzed_info.errcode.ToString());
 
                     RefreshTabs();
@@ -3148,6 +3207,11 @@ namespace ProductInfo_UI
                 }
             }
             //
+        }
+
+        private void cmi_mt_edit_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Edit MoneyTransfer Here");
         }
 
 

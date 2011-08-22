@@ -47,6 +47,8 @@
             this.cb_addrem_store_id = new System.Windows.Forms.ComboBox();
             this.lbl_addrem_store_id = new System.Windows.Forms.Label();
             this.btn_add_prodname = new System.Windows.Forms.Button();
+            this.rem_sell_price_txt = new System.Windows.Forms.TextBox();
+            this.lbl_rem_sell_price = new System.Windows.Forms.Label();
             this.gpbox_sold_price.SuspendLayout();
             this.gpbox_sold_count.SuspendLayout();
             this.SuspendLayout();
@@ -214,7 +216,7 @@
             // btn_add_soldrem
             // 
             this.btn_add_soldrem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn_add_soldrem.Location = new System.Drawing.Point(12, 425);
+            this.btn_add_soldrem.Location = new System.Drawing.Point(12, 475);
             this.btn_add_soldrem.Name = "btn_add_soldrem";
             this.btn_add_soldrem.Size = new System.Drawing.Size(94, 28);
             this.btn_add_soldrem.TabIndex = 10;
@@ -253,11 +255,34 @@
             this.btn_add_prodname.UseVisualStyleBackColor = true;
             this.btn_add_prodname.Click += new System.EventHandler(this.btn_add_prodname_Click);
             // 
+            // rem_sell_price_txt
+            // 
+            this.rem_sell_price_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rem_sell_price_txt.Location = new System.Drawing.Point(115, 434);
+            this.rem_sell_price_txt.Name = "rem_sell_price_txt";
+            this.rem_sell_price_txt.Size = new System.Drawing.Size(100, 22);
+            this.rem_sell_price_txt.TabIndex = 18;
+            this.rem_sell_price_txt.Visible = false;
+            this.rem_sell_price_txt.TextChanged += new System.EventHandler(this.rem_sell_price_txt_TextChanged);
+            // 
+            // lbl_rem_sell_price
+            // 
+            this.lbl_rem_sell_price.AutoSize = true;
+            this.lbl_rem_sell_price.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl_rem_sell_price.Location = new System.Drawing.Point(9, 436);
+            this.lbl_rem_sell_price.Name = "lbl_rem_sell_price";
+            this.lbl_rem_sell_price.Size = new System.Drawing.Size(98, 16);
+            this.lbl_rem_sell_price.TabIndex = 19;
+            this.lbl_rem_sell_price.Text = "გასაყიდი ფასი";
+            this.lbl_rem_sell_price.Visible = false;
+            // 
             // AddRemainderItem_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 516);
+            this.ClientSize = new System.Drawing.Size(364, 520);
+            this.Controls.Add(this.rem_sell_price_txt);
+            this.Controls.Add(this.lbl_rem_sell_price);
             this.Controls.Add(this.btn_add_prodname);
             this.Controls.Add(this.cb_addrem_store_id);
             this.Controls.Add(this.lbl_addrem_store_id);
@@ -302,5 +327,7 @@
         private System.Windows.Forms.ComboBox cb_addrem_store_id;
         private System.Windows.Forms.Label lbl_addrem_store_id;
         private System.Windows.Forms.Button btn_add_prodname;
+        private System.Windows.Forms.TextBox rem_sell_price_txt;
+        private System.Windows.Forms.Label lbl_rem_sell_price;
     }
 }

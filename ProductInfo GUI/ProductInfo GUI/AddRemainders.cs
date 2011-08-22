@@ -376,7 +376,11 @@ namespace ProductInfo_UI
 
         void add_list_Control_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Home)
+            {
+                add_remainders_list.EndEdit();
+                add_remainders_list.CurrentCell = add_remainders_list.CurrentRow.Cells[0];
+            }
             if (e.KeyCode == Keys.F8)
             {
                 try
