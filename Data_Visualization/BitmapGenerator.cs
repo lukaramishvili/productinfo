@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Data;
 using ProductInfo;
+using System.Drawing.Printing;
 
 namespace Data_Visualization
 {
@@ -599,5 +600,79 @@ namespace Data_Visualization
 
             return ret_bmp;
         }
+
+        public static void PrintPOSCheck(SellOrder SO_arg, decimal cash_handled, decimal cash_change, Product[] AllProductsKeyValue)
+        {
+            PrintDocument printPOS_doc = new PrintDocument();
+            printPOS_doc.DefaultPageSettings = printPOS_doc.PrinterSettings.DefaultPageSettings;
+            printPOS_doc.DefaultPageSettings.Landscape = false;
+            //
+            //-Bitmap CheckToPrint_bmp = new Bitmap(270, 130 + 40 * SO_arg.OutgoingRemainders.Length);
+            //Graphics DedaMovutynatMartoblivatAmIsedacMartoblivatDedamotynulPOSChecksIsePOSCheckIseArJgersRogorcBozSexKitxvisNishaniTanDzalianDidiKitxvisNishaniAiIsetiRomGagaocebsTavisiSididitKitxvisNishani;
+            //the variable is declared but its value is never used:: LetsUseItNowAndForever
+            //-Graphics g = Graphics.FromImage(CheckToPrint_bmp);
+            //
+            try
+            {
+                //print to default printer
+                printPOS_doc.PrintPage += new PrintPageEventHandler(delegate(object sender, PrintPageEventArgs e)
+                {
+                    Font Sylfaen_11 = new Font("Sylfaen", 11.0f, FontStyle.Regular, GraphicsUnit.Pixel);
+                    Font Sylfaen_16 = new Font("Sylfaen", 16.0f, FontStyle.Regular, GraphicsUnit.Pixel);
+                    Font Sylfaen_20 = new Font("Sylfaen", 20.0f, FontStyle.Regular, GraphicsUnit.Pixel);
+                    //
+                    e.Graphics.DrawString("სუპერმარკეტი ეკოლარი", Sylfaen_20, Brushes.Black, new PointF(16.0f, 11.0f));
+                    e.Graphics.DrawLine(Pens.Black, new Point(5, 50), new Point(260, 50));
+
+                    float Offset = 60.0f;
+                    foreach (Remainder nR in SO_arg.OutgoingRemainders)
+                    {
+                        string nRProdName = (from Product p in AllProductsKeyValue
+                                             where p.barcode == nR.product_barcode
+                                             select p.name).ToArray()[0];
+                        //TODO: draw product name
+                        e.Graphics.DrawString((nRProdName ?? nR.product_barcode), Sylfaen_11, Brushes.Black, new PointF(5, Offset + 4));
+                        //draw raodenoba
+                        e.Graphics.DrawString(Math.Round(nR.sell_price, 2).ToString() + "*" + Math.Round(nR.initial_pieces, 2).ToString() + "ც", Sylfaen_11, Brushes.Black, new PointF(5, Offset + 20));
+                        //draw sum price
+                        string SumPrice = "=" + Math.Round((nR.initial_pieces * nR.sell_price), 2).ToString();
+                        e.Graphics.DrawString(SumPrice, Sylfaen_11, Brushes.Black, new PointF(270 - 12 - e.Graphics.MeasureString(SumPrice, Sylfaen_11).Width, Offset + 20));
+                        //draw separator line
+                        e.Graphics.DrawLine(Pens.Black, new PointF(5, Offset + 39), new PointF(260, Offset + 39));
+                        //
+                        Offset += 40.0f;
+                    }
+                    //
+                    e.Graphics.DrawString("ჯამი: " + Math.Round(SO_arg.OutgoingRemainders.Sum(w => w.initial_pieces * w.sell_price), 2).ToString(), Sylfaen_11, Brushes.Black, new PointF(5, Offset + 4));
+                    Offset += 20;
+                    e.Graphics.DrawString("ნაღდი ფული: " + Math.Round(cash_handled, 2).ToString(), Sylfaen_11, Brushes.Black, new PointF(5, Offset + 4));
+                    Offset += 20;
+                    e.Graphics.DrawString("ხურდა: " + Math.Round(cash_change, 2).ToString(), Sylfaen_11, Brushes.Black, new PointF(5, Offset + 4));
+                    Offset += 20;
+                    //
+                    e.Graphics.DrawLine(Pens.Black, new PointF(5, Offset + 11), new PointF(260, Offset + 11));
+                    e.Graphics.DrawString("გმადლობთ მობრძანებისთვის.", Sylfaen_16, Brushes.Black, new PointF(5.0f, Offset + 20));
+                    e.Graphics.DrawString("კიდევ გვეწვიეთ", Sylfaen_16, Brushes.Black, new PointF(71.0f, Offset + 40));
+                    //draw line at the bottom to ensure enough space is left for reading the last line
+                    e.Graphics.DrawLine(Pens.Black, new PointF(109, Offset + 70), new PointF(152, Offset + 70));
+
+                    //
+                    e.HasMorePages = false;
+                });
+                printPOS_doc.Print();
+            }
+            catch (InvalidPrinterException)
+            {
+                //printer is not defined or connected
+            }
+        }
+
+        static void printPOS_doc_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        //
     }
 }

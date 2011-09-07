@@ -92,6 +92,7 @@ namespace ProductInfo_UI
         DataTable store_summary_dt = new DataTable();
         DataTable cashbox_summary_dt = new DataTable();
         DataTable bought_af_standard_list_dt = new DataTable();
+        DataTable cashbox_statistics_dt = new DataTable();
         //
         int sold_roi_col_index = -1;
         int sold_z_roi_col_index = -1;
@@ -1682,6 +1683,9 @@ namespace ProductInfo_UI
 
                 cashbox_summary_dt = conn.CashBoxSummary(ActiveCashBoxID);
                 cashbox_sum_txt.Text = cashbox_summary_dt.Rows[0][0].ToString();
+
+                cashbox_statistics_dt = conn.CashBoxStatistics();
+                DataTableToListView(lv_sum_cashbox_balance, cashbox_statistics_dt, true);
             }
             if (bought_af_standard_list_tabpage == tab_container.SelectedTab)
             {
@@ -3212,6 +3216,23 @@ namespace ProductInfo_UI
         private void cmi_mt_edit_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Edit MoneyTransfer Here");
+        }
+
+        private void cmi_sold_remove_Click(object sender, EventArgs e)
+        {
+            if (null != sold_list.SelectedItems[0] && "ჯამი" != sold_list.SelectedItems[0].Text)
+            {
+                int SellOrderIDToRemove = Int32.Parse(sold_list.SelectedItems[0].SubItems[sold_id_col.Index].Text);
+                if (DialogResult.Yes == MessageBox.Show("დარწმუნებული ხართ, რომ გსურთ გაყიდვა N. " + SellOrderIDToRemove.ToString() + "-ს ამოშლა?", "დადასტურება!", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    info removeSO_info = info.niy();
+                    removeSO_info = ProductInfo_Main_Form.conn.RemoveSellOrder(SellOrderIDToRemove);
+
+                    MessageBox.Show(removeSO_info.details, removeSO_info.errcode.ToString());
+
+                    RefreshTabs();
+                }
+            }
         }
 
 

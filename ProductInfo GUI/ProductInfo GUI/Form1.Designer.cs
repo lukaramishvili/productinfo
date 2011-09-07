@@ -30,11 +30,11 @@ namespace ProductInfo_UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.mm_nashtebi = new System.Windows.Forms.ToolStripMenuItem();
             this.mm_add_remainders = new System.Windows.Forms.ToolStripMenuItem();
@@ -191,6 +191,7 @@ namespace ProductInfo_UI
             this.cm_sold = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmi_sold_details = new System.Windows.Forms.ToolStripMenuItem();
             this.cmi_sold_edit = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmi_sold_remove = new System.Windows.Forms.ToolStripMenuItem();
             this.agcera_tabpage = new System.Windows.Forms.TabPage();
             this.agcera_rem_list = new System.Windows.Forms.ListView();
             this.agcera_barcode_col = new System.Windows.Forms.ColumnHeader();
@@ -248,9 +249,15 @@ namespace ProductInfo_UI
             this.mt_storeid_col = new System.Windows.Forms.ColumnHeader();
             this.mt_targettype_col = new System.Windows.Forms.ColumnHeader();
             this.mt_targetident_col = new System.Windows.Forms.ColumnHeader();
+            this.mt_cashbox_id_col = new System.Windows.Forms.ColumnHeader();
+            this.mt_cashier_id_col = new System.Windows.Forms.ColumnHeader();
             this.cm_moneytransfer = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmi_mt_edit = new System.Windows.Forms.ToolStripMenuItem();
             this.cmi_mt_remove = new System.Windows.Forms.ToolStripMenuItem();
             this.summary_tabpage = new System.Windows.Forms.TabPage();
+            this.cashbox_sum_txt = new System.Windows.Forms.TextBox();
+            this.lbl_cashbox_sum_currency = new System.Windows.Forms.Label();
+            this.lbl_cashbox_sum = new System.Windows.Forms.Label();
             this.summary_cash_amount = new System.Windows.Forms.TextBox();
             this.lbl_summary_currency = new System.Windows.Forms.Label();
             this.lbl_summary_cash = new System.Windows.Forms.Label();
@@ -265,12 +272,9 @@ namespace ProductInfo_UI
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
-            this.cmi_mt_edit = new System.Windows.Forms.ToolStripMenuItem();
-            this.mt_cashbox_id_col = new System.Windows.Forms.ColumnHeader();
-            this.mt_cashier_id_col = new System.Windows.Forms.ColumnHeader();
-            this.cashbox_sum_txt = new System.Windows.Forms.TextBox();
-            this.lbl_cashbox_sum_currency = new System.Windows.Forms.Label();
-            this.lbl_cashbox_sum = new System.Windows.Forms.Label();
+            this.lv_sum_cashbox_balance = new System.Windows.Forms.ListView();
+            this.cashbox_balance_id_col = new System.Windows.Forms.ColumnHeader();
+            this.cashbox_balance_sum_col = new System.Windows.Forms.ColumnHeader();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
             this.status_bar.SuspendLayout();
@@ -630,16 +634,16 @@ namespace ProductInfo_UI
             // 
             // sell_list
             // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Sylfaen", 11F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Sylfaen", 11F);
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.sell_list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sell_list.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sell_barcode_col,
@@ -727,9 +731,9 @@ namespace ProductInfo_UI
             // 
             // sell_initial_price_info_col
             // 
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.Black;
+            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle28;
             this.sell_initial_price_info_col.Frozen = true;
             this.sell_initial_price_info_col.HeaderText = "ასაღები ფასი (საცალო)";
             this.sell_initial_price_info_col.Name = "sell_initial_price_info_col";
@@ -737,16 +741,16 @@ namespace ProductInfo_UI
             // 
             // sell_remaining_col
             // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle29;
             this.sell_remaining_col.HeaderText = "დარჩ.";
             this.sell_remaining_col.Name = "sell_remaining_col";
             this.sell_remaining_col.ReadOnly = true;
             // 
             // sell_sum_price_col
             // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Gray;
-            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.Gray;
+            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle30;
             this.sell_sum_price_col.HeaderText = "ჯამი";
             this.sell_sum_price_col.Name = "sell_sum_price_col";
             this.sell_sum_price_col.ReadOnly = true;
@@ -1549,23 +1553,31 @@ namespace ProductInfo_UI
             // 
             this.cm_sold.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmi_sold_details,
-            this.cmi_sold_edit});
+            this.cmi_sold_edit,
+            this.cmi_sold_remove});
             this.cm_sold.Name = "cm_sold";
-            this.cm_sold.Size = new System.Drawing.Size(148, 48);
+            this.cm_sold.Size = new System.Drawing.Size(158, 70);
             // 
             // cmi_sold_details
             // 
             this.cmi_sold_details.Name = "cmi_sold_details";
-            this.cmi_sold_details.Size = new System.Drawing.Size(147, 22);
+            this.cmi_sold_details.Size = new System.Drawing.Size(157, 22);
             this.cmi_sold_details.Text = "დეტალური სია";
             this.cmi_sold_details.Click += new System.EventHandler(this.cmi_sold_details_Click);
             // 
             // cmi_sold_edit
             // 
             this.cmi_sold_edit.Name = "cmi_sold_edit";
-            this.cmi_sold_edit.Size = new System.Drawing.Size(147, 22);
+            this.cmi_sold_edit.Size = new System.Drawing.Size(157, 22);
             this.cmi_sold_edit.Text = "ჩასწორება";
             this.cmi_sold_edit.Click += new System.EventHandler(this.cmi_sold_edit_Click);
+            // 
+            // cmi_sold_remove
+            // 
+            this.cmi_sold_remove.Name = "cmi_sold_remove";
+            this.cmi_sold_remove.Size = new System.Drawing.Size(157, 22);
+            this.cmi_sold_remove.Text = "გაყიდვის ამოშლა";
+            this.cmi_sold_remove.Click += new System.EventHandler(this.cmi_sold_remove_Click);
             // 
             // agcera_tabpage
             // 
@@ -1976,6 +1988,16 @@ namespace ProductInfo_UI
             this.mt_targetident_col.Text = "საიდენტ. კოდი";
             this.mt_targetident_col.Width = 109;
             // 
+            // mt_cashbox_id_col
+            // 
+            this.mt_cashbox_id_col.Text = "სალაროს N.";
+            this.mt_cashbox_id_col.Width = 100;
+            // 
+            // mt_cashier_id_col
+            // 
+            this.mt_cashier_id_col.Text = "მოლარის N.";
+            this.mt_cashier_id_col.Width = 100;
+            // 
             // cm_moneytransfer
             // 
             this.cm_moneytransfer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1983,6 +2005,13 @@ namespace ProductInfo_UI
             this.cmi_mt_remove});
             this.cm_moneytransfer.Name = "cm_moneytransfer";
             this.cm_moneytransfer.Size = new System.Drawing.Size(171, 48);
+            // 
+            // cmi_mt_edit
+            // 
+            this.cmi_mt_edit.Name = "cmi_mt_edit";
+            this.cmi_mt_edit.Size = new System.Drawing.Size(170, 22);
+            this.cmi_mt_edit.Text = "ჩასწორება";
+            this.cmi_mt_edit.Click += new System.EventHandler(this.cmi_mt_edit_Click);
             // 
             // cmi_mt_remove
             // 
@@ -1993,6 +2022,7 @@ namespace ProductInfo_UI
             // 
             // summary_tabpage
             // 
+            this.summary_tabpage.Controls.Add(this.lv_sum_cashbox_balance);
             this.summary_tabpage.Controls.Add(this.cashbox_sum_txt);
             this.summary_tabpage.Controls.Add(this.lbl_cashbox_sum_currency);
             this.summary_tabpage.Controls.Add(this.lbl_cashbox_sum);
@@ -2005,6 +2035,34 @@ namespace ProductInfo_UI
             this.summary_tabpage.TabIndex = 13;
             this.summary_tabpage.Text = "ჯამი";
             this.summary_tabpage.UseVisualStyleBackColor = true;
+            // 
+            // cashbox_sum_txt
+            // 
+            this.cashbox_sum_txt.Enabled = false;
+            this.cashbox_sum_txt.Location = new System.Drawing.Point(199, 69);
+            this.cashbox_sum_txt.Name = "cashbox_sum_txt";
+            this.cashbox_sum_txt.Size = new System.Drawing.Size(130, 27);
+            this.cashbox_sum_txt.TabIndex = 4;
+            // 
+            // lbl_cashbox_sum_currency
+            // 
+            this.lbl_cashbox_sum_currency.AutoSize = true;
+            this.lbl_cashbox_sum_currency.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl_cashbox_sum_currency.Location = new System.Drawing.Point(331, 69);
+            this.lbl_cashbox_sum_currency.Name = "lbl_cashbox_sum_currency";
+            this.lbl_cashbox_sum_currency.Size = new System.Drawing.Size(46, 18);
+            this.lbl_cashbox_sum_currency.TabIndex = 3;
+            this.lbl_cashbox_sum_currency.Text = "ლარი";
+            // 
+            // lbl_cashbox_sum
+            // 
+            this.lbl_cashbox_sum.AutoSize = true;
+            this.lbl_cashbox_sum.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl_cashbox_sum.Location = new System.Drawing.Point(17, 70);
+            this.lbl_cashbox_sum.Name = "lbl_cashbox_sum";
+            this.lbl_cashbox_sum.Size = new System.Drawing.Size(179, 18);
+            this.lbl_cashbox_sum.TabIndex = 2;
+            this.lbl_cashbox_sum.Text = "სალაროში დარჩენილია:";
             // 
             // summary_cash_amount
             // 
@@ -2115,50 +2173,29 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
             // 
-            // cmi_mt_edit
+            // lv_sum_cashbox_balance
             // 
-            this.cmi_mt_edit.Name = "cmi_mt_edit";
-            this.cmi_mt_edit.Size = new System.Drawing.Size(170, 22);
-            this.cmi_mt_edit.Text = "ჩასწორება";
-            this.cmi_mt_edit.Click += new System.EventHandler(this.cmi_mt_edit_Click);
+            this.lv_sum_cashbox_balance.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cashbox_balance_id_col,
+            this.cashbox_balance_sum_col});
+            this.lv_sum_cashbox_balance.FullRowSelect = true;
+            this.lv_sum_cashbox_balance.GridLines = true;
+            this.lv_sum_cashbox_balance.Location = new System.Drawing.Point(450, 69);
+            this.lv_sum_cashbox_balance.Name = "lv_sum_cashbox_balance";
+            this.lv_sum_cashbox_balance.Size = new System.Drawing.Size(396, 162);
+            this.lv_sum_cashbox_balance.TabIndex = 5;
+            this.lv_sum_cashbox_balance.UseCompatibleStateImageBehavior = false;
+            this.lv_sum_cashbox_balance.View = System.Windows.Forms.View.Details;
             // 
-            // mt_cashbox_id_col
+            // cashbox_balance_id_col
             // 
-            this.mt_cashbox_id_col.Text = "სალაროს N.";
-            this.mt_cashbox_id_col.Width = 100;
+            this.cashbox_balance_id_col.Text = "სალაროს N.";
+            this.cashbox_balance_id_col.Width = 220;
             // 
-            // mt_cashier_id_col
+            // cashbox_balance_sum_col
             // 
-            this.mt_cashier_id_col.Text = "მოლარის N.";
-            this.mt_cashier_id_col.Width = 100;
-            // 
-            // cashbox_sum_txt
-            // 
-            this.cashbox_sum_txt.Enabled = false;
-            this.cashbox_sum_txt.Location = new System.Drawing.Point(199, 69);
-            this.cashbox_sum_txt.Name = "cashbox_sum_txt";
-            this.cashbox_sum_txt.Size = new System.Drawing.Size(130, 27);
-            this.cashbox_sum_txt.TabIndex = 4;
-            // 
-            // lbl_cashbox_sum_currency
-            // 
-            this.lbl_cashbox_sum_currency.AutoSize = true;
-            this.lbl_cashbox_sum_currency.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl_cashbox_sum_currency.Location = new System.Drawing.Point(331, 69);
-            this.lbl_cashbox_sum_currency.Name = "lbl_cashbox_sum_currency";
-            this.lbl_cashbox_sum_currency.Size = new System.Drawing.Size(46, 18);
-            this.lbl_cashbox_sum_currency.TabIndex = 3;
-            this.lbl_cashbox_sum_currency.Text = "ლარი";
-            // 
-            // lbl_cashbox_sum
-            // 
-            this.lbl_cashbox_sum.AutoSize = true;
-            this.lbl_cashbox_sum.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl_cashbox_sum.Location = new System.Drawing.Point(17, 70);
-            this.lbl_cashbox_sum.Name = "lbl_cashbox_sum";
-            this.lbl_cashbox_sum.Size = new System.Drawing.Size(179, 18);
-            this.lbl_cashbox_sum.TabIndex = 2;
-            this.lbl_cashbox_sum.Text = "სალაროში დარჩენილია:";
+            this.cashbox_balance_sum_col.Text = "ბალანსი";
+            this.cashbox_balance_sum_col.Width = 220;
             // 
             // ProductInfo_Main_Form
             // 
@@ -2454,6 +2491,10 @@ namespace ProductInfo_UI
         private TextBox cashbox_sum_txt;
         private Label lbl_cashbox_sum_currency;
         private Label lbl_cashbox_sum;
+        private ToolStripMenuItem cmi_sold_remove;
+        private ListView lv_sum_cashbox_balance;
+        private ColumnHeader cashbox_balance_id_col;
+        private ColumnHeader cashbox_balance_sum_col;
 
 
 

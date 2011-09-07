@@ -2690,6 +2690,70 @@ namespace ProductInfo
             return cashbox_sum_dt;
         }
 
+        public info RemoveSellOrder(int SO_id_arg)
+        {
+            info ret_info = new info();
+
+            SqlCommand RemSellOrderCmd = new SqlCommand("RemoveSellOrder", SqlLink);
+            RemSellOrderCmd.CommandType = CommandType.StoredProcedure;
+
+            RemSellOrderCmd.Parameters.Add(new SqlParameter("@SellOrderID", SO_id_arg));
+
+            SqlParameter rmSO_ret = new SqlParameter("@Return_Value", DbType.Int32);
+            rmSO_ret.Direction = ParameterDirection.ReturnValue;
+            RemSellOrderCmd.Parameters.Add(rmSO_ret);
+
+            int res = RemSellOrderCmd.ExecuteNonQuery();
+
+            // if (res > 0)//as SqlDataReader res.RecordsAffected
+            // {
+            ret_info.errcode = (int)rmSO_ret.Value;
+
+            switch (ret_info.errcode)
+            {
+                case 404:
+                    ret_info.details = "გაყიდვა ვერ მოიძებნა!";
+                    break;
+                case 2:
+                    ret_info.details = "გაყიდვა უკვე წაიშალა!";//??
+                    break;
+                case 1:
+                    ret_info.details = "პარამეტრები არასწორია!";
+                    break;
+                case 0:
+                    ret_info.details = "ოპერაცია წარმატებით დასრულდა!";
+                    break;
+            }
+
+            return ret_info;
+        }
+
+        public DataTable CashBoxStatistics()
+        {
+            DataTable CashBoxBalance_ret = new DataTable();
+            CashBoxBalance_ret.Columns.AddRange(new DataColumn[]{
+                  new DataColumn("id",typeof(int))
+                , new DataColumn("Balance",typeof(decimal))
+            });
+
+            SqlCommand CashBoxBalance_sql = new SqlCommand("CashBoxStatistics", SqlLink);
+            CashBoxBalance_sql.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader CashBoxBalance_res = CashBoxBalance_sql.ExecuteReader();
+            while (CashBoxBalance_res.Read())
+            {
+                DataRow nextRow = CashBoxBalance_ret.NewRow();
+                for (int i = 0; i < CashBoxBalance_res.FieldCount; i++)
+                {
+                    nextRow[i] = CashBoxBalance_res[i];
+                }
+                CashBoxBalance_ret.Rows.Add(nextRow);
+            }
+            CashBoxBalance_res.Close();
+
+            return CashBoxBalance_ret;
+        }
+
     } //DataProvider Class
 
 
