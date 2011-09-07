@@ -1,0 +1,14 @@
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\ShopInfo GUI.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\ShopInfo GUI.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Release\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Release\ShopInfo_GUI.Properties.Resources.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Release\ShopInfo GUI.csproj.GenerateResource.Cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Release\ShopInfo GUI.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Release\ShopInfo GUI.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Release\ShopInfo_GUI.ShopInfo_Main_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\DataProvider.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\Utilities.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\Utilities.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\DataProvider.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\Data_Visualization.dll
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\Data_Visualization.pdb

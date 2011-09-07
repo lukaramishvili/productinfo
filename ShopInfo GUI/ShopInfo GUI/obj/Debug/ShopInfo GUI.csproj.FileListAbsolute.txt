@@ -1,0 +1,8 @@
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\ShopInfo GUI.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\ShopInfo GUI.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ResolveAssemblyReference.cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo_GUI.Form1.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo_GUI.Properties.Resources.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo GUI.csproj.GenerateResource.Cache
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo GUI.exe
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo GUI.pdb
