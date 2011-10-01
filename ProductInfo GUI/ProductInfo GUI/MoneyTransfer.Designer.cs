@@ -45,7 +45,13 @@
             this.lbl_mt_target_ident = new System.Windows.Forms.Label();
             this.target_ident_chooser = new System.Windows.Forms.ComboBox();
             this.lbl_mt_transfer_purpose = new System.Windows.Forms.Label();
+            this.gpbox_cashbox_operation = new System.Windows.Forms.GroupBox();
+            this.lbl_cashbox_id = new System.Windows.Forms.Label();
+            this.lbl_cashier_id = new System.Windows.Forms.Label();
+            this.cmb_cashbox_id = new System.Windows.Forms.ComboBox();
+            this.cmb_cashier_id = new System.Windows.Forms.ComboBox();
             this.panel_client_type_chooser.SuspendLayout();
+            this.gpbox_cashbox_operation.SuspendLayout();
             this.SuspendLayout();
             // 
             // client_chooser
@@ -232,12 +238,65 @@
             this.lbl_mt_transfer_purpose.TabIndex = 8;
             this.lbl_mt_transfer_purpose.Text = "დანიშნულება:";
             // 
+            // gpbox_cashbox_operation
+            // 
+            this.gpbox_cashbox_operation.Controls.Add(this.cmb_cashier_id);
+            this.gpbox_cashbox_operation.Controls.Add(this.cmb_cashbox_id);
+            this.gpbox_cashbox_operation.Controls.Add(this.lbl_cashier_id);
+            this.gpbox_cashbox_operation.Controls.Add(this.lbl_cashbox_id);
+            this.gpbox_cashbox_operation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbox_cashbox_operation.Location = new System.Drawing.Point(236, 173);
+            this.gpbox_cashbox_operation.Name = "gpbox_cashbox_operation";
+            this.gpbox_cashbox_operation.Size = new System.Drawing.Size(258, 96);
+            this.gpbox_cashbox_operation.TabIndex = 13;
+            this.gpbox_cashbox_operation.TabStop = false;
+            this.gpbox_cashbox_operation.Text = "სალარო ოპერაცია";
+            // 
+            // lbl_cashbox_id
+            // 
+            this.lbl_cashbox_id.AutoSize = true;
+            this.lbl_cashbox_id.Location = new System.Drawing.Point(7, 30);
+            this.lbl_cashbox_id.Name = "lbl_cashbox_id";
+            this.lbl_cashbox_id.Size = new System.Drawing.Size(118, 16);
+            this.lbl_cashbox_id.TabIndex = 0;
+            this.lbl_cashbox_id.Text = "სალაროს ნომერი";
+            // 
+            // lbl_cashier_id
+            // 
+            this.lbl_cashier_id.AutoSize = true;
+            this.lbl_cashier_id.Location = new System.Drawing.Point(7, 63);
+            this.lbl_cashier_id.Name = "lbl_cashier_id";
+            this.lbl_cashier_id.Size = new System.Drawing.Size(60, 16);
+            this.lbl_cashier_id.TabIndex = 1;
+            this.lbl_cashier_id.Text = "მოლარე";
+            this.lbl_cashier_id.Visible = false;
+            // 
+            // cmb_cashbox_id
+            // 
+            this.cmb_cashbox_id.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_cashbox_id.FormattingEnabled = true;
+            this.cmb_cashbox_id.Location = new System.Drawing.Point(129, 26);
+            this.cmb_cashbox_id.Name = "cmb_cashbox_id";
+            this.cmb_cashbox_id.Size = new System.Drawing.Size(121, 24);
+            this.cmb_cashbox_id.TabIndex = 2;
+            // 
+            // cmb_cashier_id
+            // 
+            this.cmb_cashier_id.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_cashier_id.FormattingEnabled = true;
+            this.cmb_cashier_id.Location = new System.Drawing.Point(129, 59);
+            this.cmb_cashier_id.Name = "cmb_cashier_id";
+            this.cmb_cashier_id.Size = new System.Drawing.Size(121, 24);
+            this.cmb_cashier_id.TabIndex = 3;
+            this.cmb_cashier_id.Visible = false;
+            // 
             // MoneyTransfer_Form
             // 
             this.AcceptButton = this.transfer_submit_btn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(502, 310);
+            this.Controls.Add(this.gpbox_cashbox_operation);
             this.Controls.Add(this.lbl_mt_target_ident);
             this.Controls.Add(this.target_ident_chooser);
             this.Controls.Add(this.lbl_mt_target_type);
@@ -258,6 +317,8 @@
             this.Load += new System.EventHandler(this.MoneyTransfer_Form_Load);
             this.panel_client_type_chooser.ResumeLayout(false);
             this.panel_client_type_chooser.PerformLayout();
+            this.gpbox_cashbox_operation.ResumeLayout(false);
+            this.gpbox_cashbox_operation.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,5 +343,10 @@
         private System.Windows.Forms.Label lbl_mt_target_ident;
         private System.Windows.Forms.ComboBox target_ident_chooser;
         private System.Windows.Forms.Label lbl_mt_transfer_purpose;
+        private System.Windows.Forms.GroupBox gpbox_cashbox_operation;
+        private System.Windows.Forms.Label lbl_cashbox_id;
+        private System.Windows.Forms.ComboBox cmb_cashier_id;
+        private System.Windows.Forms.ComboBox cmb_cashbox_id;
+        private System.Windows.Forms.Label lbl_cashier_id;
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ProductInfo;
 using Utilities;
 using Data_Visualization;
+using Microsoft.PointOfService;
 
 namespace ShopInfo_GUI
 {
@@ -41,6 +42,9 @@ namespace ShopInfo_GUI
 
         //per-row sum cache (to avoid calculating it by hand when needed)
         List<decimal> Sell_Row_Pricing = new List<decimal>();
+
+        //CashDrawer object
+        CashDrawer m_Drawer = null;
 
         private void ShopInfo_Main_Form_Load(object sender, EventArgs e)
         {
@@ -87,7 +91,54 @@ namespace ShopInfo_GUI
                     }
                 }
             }
+            //Init CashDrawer
+            InitCashDrawer();
             //
+        }
+
+        private void InitCashDrawer()
+        {
+            //<<<step1>>>--Start
+            //Use a Logical Device Name which has been set on the SetupPOS.
+            string strLogicalName = "CashDrawer";
+
+            try
+            {
+                //Create PosExplorer
+                PosExplorer posExplorer = new PosExplorer();
+
+                DeviceInfo deviceInfo = null;
+
+                try
+                {
+                    deviceInfo = posExplorer.GetDevice(DeviceType.CashDrawer, strLogicalName);
+                    m_Drawer = (CashDrawer)posExplorer.CreateInstance(deviceInfo);
+                }
+                catch (Exception)
+                {
+                    //Nothing can be used.
+                    //ChangeButtonStatus();
+                    return;
+                }
+                //Open the device
+                //Use a Logical Device Name which has been set on the SetupPOS.
+                m_Drawer.Open();
+
+                //Get the exclusive control right for the opened device.
+                //Then the device is disable from other application.
+                //m_Drawer.Claim(1000);
+
+                //Enable the device.
+                m_Drawer.DeviceEnabled = true;
+
+            }
+            catch (PosControlException)
+            {
+                //Nothing can be used.
+                //Nothing can be used.
+                //ChangeButtonStatus();
+            }
+            //<<<step1>>>--End
         }
 
         private void UpdateSumSellPrice()
@@ -192,11 +243,17 @@ namespace ShopInfo_GUI
                 //notify (selling result + ) how the payment transfer resulted 
                 //NotifyOnScreen("პროდუქტები გაყიდულია. ", NotificationSeverity.Success);
                 //TODO: insert wait time? to give the user time to look at the first notification
+                //
+                OpenCashDrawer();
+                //
                 NotifyOnScreen("პროდუქტები გაყიდულია. " + PaymentResult.details
                     , (0 == PaymentResult.errcode) ? NotificationSeverity.Success : NotificationSeverity.Error);
 
                 //clear the list so next SellOrder can be entered
                 sell_grid.Rows.Clear();
+                //
+                sell_grid.Focus();
+                //
                 cash_handled_txt.Text = "0.0";
                 cash_change_txt.Text = "0.0";
                 //the sell button is not clicked yet for the next entered SellOrder, so we set it to false
@@ -220,6 +277,41 @@ namespace ShopInfo_GUI
                 NotifyOnScreen("მოხდა შეცდომა. პროდუქტები არ გაყიდულა! ", NotificationSeverity.Error);
             }
             //
+        }
+
+        private void OpenCashDrawer()
+        {
+            //<<<step1>>>--Start
+            //When outputting to a printer,a mouse cursor becomes like a hourglass.
+            Cursor.Current = Cursors.WaitCursor;
+            //btnOpen.Enabled = false;
+
+            try
+            {
+                //Open the drawer by using the "OpenDrawer" method.
+                m_Drawer.OpenDrawer();
+
+                // Wait during open drawer.
+                while (m_Drawer.DrawerOpened == false)
+                {
+                    System.Threading.Thread.Sleep(100);
+                }
+
+                //When the drawer is not closed in ten seconds after opening, beep until it is closed.
+                //If  that method is executed, the value is not returned until the drawer is closed.
+                m_Drawer.WaitForDrawerClose(10000, 2000, 100, 1000);
+
+                //btnOpen.Enabled = true;
+
+                Cursor.Current = Cursors.Default;
+            }
+            catch (PosControlException)
+            {
+            }
+            catch (NullReferenceException)
+            {
+            }
+            //<<<step1>>>---End
         }
 
         private void sell_grid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -390,7 +482,9 @@ namespace ShopInfo_GUI
             bool RetVal = false;
             if (13 == EnteredBarcode_arg.Length)
             {
-                if (21 == Int32.Parse(EnteredBarcode_arg.Substring(0, 2)))
+                if (210 == Int32.Parse(EnteredBarcode_arg.Substring(0, 3))
+                    |
+                    220 == Int32.Parse(EnteredBarcode_arg.Substring(0, 3)))
                 {
                     int step2 = 3 * (
                         Int32.Parse(EnteredBarcode_arg.Substring(11, 1))
@@ -433,6 +527,7 @@ namespace ShopInfo_GUI
                 ComboBox SellGridProdName_cb = (ComboBox)e.Control;
                 SellGridProdName_cb.DropDownStyle = ComboBoxStyle.DropDown;
                 SellGridProdName_cb.TextChanged += new EventHandler(SellGridProdName_cb_TextChanged);
+                SellGridProdName_cb.DropDown += new EventHandler(SellGridProdName_cb_DropDown);
 
                 SellGridProdName_cb.SelectedIndexChanged += new EventHandler(delegate(object sendereIndexChanged, EventArgs eIndexChanged)
                 {
@@ -526,6 +621,13 @@ namespace ShopInfo_GUI
                     UpdateSumSellPrice();
                 });
             }
+        }
+
+        void SellGridProdName_cb_DropDown(object sender, EventArgs e)
+        {
+            //sometimes you realize using ms products actually suck
+            ComboBox SellGridProdName_cb = (ComboBox)sender;
+            SellGridProdName_cb.BackColor = Color.White;
         }
 
         void SellGridProdName_cb_TextChanged(object sender, EventArgs e)
@@ -731,6 +833,13 @@ namespace ShopInfo_GUI
                 cash_handled_txt.Focus();
                 cash_handled_txt.Text = "";
             }
+            else if (e.KeyCode == Keys.Home)
+            {
+                if (false == sell_grid.Focused)
+                {
+                    sell_grid.Focus();
+                }
+            }
         }
 
         private void cash_handled_txt_TextChanged(object sender, EventArgs e)
@@ -804,6 +913,32 @@ namespace ShopInfo_GUI
         private void cash_handled_txt_Click(object sender, EventArgs e)
         {
             cash_handled_txt.SelectAll();
+        }
+
+        private void ShopInfo_Main_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //<<<step1>>>--Start
+            if (m_Drawer != null)
+            {
+                try
+                {
+                    //Cancel the device
+                    m_Drawer.DeviceEnabled = false;
+
+                    //Release the device exclusive control right.
+                    m_Drawer.Release();
+
+                }
+                catch (PosControlException)
+                {
+                }
+                finally
+                {
+                    //Finish using the device.
+                    m_Drawer.Close();
+                }
+            }
+            //<<<step1>>>--End
         }
 
 

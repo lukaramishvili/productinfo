@@ -30,11 +30,11 @@ namespace ProductInfo_UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.mm_nashtebi = new System.Windows.Forms.ToolStripMenuItem();
             this.mm_add_remainders = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,6 +96,7 @@ namespace ProductInfo_UI
             this.rem_list_packs_header = new System.Windows.Forms.ColumnHeader();
             this.rem_list_piece_price_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_piece_sell_price_col = new System.Windows.Forms.ColumnHeader();
+            this.rem_list_sum_sell_price_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_initial_whole_price_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_remaining_whole_price_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_cost_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
@@ -255,6 +256,9 @@ namespace ProductInfo_UI
             this.cmi_mt_edit = new System.Windows.Forms.ToolStripMenuItem();
             this.cmi_mt_remove = new System.Windows.Forms.ToolStripMenuItem();
             this.summary_tabpage = new System.Windows.Forms.TabPage();
+            this.lv_sum_cashbox_balance = new System.Windows.Forms.ListView();
+            this.cashbox_balance_id_col = new System.Windows.Forms.ColumnHeader();
+            this.cashbox_balance_sum_col = new System.Windows.Forms.ColumnHeader();
             this.cashbox_sum_txt = new System.Windows.Forms.TextBox();
             this.lbl_cashbox_sum_currency = new System.Windows.Forms.Label();
             this.lbl_cashbox_sum = new System.Windows.Forms.Label();
@@ -272,9 +276,7 @@ namespace ProductInfo_UI
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
-            this.lv_sum_cashbox_balance = new System.Windows.Forms.ListView();
-            this.cashbox_balance_id_col = new System.Windows.Forms.ColumnHeader();
-            this.cashbox_balance_sum_col = new System.Windows.Forms.ColumnHeader();
+            this.sold_cashbox_id_col = new System.Windows.Forms.ColumnHeader();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
             this.status_bar.SuspendLayout();
@@ -634,16 +636,16 @@ namespace ProductInfo_UI
             // 
             // sell_list
             // 
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle26;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Sylfaen", 11F);
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Sylfaen", 11F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.sell_list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sell_list.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sell_barcode_col,
@@ -731,9 +733,9 @@ namespace ProductInfo_UI
             // 
             // sell_initial_price_info_col
             // 
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.Black;
-            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle3;
             this.sell_initial_price_info_col.Frozen = true;
             this.sell_initial_price_info_col.HeaderText = "ასაღები ფასი (საცალო)";
             this.sell_initial_price_info_col.Name = "sell_initial_price_info_col";
@@ -741,16 +743,16 @@ namespace ProductInfo_UI
             // 
             // sell_remaining_col
             // 
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle4;
             this.sell_remaining_col.HeaderText = "დარჩ.";
             this.sell_remaining_col.Name = "sell_remaining_col";
             this.sell_remaining_col.ReadOnly = true;
             // 
             // sell_sum_price_col
             // 
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.Gray;
-            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gray;
+            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle5;
             this.sell_sum_price_col.HeaderText = "ჯამი";
             this.sell_sum_price_col.Name = "sell_sum_price_col";
             this.sell_sum_price_col.ReadOnly = true;
@@ -822,6 +824,7 @@ namespace ProductInfo_UI
             this.rem_list_packs_header,
             this.rem_list_piece_price_col,
             this.rem_list_piece_sell_price_col,
+            this.rem_list_sum_sell_price_col,
             this.rem_list_initial_whole_price_col,
             this.rem_list_remaining_whole_price_col,
             this.rem_list_cost_withoutVAT_col});
@@ -879,10 +882,15 @@ namespace ProductInfo_UI
             this.rem_list_piece_sell_price_col.Text = "გასაყიდი ფასი";
             this.rem_list_piece_sell_price_col.Width = 105;
             // 
+            // rem_list_sum_sell_price_col
+            // 
+            this.rem_list_sum_sell_price_col.Text = "დარჩ. ჯამ. გასაყიდი ფასი";
+            this.rem_list_sum_sell_price_col.Width = 172;
+            // 
             // rem_list_initial_whole_price_col
             // 
             this.rem_list_initial_whole_price_col.Text = "საწყისი ღირ.";
-            this.rem_list_initial_whole_price_col.Width = 108;
+            this.rem_list_initial_whole_price_col.Width = 93;
             // 
             // rem_list_remaining_whole_price_col
             // 
@@ -1467,6 +1475,7 @@ namespace ProductInfo_UI
             this.sold_list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.sold_id_col,
             this.sold_tarigi_col,
+            this.sold_cashbox_id_col,
             this.sold_buyer_col,
             this.sold_storeid_col,
             this.sold_zed_ident_col,
@@ -1497,22 +1506,22 @@ namespace ProductInfo_UI
             // sold_tarigi_col
             // 
             this.sold_tarigi_col.Text = "თარიღი";
-            this.sold_tarigi_col.Width = 127;
+            this.sold_tarigi_col.Width = 90;
             // 
             // sold_buyer_col
             // 
             this.sold_buyer_col.Text = "მყიდველი";
-            this.sold_buyer_col.Width = 132;
+            this.sold_buyer_col.Width = 82;
             // 
             // sold_storeid_col
             // 
             this.sold_storeid_col.Text = "საწყობის N.";
-            this.sold_storeid_col.Width = 85;
+            this.sold_storeid_col.Width = 88;
             // 
             // sold_zed_ident_col
             // 
-            this.sold_zed_ident_col.Text = "ზედნადების ნომერი";
-            this.sold_zed_ident_col.Width = 142;
+            this.sold_zed_ident_col.Text = "ზედნადების N.";
+            this.sold_zed_ident_col.Width = 109;
             // 
             // sold_using_check_col
             // 
@@ -2036,6 +2045,30 @@ namespace ProductInfo_UI
             this.summary_tabpage.Text = "ჯამი";
             this.summary_tabpage.UseVisualStyleBackColor = true;
             // 
+            // lv_sum_cashbox_balance
+            // 
+            this.lv_sum_cashbox_balance.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cashbox_balance_id_col,
+            this.cashbox_balance_sum_col});
+            this.lv_sum_cashbox_balance.FullRowSelect = true;
+            this.lv_sum_cashbox_balance.GridLines = true;
+            this.lv_sum_cashbox_balance.Location = new System.Drawing.Point(450, 69);
+            this.lv_sum_cashbox_balance.Name = "lv_sum_cashbox_balance";
+            this.lv_sum_cashbox_balance.Size = new System.Drawing.Size(396, 162);
+            this.lv_sum_cashbox_balance.TabIndex = 5;
+            this.lv_sum_cashbox_balance.UseCompatibleStateImageBehavior = false;
+            this.lv_sum_cashbox_balance.View = System.Windows.Forms.View.Details;
+            // 
+            // cashbox_balance_id_col
+            // 
+            this.cashbox_balance_id_col.Text = "სალაროს N.";
+            this.cashbox_balance_id_col.Width = 220;
+            // 
+            // cashbox_balance_sum_col
+            // 
+            this.cashbox_balance_sum_col.Text = "ბალანსი";
+            this.cashbox_balance_sum_col.Width = 220;
+            // 
             // cashbox_sum_txt
             // 
             this.cashbox_sum_txt.Enabled = false;
@@ -2173,29 +2206,10 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
             // 
-            // lv_sum_cashbox_balance
+            // sold_cashbox_id_col
             // 
-            this.lv_sum_cashbox_balance.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.cashbox_balance_id_col,
-            this.cashbox_balance_sum_col});
-            this.lv_sum_cashbox_balance.FullRowSelect = true;
-            this.lv_sum_cashbox_balance.GridLines = true;
-            this.lv_sum_cashbox_balance.Location = new System.Drawing.Point(450, 69);
-            this.lv_sum_cashbox_balance.Name = "lv_sum_cashbox_balance";
-            this.lv_sum_cashbox_balance.Size = new System.Drawing.Size(396, 162);
-            this.lv_sum_cashbox_balance.TabIndex = 5;
-            this.lv_sum_cashbox_balance.UseCompatibleStateImageBehavior = false;
-            this.lv_sum_cashbox_balance.View = System.Windows.Forms.View.Details;
-            // 
-            // cashbox_balance_id_col
-            // 
-            this.cashbox_balance_id_col.Text = "სალაროს N.";
-            this.cashbox_balance_id_col.Width = 220;
-            // 
-            // cashbox_balance_sum_col
-            // 
-            this.cashbox_balance_sum_col.Text = "ბალანსი";
-            this.cashbox_balance_sum_col.Width = 220;
+            this.sold_cashbox_id_col.Text = "სალაროს N.";
+            this.sold_cashbox_id_col.Width = 86;
             // 
             // ProductInfo_Main_Form
             // 
@@ -2495,6 +2509,8 @@ namespace ProductInfo_UI
         private ListView lv_sum_cashbox_balance;
         private ColumnHeader cashbox_balance_id_col;
         private ColumnHeader cashbox_balance_sum_col;
+        private ColumnHeader rem_list_sum_sell_price_col;
+        private ColumnHeader sold_cashbox_id_col;
 
 
 

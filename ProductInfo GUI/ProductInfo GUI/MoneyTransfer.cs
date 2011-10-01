@@ -32,6 +32,8 @@ namespace ProductInfo_UI
         Supplier[] all_suppliers = null;
         Buyer[] all_buyers = null;
 
+        DataTable all_cashbox_ids;
+
         DataProvider.MoneyTransferType TransferMode = DataProvider.MoneyTransferType.Give;
         Type ClientType = typeof(Supplier);
         DataProvider.MoneyTransferPurpose TransferPurpose = DataProvider.MoneyTransferPurpose.SimpleTransfer;
@@ -73,6 +75,12 @@ namespace ProductInfo_UI
             transfer_purpose_chooser.Items.Add(DataProvider.MoneyTransferPurpose.TakeFromCashBox);
 
             transfer_purpose_chooser.SelectedItem = DataProvider.MoneyTransferPurpose.SimpleTransfer;
+            //
+            all_cashbox_ids = ProductInfo_Main_Form.conn.CashBoxStatistics();
+            cmb_cashbox_id.DataSource = all_cashbox_ids;
+            cmb_cashbox_id.ValueMember = "id";
+            cmb_cashbox_id.DisplayMember = "id";
+            //
         }
 
         public void LoadInterface(Type clienttype_arg, DataProvider.MoneyTransferType transfermode_arg, string client_ident_arg, int store_id_arg, DataProvider.MoneyTransferPurpose purpose_arg, Type targettype_arg, string target_ident_arg)
@@ -242,8 +250,9 @@ namespace ProductInfo_UI
                 |
                 DataProvider.MoneyTransferPurpose.TakeFromCashBox == TransferPurpose)
             {
-                CashBoxIDToRegister = ProductInfo_Main_Form.ActiveCashBoxID;
-                CashierIDToRegister = ProductInfo_Main_Form.ActiveCashierID;
+                CashBoxIDToRegister = Int32.Parse(cmb_cashbox_id.SelectedValue.ToString());
+                //CashierIDToRegister = Int32.Parse(cmb_cashier_id.SelectedValue.ToString());
+                CashierIDToRegister = 0;
             }
 
             info transfmoney_info = ProductInfo_Main_Form.conn.TransferMoney(
@@ -275,34 +284,53 @@ namespace ProductInfo_UI
                 case DataProvider.MoneyTransferPurpose.SimpleTransfer:
                     this.Width = 286;
                     lbl_mt_target_type.Visible = false;
+                    target_type_chooser.Visible = false;
                     lbl_mt_target_ident.Visible = false;
+                    target_ident_chooser.Visible = false;
+
+                    gpbox_cashbox_operation.Visible = false;
+                    //
                     break;
                 case DataProvider.MoneyTransferPurpose.PayFor:
-                    this.Width = 510;
+                    this.Width = 520;
                     lbl_mt_target_type.Visible = true;
+                    target_type_chooser.Visible = true;
                     lbl_mt_target_ident.Visible = true;
+                    target_ident_chooser.Visible = true;
 
                     target_type_chooser.SelectedIndex = 0;
 
+                    gpbox_cashbox_operation.Visible = false;
+                    //
                     break;
                 case DataProvider.MoneyTransferPurpose.AddToCashBox:
-                    this.Width = 286;
+                    this.Width = 520;
                     lbl_mt_target_type.Visible = false;
+                    target_type_chooser.Visible = false;
                     lbl_mt_target_ident.Visible = false;
+                    target_ident_chooser.Visible = false;
 
                     rb_taking.Checked = true;
                     taking_txt.Enabled = true;
                     giving_txt.Enabled = false;
 
+
+                    gpbox_cashbox_operation.Visible = true;
+                    //
                     break;
                 case DataProvider.MoneyTransferPurpose.TakeFromCashBox:
-                    this.Width = 286;
+                    this.Width = 520;
                     lbl_mt_target_type.Visible = false;
+                    target_type_chooser.Visible = false;
                     lbl_mt_target_ident.Visible = false;
+                    target_ident_chooser.Visible = false;
 
                     rb_giving.Checked = true;
                     giving_txt.Enabled = true;
                     taking_txt.Enabled = false;
+
+                    gpbox_cashbox_operation.Visible = true;
+                    //
                     break;
             }
 

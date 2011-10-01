@@ -66,8 +66,8 @@
             this.sell_rem_name_col = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.sell_rem_capacity_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sell_rem_count_type_col = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.sell_rem_store1_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sell_rem_store2_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sell_rem_storeid_col = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.sell_rem_piece_count_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sell_rem_piece_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sell_rem_pack_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sell_rem_initial_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -156,8 +156,8 @@
             this.sell_rem_name_col,
             this.sell_rem_capacity_col,
             this.sell_rem_count_type_col,
-            this.sell_rem_store1_col,
-            this.sell_rem_store2_col,
+            this.sell_rem_storeid_col,
+            this.sell_rem_piece_count_col,
             this.sell_rem_piece_price_col,
             this.sell_rem_pack_price_col,
             this.sell_rem_initial_price_col,
@@ -417,23 +417,25 @@
             this.sell_rem_count_type_col.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.sell_rem_count_type_col.Width = 85;
             // 
-            // sell_rem_store1_col
+            // sell_rem_storeid_col
             // 
             dataGridViewCellStyle2.NullValue = "0";
-            this.sell_rem_store1_col.DefaultCellStyle = dataGridViewCellStyle2;
-            this.sell_rem_store1_col.Frozen = true;
-            this.sell_rem_store1_col.HeaderText = "რაოდენობა (საწყობი 1)";
-            this.sell_rem_store1_col.Name = "sell_rem_store1_col";
-            this.sell_rem_store1_col.Width = 70;
+            this.sell_rem_storeid_col.DefaultCellStyle = dataGridViewCellStyle2;
+            this.sell_rem_storeid_col.Frozen = true;
+            this.sell_rem_storeid_col.HeaderText = "საწყობი";
+            this.sell_rem_storeid_col.Name = "sell_rem_storeid_col";
+            this.sell_rem_storeid_col.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.sell_rem_storeid_col.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.sell_rem_storeid_col.Width = 70;
             // 
-            // sell_rem_store2_col
+            // sell_rem_piece_count_col
             // 
             dataGridViewCellStyle3.NullValue = "0";
-            this.sell_rem_store2_col.DefaultCellStyle = dataGridViewCellStyle3;
-            this.sell_rem_store2_col.Frozen = true;
-            this.sell_rem_store2_col.HeaderText = "რაოდენობა (საწყობი 2)";
-            this.sell_rem_store2_col.Name = "sell_rem_store2_col";
-            this.sell_rem_store2_col.Width = 70;
+            this.sell_rem_piece_count_col.DefaultCellStyle = dataGridViewCellStyle3;
+            this.sell_rem_piece_count_col.Frozen = true;
+            this.sell_rem_piece_count_col.HeaderText = "რაოდენობა";
+            this.sell_rem_piece_count_col.Name = "sell_rem_piece_count_col";
+            this.sell_rem_piece_count_col.Width = 70;
             // 
             // sell_rem_piece_price_col
             // 
@@ -543,8 +545,8 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn sell_rem_name_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn sell_rem_capacity_col;
         private System.Windows.Forms.DataGridViewComboBoxColumn sell_rem_count_type_col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sell_rem_store1_col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sell_rem_store2_col;
+        private System.Windows.Forms.DataGridViewComboBoxColumn sell_rem_storeid_col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sell_rem_piece_count_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn sell_rem_piece_price_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn sell_rem_pack_price_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn sell_rem_initial_price_col;

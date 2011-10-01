@@ -3194,7 +3194,7 @@ namespace ProductInfo_UI
             {
                 if (0 < sold_list.SelectedItems.Count)
                 {
-                    string all_SO_ids = "";
+                    string all_SO_ids = "გაყიდვები";
                     string all_SO_details = "";
                     foreach (ListViewItem lvi in sold_list.SelectedItems)
                     {
@@ -3203,7 +3203,7 @@ namespace ProductInfo_UI
                             int SO_id = Int32.Parse(lvi.SubItems[sold_id_col.Index].Text);
                             DataTable so_details = ProductInfo_Main_Form.conn.SellOrderDetails(SO_id);
                             so_details.Columns[0].Caption = "გაყიდვა N. " + SO_id;
-                            all_SO_ids += SO_id + ",";
+                            //all_SO_ids += SO_id + ",";
                             all_SO_details += DataTableToCSV(so_details);
                         }
                     }

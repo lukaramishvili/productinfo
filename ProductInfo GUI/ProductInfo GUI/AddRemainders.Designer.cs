@@ -387,7 +387,7 @@
             dataGridViewCellStyle3.NullValue = "0";
             this.add_rem_piece_count_col.DefaultCellStyle = dataGridViewCellStyle3;
             this.add_rem_piece_count_col.Frozen = true;
-            this.add_rem_piece_count_col.HeaderText = "საცალო რაოდენობა";
+            this.add_rem_piece_count_col.HeaderText = "რაოდენობა";
             this.add_rem_piece_count_col.Name = "add_rem_piece_count_col";
             this.add_rem_piece_count_col.Width = 70;
             // 

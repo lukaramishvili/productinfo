@@ -1021,6 +1021,7 @@ namespace ProductInfo
             DataTable sold_ret_dt = new DataTable();
             sold_ret_dt.Columns.Add("id");
             sold_ret_dt.Columns.Add("თარიღი");
+            sold_ret_dt.Columns.Add("სალაროს N.");
             sold_ret_dt.Columns.Add("მყიდველი");
             sold_ret_dt.Columns.Add("საწყობის N.");
             sold_ret_dt.Columns.Add("ზედნადების ნომერი");
@@ -1047,7 +1048,7 @@ namespace ProductInfo
                 for (int i = 0; i < ResultSet.FieldCount; i++)
                 {
                     nextSold[i] = ResultSet[i];
-                    if ((5 == i | 6 == i | 7 == i | 8 == i | 9 == i | 10 == i | 11 == i) && "" != ResultSet[i].ToString())
+                    if ((6 == i | 7 == i | 8 == i | 9 == i | 10 == i | 11 == i | 12 == i) && "" != ResultSet[i].ToString())
                     {
                         nextSold[i] = Math.Round(Utilities.Utilities.ParseDecimal(ResultSet[i].ToString()), 4, MidpointRounding.AwayFromZero);
                     }
@@ -1254,6 +1255,7 @@ namespace ProductInfo
             rems_dt.Columns.Add("დარჩენილია");
             rems_dt.Columns.Add("საც. ფასი");
             rems_dt.Columns.Add("გასაყიდი ფასი");
+            rems_dt.Columns.Add("ჯამ. გასაყიდი ფასი");
             rems_dt.Columns.Add("საწყ. ღირ");
             rems_dt.Columns.Add("დარჩ. ღირ.");
             rems_dt.Columns.Add("დარჩ. ღირ. დღგ–ს გარეშე");

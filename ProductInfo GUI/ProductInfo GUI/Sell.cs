@@ -38,6 +38,8 @@ namespace ProductInfo_UI
 
         Remainder[] all_rems = null;
 
+        DataTable all_stores;
+
         public string pressed_name_keystrokes = "";
         public string pressed_buyer_name_keystrokes = "";
 
@@ -68,21 +70,21 @@ namespace ProductInfo_UI
             {
                 nextRow.Cells["sell_rem_count_type_col"].Style.BackColor = Color.White;
             }
-            if (null == nextRow.Cells["sell_rem_store1_col"].Value)
+            if (null == nextRow.Cells[sell_rem_storeid_col.Index].Value)
             {
-                //nextRow.Cells["sell_rem_store1_col"].Style.BackColor = Color.Red;
+                nextRow.Cells[sell_rem_storeid_col.Index].Style.BackColor = Color.Red;
             }
             else
             {
-                nextRow.Cells["sell_rem_store1_col"].Style.BackColor = Color.White;
+                nextRow.Cells[sell_rem_storeid_col.Index].Style.BackColor = Color.White;
             }
-            if (null == nextRow.Cells["sell_rem_store2_col"].Value)
+            if (null == nextRow.Cells[sell_rem_piece_count_col.Index].Value)
             {
-                //nextRow.Cells["sell_rem_store2_col"].Style.BackColor = Color.Red;
+                nextRow.Cells[sell_rem_piece_count_col.Index].Style.BackColor = Color.Red;
             }
             else
             {
-                nextRow.Cells["sell_rem_store2_col"].Style.BackColor = Color.White;
+                nextRow.Cells[sell_rem_piece_count_col.Index].Style.BackColor = Color.White;
             }
             if (null == nextRow.Cells["sell_rem_piece_price_col"].Value)
             {
@@ -96,6 +98,12 @@ namespace ProductInfo_UI
 
         private void Sell_Form_Load(object sender, EventArgs e)
         {
+            all_stores = ProductInfo_Main_Form.conn.AllStores();
+            sell_rem_storeid_col.DataSource = all_stores;//romel qveyanashic mixval is qudi daixure =)))
+            sell_rem_storeid_col.ValueMember = "id";
+            sell_rem_storeid_col.DisplayMember = "Name";
+            //
+
             all_buyers = ProductInfo_Main_Form.conn.AllBuyers();
             foreach (Buyer nextBuyer in all_buyers)
             {
@@ -192,12 +200,12 @@ namespace ProductInfo_UI
                 if (!nextRow.IsNewRow)
                 {
                     Remainder nextRemS1 = new Remainder();
-                    Remainder nextRemS2 = new Remainder();
 
                     if (null == nextRow.Cells["sell_rem_barcode_col"].Value |
                         null == nextRow.Cells["sell_rem_capacity_col"].Value |
                         null == nextRow.Cells["sell_rem_count_type_col"].Value |
-                        (null == nextRow.Cells["sell_rem_store1_col"].Value && null == nextRow.Cells["sell_rem_store2_col"].Value) |
+                        null == nextRow.Cells[sell_rem_storeid_col.Index].Value |
+                        null == nextRow.Cells[sell_rem_piece_count_col.Index].Value |
                         null == nextRow.Cells["sell_rem_piece_price_col"].Value)
                     {
                         HighlightNonCompleteFields(nextRow);
@@ -211,27 +219,22 @@ namespace ProductInfo_UI
                         string nzedid = zed_ident_code_txt.Text;
                         decimal ncapacity = ParseDecimal(nextRow.Cells["sell_rem_capacity_col"].Value.ToString());
                         decimal npiece_price = ParseDecimal(nextRow.Cells["sell_rem_piece_price_col"].Value.ToString());
+                        int nstore_id = Int32.Parse(nextRow.Cells[sell_rem_storeid_col.Index].Value.ToString());
 
-                        decimal nstore1_count = 0.0m;
-                        decimal nstore2_count = 0.0m;
-                        if (null != nextRow.Cells["sell_rem_store1_col"].Value)
+                        decimal npiece_count = 0.0m;
+                        if (null != nextRow.Cells[sell_rem_piece_count_col.Index].Value)
                         {
-                            nstore1_count = ParseDecimal(nextRow.Cells["sell_rem_store1_col"].Value.ToString());
-                        }
-                        if (null != nextRow.Cells["sell_rem_store2_col"].Value)
-                        {
-                            nstore2_count = ParseDecimal(nextRow.Cells["sell_rem_store2_col"].Value.ToString());
+                            npiece_count = ParseDecimal(nextRow.Cells[sell_rem_piece_count_col.Index].Value.ToString());
                         }
 
                         if ("ყუთები" == nextRow.Cells["sell_rem_count_type_col"].Value.ToString())
                         {
-                            nstore1_count *= ncapacity;
-                            nstore2_count *= ncapacity;
+                            npiece_count *= ncapacity;
                         }
                         else
                         {
                         }
-                        nextRemS1.storehouse_id = 1;
+                        nextRemS1.storehouse_id = nstore_id;
                         nextRemS1.product_barcode = nbarcode;
                         nextRemS1.supplier_ident = all_buyers[buyer_chooser.SelectedIndex].saidentifikacio_kodi;
                         nextRemS1.zednadebis_nomeri = nzedid;
@@ -240,9 +243,9 @@ namespace ProductInfo_UI
                         nextRemS1.formal_buy_price = npiece_price;
                         nextRemS1.sell_price = npiece_price;
                         nextRemS1.formal_sell_price = npiece_price;
-                        nextRemS1.initial_pieces = nstore1_count;
-                        nextRemS1.remaining_pieces = nstore1_count;
-
+                        nextRemS1.initial_pieces = npiece_count;
+                        nextRemS1.remaining_pieces = npiece_count;
+                        /*
                         nextRemS2.storehouse_id = 2;
                         nextRemS2.product_barcode = nbarcode;
                         nextRemS2.supplier_ident = all_buyers[buyer_chooser.SelectedIndex].saidentifikacio_kodi;
@@ -254,15 +257,15 @@ namespace ProductInfo_UI
                         nextRemS2.formal_sell_price = npiece_price;
                         nextRemS2.initial_pieces = nstore2_count;
                         nextRemS2.remaining_pieces = nstore2_count;
-
-                        if (nstore1_count > 0)
+                        */
+                        if (npiece_count > 0)
                         {
                             zed_prod_list.Add(nextRemS1);
-                        }
+                        }/*
                         if (nstore2_count > 0)
                         {
                             zed_prod_list.Add(nextRemS2);
-                        }
+                        }*/
 
                     }
 
@@ -477,27 +480,28 @@ namespace ProductInfo_UI
                 }
             }
 
-            if (add_remainders_list.Columns[sell_rem_store1_col.Index].Index == e.ColumnIndex && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value && null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_barcode_col.Index].Value)
+            if (add_remainders_list.Columns[sell_rem_storeid_col.Index].Index == e.ColumnIndex && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value && null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_barcode_col.Index].Value)
             {
+                int CurrentStoreID = Int32.Parse(add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_storeid_col.Index].Value.ToString());
                 IEnumerable<Remainder> query = new List<Remainder>();
                 query = from r in all_rems
                         where r.product_barcode == add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_barcode_col.Index].Value.ToString()
-                                && 1 == r.storehouse_id
+                                && CurrentStoreID == r.storehouse_id
                         select r;
 
                 var StoreRems = from rem in query
                                 group rem by rem.storehouse_id into storrem
                                 select new { StoreID = storrem.Key, remaining_items = storrem.Sum(rem => rem.remaining_pieces) };
                 var rem_rem = (from sr in StoreRems
-                               where 1 == sr.StoreID
+                               where CurrentStoreID == sr.StoreID
                                select sr.remaining_items).ToArray();
                 if (rem_rem.Length > 0)
                 {
-                    add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_remaining_col"].Value = rem_rem[0].ToString("G4") + " (#1)";
+                    add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_remaining_col"].Value = rem_rem[0].ToString("G4") + " (#" + CurrentStoreID.ToString() + ")";
                 }
                 else
                 {
-                    add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_remaining_col"].Value = 0.ToString("G4") + " (#1)";
+                    add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_remaining_col"].Value = 0.ToString("G4") + " (#" + CurrentStoreID.ToString() + ")";
                 }
 
                 Remainder[] query_toarray = query.ToArray();
@@ -507,27 +511,28 @@ namespace ProductInfo_UI
                 }
             }
 
-            if (add_remainders_list.Columns[sell_rem_store2_col.Index].Index == e.ColumnIndex && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value && null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_barcode_col.Index].Value)
+            if (add_remainders_list.Columns[sell_rem_piece_count_col.Index].Index == e.ColumnIndex && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value && null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_barcode_col.Index].Value)
             {
+                int CurrentStoreID = Int32.Parse(add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_storeid_col.Index].Value.ToString());
                 IEnumerable<Remainder> query = new List<Remainder>();
                 query = from r in all_rems
                         where r.product_barcode == add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_barcode_col.Index].Value.ToString()
-                                && 2 == r.storehouse_id
+                                && CurrentStoreID == r.storehouse_id
                         select r;
 
                 var StoreRems = from rem in query
                                 group rem by rem.storehouse_id into storrem
                                 select new { StoreID = storrem.Key, remaining_items = storrem.Sum(rem => rem.remaining_pieces) };
                 var rem_rem = (from sr in StoreRems
-                               where 2 == sr.StoreID
+                               where CurrentStoreID == sr.StoreID
                                select sr.remaining_items).ToArray();
                 if (rem_rem.Length > 0)
                 {
-                    add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_remaining_col"].Value = rem_rem[0].ToString("G4") + " (#2)";
+                    add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_remaining_col"].Value = rem_rem[0].ToString("G4") + " (#" + CurrentStoreID.ToString() + ")";
                 }
                 else
                 {
-                    add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_remaining_col"].Value = 0.ToString("G4") + " (#2)";
+                    add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_remaining_col"].Value = 0.ToString("G4") + " (#" + CurrentStoreID.ToString() + ")";
                 }
 
                 Remainder[] query_toarray = query.ToArray();
@@ -559,8 +564,7 @@ namespace ProductInfo_UI
 
             try
             {
-                if (null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store1_col"].Value
-                | null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store2_col"].Value)
+                if (null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_piece_count_col.Index].Value)
                 {
                     if (null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_count_type_col"].Value)
                     {
@@ -568,21 +572,16 @@ namespace ProductInfo_UI
                         {
                             decimal piece_price = 0.0m;
                             decimal row_sum_price = 0.0m;
-                            decimal store1count = 0.0m;
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store1_col"].Value)
+                            decimal piece_count = 0.0m;
+                            if (null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_piece_count_col.Index].Value)
                             {
-                                store1count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store1_col"].Value.ToString());
-                            }
-                            decimal store2count = 0.0m;
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store2_col"].Value)
-                            {
-                                store2count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store2_col"].Value.ToString());
+                                piece_count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_piece_count_col.Index].Value.ToString());
                             }
                             if (null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_piece_price_col"].Value)
                             {
                                 piece_price = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_piece_price_col"].Value.ToString());
-                                row_sum_price = (store1count + store2count) * piece_price;
-                                add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_sum_price_col"].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store1_col"].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_piece_price_col"].Value);
+                                row_sum_price = piece_count * piece_price;
+                                add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_sum_price_col"].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_storeid_col.Index].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_piece_price_col"].Value);
                                 Row_Pricing[e.RowIndex] = row_sum_price;
                                 UpdateSumPrice();
                             }
@@ -592,22 +591,17 @@ namespace ProductInfo_UI
                             decimal pack_count = 0.0m;
                             decimal piece_price = 0.0m;
                             decimal row_sum_price = 0.0m;
-                            decimal store1count = 0.0m;
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store1_col"].Value)
+                            decimal piece_count = 0.0m;
+                            if (null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_piece_count_col.Index].Value)
                             {
-                                store1count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store1_col"].Value.ToString());
-                            }
-                            decimal store2count = 0.0m;
-                            if (null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store2_col"].Value)
-                            {
-                                store2count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store2_col"].Value.ToString());
+                                piece_count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_piece_count_col.Index].Value.ToString());
                             }
                             if (null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_piece_price_col"].Value && null != add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_capacity_col"].Value)
                             {
                                 piece_price = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_piece_price_col"].Value.ToString());
                                 pack_count = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_capacity_col"].Value.ToString());
-                                row_sum_price = (store1count + store2count) * pack_count * piece_price;
-                                add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_sum_price_col"].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_store1_col"].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_piece_price_col"].Value);
+                                row_sum_price = piece_count * pack_count * piece_price;
+                                add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_sum_price_col"].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_storeid_col.Index].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells["sell_rem_piece_price_col"].Value);
                                 Row_Pricing[e.RowIndex] = row_sum_price;
                                 UpdateSumPrice();
                             }
@@ -645,6 +639,11 @@ namespace ProductInfo_UI
                 ComboBox cb = (ComboBox)e.Control;
                 cb.DropDownStyle = ComboBoxStyle.DropDown;
             }
+            else if (sell_rem_storeid_col.Index == add_remainders_list.CurrentCell.ColumnIndex)
+            {
+                ComboBox StoreIdChooser = (ComboBox)e.Control;
+            }
+
             e.Control.KeyDown -= add_rem_list_Control_KeyDown;
             e.Control.KeyDown += new KeyEventHandler(add_rem_list_Control_KeyDown);
 
