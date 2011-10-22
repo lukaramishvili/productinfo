@@ -55,9 +55,12 @@
             this.btn_zed_update = new System.Windows.Forms.Button();
             this.lbl_editzed_af_date = new System.Windows.Forms.Label();
             this.datepicker_af_date = new System.Windows.Forms.DateTimePicker();
+            this.SOd_print_gasavali_btn = new System.Windows.Forms.Button();
+            this.lblZedIdent = new System.Windows.Forms.Label();
+            this.txtZedIdent = new System.Windows.Forms.TextBox();
+            this.btnEnableEditingZedIdent = new System.Windows.Forms.Button();
             this.btn_exportCSV_SOd = new System.Windows.Forms.Button();
             this.btn_add_soldrems = new System.Windows.Forms.Button();
-            this.SOd_print_gasavali_btn = new System.Windows.Forms.Button();
             this.cm_SellOrder_edit.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -254,7 +257,7 @@
             // 
             this.lbl_editzed_af_date.AutoSize = true;
             this.lbl_editzed_af_date.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl_editzed_af_date.Location = new System.Drawing.Point(132, 48);
+            this.lbl_editzed_af_date.Location = new System.Drawing.Point(47, 68);
             this.lbl_editzed_af_date.Name = "lbl_editzed_af_date";
             this.lbl_editzed_af_date.Size = new System.Drawing.Size(76, 16);
             this.lbl_editzed_af_date.TabIndex = 6;
@@ -266,6 +269,48 @@
             this.datepicker_af_date.Name = "datepicker_af_date";
             this.datepicker_af_date.Size = new System.Drawing.Size(187, 20);
             this.datepicker_af_date.TabIndex = 5;
+            // 
+            // SOd_print_gasavali_btn
+            // 
+            this.SOd_print_gasavali_btn.Enabled = false;
+            this.SOd_print_gasavali_btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SOd_print_gasavali_btn.Location = new System.Drawing.Point(631, 38);
+            this.SOd_print_gasavali_btn.Name = "SOd_print_gasavali_btn";
+            this.SOd_print_gasavali_btn.Size = new System.Drawing.Size(103, 24);
+            this.SOd_print_gasavali_btn.TabIndex = 15;
+            this.SOd_print_gasavali_btn.Text = "გასავალი";
+            this.SOd_print_gasavali_btn.UseVisualStyleBackColor = true;
+            this.SOd_print_gasavali_btn.Click += new System.EventHandler(this.SOd_print_gasavali_btn_Click);
+            // 
+            // lblZedIdent
+            // 
+            this.lblZedIdent.AutoSize = true;
+            this.lblZedIdent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblZedIdent.Location = new System.Drawing.Point(44, 46);
+            this.lblZedIdent.Name = "lblZedIdent";
+            this.lblZedIdent.Size = new System.Drawing.Size(79, 16);
+            this.lblZedIdent.TabIndex = 16;
+            this.lblZedIdent.Text = "ზედ. ნომერი";
+            // 
+            // txtZedIdent
+            // 
+            this.txtZedIdent.Enabled = false;
+            this.txtZedIdent.Location = new System.Drawing.Point(129, 43);
+            this.txtZedIdent.Name = "txtZedIdent";
+            this.txtZedIdent.Size = new System.Drawing.Size(164, 20);
+            this.txtZedIdent.TabIndex = 17;
+            // 
+            // btnEnableEditingZedIdent
+            // 
+            this.btnEnableEditingZedIdent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnableEditingZedIdent.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnEnableEditingZedIdent.Image = global::ProductInfo_UI.Properties.Resources.pencil_16x16;
+            this.btnEnableEditingZedIdent.Location = new System.Drawing.Point(294, 40);
+            this.btnEnableEditingZedIdent.Name = "btnEnableEditingZedIdent";
+            this.btnEnableEditingZedIdent.Size = new System.Drawing.Size(25, 23);
+            this.btnEnableEditingZedIdent.TabIndex = 18;
+            this.btnEnableEditingZedIdent.UseVisualStyleBackColor = true;
+            this.btnEnableEditingZedIdent.Click += new System.EventHandler(this.btnEnableEditingZedIdent_Click);
             // 
             // btn_exportCSV_SOd
             // 
@@ -290,31 +335,22 @@
             this.btn_add_soldrems.UseVisualStyleBackColor = true;
             this.btn_add_soldrems.Click += new System.EventHandler(this.btn_add_soldrems_Click);
             // 
-            // SOd_print_gasavali_btn
-            // 
-            this.SOd_print_gasavali_btn.Enabled = false;
-            this.SOd_print_gasavali_btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SOd_print_gasavali_btn.Location = new System.Drawing.Point(631, 38);
-            this.SOd_print_gasavali_btn.Name = "SOd_print_gasavali_btn";
-            this.SOd_print_gasavali_btn.Size = new System.Drawing.Size(103, 24);
-            this.SOd_print_gasavali_btn.TabIndex = 15;
-            this.SOd_print_gasavali_btn.Text = "გასავალი";
-            this.SOd_print_gasavali_btn.UseVisualStyleBackColor = true;
-            this.SOd_print_gasavali_btn.Click += new System.EventHandler(this.SOd_print_gasavali_btn_Click);
-            // 
             // SellOrderDetails_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(742, 610);
+            this.Controls.Add(this.btnEnableEditingZedIdent);
+            this.Controls.Add(this.txtZedIdent);
+            this.Controls.Add(this.lblZedIdent);
             this.Controls.Add(this.SOd_print_gasavali_btn);
             this.Controls.Add(this.btn_exportCSV_SOd);
             this.Controls.Add(this.btn_add_soldrems);
             this.Controls.Add(this.btn_zed_update);
             this.Controls.Add(this.lbl_edit_af_nomeri);
             this.Controls.Add(this.lbl_edit_af_seria);
-            this.Controls.Add(this.lbl_editzed_af_date);
             this.Controls.Add(this.txt_af_nomeri);
+            this.Controls.Add(this.lbl_editzed_af_date);
             this.Controls.Add(this.datepicker_af_date);
             this.Controls.Add(this.datetime_zed_tarigi);
             this.Controls.Add(this.txt_af_seria);
@@ -362,6 +398,9 @@
         private System.Windows.Forms.Button SOd_print_gasavali_btn;
         private System.Windows.Forms.ColumnHeader SOd_piece_cost_col;
         private System.Windows.Forms.ColumnHeader SOd_piece_price_col;
+        private System.Windows.Forms.Label lblZedIdent;
+        private System.Windows.Forms.TextBox txtZedIdent;
+        private System.Windows.Forms.Button btnEnableEditingZedIdent;
 
     }
 }

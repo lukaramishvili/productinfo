@@ -65,6 +65,7 @@ D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\Prod
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.AddRemainders_Form.resources
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.AddRemainderItem_Form.resources
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.AddSupplier_Form.resources
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.EditCashierList_Form.resources
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.EditProduct_Form.resources
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.EditSoldRemainder_Form.resources
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.ProductInfo_Main_Form.resources

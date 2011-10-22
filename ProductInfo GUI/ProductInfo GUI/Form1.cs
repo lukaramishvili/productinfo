@@ -2311,6 +2311,7 @@ namespace ProductInfo_UI
                 EditProduct_Form editprod_frm = new EditProduct_Form();
                 editprod_frm.Show();
                 editprod_frm.Controls["barcode_txt"].Text = prod_names_list.Items[prod_names_list.SelectedIndices[0]].SubItems[pnames_bcode_col.Index].Text;
+                editprod_frm.Controls["new_barcode_txt"].Text = prod_names_list.Items[prod_names_list.SelectedIndices[0]].SubItems[pnames_bcode_col.Index].Text;
                 editprod_frm.Controls["name_txt"].Text = prod_names_list.Items[prod_names_list.SelectedIndices[0]].SubItems[pnames_name_col.Index].Text;
                 ((CheckBox)editprod_frm.Controls["vat_ckb"]).Checked = conn.GetProductByBarCode(prod_names_list.Items[prod_names_list.SelectedIndices[0]].SubItems[pnames_bcode_col.Index].Text).usesVAT;
             }
@@ -3233,6 +3234,31 @@ namespace ProductInfo_UI
                     RefreshTabs();
                 }
             }
+        }
+
+        private void mm_edit_cashier_list_Click(object sender, EventArgs e)
+        {
+            EditCashierList_Form frmEditCashiers = new EditCashierList_Form();
+            frmEditCashiers.Show();
+        }
+
+        private void cmi_edit_rems_Click(object sender, EventArgs e)
+        {
+            if (0 < rem_list.SelectedItems.Count)
+            {
+                EditSoldRemainder_Form editsoldrem_frm = new EditSoldRemainder_Form();
+                editsoldrem_frm.Show();
+                editsoldrem_frm.PopulateRemainderFields(Int32.Parse(rem_list.SelectedItems[0].SubItems[rem_list_id_col.Index].Text));
+                editsoldrem_frm.FormClosed += new FormClosedEventHandler(delegate(object senderEditRemFoorm, FormClosedEventArgs eEditRemFoorm)
+                {
+                    RefreshTabs();
+                });
+            }
+        }
+
+        void editsoldrem_frm_FormClosed()
+        {
+            throw new NotImplementedException();
         }
 
 

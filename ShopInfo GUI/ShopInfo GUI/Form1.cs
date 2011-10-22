@@ -31,7 +31,8 @@ namespace ShopInfo_GUI
 
         int ActiveStoreID = 0;
         int ActiveCashBoxID = 1;
-        int ActiveCashierID = 0;
+        public static int ActiveCashierID = 0;
+        public static string sActiveCashierName = "";
 
         Remainder[] SellableRemainders = null;
 
@@ -46,8 +47,35 @@ namespace ShopInfo_GUI
         //CashDrawer object
         CashDrawer m_Drawer = null;
 
+        public static bool fAuthenticated = false;
+
         private void ShopInfo_Main_Form_Load(object sender, EventArgs e)
         {
+            frmShopInfoLoginForm checkLoginForm = new frmShopInfoLoginForm();
+            checkLoginForm.ShowDialog();
+            //continue when the dialog is closed
+            while (false == fAuthenticated)
+            {
+                if (DialogResult.No == MessageBox.Show("ნამდვილად გსურთ გამოსვლა?", "გამოსვლა", MessageBoxButtons.YesNo))
+                {
+                    checkLoginForm.ShowDialog();
+                }
+                else
+                {
+                    break;
+                    //using applicaition exit here causes bug
+                }
+            }
+            //exit here and not inside while loop because it causes bugs
+            if (false == fAuthenticated || 1 > ActiveCashierID)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                lblActiveCashierName.Text = "მოლარე: " + sActiveCashierName;
+            }
+            //
             all_stores = DataConn.AllStores();
 
             //
@@ -64,13 +92,21 @@ namespace ShopInfo_GUI
             int CashBoxIDFromRegistry = Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\zero\ProductInfo\1.0", "CashBoxID", 0));
             ActiveCashBoxID = CashBoxIDFromRegistry;
             //TODO: user authorization && get CashierID(current user id) from database && Registry.SetValue([CashierID that was read from database])
-            int CashierIDFromRegistry = Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\zero\ProductInfo\1.0", "CashierID", 0));
-            ActiveCashierID = CashierIDFromRegistry;
+            //int CashierIDFromRegistry = Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\zero\ProductInfo\1.0", "CashierID", 0));
+            //ActiveCashierID = CashierIDFromRegistry;
 
             //if this is not done by hand, then first row will not have DefaultCellStyle
             sell_grid.Rows[0].Height = sell_grid.RowTemplate.Height;
             sell_grid.Rows[0].DefaultCellStyle = sell_grid.RowTemplate.DefaultCellStyle;
             //
+            RefreshDBStateTables();
+            //Init CashDrawer
+            InitCashDrawer();
+            //
+        }
+
+        private void RefreshDBStateTables()
+        {
             SellableRemainders = DataConn.GetValidRemainders(ActiveStoreID, true);
 
             AllProducts = DataConn.GetProductSuggestions("");
@@ -91,9 +127,6 @@ namespace ShopInfo_GUI
                     }
                 }
             }
-            //Init CashDrawer
-            InitCashDrawer();
-            //
         }
 
         private void InitCashDrawer()
@@ -225,7 +258,7 @@ namespace ShopInfo_GUI
             if (501 == SellResult.errcode | 0 == SellResult.errcode)
             {
                 //print POS check and open cash drawer
-                BitmapGenerator.PrintPOSCheck(CurrentSellOrder, ParseDecimal(cash_handled_txt.Text), ParseDecimal(cash_change_txt.Text), AllProducts);
+                BitmapGenerator.PrintPOSCheck(CurrentSellOrder, ParseDecimal(cash_handled_txt.Text), ParseDecimal(cash_change_txt.Text), AllProducts, sActiveCashierName);
                 //TODO:Open Cash Drawer (probably from utilities.external)
                 //pay automatically for the SellOrder
                 info PaymentResult = DataConn.TransferMoney(Buyer.xelze.saidentifikacio_kodi
@@ -265,7 +298,6 @@ namespace ShopInfo_GUI
                 //update total entered SellOrder sum (0.0 in this case, as no items have been entered yet)
                 UpdateSumSellPrice();
                 //
-                SellableRemainders = DataConn.GetValidRemainders(ActiveStoreID, true);
                 //end success case
             }
             else if (404 == SellResult.errcode)
@@ -939,6 +971,11 @@ namespace ShopInfo_GUI
                 }
             }
             //<<<step1>>>--End
+        }
+
+        private void btnRefreshTableStates_Click(object sender, EventArgs e)
+        {
+            RefreshDBStateTables();
         }
 
 

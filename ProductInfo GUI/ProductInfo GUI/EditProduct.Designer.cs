@@ -35,12 +35,15 @@
             this.barcode_label = new System.Windows.Forms.Label();
             this.barcode_txt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.new_barcode_txt = new System.Windows.Forms.TextBox();
+            this.btnEnableEditingBarcode = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // prod_edit_btn
             // 
             this.prod_edit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prod_edit_btn.Location = new System.Drawing.Point(12, 219);
+            this.prod_edit_btn.Location = new System.Drawing.Point(12, 283);
             this.prod_edit_btn.Name = "prod_edit_btn";
             this.prod_edit_btn.Size = new System.Drawing.Size(114, 36);
             this.prod_edit_btn.TabIndex = 13;
@@ -54,7 +57,7 @@
             this.vat_ckb.Checked = true;
             this.vat_ckb.CheckState = System.Windows.Forms.CheckState.Checked;
             this.vat_ckb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.vat_ckb.Location = new System.Drawing.Point(13, 181);
+            this.vat_ckb.Location = new System.Drawing.Point(13, 245);
             this.vat_ckb.Name = "vat_ckb";
             this.vat_ckb.Size = new System.Drawing.Size(144, 24);
             this.vat_ckb.TabIndex = 12;
@@ -64,7 +67,7 @@
             // name_txt
             // 
             this.name_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.name_txt.Location = new System.Drawing.Point(12, 141);
+            this.name_txt.Location = new System.Drawing.Point(12, 205);
             this.name_txt.Name = "name_txt";
             this.name_txt.Size = new System.Drawing.Size(231, 26);
             this.name_txt.TabIndex = 11;
@@ -73,7 +76,7 @@
             // 
             this.name_label.AutoSize = true;
             this.name_label.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.name_label.Location = new System.Drawing.Point(12, 114);
+            this.name_label.Location = new System.Drawing.Point(12, 178);
             this.name_label.Name = "name_label";
             this.name_label.Size = new System.Drawing.Size(93, 23);
             this.name_label.TabIndex = 10;
@@ -108,11 +111,45 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "ინფორმაცია პროდუქტის ტიპზე";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(16, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(172, 23);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "შტრიხ–კოდის შეცვლა";
+            // 
+            // new_barcode_txt
+            // 
+            this.new_barcode_txt.Enabled = false;
+            this.new_barcode_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.new_barcode_txt.Location = new System.Drawing.Point(12, 149);
+            this.new_barcode_txt.Name = "new_barcode_txt";
+            this.new_barcode_txt.Size = new System.Drawing.Size(200, 26);
+            this.new_barcode_txt.TabIndex = 15;
+            // 
+            // btnEnableEditingBarcode
+            // 
+            this.btnEnableEditingBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnableEditingBarcode.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnEnableEditingBarcode.Image = global::ProductInfo_UI.Properties.Resources.pencil_16x16;
+            this.btnEnableEditingBarcode.Location = new System.Drawing.Point(217, 150);
+            this.btnEnableEditingBarcode.Name = "btnEnableEditingBarcode";
+            this.btnEnableEditingBarcode.Size = new System.Drawing.Size(25, 23);
+            this.btnEnableEditingBarcode.TabIndex = 19;
+            this.btnEnableEditingBarcode.UseVisualStyleBackColor = true;
+            this.btnEnableEditingBarcode.Click += new System.EventHandler(this.btnEnableEditingBarcode_Click);
+            // 
             // EditProduct_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 266);
+            this.ClientSize = new System.Drawing.Size(297, 353);
+            this.Controls.Add(this.btnEnableEditingBarcode);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.new_barcode_txt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.prod_edit_btn);
             this.Controls.Add(this.vat_ckb);
@@ -136,5 +173,8 @@
         private System.Windows.Forms.Label barcode_label;
         private System.Windows.Forms.TextBox barcode_txt;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox new_barcode_txt;
+        private System.Windows.Forms.Button btnEnableEditingBarcode;
     }
 }

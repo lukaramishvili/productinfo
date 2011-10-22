@@ -81,6 +81,48 @@ namespace Utilities
             }
             return retVal;
         }
+
+        public static int ParseInt(string arg)
+        {
+            int retVal = 0;
+            arg = arg.Replace(",", ".");
+
+            System.Globalization.NumberFormatInfo decimal_fmt = new System.Globalization.NumberFormatInfo();
+            decimal_fmt.NumberDecimalSeparator = ".";
+            decimal_fmt.NumberGroupSeparator = "";
+            try
+            {
+                retVal = Int32.Parse(arg, decimal_fmt);
+            }
+            catch (FormatException)
+            {
+            }
+            catch (OverflowException)
+            {
+            }
+            return retVal;
+        }
+
+        public static bool ParseBool(string arg)
+        {
+            bool retVal = false;
+            arg = arg.Replace(",", ".");
+
+            System.Globalization.NumberFormatInfo decimal_fmt = new System.Globalization.NumberFormatInfo();
+            decimal_fmt.NumberDecimalSeparator = ".";
+            decimal_fmt.NumberGroupSeparator = "";
+            try
+            {
+                retVal = Boolean.Parse(arg);
+            }
+            catch (FormatException)
+            {
+            }
+            catch (OverflowException)
+            {
+            }
+            return retVal;
+        }
     }
 
     public static class Internals

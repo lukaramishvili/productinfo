@@ -20,7 +20,7 @@ namespace ProductInfo_UI
 
         private void prod_edit_btn_Click(object sender, EventArgs e)
         {
-            info prod_upd_info = ProductInfo_Main_Form.conn.UpdateProduct(barcode_txt.Text, name_txt.Text, vat_ckb.Checked?1:0);
+            info prod_upd_info = ProductInfo_Main_Form.conn.UpdateProduct(barcode_txt.Text, new_barcode_txt.Text, name_txt.Text, vat_ckb.Checked?1:0);
             if (0 == prod_upd_info.errcode | 501 == prod_upd_info.errcode)
             {
                 MessageBox.Show("პროდუქტი ჩასწორებულია");
@@ -29,6 +29,14 @@ namespace ProductInfo_UI
             else
             {
                 MessageBox.Show("მოხდა შეცდომა "+prod_upd_info.errcode.ToString());
+            }
+        }
+
+        private void btnEnableEditingBarcode_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("დარწმუნებული ხართ, რომ გსურთ შტრიხკოდის ჩასწორება?", "გაფრთხილება", MessageBoxButtons.YesNo))
+            {
+                new_barcode_txt.Enabled = true;
             }
         }
 

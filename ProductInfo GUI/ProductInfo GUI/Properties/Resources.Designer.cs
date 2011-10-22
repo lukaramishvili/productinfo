@@ -102,6 +102,13 @@ namespace ProductInfo_UI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap pencil_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("pencil_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap print_h22 {
             get {
                 object obj = ResourceManager.GetObject("print_h22", resourceCulture);

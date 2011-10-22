@@ -78,6 +78,12 @@
     <Compile Include="AddSupplier.Designer.cs">
       <DependentUpon>AddSupplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditCashierList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCashierList.Designer.cs">
+      <DependentUpon>EditCashierList.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddSupplier.resx">
       <DependentUpon>AddSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCashierList.resx">
+      <DependentUpon>EditCashierList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditProduct.resx">
       <DependentUpon>EditProduct.cs</DependentUpon>
@@ -233,6 +242,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\grocery-list.16x22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

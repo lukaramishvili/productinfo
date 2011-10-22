@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.sell_panel = new System.Windows.Forms.Panel();
+            this.btnRefreshTableStates = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lbl_status_sum = new System.Windows.Forms.ToolStripStatusLabel();
             this.sell_grid = new System.Windows.Forms.DataGridView();
@@ -46,6 +47,7 @@
             this.cash_handled_txt = new System.Windows.Forms.TextBox();
             this.cash_handled_lbl = new System.Windows.Forms.Label();
             this.sell_btn = new System.Windows.Forms.Button();
+            this.lblActiveCashierName = new System.Windows.Forms.Label();
             this.sell_panel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sell_grid)).BeginInit();
@@ -54,6 +56,8 @@
             // 
             // sell_panel
             // 
+            this.sell_panel.Controls.Add(this.lblActiveCashierName);
+            this.sell_panel.Controls.Add(this.btnRefreshTableStates);
             this.sell_panel.Controls.Add(this.statusStrip1);
             this.sell_panel.Controls.Add(this.sell_grid);
             this.sell_panel.Controls.Add(this.box_for_change);
@@ -63,6 +67,17 @@
             this.sell_panel.Padding = new System.Windows.Forms.Padding(0, 130, 0, 60);
             this.sell_panel.Size = new System.Drawing.Size(1577, 752);
             this.sell_panel.TabIndex = 1;
+            // 
+            // btnRefreshTableStates
+            // 
+            this.btnRefreshTableStates.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRefreshTableStates.Image = global::ShopInfo_GUI.Properties.Resources.refresh_16x16;
+            this.btnRefreshTableStates.Location = new System.Drawing.Point(12, 88);
+            this.btnRefreshTableStates.Name = "btnRefreshTableStates";
+            this.btnRefreshTableStates.Size = new System.Drawing.Size(24, 23);
+            this.btnRefreshTableStates.TabIndex = 5;
+            this.btnRefreshTableStates.UseVisualStyleBackColor = true;
+            this.btnRefreshTableStates.Click += new System.EventHandler(this.btnRefreshTableStates_Click);
             // 
             // statusStrip1
             // 
@@ -229,6 +244,16 @@
             this.sell_btn.UseVisualStyleBackColor = true;
             this.sell_btn.Click += new System.EventHandler(this.sell_btn_Click);
             // 
+            // lblActiveCashierName
+            // 
+            this.lblActiveCashierName.AutoSize = true;
+            this.lblActiveCashierName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActiveCashierName.Location = new System.Drawing.Point(56, 86);
+            this.lblActiveCashierName.Name = "lblActiveCashierName";
+            this.lblActiveCashierName.Size = new System.Drawing.Size(92, 25);
+            this.lblActiveCashierName.TabIndex = 6;
+            this.lblActiveCashierName.Text = "მოლარე: ";
+            // 
             // ShopInfo_Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,6 +298,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sell_piece_price_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn sell_sum_price_col;
         private System.Windows.Forms.DataGridViewButtonColumn sell_remove_col;
+        private System.Windows.Forms.Button btnRefreshTableStates;
+        private System.Windows.Forms.Label lblActiveCashierName;
     }
 }
 

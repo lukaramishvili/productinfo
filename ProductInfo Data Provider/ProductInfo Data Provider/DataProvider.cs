@@ -410,6 +410,7 @@ namespace ProductInfo
 
             SqlCommand addprod_sql = new SqlCommand("AddProduct", DataProvider.SqlLink);
             addprod_sql.CommandType = CommandType.StoredProcedure;
+            addprod_sql.CommandTimeout = 300;
             SqlDataReader result = null;
 
             addprod_sql.Parameters.Add(new SqlParameter("@barcode", prod_arg.barcode));
@@ -448,6 +449,7 @@ namespace ProductInfo
 
             SqlCommand addsupplier_sql = new SqlCommand("AddSupplier", DataProvider.SqlLink);
             addsupplier_sql.CommandType = CommandType.StoredProcedure;
+            addsupplier_sql.CommandTimeout = 300;
 
             addsupplier_sql.Parameters.Add(new SqlParameter("@id_code", supplier_arg.saidentifikacio_kodi));
             addsupplier_sql.Parameters.Add(new SqlParameter("@name", supplier_arg.saxeli));
@@ -483,6 +485,7 @@ namespace ProductInfo
 
             SqlCommand addbuyer_sql = new SqlCommand("AddBuyer", DataProvider.SqlLink);
             addbuyer_sql.CommandType = CommandType.StoredProcedure;
+            addbuyer_sql.CommandTimeout = 300;
 
             addbuyer_sql.Parameters.Add(new SqlParameter("@id_code", buyer_arg.saidentifikacio_kodi));
             addbuyer_sql.Parameters.Add(new SqlParameter("@name", buyer_arg.saxeli));
@@ -522,6 +525,7 @@ namespace ProductInfo
 
             SqlCommand AddPurchaseName_sql = new SqlCommand("AddPurchaseOrder", SqlLink, safe_pur_trans);
             AddPurchaseName_sql.CommandType = CommandType.StoredProcedure;
+            AddPurchaseName_sql.CommandTimeout = 300;
             AddPurchaseName_sql.Parameters.Add(new SqlParameter("@purchase_time", p_order_arg.dro));
             AddPurchaseName_sql.Parameters.Add(new SqlParameter("@supplier_ident_code", p_order_arg.supplier_client.saidentifikacio_kodi));
             AddPurchaseName_sql.Parameters.Add(new SqlParameter("@zed_ident", p_order_arg.BuyingZednadebi.zednadebis_nomeri));
@@ -553,6 +557,7 @@ namespace ProductInfo
 
                 SqlCommand addAF_sql = new SqlCommand("AddAngarishFaqtura", SqlLink, safe_pur_trans);
                 addAF_sql.CommandType = CommandType.StoredProcedure;
+                addAF_sql.CommandTimeout = 300;
                 addAF_sql.Parameters.Add(new SqlParameter("@nomeri", p_order_arg.BuyingAF.af_nomeri));
                 addAF_sql.Parameters.Add(new SqlParameter("@seria", p_order_arg.BuyingAF.seria));
                 addAF_sql.Parameters.Add(new SqlParameter("@dro", p_order_arg.BuyingAF.dro));
@@ -582,6 +587,7 @@ namespace ProductInfo
 
             SqlCommand addZed_sql = new SqlCommand("AddZednadebi", SqlLink, safe_pur_trans);
             addZed_sql.CommandType = CommandType.StoredProcedure;
+            addZed_sql.CommandTimeout = 300;
             addZed_sql.Parameters.Add(new SqlParameter("@id_code", p_order_arg.BuyingZednadebi.zednadebis_nomeri));
             addZed_sql.Parameters.Add(new SqlParameter("@dro", p_order_arg.BuyingZednadebi.dro));
             addZed_sql.Parameters.Add(new SqlParameter("@operation", p_order_arg.BuyingZednadebi.operation_type.ToString()));
@@ -615,6 +621,7 @@ namespace ProductInfo
                 //DONT USE HERE AddRemainder() UNLESS THE TRANSACTION PART IS INCLUDED
                 SqlCommand addRemSql = new SqlCommand("AddRemainder", SqlLink, safe_pur_trans);
                 addRemSql.CommandType = CommandType.StoredProcedure;
+                addRemSql.CommandTimeout = 300;
                 addRemSql.Parameters.Add(new SqlParameter("@barcode", addRem.product_barcode));
                 addRemSql.Parameters.Add(new SqlParameter("@supplier_ident", addRem.supplier_ident));
                 addRemSql.Parameters.Add(new SqlParameter("@zed_nomeri", addRem.zednadebis_nomeri));
@@ -663,6 +670,7 @@ namespace ProductInfo
 
             SqlCommand AddSellName_sql = new SqlCommand("AddSellOrder", SqlLink, safe_sell_trans);
             AddSellName_sql.CommandType = CommandType.StoredProcedure;
+            AddSellName_sql.CommandTimeout = 300;
             AddSellName_sql.Parameters.Add(new SqlParameter("@sell_time", s_order_arg.dro));
             AddSellName_sql.Parameters.Add(new SqlParameter("@buyer_ident_code", s_order_arg.buyer_client.saidentifikacio_kodi));
 
@@ -708,6 +716,7 @@ namespace ProductInfo
 
                 SqlCommand addAF_sql = new SqlCommand("AddAngarishFaqtura", SqlLink, safe_sell_trans);
                 addAF_sql.CommandType = CommandType.StoredProcedure;
+                addAF_sql.CommandTimeout = 300;
                 addAF_sql.Parameters.Add(new SqlParameter("@nomeri", s_order_arg.SellingAF.af_nomeri));
                 addAF_sql.Parameters.Add(new SqlParameter("@seria", s_order_arg.SellingAF.seria));
                 addAF_sql.Parameters.Add(new SqlParameter("@dro", s_order_arg.SellingAF.dro));
@@ -740,6 +749,7 @@ namespace ProductInfo
             {
                 SqlCommand addZed_sql = new SqlCommand("AddZednadebi", SqlLink, safe_sell_trans);
                 addZed_sql.CommandType = CommandType.StoredProcedure;
+                addZed_sql.CommandTimeout = 300;
                 addZed_sql.Parameters.Add(new SqlParameter("@id_code", s_order_arg.SellingZednadebi.zednadebis_nomeri));
                 addZed_sql.Parameters.Add(new SqlParameter("@dro", s_order_arg.SellingZednadebi.dro));
                 addZed_sql.Parameters.Add(new SqlParameter("@operation", s_order_arg.SellingZednadebi.operation_type.ToString()));
@@ -781,6 +791,7 @@ namespace ProductInfo
                 //TODO
                 SqlCommand sellRemSql = new SqlCommand("SellRemainder", SqlLink, safe_sell_trans);
                 sellRemSql.CommandType = CommandType.StoredProcedure;
+                sellRemSql.CommandTimeout = 300;
                 sellRemSql.Parameters.Add(new SqlParameter("@barcode", sellRem.product_barcode));
                 sellRemSql.Parameters.Add(new SqlParameter("@storeID", sellRem.storehouse_id));
                 sellRemSql.Parameters.Add(new SqlParameter("@selling_count", sellRem.initial_pieces));
@@ -824,6 +835,7 @@ namespace ProductInfo
             List<Remainder> PerStoreRemainders = new List<Remainder>();
             SqlCommand filter_store_sql = new SqlCommand("RemaindersInStoreID", DataProvider.SqlLink);
             filter_store_sql.CommandType = CommandType.StoredProcedure;
+            filter_store_sql.CommandTimeout = 300;
             SqlDataReader ResultSet = null;
 
             filter_store_sql.Parameters.Add(new SqlParameter("@StoreID", store_id));
@@ -859,6 +871,7 @@ namespace ProductInfo
 
             SqlCommand prodbybarcode_cmd = new SqlCommand("GetProductByBarCode", DataProvider.SqlLink);
             prodbybarcode_cmd.CommandType = CommandType.StoredProcedure;
+            prodbybarcode_cmd.CommandTimeout = 300;
             prodbybarcode_cmd.Parameters.Add(new SqlParameter("@barcode_par", barcode_arg));
 
             SqlDataReader rs = prodbybarcode_cmd.ExecuteReader();
@@ -881,6 +894,7 @@ namespace ProductInfo
 
             SqlCommand prodsuggestions_cmd = new SqlCommand("GetProductSuggestions", DataProvider.SqlLink);
             prodsuggestions_cmd.CommandType = CommandType.StoredProcedure;
+            prodsuggestions_cmd.CommandTimeout = 300;
             prodsuggestions_cmd.Parameters.Add(new SqlParameter("@hintnname_arg", hintname_arg));
 
             SqlDataReader rs = prodsuggestions_cmd.ExecuteReader();
@@ -905,6 +919,7 @@ namespace ProductInfo
             DataTable prodrems_dt = new DataTable();
             prodrems_dt.Columns.Add("შტრიხ–კოდი");
             prodrems_dt.Columns.Add("დასახელება");
+            prodrems_dt.Columns.Add("მომწოდებელი");
             prodrems_dt.Columns.Add("ტევადობა");
             prodrems_dt.Columns.Add("საწყისი ჯამ. საცალო რაოდ.");
             prodrems_dt.Columns.Add("საწყისი ღირებულება");
@@ -915,6 +930,7 @@ namespace ProductInfo
 
             SqlCommand byprodrems_sql = new SqlCommand("GetRemaindersByProductName", DataProvider.SqlLink);
             byprodrems_sql.CommandType = CommandType.StoredProcedure;
+            byprodrems_sql.CommandTimeout = 300;
 
             byprodrems_sql.Parameters.Add(new SqlParameter("@StoreID", store_id));
             byprodrems_sql.Parameters.Add(new SqlParameter("@FromTime", from_time));
@@ -927,6 +943,7 @@ namespace ProductInfo
                 DataRow newRec = prodrems_dt.NewRow();
                 newRec["შტრიხ–კოდი"] = prodrems_rs["product_barcode"];
                 newRec["დასახელება"] = prodrems_rs["product_name"];
+                newRec["მომწოდებელი"] = prodrems_rs["supplier_name"];
 
                 newRec["ტევადობა"] = prodrems_rs["rem_capacity"];
                 try { newRec["ტევადობა"] = Math.Round(Utilities.Utilities.ParseDecimal(prodrems_rs["rem_capacity"].ToString()), 4, MidpointRounding.AwayFromZero); }
@@ -963,13 +980,16 @@ namespace ProductInfo
             DataTable sold_prodrems_dt = new DataTable();
             sold_prodrems_dt.Columns.Add("შტრიხ–კოდი");
             sold_prodrems_dt.Columns.Add("დასახელება");
+            sold_prodrems_dt.Columns.Add("შემომტანი");
             sold_prodrems_dt.Columns.Add("რაოდენობა (ცალობით)");
             sold_prodrems_dt.Columns.Add("საშუალო ფასი");
             sold_prodrems_dt.Columns.Add("საშუალო ღირებულება");
             sold_prodrems_dt.Columns.Add("საშ. ღირ.დღგ–ს გარეშე");
+            sold_prodrems_dt.Columns.Add("ჯამური ფასი");
 
             SqlCommand byprod_soldrems_sql = new SqlCommand("GetSoldRemaindersByProductName", DataProvider.SqlLink);
             byprod_soldrems_sql.CommandType = CommandType.StoredProcedure;
+            byprod_soldrems_sql.CommandTimeout = 300;
 
             byprod_soldrems_sql.Parameters.Add(new SqlParameter("@StoreID", store_id));
             byprod_soldrems_sql.Parameters.Add(new SqlParameter("@Since", since_arg));
@@ -983,7 +1003,7 @@ namespace ProductInfo
                 for (int i = 0; i < prod_soldrems_rs.FieldCount; i++)
                 {
                     newRec[i] = prod_soldrems_rs[i];
-                    if ((2 == i | 3 == i | 4 == i | 5 == i) && "" != prod_soldrems_rs[i].ToString())
+                    if ((3 == i | 4 == i | 5 == i | 6 == i | 7 == i) && "" != prod_soldrems_rs[i].ToString())
                     {
                         newRec[i] = Math.Round(Utilities.Utilities.ParseDecimal(prod_soldrems_rs[i].ToString()), 4, MidpointRounding.AwayFromZero);
                     }
@@ -1001,6 +1021,7 @@ namespace ProductInfo
             List<Remainder> filteredVal = new List<Remainder>();
             SqlCommand rem_textfilter = new SqlCommand("FilterRemainders", DataProvider.SqlLink);
             rem_textfilter.CommandType = CommandType.StoredProcedure;
+            rem_textfilter.CommandTimeout = 300;
             rem_textfilter.Parameters.Add(new SqlParameter("@FilterString", filter_arg));
 
             SqlDataReader rs = rem_textfilter.ExecuteReader();
@@ -1022,6 +1043,7 @@ namespace ProductInfo
             sold_ret_dt.Columns.Add("id");
             sold_ret_dt.Columns.Add("თარიღი");
             sold_ret_dt.Columns.Add("სალაროს N.");
+            sold_ret_dt.Columns.Add("მოლარე");
             sold_ret_dt.Columns.Add("მყიდველი");
             sold_ret_dt.Columns.Add("საწყობის N.");
             sold_ret_dt.Columns.Add("ზედნადების ნომერი");
@@ -1035,6 +1057,7 @@ namespace ProductInfo
 
             SqlCommand filter_orders_sql = new SqlCommand("Sold_Rem_Statistics", DataProvider.SqlLink);
             filter_orders_sql.CommandType = CommandType.StoredProcedure;
+            filter_orders_sql.CommandTimeout = 300;
 
             filter_orders_sql.Parameters.Add(new SqlParameter("@StoreID", storeid_arg));
             filter_orders_sql.Parameters.Add(new SqlParameter("@since_date", since_arg));
@@ -1048,7 +1071,7 @@ namespace ProductInfo
                 for (int i = 0; i < ResultSet.FieldCount; i++)
                 {
                     nextSold[i] = ResultSet[i];
-                    if ((6 == i | 7 == i | 8 == i | 9 == i | 10 == i | 11 == i | 12 == i) && "" != ResultSet[i].ToString())
+                    if ((7 == i | 8 == i | 9 == i | 10 == i | 11 == i | 12 == i | 13 == i) && "" != ResultSet[i].ToString())
                     {
                         nextSold[i] = Math.Round(Utilities.Utilities.ParseDecimal(ResultSet[i].ToString()), 4, MidpointRounding.AwayFromZero);
                     }
@@ -1114,6 +1137,7 @@ namespace ProductInfo
 
             SqlCommand bought_af_statistics_sql = new SqlCommand("Bought_AF_Statistics", SqlLink);
             bought_af_statistics_sql.CommandType = CommandType.StoredProcedure;
+            bought_af_statistics_sql.CommandTimeout = 300;
             SqlDataReader bought_af_res = bought_af_statistics_sql.ExecuteReader();
             while (bought_af_res.Read())
             {
@@ -1147,6 +1171,7 @@ namespace ProductInfo
 
             SqlCommand sold_af_statistics_sql = new SqlCommand("Sold_AF_Statistics", SqlLink);
             sold_af_statistics_sql.CommandType = CommandType.StoredProcedure;
+            sold_af_statistics_sql.CommandTimeout = 300;
             SqlDataReader sold_af_res = sold_af_statistics_sql.ExecuteReader();
             while (sold_af_res.Read())
             {
@@ -1179,6 +1204,7 @@ namespace ProductInfo
 
             SqlCommand zeds_statistics_sql = new SqlCommand("Bought_Zed_Statistics", SqlLink);
             zeds_statistics_sql.CommandType = CommandType.StoredProcedure;
+            zeds_statistics_sql.CommandTimeout = 300;
 
             zeds_statistics_sql.Parameters.Add(new SqlParameter("@since_date", since_arg));
             zeds_statistics_sql.Parameters.Add(new SqlParameter("@until_date", until_arg));
@@ -1221,6 +1247,7 @@ namespace ProductInfo
 
             SqlCommand sold_zeds_statistics_sql = new SqlCommand("Sold_Zed_Statistics", SqlLink);
             sold_zeds_statistics_sql.CommandType = CommandType.StoredProcedure;
+            sold_zeds_statistics_sql.CommandTimeout = 300;
 
             sold_zeds_statistics_sql.Parameters.Add(new SqlParameter("@since_date", since_arg));
             sold_zeds_statistics_sql.Parameters.Add(new SqlParameter("@until_date", until_arg));
@@ -1247,9 +1274,11 @@ namespace ProductInfo
         public DataTable Rem_Statistics(int store_id, DateTime from_time, DateTime to_time)
         {
             DataTable rems_dt = new DataTable();
+            rems_dt.Columns.Add("id");//product_barcode
             rems_dt.Columns.Add("შტრიხ–კოდი");//product_barcode
             rems_dt.Columns.Add("დასახელება");//product_name
             rems_dt.Columns.Add("მომწოდებელი");
+            rems_dt.Columns.Add("ზედ. ნომერი");
             rems_dt.Columns.Add("ტევ.");
             rems_dt.Columns.Add("საწყ.N");
             rems_dt.Columns.Add("დარჩენილია");
@@ -1262,6 +1291,7 @@ namespace ProductInfo
 
             SqlCommand rem_statistics_sql = new SqlCommand("Rem_Statistics", SqlLink);
             rem_statistics_sql.CommandType = CommandType.StoredProcedure;
+            rem_statistics_sql.CommandTimeout = 300;
 
             rem_statistics_sql.Parameters.Add(new SqlParameter("@StoreID", store_id));
             rem_statistics_sql.Parameters.Add(new SqlParameter("@FromTime", from_time));
@@ -1274,7 +1304,7 @@ namespace ProductInfo
                 for (int i = 0; i < rems_rdr.FieldCount; i++)
                 {
                     nextRemRow[i] = rems_rdr[i];
-                    if ((3 == i | 6 == i | 7 == i | 8 == i | 9 == i) && "" != rems_rdr[i].ToString())
+                    if ((5 == i | 8 == i | 9 == i | 10 == i | 11 == i) && "" != rems_rdr[i].ToString())
                     {
                         try
                         {
@@ -1295,14 +1325,16 @@ namespace ProductInfo
             return rems_dt;
         }
 
-        public info UpdateProduct(string barcode_arg, string newname_arg, int newVATvalue_arg)
+        public info UpdateProduct(string barcode_arg, string new_barcode_arg, string newname_arg, int newVATvalue_arg)
         {
             info ret_info = info.niy();
 
             SqlCommand updprod_sql = new SqlCommand("UpdateProduct", SqlLink);
             updprod_sql.CommandType = CommandType.StoredProcedure;
+            updprod_sql.CommandTimeout = 300;
 
             updprod_sql.Parameters.Add(new SqlParameter("@barcode", barcode_arg));
+            updprod_sql.Parameters.Add(new SqlParameter("@new_barcode", new_barcode_arg));
             updprod_sql.Parameters.Add(new SqlParameter("@newname", newname_arg));
             updprod_sql.Parameters.Add(new SqlParameter("@newVATvalue", newVATvalue_arg));
 
@@ -1317,6 +1349,24 @@ namespace ProductInfo
             updprod_rdr.Close();
 
             ret_info.errcode = (int)updprod_ret.Value;
+            switch (ret_info.errcode)
+            {
+                case 0:
+                    ret_info.details = "პროდუქტი განახლებულია!";
+                    break;
+                case 1:
+                    ret_info.details = "გადაცემულია არასწორი არგუმენტები!";
+                    break;
+                case 183:
+                    ret_info.details = "ასეთი პროდუქტი უკვე არსებობს!";
+                    break;
+                case 184:
+                    ret_info.details = "შტრიხ–კოდის განახლება შეუძლებელია. გთხოვთ ჯერ წაშალოთ გამეორებები!";
+                    break;
+                case 404:
+                    ret_info.details = "მოლარე არ მოიძებნა!";
+                    break;
+            }
 
             return ret_info;
         }
@@ -1328,6 +1378,7 @@ namespace ProductInfo
 
             SqlCommand getvalidrems_sql = new SqlCommand("GetValidRemainders", SqlLink);
             getvalidrems_sql.CommandType = CommandType.StoredProcedure;
+            getvalidrems_sql.CommandTimeout = 300;
 
             getvalidrems_sql.Parameters.Add(new SqlParameter("@StoreID", StoreID_arg));
             getvalidrems_sql.Parameters.Add(new SqlParameter("@usingCheck", usingCheck));
@@ -1384,6 +1435,7 @@ namespace ProductInfo
 
             SqlCommand agcera_Sql = new SqlCommand("Agcera_Statistics", SqlLink);
             agcera_Sql.CommandType = CommandType.StoredProcedure;
+            agcera_Sql.CommandTimeout = 300;
             agcera_Sql.Parameters.Add(new SqlParameter("@StoreID", StoreID));
 
             SqlDataReader agcera_rdr = agcera_Sql.ExecuteReader();
@@ -1416,6 +1468,7 @@ namespace ProductInfo
 
             SqlCommand SuppFin_Sql = new SqlCommand("Supplier_Fin_Statistics", SqlLink);
             SuppFin_Sql.CommandType = CommandType.StoredProcedure;
+            SuppFin_Sql.CommandTimeout = 300;
 
             SqlDataReader suppfin_rdr = SuppFin_Sql.ExecuteReader();
 
@@ -1449,6 +1502,7 @@ namespace ProductInfo
 
             SqlCommand BuyerFin_Sql = new SqlCommand("Buyer_Fin_Statistics", SqlLink);
             BuyerFin_Sql.CommandType = CommandType.StoredProcedure;
+            BuyerFin_Sql.CommandTimeout = 300;
 
             SqlDataReader buyerfin_rdr = BuyerFin_Sql.ExecuteReader();
 
@@ -1482,6 +1536,7 @@ namespace ProductInfo
 
             SqlCommand TransferMoneySql = new SqlCommand("TransferMoney", SqlLink);
             TransferMoneySql.CommandType = CommandType.StoredProcedure;
+            TransferMoneySql.CommandTimeout = 300;
             TransferMoneySql.Parameters.Add(new SqlParameter("@Client_Ident", ClientID_arg));
             TransferMoneySql.Parameters.Add(new SqlParameter("@transfer_type", transferType_arg.ToString()));
             TransferMoneySql.Parameters.Add(new SqlParameter("@dro", dro_arg));
@@ -1533,6 +1588,7 @@ namespace ProductInfo
 
             SqlCommand UpdateSupplierSql = new SqlCommand("UpdateSupplier", SqlLink);
             UpdateSupplierSql.CommandType = CommandType.StoredProcedure;
+            UpdateSupplierSql.CommandTimeout = 300;
             UpdateSupplierSql.Parameters.Add(new SqlParameter("@supp_ident", updatingSupplier.saidentifikacio_kodi));
             UpdateSupplierSql.Parameters.Add(new SqlParameter("@supp_name", updatingSupplier.saxeli));
             UpdateSupplierSql.Parameters.Add(new SqlParameter("@supp_addr", updatingSupplier.address));
@@ -1577,6 +1633,7 @@ namespace ProductInfo
 
             SqlCommand SOdetails_Sql = new SqlCommand("SellOrder_Details", SqlLink);
             SOdetails_Sql.CommandType = CommandType.StoredProcedure;
+            SOdetails_Sql.CommandTimeout = 300;
 
             SOdetails_Sql.Parameters.Add(new SqlParameter("@SellOrderID", SellOrderID_arg));
 
@@ -1618,6 +1675,7 @@ namespace ProductInfo
 
             SqlCommand SoldZed_Sql = new SqlCommand("SoldZedDetails", SqlLink);
             SoldZed_Sql.CommandType = CommandType.StoredProcedure;
+            SoldZed_Sql.CommandTimeout = 300;
 
             SoldZed_Sql.Parameters.Add(new SqlParameter("@buyer_ident", buyer_ident_arg));
             SoldZed_Sql.Parameters.Add(new SqlParameter("@zed_ident", zed_id_arg));
@@ -1660,6 +1718,7 @@ namespace ProductInfo
 
             SqlCommand BoughtZed_Sql = new SqlCommand("BoughtZedDetails", SqlLink);
             BoughtZed_Sql.CommandType = CommandType.StoredProcedure;
+            BoughtZed_Sql.CommandTimeout = 300;
 
             BoughtZed_Sql.Parameters.Add(new SqlParameter("@supplier_ident", supplier_ident_arg));
             BoughtZed_Sql.Parameters.Add(new SqlParameter("@zed_ident", zed_id_arg));
@@ -1701,6 +1760,7 @@ namespace ProductInfo
 
             SqlCommand SObyZedCode_Sql = new SqlCommand("GetSellOrderByZedCode", SqlLink);
             SObyZedCode_Sql.CommandType = CommandType.StoredProcedure;
+            SObyZedCode_Sql.CommandTimeout = 300;
 
             SqlParameter zed_ident_par = new SqlParameter("@zed_ident", SqlDbType.NVarChar, 4000);
             zed_ident_par.Direction = ParameterDirection.InputOutput;
@@ -1827,6 +1887,7 @@ namespace ProductInfo
 
             SqlCommand SoldRemByID_Sql = new SqlCommand("SoldRemainderByID", SqlLink);
             SoldRemByID_Sql.CommandType = CommandType.StoredProcedure;
+            SoldRemByID_Sql.CommandTimeout = 300;
 
             SoldRemByID_Sql.Parameters.Add(new SqlParameter("@SoldRemID", soldremid_arg));
 
@@ -1853,6 +1914,7 @@ namespace ProductInfo
 
             SqlCommand updsoldrem_sql = new SqlCommand("UpdateSoldRemainder", SqlLink);
             updsoldrem_sql.CommandType = CommandType.StoredProcedure;
+            updsoldrem_sql.CommandTimeout = 300;
 
             updsoldrem_sql.Parameters.Add(new SqlParameter("@SoldRemID", soldrem_id));
             updsoldrem_sql.Parameters.Add(new SqlParameter("@piece_count_arg", piece_count_arg));
@@ -1924,6 +1986,7 @@ namespace ProductInfo
 
             SqlCommand updrem_sql = new SqlCommand("UpdateRemainder", SqlLink);
             updrem_sql.CommandType = CommandType.StoredProcedure;
+            updrem_sql.CommandTimeout = 300;
 
             updrem_sql.Parameters.Add(new SqlParameter("@RemID", rem_id));
             updrem_sql.Parameters.Add(new SqlParameter("@piece_count_arg", piece_count_arg));
@@ -1958,14 +2021,16 @@ namespace ProductInfo
             return ret_info;
         }
 
-        public info UpdateZednadebi(string zed_ident_arg, string operation_type_arg, string client_ident_arg, DateTime zed_tarigi_arg, string af_seria_arg, string af_nomeri_arg, DateTime af_tarigi_arg)
+        public info UpdateZednadebi(string zed_ident_arg, string new_zed_ident_arg, string operation_type_arg, string client_ident_arg, DateTime zed_tarigi_arg, string af_seria_arg, string af_nomeri_arg, DateTime af_tarigi_arg)
         {
             info ret_info = info.niy();
 
             SqlCommand updzed_sql = new SqlCommand("UpdateZednadebi", SqlLink);
             updzed_sql.CommandType = CommandType.StoredProcedure;
+            updzed_sql.CommandTimeout = 300;
 
             updzed_sql.Parameters.Add(new SqlParameter("@zed_ident", zed_ident_arg));
+            updzed_sql.Parameters.Add(new SqlParameter("@new_zed_ident", new_zed_ident_arg));
             updzed_sql.Parameters.Add(new SqlParameter("@operation_type", operation_type_arg));
             updzed_sql.Parameters.Add(new SqlParameter("@client_ident", client_ident_arg));
             updzed_sql.Parameters.Add(new SqlParameter("@tarigi", zed_tarigi_arg));
@@ -1988,8 +2053,14 @@ namespace ProductInfo
 
             switch (ret_info.errcode)
             {
+                case 500:
+                    ret_info.details = "მონაცემთა ბაზაში შეცდომაა!";
+                    break;
                 case 404:
                     ret_info.details = "მონაცემები არ ემთხვევა!";
+                    break;
+                case 183:
+                    ret_info.details = "ასეთი ზედნადები უკვე არსებობს!";
                     break;
                 case 1:
                     ret_info.details = "პარამეტრები არასწორია!";
@@ -2022,6 +2093,7 @@ namespace ProductInfo
 
             SqlCommand rem_statistics_sql = new SqlCommand("SingleZedDetails", SqlLink);
             rem_statistics_sql.CommandType = CommandType.StoredProcedure;
+            rem_statistics_sql.CommandTimeout = 300;
 
             rem_statistics_sql.Parameters.Add(new SqlParameter("@zed_ident", zed_ident));
             rem_statistics_sql.Parameters.Add(new SqlParameter("@oper_type", oper_type));
@@ -2143,6 +2215,7 @@ namespace ProductInfo
 
             SqlCommand mttransf_sql = new SqlCommand("MoneyTransferStatistics", DataProvider.SqlLink);
             mttransf_sql.CommandType = CommandType.StoredProcedure;
+            mttransf_sql.CommandTimeout = 300;
 
             mttransf_sql.Parameters.Add(new SqlParameter("@StoreID", StoreID_arg));
             mttransf_sql.Parameters.Add(new SqlParameter("@Since", since_arg));
@@ -2175,6 +2248,7 @@ namespace ProductInfo
 
             SqlCommand RemRemainderCmd = new SqlCommand("RemoveRemainder", SqlLink);
             RemRemainderCmd.CommandType = CommandType.StoredProcedure;
+            RemRemainderCmd.CommandTimeout = 300;
 
             RemRemainderCmd.Parameters.Add(new SqlParameter("@Rem_ID", rem_id_arg));
 
@@ -2213,6 +2287,7 @@ namespace ProductInfo
 
             SqlCommand RemSoldRemainderCmd = new SqlCommand("RemoveSoldRemainder", SqlLink);
             RemSoldRemainderCmd.CommandType = CommandType.StoredProcedure;
+            RemSoldRemainderCmd.CommandTimeout = 300;
 
             RemSoldRemainderCmd.Parameters.Add(new SqlParameter("@SoldRem_ID", soldrem_id_arg));
 
@@ -2251,6 +2326,7 @@ namespace ProductInfo
 
             SqlCommand RmZedCmd = new SqlCommand("RemoveZednadebi", SqlLink);
             RmZedCmd.CommandType = CommandType.StoredProcedure;
+            RmZedCmd.CommandTimeout = 300;
 
             RmZedCmd.Parameters.Add(new SqlParameter("@zed_ident", zed_ident_arg));
             RmZedCmd.Parameters.Add(new SqlParameter("@oper_type", oper_type_arg));
@@ -2339,6 +2415,7 @@ namespace ProductInfo
 
             SqlCommand RemMoneyTransferCmd = new SqlCommand("RemoveMoneyTransfer", SqlLink);
             RemMoneyTransferCmd.CommandType = CommandType.StoredProcedure;
+            RemMoneyTransferCmd.CommandTimeout = 300;
 
             RemMoneyTransferCmd.Parameters.Add(new SqlParameter("@mt_id", mt_id_arg));
 
@@ -2558,6 +2635,7 @@ namespace ProductInfo
 
             SqlCommand bought_af_statistics_sql = new SqlCommand("Bought_AF_Standard_List", SqlLink);
             bought_af_statistics_sql.CommandType = CommandType.StoredProcedure;
+            bought_af_statistics_sql.CommandTimeout = 300;
             SqlDataReader bought_af_res = bought_af_statistics_sql.ExecuteReader();
             while (bought_af_res.Read())
             {
@@ -2698,6 +2776,7 @@ namespace ProductInfo
 
             SqlCommand RemSellOrderCmd = new SqlCommand("RemoveSellOrder", SqlLink);
             RemSellOrderCmd.CommandType = CommandType.StoredProcedure;
+            RemSellOrderCmd.CommandTimeout = 300;
 
             RemSellOrderCmd.Parameters.Add(new SqlParameter("@SellOrderID", SO_id_arg));
 
@@ -2754,6 +2833,112 @@ namespace ProductInfo
             CashBoxBalance_res.Close();
 
             return CashBoxBalance_ret;
+        }
+
+        public DataTable AllCashiers()
+        {
+            DataTable AllCashiers_ret = new DataTable();
+            AllCashiers_ret.Columns.AddRange(new DataColumn[]{
+                  new DataColumn("id",typeof(int))
+                , new DataColumn("sName",typeof(string))
+                , new DataColumn("sPasswd",typeof(string))
+                , new DataColumn("eActive",typeof(bool))
+            });
+
+            SqlCommand AllCashiers_sql = new SqlCommand("SELECT * FROM dbo.Cashiers", SqlLink);
+            AllCashiers_sql.CommandType = CommandType.Text;
+
+            SqlDataReader AllCashiers_rdr = AllCashiers_sql.ExecuteReader();
+            while (AllCashiers_rdr.Read())
+            {
+                DataRow nextRow = AllCashiers_ret.NewRow();
+                /*for (int i = 0; i < AllStores_res.FieldCount; i++)
+                {
+                    nextRow[i] = AllStores_res[i];
+                }*/
+                nextRow["id"] = AllCashiers_rdr["id"];
+                nextRow["sName"] = AllCashiers_rdr["sName"];
+                nextRow["sPasswd"] = AllCashiers_rdr["sPasswd"];
+                nextRow["eActive"] = AllCashiers_rdr["eActive"];
+                AllCashiers_ret.Rows.Add(nextRow);
+            }
+            AllCashiers_rdr.Close();
+
+            return AllCashiers_ret;
+        }
+
+        public DataTable AllActiveCashiers()
+        {
+            DataTable AllCashiers_ret = new DataTable();
+            AllCashiers_ret.Columns.AddRange(new DataColumn[]{
+                  new DataColumn("id",typeof(int))
+                , new DataColumn("sName",typeof(string))
+                , new DataColumn("sPasswd",typeof(string))
+                , new DataColumn("eActive",typeof(bool))
+            });
+
+            SqlCommand AllCashiers_sql = new SqlCommand("SELECT * FROM dbo.Cashiers WHERE eActive = 1", SqlLink);
+            AllCashiers_sql.CommandType = CommandType.Text;
+
+            SqlDataReader AllCashiers_rdr = AllCashiers_sql.ExecuteReader();
+            while (AllCashiers_rdr.Read())
+            {
+                DataRow nextRow = AllCashiers_ret.NewRow();
+                /*for (int i = 0; i < AllStores_res.FieldCount; i++)
+                {
+                    nextRow[i] = AllStores_res[i];
+                }*/
+                nextRow["id"] = AllCashiers_rdr["id"];
+                nextRow["sName"] = AllCashiers_rdr["sName"];
+                nextRow["sPasswd"] = AllCashiers_rdr["sPasswd"];
+                nextRow["eActive"] = AllCashiers_rdr["eActive"];
+                AllCashiers_ret.Rows.Add(nextRow);
+            }
+            AllCashiers_rdr.Close();
+
+            return AllCashiers_ret;
+        }
+
+        public info UpdateCashier(int id_arg, string name_arg, string passwd_arg, bool active_arg)
+        {
+            info ret_info = info.niy();
+
+            SqlCommand updprod_sql = new SqlCommand("UpdateCashier", SqlLink);
+            updprod_sql.CommandType = CommandType.StoredProcedure;
+
+            updprod_sql.Parameters.Add(new SqlParameter("@id", id_arg));
+            updprod_sql.Parameters.Add(new SqlParameter("@name", name_arg));
+            updprod_sql.Parameters.Add(new SqlParameter("@passwd", passwd_arg));
+            updprod_sql.Parameters.Add(new SqlParameter("@active", active_arg));
+
+            SqlParameter updprod_ret = new SqlParameter("@Return_Value", DbType.Int32);
+            updprod_ret.Direction = ParameterDirection.ReturnValue;
+            updprod_sql.Parameters.Add(updprod_ret);
+
+            SqlDataReader updprod_rdr = updprod_sql.ExecuteReader();
+            while (updprod_rdr.Read())
+            {
+            }
+            updprod_rdr.Close();
+
+            ret_info.errcode = (int)updprod_ret.Value;
+            switch (ret_info.errcode)
+            {
+                case 0:
+                    ret_info.details = "მოლარის ინფორმაცია შეტანილია!";
+                    break;
+                case 1:
+                    ret_info.details = "გადაცემულია არასწორი არგუმენტები!";
+                    break;
+                case 183:
+                    ret_info.details = "ასეთი მოლარე უკვე არსებობს!";
+                    break;
+                case 404:
+                    ret_info.details = "მოლარე არ მოიძებნა!";
+                    break;
+            }
+
+            return ret_info;
         }
 
     } //DataProvider Class

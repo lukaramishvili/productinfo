@@ -12,3 +12,4 @@ D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInf
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\DataProvider.pdb
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\Data_Visualization.dll
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Release\Data_Visualization.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Release\ShopInfo_GUI.frmShopInfoLoginForm.resources

@@ -111,6 +111,9 @@ namespace ProductInfo_UI
             this.Text = "გაყიდვის დეტალები";
             this.SellOrderID = SellOrderID_arg;
 
+            lblZedIdent.Visible = false;
+            txtZedIdent.Visible = false;
+            btnEnableEditingZedIdent.Visible = false;
             datetime_zed_tarigi.Visible = false;
             txt_af_seria.Visible = false;
             txt_af_nomeri.Visible = false;
@@ -144,9 +147,12 @@ namespace ProductInfo_UI
             this.Text = soldzed_buyer_name + "-ზე გასული ზედნადები N. " + zed_ident_arg;
 
             so_details = ProductInfo_Main_Form.conn.SoldZedDetails(buyer_ident_arg, zed_ident_arg);
+            txtZedIdent.Text = zed_ident_arg;
             ProductInfo_Main_Form.DataTableToListView(sold_rem_list, so_details, true);
-            attributes_lbl.Text = "გაყიდვის დრო: " + dro_arg.ToString() + "\n" +
-                "მყიდველი: " + soldzed_buyer_name + "\nზედნადების ნომერი: " + zed_ident_arg + "\n\n\n\n";
+            attributes_lbl.Text = "გაყიდვის დრო: " + dro_arg.ToString() + "\n"
+                + "მყიდველი: " + soldzed_buyer_name
+                //+ "\nზედნადების ნომერი: " + zed_ident_arg
+                + "\n\n\n\n\n";
             SOd_print_btn.Enabled = true;
             SOd_print_gasavali_btn.Enabled = true;
 
@@ -179,9 +185,11 @@ namespace ProductInfo_UI
             this.Text = boughtzed_supplier_name + "-სგან მიღებული ზედნადები N. " + zed_ident_arg;
 
             so_details = ProductInfo_Main_Form.conn.BoughtZedDetails(supplier_ident_arg, zed_ident_arg);
+            txtZedIdent.Text = zed_ident_arg;
             ProductInfo_Main_Form.DataTableToListView(sold_rem_list, so_details, true);
             attributes_lbl.Text = "მიღების დრო: " + dro_arg.ToString() + "\n" +
-                "მომწოდებელი: " + boughtzed_supplier_name + "\nზედნადების ნომერი: " + zed_ident_arg + "\n\n\n\n";
+                "მომწოდებელი: " + boughtzed_supplier_name// +"\nზედნადების ნომერი: " + zed_ident_arg
+                + "\n\n\n\n\n";
             SOd_print_btn.Enabled = true;
             SOd_print_gasavali_btn.Enabled = false;
             SOd_print_gasavali_btn.Visible = false;
@@ -257,7 +265,7 @@ namespace ProductInfo_UI
 
         private void btn_zed_update_Click(object sender, EventArgs e)
         {
-            info updzed_info = ProductInfo_Main_Form.conn.UpdateZednadebi(EditingZedIdent, EditingZedOperation, EditingZedClientIdent, datetime_zed_tarigi.Value, txt_af_seria.Text, txt_af_nomeri.Text, datepicker_af_date.Value);
+            info updzed_info = ProductInfo_Main_Form.conn.UpdateZednadebi(EditingZedIdent, txtZedIdent.Text, EditingZedOperation, EditingZedClientIdent, datetime_zed_tarigi.Value, txt_af_seria.Text, txt_af_nomeri.Text, datepicker_af_date.Value);
             MessageBox.Show(updzed_info.details, updzed_info.errcode.ToString());
         }
 
@@ -344,6 +352,14 @@ namespace ProductInfo_UI
             PrintPreview_Form prevw_frm = new PrintPreview_Form();
             prevw_frm.Show();
             prevw_frm.DrawData(so_gasavali_print, false);
+        }
+
+        private void btnEnableEditingZedIdent_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("დარწმუნებული ხართ, რომ გსურთ ზედნადების ნომრის ჩასწორება?", "გაფრთხილება", MessageBoxButtons.YesNo))
+            {
+                txtZedIdent.Enabled = true;
+            }
         }
         //
     }

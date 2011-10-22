@@ -601,7 +601,7 @@ namespace Data_Visualization
             return ret_bmp;
         }
 
-        public static void PrintPOSCheck(SellOrder SO_arg, decimal cash_handled, decimal cash_change, Product[] AllProductsKeyValue)
+        public static void PrintPOSCheck(SellOrder SO_arg, decimal cash_handled, decimal cash_change, Product[] AllProductsKeyValue, string sCashierName)
         {
             PrintDocument printPOS_doc = new PrintDocument();
             printPOS_doc.DefaultPageSettings = printPOS_doc.PrinterSettings.DefaultPageSettings;
@@ -648,6 +648,10 @@ namespace Data_Visualization
                     e.Graphics.DrawString("ნაღდი ფული: " + Math.Round(cash_handled, 2).ToString(), Sylfaen_11, Brushes.Black, new PointF(5, Offset + 4));
                     Offset += 20;
                     e.Graphics.DrawString("ხურდა: " + Math.Round(cash_change, 2).ToString(), Sylfaen_11, Brushes.Black, new PointF(5, Offset + 4));
+                    Offset += 20;
+                    e.Graphics.DrawString("მოლარე: " + sCashierName, Sylfaen_11, Brushes.Black, new PointF(5, Offset + 4));
+                    Offset += 20;
+                    e.Graphics.DrawString("გაყიდვის დრო: " + DateTime.Now.ToString(), Sylfaen_11, Brushes.Black, new PointF(5, Offset + 4));
                     Offset += 20;
                     //
                     e.Graphics.DrawLine(Pens.Black, new PointF(5, Offset + 11), new PointF(260, Offset + 11));

@@ -118,14 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="print_h22" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\print_h22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="csv_h261" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\csv_h26.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="item_add_21x21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\item_add_21x21.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="csv_h261" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="csv_h26" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\csv_h26.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="find_21x21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find_21x21.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="refresh_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,13 +136,13 @@
   <data name="csv_22x22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\csv_22x22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="find_21x21" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\find_21x21.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="csv_h26" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\csv_h26.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="print_h22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\print_h22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="grocery-list.16x22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\grocery-list.16x22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pencil_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pencil_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
