@@ -985,6 +985,7 @@ namespace ProductInfo
             sold_prodrems_dt.Columns.Add("საშუალო ფასი");
             sold_prodrems_dt.Columns.Add("საშუალო ღირებულება");
             sold_prodrems_dt.Columns.Add("საშ. ღირ.დღგ–ს გარეშე");
+            sold_prodrems_dt.Columns.Add("ჯამური ღირ.");
             sold_prodrems_dt.Columns.Add("ჯამური ფასი");
 
             SqlCommand byprod_soldrems_sql = new SqlCommand("GetSoldRemaindersByProductName", DataProvider.SqlLink);
@@ -1003,7 +1004,7 @@ namespace ProductInfo
                 for (int i = 0; i < prod_soldrems_rs.FieldCount; i++)
                 {
                     newRec[i] = prod_soldrems_rs[i];
-                    if ((3 == i | 4 == i | 5 == i | 6 == i | 7 == i) && "" != prod_soldrems_rs[i].ToString())
+                    if ((3 == i | 4 == i | 5 == i | 6 == i | 7 == i | 8 == i) && "" != prod_soldrems_rs[i].ToString())
                     {
                         newRec[i] = Math.Round(Utilities.Utilities.ParseDecimal(prod_soldrems_rs[i].ToString()), 4, MidpointRounding.AwayFromZero);
                     }

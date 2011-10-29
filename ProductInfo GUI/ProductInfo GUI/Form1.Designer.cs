@@ -30,11 +30,11 @@ namespace ProductInfo_UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.mm_nashtebi = new System.Windows.Forms.ToolStripMenuItem();
             this.mm_add_remainders = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,6 +90,7 @@ namespace ProductInfo_UI
             this.sell_submit_btn = new System.Windows.Forms.Button();
             this.nashtebi_tabpage = new System.Windows.Forms.TabPage();
             this.rem_list = new System.Windows.Forms.ListView();
+            this.rem_list_id_col = new System.Windows.Forms.ColumnHeader();
             this.rem_list_barcode_header = new System.Windows.Forms.ColumnHeader();
             this.rem_list_prodname_header = new System.Windows.Forms.ColumnHeader();
             this.rem_list_supplier_header = new System.Windows.Forms.ColumnHeader();
@@ -106,6 +107,7 @@ namespace ProductInfo_UI
             this.cm_rem_list = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmi_rem_list_supplier_info = new System.Windows.Forms.ToolStripMenuItem();
             this.cmi_split_rems = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmi_edit_rems = new System.Windows.Forms.ToolStripMenuItem();
             this.zednadebebi_tabpage = new System.Windows.Forms.TabPage();
             this.zed_list = new System.Windows.Forms.ListView();
             this.zed_ident_col = new System.Windows.Forms.ColumnHeader();
@@ -240,10 +242,12 @@ namespace ProductInfo_UI
             this.sold_prodrem_list = new System.Windows.Forms.ListView();
             this.sold_prods_barcode_col = new System.Windows.Forms.ColumnHeader();
             this.sold_prods_name_col = new System.Windows.Forms.ColumnHeader();
+            this.sold_prods_supplier_col = new System.Windows.Forms.ColumnHeader();
             this.sold_prods_count_col = new System.Windows.Forms.ColumnHeader();
             this.sold_prods_piece_price_col = new System.Windows.Forms.ColumnHeader();
             this.sold_prods_cost_col = new System.Windows.Forms.ColumnHeader();
             this.sold_prods_cost_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
+            this.sold_prods_sum_cost_col = new System.Windows.Forms.ColumnHeader();
             this.moneytransfers_tabpage = new System.Windows.Forms.TabPage();
             this.moneytransfer_list = new System.Windows.Forms.ListView();
             this.mt_id_col = new System.Windows.Forms.ColumnHeader();
@@ -282,9 +286,6 @@ namespace ProductInfo_UI
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
-            this.cmi_edit_rems = new System.Windows.Forms.ToolStripMenuItem();
-            this.rem_list_id_col = new System.Windows.Forms.ColumnHeader();
-            this.sold_prods_supplier_col = new System.Windows.Forms.ColumnHeader();
             this.sold_prods_sum_price_col = new System.Windows.Forms.ColumnHeader();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
@@ -661,16 +662,16 @@ namespace ProductInfo_UI
             // 
             // sell_list
             // 
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Sylfaen", 11F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_list.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Sylfaen", 11F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sell_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.sell_list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sell_list.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sell_barcode_col,
@@ -758,9 +759,9 @@ namespace ProductInfo_UI
             // 
             // sell_initial_price_info_col
             // 
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
-            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            this.sell_initial_price_info_col.DefaultCellStyle = dataGridViewCellStyle13;
             this.sell_initial_price_info_col.Frozen = true;
             this.sell_initial_price_info_col.HeaderText = "ასაღები ფასი (საცალო)";
             this.sell_initial_price_info_col.Name = "sell_initial_price_info_col";
@@ -768,16 +769,16 @@ namespace ProductInfo_UI
             // 
             // sell_remaining_col
             // 
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.sell_remaining_col.DefaultCellStyle = dataGridViewCellStyle14;
             this.sell_remaining_col.HeaderText = "დარჩ.";
             this.sell_remaining_col.Name = "sell_remaining_col";
             this.sell_remaining_col.ReadOnly = true;
             // 
             // sell_sum_price_col
             // 
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.Gray;
-            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.Gray;
+            this.sell_sum_price_col.DefaultCellStyle = dataGridViewCellStyle15;
             this.sell_sum_price_col.HeaderText = "ჯამი";
             this.sell_sum_price_col.Name = "sell_sum_price_col";
             this.sell_sum_price_col.ReadOnly = true;
@@ -868,6 +869,10 @@ namespace ProductInfo_UI
             this.rem_list.UseCompatibleStateImageBehavior = false;
             this.rem_list.View = System.Windows.Forms.View.Details;
             // 
+            // rem_list_id_col
+            // 
+            this.rem_list_id_col.Text = "id";
+            // 
             // rem_list_barcode_header
             // 
             this.rem_list_barcode_header.Text = "შტრიხ–კოდი";
@@ -955,6 +960,13 @@ namespace ProductInfo_UI
             this.cmi_split_rems.Size = new System.Drawing.Size(204, 22);
             this.cmi_split_rems.Text = "საწყობებში განაწილება";
             this.cmi_split_rems.Click += new System.EventHandler(this.cmi_split_rems_Click);
+            // 
+            // cmi_edit_rems
+            // 
+            this.cmi_edit_rems.Name = "cmi_edit_rems";
+            this.cmi_edit_rems.Size = new System.Drawing.Size(204, 22);
+            this.cmi_edit_rems.Text = "ჩასწორება";
+            this.cmi_edit_rems.Click += new System.EventHandler(this.cmi_edit_rems_Click);
             // 
             // zednadebebi_tabpage
             // 
@@ -1914,6 +1926,7 @@ namespace ProductInfo_UI
             this.sold_prods_piece_price_col,
             this.sold_prods_cost_col,
             this.sold_prods_cost_withoutVAT_col,
+            this.sold_prods_sum_cost_col,
             this.sold_prods_sum_price_col});
             this.sold_prodrem_list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sold_prodrem_list.Font = new System.Drawing.Font("Sylfaen", 10F);
@@ -1937,6 +1950,10 @@ namespace ProductInfo_UI
             this.sold_prods_name_col.Text = "დასახელება";
             this.sold_prods_name_col.Width = 180;
             // 
+            // sold_prods_supplier_col
+            // 
+            this.sold_prods_supplier_col.Text = "მომწოდებელი";
+            // 
             // sold_prods_count_col
             // 
             this.sold_prods_count_col.Text = "რაოდენობა (ცალობით)";
@@ -1950,13 +1967,17 @@ namespace ProductInfo_UI
             // 
             // sold_prods_cost_col
             // 
-            this.sold_prods_cost_col.Text = "საშუალო ღირებულება";
-            this.sold_prods_cost_col.Width = 181;
+            this.sold_prods_cost_col.Text = "საშუალო ღირ.";
+            this.sold_prods_cost_col.Width = 103;
             // 
             // sold_prods_cost_withoutVAT_col
             // 
             this.sold_prods_cost_withoutVAT_col.Text = "საშუალო ღირ. დღგ–ს გარეშე";
             this.sold_prods_cost_withoutVAT_col.Width = 207;
+            // 
+            // sold_prods_sum_cost_col
+            // 
+            this.sold_prods_sum_cost_col.Text = "ჯამური ღირ.";
             // 
             // moneytransfers_tabpage
             // 
@@ -2255,21 +2276,6 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Name = "tb_until_lbl";
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
-            // 
-            // cmi_edit_rems
-            // 
-            this.cmi_edit_rems.Name = "cmi_edit_rems";
-            this.cmi_edit_rems.Size = new System.Drawing.Size(204, 22);
-            this.cmi_edit_rems.Text = "ჩასწორება";
-            this.cmi_edit_rems.Click += new System.EventHandler(this.cmi_edit_rems_Click);
-            // 
-            // rem_list_id_col
-            // 
-            this.rem_list_id_col.Text = "id";
-            // 
-            // sold_prods_supplier_col
-            // 
-            this.sold_prods_supplier_col.Text = "მომწოდებელი";
             // 
             // sold_prods_sum_price_col
             // 
@@ -2583,6 +2589,7 @@ namespace ProductInfo_UI
         private ToolStripMenuItem cmi_edit_rems;
         private ColumnHeader rem_list_id_col;
         private ColumnHeader sold_prods_supplier_col;
+        private ColumnHeader sold_prods_sum_cost_col;
         private ColumnHeader sold_prods_sum_price_col;
 
 
