@@ -76,6 +76,8 @@ namespace ShopInfo_GUI
                 lblActiveCashierName.Text = "მოლარე: " + sActiveCashierName;
             }
             //
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+            //
             all_stores = DataConn.AllStores();
 
             //
@@ -103,6 +105,19 @@ namespace ShopInfo_GUI
             //Init CashDrawer
             InitCashDrawer();
             //
+        }
+
+        void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            CloseResourceDeviceCashDrawer();
+        }
+
+        private void CloseResourceDeviceCashDrawer()
+        {
+            if (null != m_Drawer)
+            {
+                m_Drawer.Close();
+            }
         }
 
         private void RefreshDBStateTables()
@@ -251,9 +266,12 @@ namespace ShopInfo_GUI
                                                         , RemsToSell.ToArray()
                                                         , null);
             //this variable will be initialized by the AddSellOrder call
-            int SellOrderInsertID;
             //add SellOrder to database
-            info SellResult = DataConn.AddSellOrder(CurrentSellOrder, out SellOrderInsertID);
+            info SellResult = DataConn.AddSellOrderWithPayment(CurrentSellOrder, Buyer.xelze.saidentifikacio_kodi
+                                                            , SellOrderTotal
+                                                            , ActiveStoreID
+                                                            , ActiveCashBoxID
+                                                            , ActiveCashierID);
             //success (code 0 means success, code 501 - NotImplementedYet, in early versions 501 was initial value and if it wasn't modified, it meant error did not occur (only erros modified success message). silly, right. )
             if (501 == SellResult.errcode | 0 == SellResult.errcode)
             {
@@ -261,26 +279,15 @@ namespace ShopInfo_GUI
                 BitmapGenerator.PrintPOSCheck(CurrentSellOrder, ParseDecimal(cash_handled_txt.Text), ParseDecimal(cash_change_txt.Text), AllProducts, sActiveCashierName);
                 //TODO:Open Cash Drawer (probably from utilities.external)
                 //pay automatically for the SellOrder
-                info PaymentResult = DataConn.TransferMoney(Buyer.xelze.saidentifikacio_kodi
-                                                            , DataProvider.MoneyTransferType.Take
-                                                            , DateTime.Now
-                                                            , SellOrderTotal
-                                                            , typeof(Buyer)
-                                                            , DataProvider.MoneyTransferPurpose.PayFor
-                                                            , ActiveStoreID
-                                                            , typeof(SellOrder)
-                                                            , SellOrderInsertID.ToString()
-                                                            , ActiveCashBoxID
-                                                            , ActiveCashierID);
-
+                //////////pay code moved to transactional AddSellOrderWithPayment
                 //notify (selling result + ) how the payment transfer resulted 
                 //NotifyOnScreen("პროდუქტები გაყიდულია. ", NotificationSeverity.Success);
                 //TODO: insert wait time? to give the user time to look at the first notification
                 //
                 OpenCashDrawer();
                 //
-                NotifyOnScreen("პროდუქტები გაყიდულია. " + PaymentResult.details
-                    , (0 == PaymentResult.errcode) ? NotificationSeverity.Success : NotificationSeverity.Error);
+                NotifyOnScreen("პროდუქტები გაყიდულია. " + SellResult.details
+                    , (0 == SellResult.errcode) ? NotificationSeverity.Success : NotificationSeverity.Error);
 
                 //clear the list so next SellOrder can be entered
                 sell_grid.Rows.Clear();

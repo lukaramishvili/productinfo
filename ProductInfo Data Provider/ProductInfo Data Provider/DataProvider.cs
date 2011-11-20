@@ -2942,6 +2942,225 @@ namespace ProductInfo
             return ret_info;
         }
 
+
+
+        public info AddSellOrderWithPayment(SellOrder s_order_arg
+            , string client_ident_arg
+            , decimal SellOrderTotal
+            , int ActiveStoreID
+            , int ActiveCashBoxID
+            , int ActiveCashierID)
+        {
+            info return_info = info.niy();
+
+            SqlTransaction safe_sell_trans = SqlLink.BeginTransaction("AddSellOrder_trans");
+
+            int SellOrderInsertID = 0;
+
+            SqlCommand AddSellName_sql = new SqlCommand("AddSellOrder", SqlLink, safe_sell_trans);
+            AddSellName_sql.CommandType = CommandType.StoredProcedure;
+            AddSellName_sql.CommandTimeout = 300;
+            AddSellName_sql.Parameters.Add(new SqlParameter("@sell_time", s_order_arg.dro));
+            AddSellName_sql.Parameters.Add(new SqlParameter("@buyer_ident_code", s_order_arg.buyer_client.saidentifikacio_kodi));
+
+            if (null != s_order_arg.SellingZednadebi)
+            {
+                AddSellName_sql.Parameters.Add(new SqlParameter("@zed_ident", s_order_arg.SellingZednadebi.zednadebis_nomeri));
+            }
+            else
+            {
+                AddSellName_sql.Parameters.Add(new SqlParameter("@zed_ident", ""));
+            }
+            AddSellName_sql.Parameters.Add(new SqlParameter("@selling_with_check", s_order_arg.using_check));
+
+            SqlParameter AddSOInsertIdPar = new SqlParameter("@Insert_Id", DbType.Int32);
+            AddSOInsertIdPar.Direction = ParameterDirection.Output;
+            AddSellName_sql.Parameters.Add(AddSOInsertIdPar);
+            AddSellName_sql.Parameters.Add(new SqlParameter("@payment_method", s_order_arg.payment_method.ToString()));
+
+            SqlParameter AddSellRetVal = new SqlParameter("@Return_Value", DbType.Int32);
+            AddSellRetVal.Direction = ParameterDirection.ReturnValue;
+            AddSellName_sql.Parameters.Add(AddSellRetVal);
+
+            SqlDataReader addsel_rdr = AddSellName_sql.ExecuteReader();
+            while (addsel_rdr.Read())
+            {
+            }
+            SellOrderInsertID = (Int32)AddSOInsertIdPar.Value;
+            //SellOrderInsertID_out_arg = SellOrderInsertID;
+            if ((Int32)AddSellRetVal.Value > 0)
+            {
+                addsel_rdr.Close();
+                safe_sell_trans.Rollback();
+                return_info = new info(AddSellRetVal.Value.ToString() + " error adding SellOrder name", Int32.Parse(AddSellRetVal.Value.ToString()));
+                return return_info;
+            }
+            return_info = new info(AddSellRetVal.Value.ToString() + " result adding SellOrder name", Int32.Parse(AddSellRetVal.Value.ToString()));
+
+
+            addsel_rdr.Close();
+
+            if (null != s_order_arg.SellingAF)
+            {
+
+                SqlCommand addAF_sql = new SqlCommand("AddAngarishFaqtura", SqlLink, safe_sell_trans);
+                addAF_sql.CommandType = CommandType.StoredProcedure;
+                addAF_sql.CommandTimeout = 300;
+                addAF_sql.Parameters.Add(new SqlParameter("@nomeri", s_order_arg.SellingAF.af_nomeri));
+                addAF_sql.Parameters.Add(new SqlParameter("@seria", s_order_arg.SellingAF.seria));
+                addAF_sql.Parameters.Add(new SqlParameter("@dro", s_order_arg.SellingAF.dro));
+                addAF_sql.Parameters.Add(new SqlParameter("@operation", s_order_arg.SellingAF.operation_type.ToString()));
+                addAF_sql.Parameters.Add(new SqlParameter("@client_ident", s_order_arg.SellingAF.supplier_saident));
+
+                SqlParameter addAFRetVal = new SqlParameter("@Return_Value", DbType.Int32);
+                addAFRetVal.Direction = ParameterDirection.ReturnValue;
+                addAF_sql.Parameters.Add(addAFRetVal);
+
+                SqlDataReader addAF_rdr = addAF_sql.ExecuteReader();
+                while (addAF_rdr.Read())
+                {
+                }
+                //check for errors
+                if ((Int32)addAFRetVal.Value > 0 && (Int32)addAFRetVal.Value != 183)//on error 183 we continue. (=af is already added. )
+                {
+                    addAF_rdr.Close();
+                    safe_sell_trans.Rollback();
+                    return_info = new info(addAFRetVal.Value.ToString() + " error adding angarish/faqtura", Int32.Parse(addAFRetVal.Value.ToString()));
+                    return return_info;
+                }
+                return_info = new info(addAFRetVal.Value.ToString() + " result adding angarish/faqtura", Int32.Parse(addAFRetVal.Value.ToString()));
+
+
+                addAF_rdr.Close();
+            }
+
+            if (null != s_order_arg.SellingZednadebi)
+            {
+                SqlCommand addZed_sql = new SqlCommand("AddZednadebi", SqlLink, safe_sell_trans);
+                addZed_sql.CommandType = CommandType.StoredProcedure;
+                addZed_sql.CommandTimeout = 300;
+                addZed_sql.Parameters.Add(new SqlParameter("@id_code", s_order_arg.SellingZednadebi.zednadebis_nomeri));
+                addZed_sql.Parameters.Add(new SqlParameter("@dro", s_order_arg.SellingZednadebi.dro));
+                addZed_sql.Parameters.Add(new SqlParameter("@operation", s_order_arg.SellingZednadebi.operation_type.ToString()));
+                addZed_sql.Parameters.Add(new SqlParameter("@client_id", s_order_arg.SellingZednadebi.buyer_saident));
+                addZed_sql.Parameters.Add(new SqlParameter("@af_seria", s_order_arg.SellingZednadebi.af_seria));
+                addZed_sql.Parameters.Add(new SqlParameter("@af_nomeri", s_order_arg.SellingZednadebi.af_saident));
+                addZed_sql.Parameters.Add(new SqlParameter("@pay_method", s_order_arg.SellingZednadebi.gadaxdis_metodi.ToString()));
+
+                SqlParameter addZedRetVal = new SqlParameter("@Return_Value", DbType.Int32);
+                addZedRetVal.Direction = ParameterDirection.ReturnValue;
+                addZed_sql.Parameters.Add(addZedRetVal);
+
+                SqlDataReader addzed_rdr = addZed_sql.ExecuteReader();
+                while (addzed_rdr.Read())
+                {
+                }
+                //check for errors
+                if ((Int32)addZedRetVal.Value > 0)
+                {
+                    addzed_rdr.Close();
+                    safe_sell_trans.Rollback();
+                    return_info = new info(addZedRetVal.Value.ToString() + " error adding zednadebi", Int32.Parse(addZedRetVal.Value.ToString()));
+                    return return_info;
+                }
+                return_info = new info(addZedRetVal.Value.ToString() + " result adding zednadebi", Int32.Parse(addZedRetVal.Value.ToString()));
+
+
+                addzed_rdr.Close();
+            }
+
+            foreach (Remainder sellRem in s_order_arg.OutgoingRemainders)
+            {
+                if (0.0m >= sellRem.sell_price | 0.0m >= sellRem.initial_pieces)
+                {
+                    safe_sell_trans.Rollback();
+                    return_info = new info("გადაცემულია არასწორი პარამეტრები", 1);
+                    return return_info;
+                }
+                //TODO
+                SqlCommand sellRemSql = new SqlCommand("SellRemainder", SqlLink, safe_sell_trans);
+                sellRemSql.CommandType = CommandType.StoredProcedure;
+                sellRemSql.CommandTimeout = 300;
+                sellRemSql.Parameters.Add(new SqlParameter("@barcode", sellRem.product_barcode));
+                sellRemSql.Parameters.Add(new SqlParameter("@storeID", sellRem.storehouse_id));
+                sellRemSql.Parameters.Add(new SqlParameter("@selling_count", sellRem.initial_pieces));
+                sellRemSql.Parameters.Add(new SqlParameter("@piece_price", sellRem.sell_price));
+                sellRemSql.Parameters.Add(new SqlParameter("@SellOrderID", AddSOInsertIdPar.Value));
+
+                SqlParameter sellrem_retval = new SqlParameter("@Return_Value", DbType.Int32);
+                sellrem_retval.Direction = ParameterDirection.ReturnValue;
+                sellRemSql.Parameters.Add(sellrem_retval);
+
+                SqlDataReader sellrem_rdr = sellRemSql.ExecuteReader();
+                while (sellrem_rdr.Read())
+                {
+                }
+                sellrem_rdr.Close();
+                if ((Int32)sellrem_retval.Value > 0)
+                {
+                    safe_sell_trans.Rollback();
+                    return_info = new info(sellrem_retval.Value.ToString() + " error adding remainder", Int32.Parse(sellrem_retval.Value.ToString()));
+                    return return_info;
+                }
+                return_info = new info(sellrem_retval.Value.ToString() + " result adding remainder", Int32.Parse(sellrem_retval.Value.ToString()));
+                sellrem_rdr.Close();
+                //end TODO foreach, the rest is done in this function
+            }
+
+            //////////////////
+            info ret_info_payment = info.niy();
+
+            if ("" == client_ident_arg | null == DataProvider.MoneyTransferType.Take | null == DateTime.Now | 0.0m >= SellOrderTotal | null == typeof(Buyer))
+            {
+                return new info("გადაცემულია არასწორი პარამეტრები", 1);
+            }
+
+            SqlCommand TransferMoneySql = new SqlCommand("TransferMoney", SqlLink);
+            TransferMoneySql.Transaction = safe_sell_trans;
+            TransferMoneySql.CommandType = CommandType.StoredProcedure;
+            TransferMoneySql.CommandTimeout = 300;
+            TransferMoneySql.Parameters.Add(new SqlParameter("@Client_Ident", client_ident_arg));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@transfer_type", DataProvider.MoneyTransferType.Take.ToString()));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@dro", DateTime.Now));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@amount", SellOrderTotal));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@client_type", typeof(Buyer).ToString()));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@purpose", DataProvider.MoneyTransferPurpose.PayFor.ToString()));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@store_id", ActiveStoreID));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@target_type", (null != typeof(SellOrder)) ? typeof(SellOrder).ToString() : null));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@target_ident", (null != SellOrderInsertID.ToString()) ? SellOrderInsertID.ToString().ToString() : null));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@cashbox_id", ActiveCashBoxID));
+            TransferMoneySql.Parameters.Add(new SqlParameter("@cashier_id", ActiveCashierID));
+
+            SqlParameter TransfMonRetVal = new SqlParameter("@Return_Value", DbType.Int32);
+            TransfMonRetVal.Direction = ParameterDirection.ReturnValue;
+            TransferMoneySql.Parameters.Add(TransfMonRetVal);
+
+            SqlDataReader TransfMoney_rdr = TransferMoneySql.ExecuteReader();
+            while (TransfMoney_rdr.Read())
+            {
+            }
+            int ReturnCode = (Int32)TransfMonRetVal.Value;
+
+            TransfMoney_rdr.Close();
+
+            ret_info_payment.errcode = ReturnCode;
+            if (0 == ReturnCode)
+            {
+                ret_info_payment.details = "ფულადი ოპერაცია წარმატებით დასრულდა!";
+            }
+            else
+            {
+                safe_sell_trans.Rollback();
+                ret_info_payment.details = "მოხდა შეცდომა. ოპერაცია ვერ განხორციელდა!";
+                return ret_info_payment;
+            }
+            ////////////////////
+
+            //
+            safe_sell_trans.Commit();
+            ////
+            return return_info;
+        }
     } //DataProvider Class
 
 
