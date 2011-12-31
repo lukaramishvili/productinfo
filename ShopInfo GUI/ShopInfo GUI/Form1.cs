@@ -267,7 +267,8 @@ namespace ShopInfo_GUI
                                                         , null);
             //this variable will be initialized by the AddSellOrder call
             //add SellOrder to database
-            info SellResult = DataConn.AddSellOrderWithPayment(CurrentSellOrder, Buyer.xelze.saidentifikacio_kodi
+            //use new fast optimized method instead of AddSellOrderWithPayment
+            info SellResult = DataConn.FastAddShopInfoSellOrderWithPayment(CurrentSellOrder, Buyer.xelze.saidentifikacio_kodi
                                                             , SellOrderTotal
                                                             , ActiveStoreID
                                                             , ActiveCashBoxID

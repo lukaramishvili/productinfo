@@ -2942,7 +2942,81 @@ namespace ProductInfo
             return ret_info;
         }
 
+        public info FastAddShopInfoSellOrderWithPayment(SellOrder s_order_arg
+            , string client_ident_arg
+            , decimal SellOrderTotal
+            , int ActiveStoreID
+            , int ActiveCashBoxID
+            , int ActiveCashierID)
+        {
+            info return_info = info.niy();
 
+            SqlCommand cmdFastAddShopInfoSellOrderWithPayment
+                = new SqlCommand("FastAddShopInfoSellOrderWithPayment", SqlLink);
+            cmdFastAddShopInfoSellOrderWithPayment.CommandType = CommandType.StoredProcedure;
+            cmdFastAddShopInfoSellOrderWithPayment.CommandTimeout = 300;
+
+            //prepare remainder list table-valued parameter
+            DataTable dtSellRems = new DataTable();
+            dtSellRems.Columns.AddRange(new DataColumn[]{
+                      new DataColumn("ixListSellRemainder",typeof(int))
+                    , new DataColumn("barcode",typeof(string))
+                    , new DataColumn("storeID",typeof(int))
+                    , new DataColumn("selling_count",typeof(string))
+                    , new DataColumn("piece_price",typeof(string))
+                });
+            for (int i = 1; i <= s_order_arg.OutgoingRemainders.Length; i++)
+            {
+                Remainder sellRem = s_order_arg.OutgoingRemainders[i-1];
+                DataRow newRow = dtSellRems.NewRow();
+                newRow["ixListSellRemainder"] = i;
+                newRow["barcode"] = sellRem.product_barcode;
+                newRow["storeID"] = sellRem.storehouse_id;
+                newRow["selling_count"] = sellRem.initial_pieces.ToString().Replace(",", ".");
+                newRow["piece_price"] = sellRem.sell_price.ToString().Replace(",", ".");
+                dtSellRems.Rows.Add(newRow);
+            }
+            SqlParameter tvpSellRems = new SqlParameter("@ListOfSellRemainders", dtSellRems);
+            tvpSellRems.SqlDbType = SqlDbType.Structured;            
+            //end prepare remainder list table-valued parameter
+
+            cmdFastAddShopInfoSellOrderWithPayment.Parameters.AddRange(new SqlParameter[]{
+    new SqlParameter("@argSOdro", s_order_arg.dro)
+  , new SqlParameter("@argSObuyer_ident_code", s_order_arg.buyer_client.saidentifikacio_kodi)
+  , new SqlParameter("@argSOselling_with_check", s_order_arg.using_check)
+  , new SqlParameter("@argSOpayment_method", s_order_arg.payment_method.ToString())
+  , tvpSellRems //table-valued parameter containing remainders to sell
+  , new SqlParameter("@argMTclient_ident_arg", client_ident_arg)
+  , new SqlParameter("@argMTSellOrderTotal", SellOrderTotal.ToString().Replace(",","."))
+  , new SqlParameter("@argMTActiveStoreID", ActiveStoreID)
+  , new SqlParameter("@argMTActiveCashBoxID", ActiveCashBoxID)
+  , new SqlParameter("@argMTActiveCashierID", ActiveCashierID)
+            });
+            SqlParameter FastSellRetVal = new SqlParameter("@Return_Value", DbType.Int32);
+            FastSellRetVal.Direction = ParameterDirection.ReturnValue;
+            cmdFastAddShopInfoSellOrderWithPayment.Parameters.Add(FastSellRetVal);
+            //execute stored procedure
+            cmdFastAddShopInfoSellOrderWithPayment.ExecuteNonQuery();
+            //
+            return_info.errcode = (int)FastSellRetVal.Value;
+            switch (return_info.errcode)
+            {
+                case 0:
+                    return_info.details = "გაყიდვა წარმატებით დასრულდა!";
+                    break;
+                case 1:
+                    return_info.details = "გადაცემულია არასწორი არგუმენტები!";
+                    break;
+                case 183:
+                    return_info.details = "ასეთი გაყიდვა უკვე არსებობს!";
+                    break;
+                case 404:
+                    return_info.details = "ინფორმაცია არ მოიძებნა!";
+                    break;
+            }
+            return return_info;
+            //
+        }
 
         public info AddSellOrderWithPayment(SellOrder s_order_arg
             , string client_ident_arg
