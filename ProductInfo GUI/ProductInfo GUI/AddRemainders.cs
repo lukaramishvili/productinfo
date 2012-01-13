@@ -475,6 +475,15 @@ namespace ProductInfo_UI
                                 row_sum_price = row_piece_count * row_piece_price;
                                 add_remainders_list.Rows[e.RowIndex].Cells[add_rem_sum_price_col.Index].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells[add_rem_storeid_col.Index].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_price_col.Index].Value);
                                 Row_Pricing[e.RowIndex] = row_sum_price;
+                                //
+                                decimal row_sell_price = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells[add_rem_sell_price_col.Index].Value.ToString());
+                                add_remainders_list.Rows[e.RowIndex].Cells[add_rem_namati_col.Index].Value
+                                    = ((row_sell_price >= row_piece_price) ? "+" : "") + Math.Round(((row_sell_price - row_piece_price) / row_piece_price) * 100, 2) + "%";
+                                add_remainders_list.Rows[e.RowIndex].Cells[add_rem_namati_col.Index].Style.BackColor
+                                    = (row_sell_price >= row_piece_price) ? Color.LightGray : Color.Red;
+                                //add_remainders_list.Rows[e.RowIndex].Cells[add_rem_namati_col.Index].Style.ForeColor
+                                //    = (row_sell_price >= row_piece_price) ? Color.Black : Color.White;
+                                //
                                 UpdateSumPrice();
                             }
                         }
@@ -497,6 +506,15 @@ namespace ProductInfo_UI
                                 row_sum_price = row_piece_count * pack_count * row_piece_price;
                                 add_remainders_list.Rows[e.RowIndex].Cells[add_rem_sum_price_col.Index].Value = row_sum_price; // * ((decimal)add_remainders_list.Rows[e.RowIndex].Cells[add_rem_storeid_col.Index].Value + (decimal)add_remainders_list.Rows[e.RowIndex].Cells[add_rem_piece_price_col.Index].Value);
                                 Row_Pricing[e.RowIndex] = row_sum_price;
+                                //
+                                decimal row_sell_price = ParseDecimal(add_remainders_list.Rows[e.RowIndex].Cells[add_rem_sell_price_col.Index].Value.ToString());
+                                add_remainders_list.Rows[e.RowIndex].Cells[add_rem_namati_col.Index].Value
+                                    = ((row_sell_price >= row_piece_price) ? "+" : "") + Math.Round(((row_sell_price - row_piece_price) / row_piece_price) * 100, 2) + "%";
+                                add_remainders_list.Rows[e.RowIndex].Cells[add_rem_namati_col.Index].Style.BackColor
+                                    = (row_sell_price >= row_piece_price) ? Color.LightGray : Color.Red;
+                                //add_remainders_list.Rows[e.RowIndex].Cells[add_rem_namati_col.Index].Style.ForeColor
+                                //    = (row_sell_price >= row_piece_price) ? Color.Black : Color.White;
+                                //
                                 UpdateSumPrice();
                             }
                         }

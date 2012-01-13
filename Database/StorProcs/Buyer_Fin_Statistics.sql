@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[Buyer_Fin_Statistics]
+ALTER PROCEDURE [dbo].[Buyer_Fin_Statistics]
 	-- Add the parameters for the stored procedure here
 	
 	--@ClientIdent nvarchar(MAX)
@@ -19,8 +19,10 @@ BEGIN
 		  b.name
 		, b.id_code
 		, b.address
-		, CASE WHEN dbo.BuyerMoneyBalance(b.id_code)>=0 THEN 0 ELSE -1*dbo.BuyerMoneyBalance(b.id_code) END
-		, CASE WHEN dbo.BuyerMoneyBalance(b.id_code)<0 THEN 0 ELSE dbo.BuyerMoneyBalance(b.id_code) END
+		, 0
+		, dbo.BuyerMoneyBalance(b.id_code)
+		--, CASE WHEN dbo.BuyerMoneyBalance(b.id_code)>=0 THEN 0 ELSE -1*dbo.BuyerMoneyBalance(b.id_code) END
+		--, CASE WHEN dbo.BuyerMoneyBalance(b.id_code)<0 THEN 0 ELSE dbo.BuyerMoneyBalance(b.id_code) END
 		--ROUND(ROUND(SUM(sold_total),4) - ROUND(SUM(mt_taken.taken_amt),4),4) -- - mt_given.given_amt
 	FROM buyers b
 	

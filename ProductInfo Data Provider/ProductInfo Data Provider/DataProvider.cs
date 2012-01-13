@@ -3235,6 +3235,48 @@ namespace ProductInfo
             ////
             return return_info;
         }
+
+        public DataTable DgiuriNavachri(int store_id, DateTime date_since, DateTime date_until)
+        {
+            DataTable retdtDgiuriNavachri = new DataTable();
+            retdtDgiuriNavachri.Columns.AddRange(new DataColumn[]{
+                  new DataColumn("result_date",typeof(string))//it is DateTime but formatted for humans
+                , new DataColumn("sul_agebuli_tanxa",typeof(decimal))
+                , new DataColumn("sul_tvitgir",typeof(decimal))
+                , new DataColumn("realiz_vat_gareshe",typeof(decimal))
+                , new DataColumn("tvitgir_vat_gareshe",typeof(decimal))
+                , new DataColumn("sul_daubegr_gayid_sum",typeof(decimal))
+                , new DataColumn("sul_dakarguli",typeof(decimal))
+            });
+
+            SqlCommand cmdDgiuriNavachri = new SqlCommand("DgiuriNavachri", SqlLink);
+            cmdDgiuriNavachri.CommandType = CommandType.StoredProcedure;
+
+            cmdDgiuriNavachri.Parameters.Add(new SqlParameter("@store_id", store_id));
+            cmdDgiuriNavachri.Parameters.Add(new SqlParameter("@date_since", date_since));
+            cmdDgiuriNavachri.Parameters.Add(new SqlParameter("@date_until", date_until));
+
+            SqlDataReader rdrDgiuriNavachri = cmdDgiuriNavachri.ExecuteReader();
+            while (rdrDgiuriNavachri.Read())
+            {
+                DataRow nextRow = retdtDgiuriNavachri.NewRow();
+                /*for (int i = 0; i < AllStores_res.FieldCount; i++)
+                {
+                    nextRow[i] = AllStores_res[i];
+                }*/
+                nextRow["result_date"] = ((DateTime)rdrDgiuriNavachri["result_date"]).ToString("d MMMM yyyy", new System.Globalization.CultureInfo("ka-ge"));
+                nextRow["sul_agebuli_tanxa"] = rdrDgiuriNavachri["sul_agebuli_tanxa"];
+                nextRow["sul_tvitgir"] = rdrDgiuriNavachri["sul_tvitgir"];
+                nextRow["realiz_vat_gareshe"] = rdrDgiuriNavachri["realiz_vat_gareshe"];
+                nextRow["tvitgir_vat_gareshe"] = rdrDgiuriNavachri["tvitgir_vat_gareshe"];
+                nextRow["sul_daubegr_gayid_sum"] = rdrDgiuriNavachri["sul_daubegr_gayid_sum"];
+                nextRow["sul_dakarguli"] = rdrDgiuriNavachri["sul_dakarguli"];
+                retdtDgiuriNavachri.Rows.Add(nextRow);
+            }
+            rdrDgiuriNavachri.Close();
+
+            return retdtDgiuriNavachri;
+        }
     } //DataProvider Class
 
 

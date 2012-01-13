@@ -20,7 +20,9 @@ GO
 -- =============================================
 ALTER PROCEDURE DgiuriNavachri
 	-- Add the parameters for the stored procedure here
-	
+	  @store_id int
+	, @date_since date
+	, @date_until date
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -28,7 +30,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- jer titoeuli SellOrder-istvis vitvlit velebs (COMPLEX_SO) da shemdeg vajgufebt dgeebis mixedvit
-	SELECT CONVERT(DATE,COMPLEX_SO.dro)
+	SELECT CONVERT(DATE,COMPLEX_SO.dro) as result_date
 		 , SUM(COMPLEX_SO.SO_agebuli_tanxa) as sul_agebuli_tanxa
 		 , SUM(COMPLEX_SO.SO_tvitgir) as sul_tvitgir
 		 , SUM(((COMPLEX_SO.SO_agebuli_tanxa-COMPLEX_SO.SO_daubegr_gayid_sum)/1.18)+COMPLEX_SO.SO_daubegr_gayid_sum) as realiz_vat_gareshe
@@ -39,15 +41,16 @@ BEGIN
 		(SELECT 
 			SO.id as id
 		  , SO.dro as dro
-		  , SUM(Sold.piece_count * Sold.piece_price) as SO_agebuli_tanxa--col_1
-		  , SUM(Sold.piece_count * r.buy_price) as SO_tvitgir--col_2
-		  , SUM((CASE WHEN p.uses_vat=0 THEN 1 ELSE 0 END)*Sold.piece_count*r.buy_price) as SO_daubegr_tvitgir_sum
-		  , SUM((CASE WHEN p.uses_vat=0 THEN 1 ELSE 0 END)*Sold.piece_count*Sold.piece_price) as SO_daubegr_gayid_sum--col_5
-		  , SUM(CASE WHEN Sold.piece_price < r.buy_price THEN Sold.piece_count*(r.buy_price - Sold.piece_price) ELSE 0 END) as SO_dakarguli--col_6
+		  , ROUND(SUM(Sold.piece_count * Sold.piece_price),4) as SO_agebuli_tanxa--col_1
+		  , ROUND(SUM(Sold.piece_count * r.buy_price),4) as SO_tvitgir--col_2
+		  , ROUND(SUM((CASE WHEN p.uses_vat=0 THEN 1 ELSE 0 END)*Sold.piece_count*r.buy_price),4) as SO_daubegr_tvitgir_sum
+		  , ROUND(SUM((CASE WHEN p.uses_vat=0 THEN 1 ELSE 0 END)*Sold.piece_count*Sold.piece_price),4) as SO_daubegr_gayid_sum--col_5
+		  , ROUND(SUM(CASE WHEN Sold.piece_price < r.buy_price THEN Sold.piece_count*(r.buy_price - Sold.piece_price) ELSE 0 END),4) as SO_dakarguli--col_6
 		FROM SoldRemainders Sold, SellOrder SO, remainders r, products p
-		WHERE SO.id = Sold.SellOrder_id AND r.id = Sold.remainder_id AND p.barcode = r.product_barcode
+		WHERE SO.id = Sold.SellOrder_id AND r.id = Sold.remainder_id AND p.barcode = r.product_barcode AND 1 = dbo.RemainderHasStoreAsSellableParent(r.id, @store_id)
 		GROUP BY SO.id, SO.dro
 		) COMPLEX_SO
+	WHERE CONVERT(DATE,COMPLEX_SO.dro) >= @date_since AND CONVERT(DATE,COMPLEX_SO.dro) <= @date_until
 	GROUP BY CONVERT(DATE,COMPLEX_SO.dro)
 	ORDER BY CONVERT(DATE,COMPLEX_SO.dro) DESC
 	--

@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[GetSellOrderByZedCode]
+ALTER PROCEDURE [dbo].[GetSellOrderByZedCode]
 	-- Add the parameters for the stored procedure here
 	@zed_ident nvarchar(MAX) output
 	,@zed_tarigi datetime = now output
@@ -56,7 +56,8 @@ BEGIN
 					MIN(SoldRemainders.remainder_id) AS remainder_id,
 					MIN(SoldRemainders.SellOrder_id) AS SellOrder_id,
 					SUM(SoldRemainders.piece_count) AS piece_count,
-					MIN(SoldRemainders.piece_price) AS piece_price
+					--MIN(SoldRemainders.piece_price) AS piece_price
+					SUM(SoldRemainders.piece_count*SoldRemainders.piece_price)/SUM(SoldRemainders.piece_count) AS piece_price
 					FROM SoldRemainders, remainders 
 					WHERE SoldRemainders.remainder_id = remainders.id
 					GROUP BY remainders.product_barcode, SoldRemainders.SellOrder_id

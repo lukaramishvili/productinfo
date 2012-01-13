@@ -248,6 +248,7 @@ namespace ProductInfo_UI
             this.sold_prods_cost_col = new System.Windows.Forms.ColumnHeader();
             this.sold_prods_cost_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
             this.sold_prods_sum_cost_col = new System.Windows.Forms.ColumnHeader();
+            this.sold_prods_sum_price_col = new System.Windows.Forms.ColumnHeader();
             this.moneytransfers_tabpage = new System.Windows.Forms.TabPage();
             this.moneytransfer_list = new System.Windows.Forms.ListView();
             this.mt_id_col = new System.Windows.Forms.ColumnHeader();
@@ -286,7 +287,15 @@ namespace ProductInfo_UI
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
-            this.sold_prods_sum_price_col = new System.Windows.Forms.ColumnHeader();
+            this.dgiuri_navachri_tabpage = new System.Windows.Forms.TabPage();
+            this.dgiuri_navachri_list = new System.Windows.Forms.ListView();
+            this.dgiuri_nav_date_col = new System.Windows.Forms.ColumnHeader();
+            this.dgiuri_nav_sum_col = new System.Windows.Forms.ColumnHeader();
+            this.dgiuri_nav_cost_col = new System.Windows.Forms.ColumnHeader();
+            this.dgiuri_nav_sum_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
+            this.dgiuri_nav_cost_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
+            this.dgiuri_nav_sold_withoutVAT_sum_col = new System.Windows.Forms.ColumnHeader();
+            this.dgiuri_nav_sum_cageba_col = new System.Windows.Forms.ColumnHeader();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
             this.status_bar.SuspendLayout();
@@ -317,6 +326,7 @@ namespace ProductInfo_UI
             this.cm_moneytransfer.SuspendLayout();
             this.summary_tabpage.SuspendLayout();
             this.bought_af_standard_list_tabpage.SuspendLayout();
+            this.dgiuri_navachri_tabpage.SuspendLayout();
             this.SuspendLayout();
             // 
             // main_menu
@@ -579,6 +589,7 @@ namespace ProductInfo_UI
             this.tab_container.Controls.Add(this.moneytransfers_tabpage);
             this.tab_container.Controls.Add(this.summary_tabpage);
             this.tab_container.Controls.Add(this.bought_af_standard_list_tabpage);
+            this.tab_container.Controls.Add(this.dgiuri_navachri_tabpage);
             this.tab_container.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab_container.Font = new System.Drawing.Font("Sylfaen", 11F);
             this.tab_container.Location = new System.Drawing.Point(0, 51);
@@ -832,9 +843,9 @@ namespace ProductInfo_UI
             // nashtebi_tabpage
             // 
             this.nashtebi_tabpage.Controls.Add(this.rem_list);
-            this.nashtebi_tabpage.Location = new System.Drawing.Point(4, 52);
+            this.nashtebi_tabpage.Location = new System.Drawing.Point(4, 28);
             this.nashtebi_tabpage.Name = "nashtebi_tabpage";
-            this.nashtebi_tabpage.Size = new System.Drawing.Size(1207, 464);
+            this.nashtebi_tabpage.Size = new System.Drawing.Size(1207, 488);
             this.nashtebi_tabpage.TabIndex = 0;
             this.nashtebi_tabpage.Text = "ნაშთები";
             this.nashtebi_tabpage.UseVisualStyleBackColor = true;
@@ -864,7 +875,7 @@ namespace ProductInfo_UI
             this.rem_list.Location = new System.Drawing.Point(0, 0);
             this.rem_list.MultiSelect = false;
             this.rem_list.Name = "rem_list";
-            this.rem_list.Size = new System.Drawing.Size(1207, 464);
+            this.rem_list.Size = new System.Drawing.Size(1207, 488);
             this.rem_list.TabIndex = 0;
             this.rem_list.UseCompatibleStateImageBehavior = false;
             this.rem_list.View = System.Windows.Forms.View.Details;
@@ -971,9 +982,9 @@ namespace ProductInfo_UI
             // zednadebebi_tabpage
             // 
             this.zednadebebi_tabpage.Controls.Add(this.zed_list);
-            this.zednadebebi_tabpage.Location = new System.Drawing.Point(4, 52);
+            this.zednadebebi_tabpage.Location = new System.Drawing.Point(4, 28);
             this.zednadebebi_tabpage.Name = "zednadebebi_tabpage";
-            this.zednadebebi_tabpage.Size = new System.Drawing.Size(1207, 464);
+            this.zednadebebi_tabpage.Size = new System.Drawing.Size(1207, 488);
             this.zednadebebi_tabpage.TabIndex = 3;
             this.zednadebebi_tabpage.Text = "შემოსული ზედნადებები";
             this.zednadebebi_tabpage.UseVisualStyleBackColor = true;
@@ -995,7 +1006,7 @@ namespace ProductInfo_UI
             this.zed_list.GridLines = true;
             this.zed_list.Location = new System.Drawing.Point(0, 0);
             this.zed_list.Name = "zed_list";
-            this.zed_list.Size = new System.Drawing.Size(1207, 464);
+            this.zed_list.Size = new System.Drawing.Size(1207, 488);
             this.zed_list.TabIndex = 1;
             this.zed_list.UseCompatibleStateImageBehavior = false;
             this.zed_list.View = System.Windows.Forms.View.Details;
@@ -1318,9 +1329,9 @@ namespace ProductInfo_UI
             // buyers_tabpage
             // 
             this.buyers_tabpage.Controls.Add(this.buyers_list);
-            this.buyers_tabpage.Location = new System.Drawing.Point(4, 52);
+            this.buyers_tabpage.Location = new System.Drawing.Point(4, 28);
             this.buyers_tabpage.Name = "buyers_tabpage";
-            this.buyers_tabpage.Size = new System.Drawing.Size(1207, 464);
+            this.buyers_tabpage.Size = new System.Drawing.Size(1207, 488);
             this.buyers_tabpage.TabIndex = 4;
             this.buyers_tabpage.Text = "მყიდველები";
             this.buyers_tabpage.UseVisualStyleBackColor = true;
@@ -1340,7 +1351,7 @@ namespace ProductInfo_UI
             this.buyers_list.Location = new System.Drawing.Point(0, 0);
             this.buyers_list.MultiSelect = false;
             this.buyers_list.Name = "buyers_list";
-            this.buyers_list.Size = new System.Drawing.Size(1207, 464);
+            this.buyers_list.Size = new System.Drawing.Size(1207, 488);
             this.buyers_list.TabIndex = 1;
             this.buyers_list.UseCompatibleStateImageBehavior = false;
             this.buyers_list.View = System.Windows.Forms.View.Details;
@@ -1403,9 +1414,9 @@ namespace ProductInfo_UI
             // productnames_tabpage
             // 
             this.productnames_tabpage.Controls.Add(this.prod_names_list);
-            this.productnames_tabpage.Location = new System.Drawing.Point(4, 52);
+            this.productnames_tabpage.Location = new System.Drawing.Point(4, 28);
             this.productnames_tabpage.Name = "productnames_tabpage";
-            this.productnames_tabpage.Size = new System.Drawing.Size(1207, 464);
+            this.productnames_tabpage.Size = new System.Drawing.Size(1207, 488);
             this.productnames_tabpage.TabIndex = 5;
             this.productnames_tabpage.Text = "დასახელებები";
             this.productnames_tabpage.UseVisualStyleBackColor = true;
@@ -1431,7 +1442,7 @@ namespace ProductInfo_UI
             this.prod_names_list.Location = new System.Drawing.Point(0, 0);
             this.prod_names_list.MultiSelect = false;
             this.prod_names_list.Name = "prod_names_list";
-            this.prod_names_list.Size = new System.Drawing.Size(1207, 464);
+            this.prod_names_list.Size = new System.Drawing.Size(1207, 488);
             this.prod_names_list.TabIndex = 1;
             this.prod_names_list.UseCompatibleStateImageBehavior = false;
             this.prod_names_list.View = System.Windows.Forms.View.Details;
@@ -1651,9 +1662,9 @@ namespace ProductInfo_UI
             // agcera_tabpage
             // 
             this.agcera_tabpage.Controls.Add(this.agcera_rem_list);
-            this.agcera_tabpage.Location = new System.Drawing.Point(4, 52);
+            this.agcera_tabpage.Location = new System.Drawing.Point(4, 28);
             this.agcera_tabpage.Name = "agcera_tabpage";
-            this.agcera_tabpage.Size = new System.Drawing.Size(1207, 464);
+            this.agcera_tabpage.Size = new System.Drawing.Size(1207, 488);
             this.agcera_tabpage.TabIndex = 7;
             this.agcera_tabpage.Text = "აღწერა";
             this.agcera_tabpage.UseVisualStyleBackColor = true;
@@ -1680,7 +1691,7 @@ namespace ProductInfo_UI
             this.agcera_rem_list.Location = new System.Drawing.Point(0, 0);
             this.agcera_rem_list.MultiSelect = false;
             this.agcera_rem_list.Name = "agcera_rem_list";
-            this.agcera_rem_list.Size = new System.Drawing.Size(1207, 464);
+            this.agcera_rem_list.Size = new System.Drawing.Size(1207, 488);
             this.agcera_rem_list.TabIndex = 1;
             this.agcera_rem_list.UseCompatibleStateImageBehavior = false;
             this.agcera_rem_list.View = System.Windows.Forms.View.Details;
@@ -1748,9 +1759,9 @@ namespace ProductInfo_UI
             // bought_afs_tabpage
             // 
             this.bought_afs_tabpage.Controls.Add(this.bought_af_list);
-            this.bought_afs_tabpage.Location = new System.Drawing.Point(4, 52);
+            this.bought_afs_tabpage.Location = new System.Drawing.Point(4, 28);
             this.bought_afs_tabpage.Name = "bought_afs_tabpage";
-            this.bought_afs_tabpage.Size = new System.Drawing.Size(1207, 464);
+            this.bought_afs_tabpage.Size = new System.Drawing.Size(1207, 488);
             this.bought_afs_tabpage.TabIndex = 2;
             this.bought_afs_tabpage.Text = "შემოსული ფაქტურები";
             this.bought_afs_tabpage.UseVisualStyleBackColor = true;
@@ -1776,7 +1787,7 @@ namespace ProductInfo_UI
             this.bought_af_list.Location = new System.Drawing.Point(0, 0);
             this.bought_af_list.MultiSelect = false;
             this.bought_af_list.Name = "bought_af_list";
-            this.bought_af_list.Size = new System.Drawing.Size(1207, 464);
+            this.bought_af_list.Size = new System.Drawing.Size(1207, 488);
             this.bought_af_list.TabIndex = 2;
             this.bought_af_list.UseCompatibleStateImageBehavior = false;
             this.bought_af_list.View = System.Windows.Forms.View.Details;
@@ -1978,6 +1989,10 @@ namespace ProductInfo_UI
             // sold_prods_sum_cost_col
             // 
             this.sold_prods_sum_cost_col.Text = "ჯამური ღირ.";
+            // 
+            // sold_prods_sum_price_col
+            // 
+            this.sold_prods_sum_price_col.Text = "ჯამური ფასი";
             // 
             // moneytransfers_tabpage
             // 
@@ -2277,9 +2292,69 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
             // 
-            // sold_prods_sum_price_col
+            // dgiuri_navachri_tabpage
             // 
-            this.sold_prods_sum_price_col.Text = "ჯამური ფასი";
+            this.dgiuri_navachri_tabpage.Controls.Add(this.dgiuri_navachri_list);
+            this.dgiuri_navachri_tabpage.Location = new System.Drawing.Point(4, 52);
+            this.dgiuri_navachri_tabpage.Name = "dgiuri_navachri_tabpage";
+            this.dgiuri_navachri_tabpage.Size = new System.Drawing.Size(1207, 464);
+            this.dgiuri_navachri_tabpage.TabIndex = 15;
+            this.dgiuri_navachri_tabpage.Text = "დღიური ნავაჭრი";
+            this.dgiuri_navachri_tabpage.UseVisualStyleBackColor = true;
+            // 
+            // dgiuri_navachri_list
+            // 
+            this.dgiuri_navachri_list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.dgiuri_nav_date_col,
+            this.dgiuri_nav_sum_col,
+            this.dgiuri_nav_cost_col,
+            this.dgiuri_nav_sum_withoutVAT_col,
+            this.dgiuri_nav_cost_withoutVAT_col,
+            this.dgiuri_nav_sold_withoutVAT_sum_col,
+            this.dgiuri_nav_sum_cageba_col});
+            this.dgiuri_navachri_list.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgiuri_navachri_list.FullRowSelect = true;
+            this.dgiuri_navachri_list.GridLines = true;
+            this.dgiuri_navachri_list.Location = new System.Drawing.Point(0, 0);
+            this.dgiuri_navachri_list.MultiSelect = false;
+            this.dgiuri_navachri_list.Name = "dgiuri_navachri_list";
+            this.dgiuri_navachri_list.Size = new System.Drawing.Size(1207, 464);
+            this.dgiuri_navachri_list.TabIndex = 1;
+            this.dgiuri_navachri_list.UseCompatibleStateImageBehavior = false;
+            this.dgiuri_navachri_list.View = System.Windows.Forms.View.Details;
+            // 
+            // dgiuri_nav_date_col
+            // 
+            this.dgiuri_nav_date_col.Text = "თარიღი";
+            this.dgiuri_nav_date_col.Width = 250;
+            // 
+            // dgiuri_nav_sum_col
+            // 
+            this.dgiuri_nav_sum_col.Text = "ჯამი";
+            this.dgiuri_nav_sum_col.Width = 250;
+            // 
+            // dgiuri_nav_cost_col
+            // 
+            this.dgiuri_nav_cost_col.Text = "თვითღირ.";
+            this.dgiuri_nav_cost_col.Width = 147;
+            // 
+            // dgiuri_nav_sum_withoutVAT_col
+            // 
+            this.dgiuri_nav_sum_withoutVAT_col.Text = "რეალიზ. დღგ–ს გარეშე";
+            this.dgiuri_nav_sum_withoutVAT_col.Width = 130;
+            // 
+            // dgiuri_nav_cost_withoutVAT_col
+            // 
+            this.dgiuri_nav_cost_withoutVAT_col.Text = "თვითღირ. დღგ–ს გარეშე";
+            this.dgiuri_nav_cost_withoutVAT_col.Width = 134;
+            // 
+            // dgiuri_nav_sold_withoutVAT_sum_col
+            // 
+            this.dgiuri_nav_sold_withoutVAT_sum_col.Text = "რეალიზ. დაუბეგრ. ჯამი";
+            // 
+            // dgiuri_nav_sum_cageba_col
+            // 
+            this.dgiuri_nav_sum_cageba_col.Text = "თვითღირ.–ზე ნაკლებად გაყიდ. ჯამი";
             // 
             // ProductInfo_Main_Form
             // 
@@ -2332,6 +2407,7 @@ namespace ProductInfo_UI
             this.summary_tabpage.ResumeLayout(false);
             this.summary_tabpage.PerformLayout();
             this.bought_af_standard_list_tabpage.ResumeLayout(false);
+            this.dgiuri_navachri_tabpage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2591,6 +2667,15 @@ namespace ProductInfo_UI
         private ColumnHeader sold_prods_supplier_col;
         private ColumnHeader sold_prods_sum_cost_col;
         private ColumnHeader sold_prods_sum_price_col;
+        private TabPage dgiuri_navachri_tabpage;
+        private ListView dgiuri_navachri_list;
+        private ColumnHeader dgiuri_nav_date_col;
+        private ColumnHeader dgiuri_nav_sum_col;
+        private ColumnHeader dgiuri_nav_cost_col;
+        private ColumnHeader dgiuri_nav_sum_withoutVAT_col;
+        private ColumnHeader dgiuri_nav_cost_withoutVAT_col;
+        private ColumnHeader dgiuri_nav_sold_withoutVAT_sum_col;
+        private ColumnHeader dgiuri_nav_sum_cageba_col;
 
 
 

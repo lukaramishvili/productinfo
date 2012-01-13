@@ -93,6 +93,7 @@ namespace ProductInfo_UI
         DataTable cashbox_summary_dt = new DataTable();
         DataTable bought_af_standard_list_dt = new DataTable();
         DataTable cashbox_statistics_dt = new DataTable();
+        DataTable dgiuri_navachri_dt = new DataTable();
         //
         int sold_roi_col_index = -1;
         int sold_z_roi_col_index = -1;
@@ -392,6 +393,10 @@ namespace ProductInfo_UI
 
                 DataTableToListView(moneytransfer_list, moneytransfers_dt, true);
             }
+            if (dgiuri_navachri_tabpage == tab_container.SelectedTab)
+            {
+                RefreshTabs();
+            }
 
             UpdateStatusSums();
         }
@@ -506,6 +511,11 @@ namespace ProductInfo_UI
                 //}
                 DataTableToListView(moneytransfer_list, moneytransfers_dt, true);
             }
+            if (dgiuri_navachri_tabpage == tab_container.SelectedTab)
+            {
+                RefreshTabs();
+            }
+
             UpdateStatusSums();
         }
 
@@ -1697,6 +1707,11 @@ namespace ProductInfo_UI
                 //    MessageBox.Show("სერვერთან დაკავშირების პრობლემაა. სცადეთ თავიდან. ");
                 //}
                 DataTableToListView(bought_af_standard_list, bought_af_standard_list_dt, false);
+            }
+            if (dgiuri_navachri_tabpage == tab_container.SelectedTab)
+            {
+                dgiuri_navachri_dt = conn.DgiuriNavachri(ActiveStoreID, DateFilterSince, DateFilterUntil);
+                DataTableToListView(dgiuri_navachri_list, dgiuri_navachri_dt, true);
             }
             //
             if ("ძებნა" != search_text.Text)
@@ -3105,6 +3120,10 @@ namespace ProductInfo_UI
             if (bought_af_standard_list_tabpage == tab_container.SelectedTab)
             {
                 csv_output = ListViewToCSV(bought_af_standard_list);
+            }
+            if (dgiuri_navachri_tabpage == tab_container.SelectedTab)
+            {
+                csv_output = ListViewToCSV(dgiuri_navachri_list);
             }
 
             HandleFileSaveDialog(file_to_save_name, csv_output);

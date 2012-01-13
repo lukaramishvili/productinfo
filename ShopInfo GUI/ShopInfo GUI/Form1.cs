@@ -133,12 +133,16 @@ namespace ShopInfo_GUI
 
                 foreach (Remainder nextRem in SellableRemainders)
                 {
-                    var nextRemProdName = (from Product p in AllProducts
+                    var matchingProds = (from Product p in AllProducts
                                            where p.barcode == nextRem.product_barcode
-                                           select p.name).ToArray()[0];
-                    if (!sell_prodname_col.Items.Contains(nextRemProdName))
+                                           select p.name).ToArray();
+                    if (matchingProds.Length > 0)
                     {
-                        sell_prodname_col.Items.Add(nextRemProdName);
+                        var nextRemProdName = matchingProds[0];
+                        if (!sell_prodname_col.Items.Contains(nextRemProdName))
+                        {
+                            sell_prodname_col.Items.Add(nextRemProdName);
+                        }
                     }
                 }
             }
