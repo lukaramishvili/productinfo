@@ -1052,6 +1052,8 @@ namespace ProductInfo
             sold_ret_dt.Columns.Add("ღირებულება");
             sold_ret_dt.Columns.Add("ღირებულება დღგ–ს გარეშე");
             sold_ret_dt.Columns.Add("გასაყიდი ფასი");
+            sold_ret_dt.Columns.Add("გასაყიდი ფასი დღგ–ს გარეშე");
+            sold_ret_dt.Columns.Add("გასაყიდი ფასი დღგ");
             sold_ret_dt.Columns.Add("აღებული თანხა");
             sold_ret_dt.Columns.Add("მოგება");
             sold_ret_dt.Columns.Add("ფასთა სხვაობა დღგ–ს გარეშე");
@@ -1072,7 +1074,7 @@ namespace ProductInfo
                 for (int i = 0; i < ResultSet.FieldCount; i++)
                 {
                     nextSold[i] = ResultSet[i];
-                    if ((7 == i | 8 == i | 9 == i | 10 == i | 11 == i | 12 == i | 13 == i) && "" != ResultSet[i].ToString())
+                    if ((7 == i | 8 == i | 9 == i | 10 == i | 11 == i | 12 == i | 13 == i | 14 == i | 15 == i) && "" != ResultSet[i].ToString())
                     {
                         nextSold[i] = Math.Round(Utilities.Utilities.ParseDecimal(ResultSet[i].ToString()), 4, MidpointRounding.AwayFromZero);
                     }
@@ -2967,7 +2969,7 @@ namespace ProductInfo
                 });
             for (int i = 1; i <= s_order_arg.OutgoingRemainders.Length; i++)
             {
-                Remainder sellRem = s_order_arg.OutgoingRemainders[i-1];
+                Remainder sellRem = s_order_arg.OutgoingRemainders[i - 1];
                 DataRow newRow = dtSellRems.NewRow();
                 newRow["ixListSellRemainder"] = i;
                 newRow["barcode"] = sellRem.product_barcode;
@@ -2977,7 +2979,7 @@ namespace ProductInfo
                 dtSellRems.Rows.Add(newRow);
             }
             SqlParameter tvpSellRems = new SqlParameter("@ListOfSellRemainders", dtSellRems);
-            tvpSellRems.SqlDbType = SqlDbType.Structured;            
+            tvpSellRems.SqlDbType = SqlDbType.Structured;
             //end prepare remainder list table-valued parameter
 
             cmdFastAddShopInfoSellOrderWithPayment.Parameters.AddRange(new SqlParameter[]{
@@ -3240,7 +3242,7 @@ namespace ProductInfo
         {
             DataTable retdtDgiuriNavachri = new DataTable();
             retdtDgiuriNavachri.Columns.AddRange(new DataColumn[]{
-                  new DataColumn("result_date",typeof(string))//it is DateTime but formatted for humans
+                  new DataColumn("result_date",typeof(string))//it's DateTime but formatted for humans
                 , new DataColumn("sul_agebuli_tanxa",typeof(decimal))
                 , new DataColumn("sul_tvitgir",typeof(decimal))
                 , new DataColumn("realiz_vat_gareshe",typeof(decimal))
@@ -3276,6 +3278,45 @@ namespace ProductInfo
             rdrDgiuriNavachri.Close();
 
             return retdtDgiuriNavachri;
+        }
+
+        public DataTable Deficit(int store_id, DateTime date_since, DateTime date_until)
+        {
+            DataTable retdtDeficit = new DataTable();
+            retdtDeficit.Columns.AddRange(new DataColumn[]{
+                  /*new DataColumn("store_id",typeof(int))
+                , */
+                  new DataColumn("barcode",typeof(string))
+                , new DataColumn("product_name",typeof(string))
+                , new DataColumn("supplier_name",typeof(string))
+                , new DataColumn("remaining_pieces",typeof(decimal))
+            });
+
+            SqlCommand cmdDeficit = new SqlCommand("Deficit", SqlLink);
+            cmdDeficit.CommandType = CommandType.StoredProcedure;
+
+            cmdDeficit.Parameters.Add(new SqlParameter("@store_id", store_id));
+            cmdDeficit.Parameters.Add(new SqlParameter("@date_since", date_since));
+            cmdDeficit.Parameters.Add(new SqlParameter("@date_until", date_until));
+
+            SqlDataReader rdrDeficit = cmdDeficit.ExecuteReader();
+            while (rdrDeficit.Read())
+            {
+                DataRow nextRow = retdtDeficit.NewRow();
+                /*for (int i = 0; i < AllStores_res.FieldCount; i++)
+                {
+                    nextRow[i] = AllStores_res[i];
+                }*/
+                //nextRow["store_id"] = rdrDeficit["store_id"];
+                nextRow["barcode"] = rdrDeficit["barcode"];
+                nextRow["product_name"] = rdrDeficit["product_name"];
+                nextRow["supplier_name"] = rdrDeficit["supplier_name"];
+                nextRow["remaining_pieces"] = Math.Round(Utilities.Utilities.ParseDecimal(rdrDeficit["remaining_pieces"].ToString()), 2);
+                retdtDeficit.Rows.Add(nextRow);
+            }
+            rdrDeficit.Close();
+
+            return retdtDeficit;
         }
     } //DataProvider Class
 

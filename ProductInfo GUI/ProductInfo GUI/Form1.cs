@@ -94,6 +94,7 @@ namespace ProductInfo_UI
         DataTable bought_af_standard_list_dt = new DataTable();
         DataTable cashbox_statistics_dt = new DataTable();
         DataTable dgiuri_navachri_dt = new DataTable();
+        DataTable deficit_dt = new DataTable();
         //
         int sold_roi_col_index = -1;
         int sold_z_roi_col_index = -1;
@@ -394,6 +395,10 @@ namespace ProductInfo_UI
                 DataTableToListView(moneytransfer_list, moneytransfers_dt, true);
             }
             if (dgiuri_navachri_tabpage == tab_container.SelectedTab)
+            {
+                RefreshTabs();
+            }
+            if (deficit_tabpage == tab_container.SelectedTab)
             {
                 RefreshTabs();
             }
@@ -1712,6 +1717,11 @@ namespace ProductInfo_UI
             {
                 dgiuri_navachri_dt = conn.DgiuriNavachri(ActiveStoreID, DateFilterSince, DateFilterUntil);
                 DataTableToListView(dgiuri_navachri_list, dgiuri_navachri_dt, true);
+            }
+            if (deficit_tabpage == tab_container.SelectedTab)
+            {
+                deficit_dt = conn.Deficit(ActiveStoreID, DateFilterSince, DateFilterUntil);
+                DataTableToListView(deficit_list, deficit_dt, true);
             }
             //
             if ("ძებნა" != search_text.Text)
