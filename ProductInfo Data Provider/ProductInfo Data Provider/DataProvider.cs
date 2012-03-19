@@ -320,7 +320,14 @@ namespace ProductInfo
         public enum MoneyType { Cash, Nisia };//es nisiaa da (savaraudod???) sabutebshi ver sheitan 
         public enum PaymentType { Nagdi, Unagdo, Konsignacia }//es sheidzleba bankidan gadaixados da 'MoneyType nisiasgan' gansxvavdeba. da kanonis mier agiarebuli formaa. 
 
-        public enum OperationType { Buy, Sell };
+        public enum OperationType {
+            ShidaGadazidva = 1,
+            SellTransporting = 2,
+            Sell = 3,//sheesabameba zednadebis tipi: gayidva transportirebis gareshe
+            Distribucia = 4,
+            UkanDabruneba = 5,
+            Buy = 17,//shemosuli zednadebebi; zednadebis es tipi rs.ge-stvis "Sell" aris, ogond momxmarebeli aris myidveli
+        };
 
         public enum MoneyTransferType { Give, Take };
 
@@ -3317,6 +3324,112 @@ namespace ProductInfo
             rdrDeficit.Close();
 
             return retdtDeficit;
+        }
+
+        /// <summary>
+        /// Gets zednadebi with its remainders. 
+        /// </summary>
+        /// <param name="zed_ident"></param>
+        /// <param name="operation"></param>
+        /// <param name="client_ident"></param>
+        /// <returns></returns>
+        public Zednadebi GetZednadebi(string arg_zed_ident, string arg_operation, string arg_client_ident)
+        {
+            Zednadebi ret_zed = null;
+            //
+            SqlCommand cmd = new SqlCommand("SELECT * FROM zednadebi where id_code = @zed_ident AND operation = @operation AND client_id = @client_ident;", SqlLink);
+            cmd.Parameters.Add("@zed_ident",SqlDbType.NVarChar, arg_zed_ident.Length);
+            cmd.Parameters.Add("@operation",SqlDbType.NVarChar, arg_operation.Length);
+            cmd.Parameters.Add("@client_ident", SqlDbType.NVarChar, arg_client_ident.Length);
+            cmd.Parameters["@zed_ident"].Value = arg_zed_ident;
+            cmd.Parameters["@operation"].Value = arg_operation;
+            cmd.Parameters["@client_ident"].Value = arg_client_ident;
+            cmd.Prepare();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                ret_zed = new Zednadebi(
+                    arg_zed_ident,
+                    DateTime.Parse(rdr["dro"].ToString()),
+                    rdr["af_seria"].ToString(),
+                    rdr["af_nomeri"].ToString(),
+                    (OperationType)Enum.Parse(typeof(OperationType), rdr["operation"].ToString()),
+                    rdr["client_id"].ToString(),
+                    (PaymentType)Enum.Parse(typeof(PaymentType), rdr["pay_method"].ToString())
+                    );
+                //get first matched zednadebi. there shouldn't be more than one, though.
+                break;
+            }
+            rdr.Close();
+            if ("Buy" == arg_operation)
+            {
+                SqlCommand cmdRems = new SqlCommand("SELECT * FROM remainders WHERE zednadebis_nomeri = @zed_ident AND supplier_ident = @client_ident;", SqlLink);
+                cmdRems.Parameters.Add("@zed_ident", SqlDbType.NVarChar, arg_zed_ident.Length);
+                cmdRems.Parameters.Add("@client_ident", SqlDbType.NVarChar, arg_client_ident.Length);
+                cmdRems.Parameters["@zed_ident"].Value = arg_zed_ident;
+                cmdRems.Parameters["@client_ident"].Value = arg_client_ident;
+                cmdRems.Prepare();
+                SqlDataReader rdrnextRem = cmdRems.ExecuteReader();
+                while (rdrnextRem.Read())
+                {
+                    Remainder nextrem = new Remainder(
+                        rdrnextRem["product_barcode"].ToString(),
+                        rdrnextRem["supplier_ident"].ToString(),
+                        arg_zed_ident,
+                        Utilities.Utilities.ParseDecimal(rdrnextRem["initial_pieces"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextRem["pack_capacity"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextRem["remaining_pieces"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextRem["buy_price"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextRem["formal_buy_price"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextRem["sell_price"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextRem["formal_sell_price"].ToString()),
+                        Utilities.Utilities.ParseInt(rdrnextRem["storehouse_id"].ToString())
+                        );
+                    ret_zed.AddRemainder(nextrem);
+                }
+                rdrnextRem.Close();
+            }
+            else if ("Sell" == arg_operation)//TODO: can we safely include this? || "SellTransporting" == arg_operation || "Distribucia" == arg_operation
+            {
+                SqlCommand cmdSoldRems = new SqlCommand("SELECT sold.piece_count, sold.piece_price, r.* FROM SoldRemainders sold, SellOrder so, remainders r WHERE sold.remainder_id = r.id AND sold.SellOrder_id = so.id AND so.zednadebis_nomeri = @zed_ident AND so.buyer_ident_code = @client_ident;", SqlLink);
+                cmdSoldRems.Parameters.Add("@zed_ident", SqlDbType.NVarChar, arg_zed_ident.Length);
+                cmdSoldRems.Parameters.Add("@client_ident", SqlDbType.NVarChar, arg_client_ident.Length);
+                cmdSoldRems.Parameters["@zed_ident"].Value = arg_zed_ident;
+                cmdSoldRems.Parameters["@client_ident"].Value = arg_client_ident;
+                cmdSoldRems.Prepare();
+                SqlDataReader rdrnextSoldRem = cmdSoldRems.ExecuteReader();
+                while (rdrnextSoldRem.Read())
+                {
+                    Remainder nextsoldrem = new Remainder(
+                        rdrnextSoldRem["product_barcode"].ToString(),
+                        rdrnextSoldRem["supplier_ident"].ToString(),
+                        arg_zed_ident,
+                        Utilities.Utilities.ParseDecimal(rdrnextSoldRem["piece_count"].ToString()),//SoldRemainders.piece_count
+                        Utilities.Utilities.ParseDecimal(rdrnextSoldRem["pack_capacity"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextSoldRem["remaining_pieces"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextSoldRem["buy_price"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextSoldRem["formal_buy_price"].ToString()),
+                        Utilities.Utilities.ParseDecimal(rdrnextSoldRem["piece_price"].ToString()),//SoldRemainders.piece_price
+                        Utilities.Utilities.ParseDecimal(rdrnextSoldRem["formal_sell_price"].ToString()),
+                        Utilities.Utilities.ParseInt(rdrnextSoldRem["storehouse_id"].ToString())
+                        );
+                    ret_zed.AddRemainder(nextsoldrem);
+                }
+                rdrnextSoldRem.Close();
+            }
+            else if ("UkanDabruneba" == arg_operation)
+            {
+                //TODO: populate ukan dabrunebuli nashtebi (TODO: how? structure)
+            }
+            else if ("ShidaGadazidva" == arg_operation)
+            {
+                //TODO: populate shida gadazidva nashtebi (TODO: how? structure)
+            }
+            else
+            {
+                //no else; all arg_operation-s should be covered
+            }
+            return ret_zed;
         }
     } //DataProvider Class
 
