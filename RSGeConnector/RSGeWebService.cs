@@ -9,11 +9,11 @@ using ProductInfo;
 
 namespace RSGeWebService
 {
-    public class RSGeConnector
+    public class RSGeConnection
     {
         public WayBillsSoapClient client = new WayBillsSoapClient();
-        string soap_user = "";
-        string soap_pass = "";
+        public string soap_user = "";
+        public string soap_pass = "";
 
         /// <summary>
         /// This reference to DataProvider connection should be provided by main ProductInfo code.
@@ -25,7 +25,7 @@ namespace RSGeWebService
         /// <param name="arg_ref_conn">sql server connection to productinfo</param>
         /// <param name="arg_username">usernamed used to first access rs.ge</param>
         /// <param name="arg_password">password used to first access rs.ge</param>
-        public RSGeConnector(DataProvider arg_ref_conn, string arg_username, string arg_password)
+        public RSGeConnection(DataProvider arg_ref_conn, string arg_username, string arg_password)
         {
             refconn = arg_ref_conn;
             soap_user = arg_username;
@@ -51,7 +51,7 @@ namespace RSGeWebService
 <TRANSPORT_COAST>{TRANSPORT_COAST}</TRANSPORT_COAST>
 <RECEPTION_INFO>{RECEPTION_INFO}</RECEPTION_INFO>
 <RECEIVER_INFO>{RECEIVER_INFO}</RECEIVER_INFO>
-<DELIVERY_DATE>{DELIVERY_DATE}</DELIVERY_DATE>
+{DELIVERY_DATE_TAG}
 <STATUS>{STATUS}</STATUS>
 <SELER_UN_ID>{SELLER_UN_ID}</SELER_UN_ID>
 <PAR_ID>{PAR_ID}</PAR_ID>
@@ -181,7 +181,7 @@ namespace RSGeWebService
                     refconn.GetProductByBarCode(nrem.product_barcode),
                     //TODO: WHAT'S HERE?
                     0,
-                    0,
+                    1,
                     "idk",
                     1,
                     0);
@@ -190,7 +190,7 @@ namespace RSGeWebService
             sxmlzed = sxmlzed.Replace("{GOODS_LIST}", sxmlrems);
             //
             sxmlzed = sxmlzed.Replace("{ID}", arg_id.ToString());
-            sxmlzed = sxmlzed.Replace("{TYPE}", arg_type.ToString());
+            sxmlzed = sxmlzed.Replace("{TYPE}", ((int)arg_type).ToString());
             sxmlzed = sxmlzed.Replace("{BUYER_TIN}", arg_buyer.saidentifikacio_kodi);
             sxmlzed = sxmlzed.Replace("{CHEK_BUYER_TIN}", arg_chek_buyer_tin.ToString());
             sxmlzed = sxmlzed.Replace("{BUYER_NAME}", arg_buyer.saxeli);
@@ -202,7 +202,19 @@ namespace RSGeWebService
             sxmlzed = sxmlzed.Replace("{TRANSPORT_COAST}", arg_transport_coast.ToString());
             sxmlzed = sxmlzed.Replace("{RECEPTION_INFO}", arg_reception_info.ToString());
             sxmlzed = sxmlzed.Replace("{RECEIVER_INFO}", arg_receiver_info.ToString());
-            sxmlzed = sxmlzed.Replace("{DELIVERY_DATE}", arg_delivery_date.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss", culture));
+            string delivery_date_tag = "<DELIVERY_DATE/>";
+            switch (arg_status)
+            {
+                case 0:
+                case 1:
+                    break;
+                case 2:
+                    delivery_date_tag
+                        = "<DELIVERY_DATE>" + arg_delivery_date.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss"
+                            , culture) + "</DELIVERY_DATE>";
+                    break;
+            }
+            sxmlzed = sxmlzed.Replace("{DELIVERY_DATE_TAG}", delivery_date_tag);
             sxmlzed = sxmlzed.Replace("{STATUS}", arg_status.ToString());
             sxmlzed = sxmlzed.Replace("{SELLER_UN_ID}", arg_seller_un_id.ToString());
             sxmlzed = sxmlzed.Replace("{PAR_ID}", arg_par_id.ToString());
@@ -223,16 +235,16 @@ namespace RSGeWebService
 
         public XmlElement PrepareSoldZednadebiEasy(Zednadebi arg_zed,
             int arg_id,
-            DataProvider.OperationType arg_type,
             Buyer arg_buyer,
             string arg_start_address,
+            DateTime arg_delivery_date,
             int arg_seller_un_id,
             int arg_s_user_id
             )
         {
             return (XmlElement)PrepareZednadebi(arg_zed,
                 arg_id,
-                arg_type,
+                arg_zed.operation_type,
                 arg_buyer,
                 1,
                 arg_start_address,
@@ -243,7 +255,7 @@ namespace RSGeWebService
                 0,
                 "",
                 "",
-                arg_zed.dro,
+                arg_delivery_date,
                 1,
                 arg_seller_un_id,
                 0,
@@ -255,6 +267,31 @@ namespace RSGeWebService
                 "",
                 ""
             );
+        }
+
+        public XmlElement SaveWaybill(XmlElement arg_wb)
+        {
+            return client.save_waybill(soap_user, soap_pass, arg_wb);
+        }
+
+        //
+
+        public int GetSellerUnId()
+        {
+            int SellerUnId;
+            int SUserId;
+            client.chek_service_user
+                (soap_user, soap_pass, out SellerUnId, out SUserId);
+            return SellerUnId;
+        }
+
+        public int GetSUserId()
+        {
+            int SellerUnId;
+            int SUserId;
+            client.chek_service_user
+                (soap_user, soap_pass, out SellerUnId, out SUserId);
+            return SUserId;
         }
     }
 }

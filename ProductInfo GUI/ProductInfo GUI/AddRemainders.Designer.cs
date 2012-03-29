@@ -69,6 +69,7 @@
             this.add_rem_sell_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.add_rem_namati_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.add_rem_delete_col = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btn_get_from_rs_ge = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.status_bar.SuspendLayout();
@@ -115,6 +116,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btn_get_from_rs_ge);
             this.panel1.Controls.Add(this.btn_find_supplier);
             this.panel1.Controls.Add(this.btn_add_suppliers);
             this.panel1.Controls.Add(this.using_af_ckb);
@@ -441,6 +443,16 @@
             this.add_rem_delete_col.UseColumnTextForButtonValue = true;
             this.add_rem_delete_col.Width = 50;
             // 
+            // btn_get_from_rs_ge
+            // 
+            this.btn_get_from_rs_ge.Location = new System.Drawing.Point(9, 47);
+            this.btn_get_from_rs_ge.Name = "btn_get_from_rs_ge";
+            this.btn_get_from_rs_ge.Size = new System.Drawing.Size(98, 38);
+            this.btn_get_from_rs_ge.TabIndex = 13;
+            this.btn_get_from_rs_ge.Text = "rs.ge გადმოწერა";
+            this.btn_get_from_rs_ge.UseVisualStyleBackColor = true;
+            this.btn_get_from_rs_ge.Click += new System.EventHandler(this.btn_get_from_rs_ge_Click);
+            // 
             // AddRemainders_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,5 +511,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_sell_price_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn add_rem_namati_col;
         private System.Windows.Forms.DataGridViewButtonColumn add_rem_delete_col;
+        private System.Windows.Forms.Button btn_get_from_rs_ge;
     }
 }

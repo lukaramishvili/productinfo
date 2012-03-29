@@ -726,6 +726,15 @@ namespace ProductInfo_UI
             add_remainders_list.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
         }
 
+        private void btn_get_from_rs_ge_Click(object sender, EventArgs e)
+        {
+            //placeholder for zednadebi downloaded from rs.ge
+            Zednadebi zed = ProductInfo_Main_Form.conn.GetZednadebi("001", DataProvider.OperationType.Buy.ToString(), "123123123");
+            ChooseRSIncomingZed frmRcvZed = new ChooseRSIncomingZed();
+            frmRcvZed.InitIncomingZed(zed);
+            frmRcvZed.ShowDialog();
+        }
+
         //
     }
 }

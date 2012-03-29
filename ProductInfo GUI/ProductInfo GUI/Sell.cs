@@ -195,87 +195,7 @@ namespace ProductInfo_UI
                 return;
             }
 
-            foreach (DataGridViewRow nextRow in add_remainders_list.Rows)
-            {
-                if (!nextRow.IsNewRow)
-                {
-                    Remainder nextRemS1 = new Remainder();
-
-                    if (null == nextRow.Cells["sell_rem_barcode_col"].Value |
-                        null == nextRow.Cells["sell_rem_capacity_col"].Value |
-                        null == nextRow.Cells["sell_rem_count_type_col"].Value |
-                        null == nextRow.Cells[sell_rem_storeid_col.Index].Value |
-                        null == nextRow.Cells[sell_rem_piece_count_col.Index].Value |
-                        null == nextRow.Cells["sell_rem_piece_price_col"].Value)
-                    {
-                        HighlightNonCompleteFields(nextRow);
-
-                        status_bar_lbl.Text = "გთხოვთ შეავსოთ აუცილებელი ველები!";
-                        return;
-                    }
-                    else
-                    {
-                        string nbarcode = nextRow.Cells["sell_rem_barcode_col"].Value.ToString();
-                        string nzedid = zed_ident_code_txt.Text;
-                        decimal ncapacity = ParseDecimal(nextRow.Cells["sell_rem_capacity_col"].Value.ToString());
-                        decimal npiece_price = ParseDecimal(nextRow.Cells["sell_rem_piece_price_col"].Value.ToString());
-                        int nstore_id = Int32.Parse(nextRow.Cells[sell_rem_storeid_col.Index].Value.ToString());
-
-                        decimal npiece_count = 0.0m;
-                        if (null != nextRow.Cells[sell_rem_piece_count_col.Index].Value)
-                        {
-                            npiece_count = ParseDecimal(nextRow.Cells[sell_rem_piece_count_col.Index].Value.ToString());
-                        }
-
-                        if ("ყუთები" == nextRow.Cells["sell_rem_count_type_col"].Value.ToString())
-                        {
-                            npiece_count *= ncapacity;
-                        }
-                        else
-                        {
-                        }
-                        nextRemS1.storehouse_id = nstore_id;
-                        nextRemS1.product_barcode = nbarcode;
-                        nextRemS1.supplier_ident = all_buyers[buyer_chooser.SelectedIndex].saidentifikacio_kodi;
-                        nextRemS1.zednadebis_nomeri = nzedid;
-                        nextRemS1.pack_capacity = ncapacity;
-                        nextRemS1.buy_price = npiece_price;
-                        nextRemS1.formal_buy_price = npiece_price;
-                        nextRemS1.sell_price = npiece_price;
-                        nextRemS1.formal_sell_price = npiece_price;
-                        nextRemS1.initial_pieces = npiece_count;
-                        nextRemS1.remaining_pieces = npiece_count;
-                        /*
-                        nextRemS2.storehouse_id = 2;
-                        nextRemS2.product_barcode = nbarcode;
-                        nextRemS2.supplier_ident = all_buyers[buyer_chooser.SelectedIndex].saidentifikacio_kodi;
-                        nextRemS2.zednadebis_nomeri = nzedid;
-                        nextRemS2.pack_capacity = ncapacity;
-                        nextRemS2.buy_price = npiece_price;
-                        nextRemS2.formal_buy_price = npiece_price;
-                        nextRemS2.sell_price = npiece_price;
-                        nextRemS2.formal_sell_price = npiece_price;
-                        nextRemS2.initial_pieces = nstore2_count;
-                        nextRemS2.remaining_pieces = nstore2_count;
-                        */
-                        if (npiece_count > 0)
-                        {
-                            zed_prod_list.Add(nextRemS1);
-                        }/*
-                        if (nstore2_count > 0)
-                        {
-                            zed_prod_list.Add(nextRemS2);
-                        }*/
-
-                    }
-
-
-                }
-                else
-                {
-                    //Last, unused row (IsNewRow)
-                }
-            }//foreach datagridviewrow
+            zed_prod_list = GetAllEnteredRemainders();
 
             if (zed_prod_list.Count <= 0)
             {
@@ -343,6 +263,93 @@ namespace ProductInfo_UI
             {
                 MessageBox.Show("მოხდა შეცდომა. ზედნადები არ გაყიდულა! ");
             }
+        }
+
+        private List<Remainder> GetAllEnteredRemainders()
+        {
+            List<Remainder> ret_rem_list = new List<Remainder>();
+            foreach (DataGridViewRow nextRow in add_remainders_list.Rows)
+            {
+                if (!nextRow.IsNewRow)
+                {
+                    Remainder nextRemS1 = new Remainder();
+
+                    if (null == nextRow.Cells["sell_rem_barcode_col"].Value |
+                        null == nextRow.Cells["sell_rem_capacity_col"].Value |
+                        null == nextRow.Cells["sell_rem_count_type_col"].Value |
+                        null == nextRow.Cells[sell_rem_storeid_col.Index].Value |
+                        null == nextRow.Cells[sell_rem_piece_count_col.Index].Value |
+                        null == nextRow.Cells["sell_rem_piece_price_col"].Value)
+                    {
+                        HighlightNonCompleteFields(nextRow);
+
+                        status_bar_lbl.Text = "გთხოვთ შეავსოთ აუცილებელი ველები!";
+                        return new List<Remainder>();
+                    }
+                    else
+                    {
+                        string nbarcode = nextRow.Cells["sell_rem_barcode_col"].Value.ToString();
+                        string nzedid = zed_ident_code_txt.Text;
+                        decimal ncapacity = ParseDecimal(nextRow.Cells["sell_rem_capacity_col"].Value.ToString());
+                        decimal npiece_price = ParseDecimal(nextRow.Cells["sell_rem_piece_price_col"].Value.ToString());
+                        int nstore_id = Int32.Parse(nextRow.Cells[sell_rem_storeid_col.Index].Value.ToString());
+
+                        decimal npiece_count = 0.0m;
+                        if (null != nextRow.Cells[sell_rem_piece_count_col.Index].Value)
+                        {
+                            npiece_count = ParseDecimal(nextRow.Cells[sell_rem_piece_count_col.Index].Value.ToString());
+                        }
+
+                        if ("ყუთები" == nextRow.Cells["sell_rem_count_type_col"].Value.ToString())
+                        {
+                            npiece_count *= ncapacity;
+                        }
+                        else
+                        {
+                        }
+                        nextRemS1.storehouse_id = nstore_id;
+                        nextRemS1.product_barcode = nbarcode;
+                        nextRemS1.supplier_ident = all_buyers[buyer_chooser.SelectedIndex].saidentifikacio_kodi;
+                        nextRemS1.zednadebis_nomeri = nzedid;
+                        nextRemS1.pack_capacity = ncapacity;
+                        nextRemS1.buy_price = npiece_price;
+                        nextRemS1.formal_buy_price = npiece_price;
+                        nextRemS1.sell_price = npiece_price;
+                        nextRemS1.formal_sell_price = npiece_price;
+                        nextRemS1.initial_pieces = npiece_count;
+                        nextRemS1.remaining_pieces = npiece_count;
+                        /*
+                        nextRemS2.storehouse_id = 2;
+                        nextRemS2.product_barcode = nbarcode;
+                        nextRemS2.supplier_ident = all_buyers[buyer_chooser.SelectedIndex].saidentifikacio_kodi;
+                        nextRemS2.zednadebis_nomeri = nzedid;
+                        nextRemS2.pack_capacity = ncapacity;
+                        nextRemS2.buy_price = npiece_price;
+                        nextRemS2.formal_buy_price = npiece_price;
+                        nextRemS2.sell_price = npiece_price;
+                        nextRemS2.formal_sell_price = npiece_price;
+                        nextRemS2.initial_pieces = nstore2_count;
+                        nextRemS2.remaining_pieces = nstore2_count;
+                        */
+                        if (npiece_count > 0)
+                        {
+                            ret_rem_list.Add(nextRemS1);
+                        }/*
+                        if (nstore2_count > 0)
+                        {
+                            zed_prod_list.Add(nextRemS2);
+                        }*/
+
+                    }
+
+
+                }
+                else
+                {
+                    //Last, unused row (IsNewRow)
+                }
+            }//foreach datagridviewrow
+            return ret_rem_list;
         }
 
         public void UpdateSumPrice()
@@ -879,6 +886,30 @@ namespace ProductInfo_UI
                 dgrow.HeaderCell.Value = String.Format((dgrow.Index + 1).ToString(), "0");
             }
             add_remainders_list.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+        }
+
+        private void btn_rs_ge_send_Click(object sender, EventArgs e)
+        {
+            DataProvider.PaymentType paying_method_now = DataProvider.PaymentType.Nagdi;
+            if ("ნაღდი" == ckb_pay_method.Text)
+            {
+                paying_method_now = DataProvider.PaymentType.Nagdi;
+            }
+            else if ("კონსიგნაცია" == ckb_pay_method.Text)
+            {
+                paying_method_now = DataProvider.PaymentType.Konsignacia;
+            }
+            else if ("უნაღდო" == ckb_pay_method.Text)
+            {
+                paying_method_now = DataProvider.PaymentType.Unagdo;
+            }
+            Zednadebi zed_to_send = new Zednadebi("", zed_dro_datechooser.Value,
+                add_rem_af_seria.Text, add_rem_af_nomeri.Text, DataProvider.OperationType.Sell,
+                buyer_chooser.SelectedValue.ToString(), paying_method_now);
+            zed_to_send.OrderedItemList = GetAllEnteredRemainders();
+            SendSoldZedToRS frmSendZedToRS = new SendSoldZedToRS();
+            frmSendZedToRS.InitSendZed(zed_to_send);
+            frmSendZedToRS.ShowDialog();
         }
 
 

@@ -67,7 +67,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ProductInfo Data Provider\ProductInfo Data Provider\DataProvider.csproj">
+    <ProjectReference Include="..\ProductInfo Data Provider\ProductInfo Data Provider\DataProvider.csproj">
       <Project>{8010A30B-3C7B-47C1-866C-B78A4C9527F4}</Project>
       <Name>DataProvider</Name>
     </ProjectReference>

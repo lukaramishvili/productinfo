@@ -3431,6 +3431,29 @@ namespace ProductInfo
             }
             return ret_zed;
         }
+
+        public Buyer BuyerByIdentCode(string arg_buyer_ident)
+        {
+            Buyer bycode_buyer = new Buyer();
+
+            SqlCommand prodbybarcode_cmd = new SqlCommand("SELECT * FROM buyer WHERE id_code = N'" +
+                 arg_buyer_ident.Replace("'", "") + "';", DataProvider.SqlLink);
+            prodbybarcode_cmd.CommandType = CommandType.Text;
+            prodbybarcode_cmd.CommandTimeout = 300;
+
+            SqlDataReader rs = prodbybarcode_cmd.ExecuteReader();
+
+            while (rs.Read())
+            {
+                bycode_buyer.saidentifikacio_kodi = (string)rs["id_code"];
+                bycode_buyer.saxeli = (string)rs["name"];
+                bycode_buyer.address = rs["address"].ToString();
+            }
+
+            rs.Close();
+
+            return bycode_buyer;
+        }
     } //DataProvider Class
 
 

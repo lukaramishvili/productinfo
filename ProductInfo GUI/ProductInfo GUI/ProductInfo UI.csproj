@@ -35,6 +35,12 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -77,6 +83,12 @@
     </Compile>
     <Compile Include="AddSupplier.Designer.cs">
       <DependentUpon>AddSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChooseRSIncomingZed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseRSIncomingZed.Designer.cs">
+      <DependentUpon>ChooseRSIncomingZed.cs</DependentUpon>
     </Compile>
     <Compile Include="EditCashierList.cs">
       <SubType>Form</SubType>
@@ -137,6 +149,9 @@
     <EmbeddedResource Include="AddSupplier.resx">
       <DependentUpon>AddSupplier.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChooseRSIncomingZed.resx">
+      <DependentUpon>ChooseRSIncomingZed.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditCashierList.resx">
       <DependentUpon>EditCashierList.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +185,9 @@
     <EmbeddedResource Include="SellOrderDetails.resx">
       <DependentUpon>SellOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SendSoldZedToRS.resx">
+      <DependentUpon>SendSoldZedToRS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SplitRemainder.resx">
       <DependentUpon>SplitRemainder.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +218,17 @@
     <Compile Include="SellOrderDetails.Designer.cs">
       <DependentUpon>SellOrderDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="SendSoldZedToRS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SendSoldZedToRS.Designer.cs">
+      <DependentUpon>SendSoldZedToRS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RSGE\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SplitRemainder.cs">
       <SubType>Form</SubType>
@@ -216,6 +245,10 @@
     <ProjectReference Include="..\..\ProductInfo Data Provider\ProductInfo Data Provider\DataProvider.csproj">
       <Project>{8010A30B-3C7B-47C1-866C-B78A4C9527F4}</Project>
       <Name>DataProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RSGeConnector\RSGeWebService.csproj">
+      <Project>{2651C9E8-C6BE-4D32-9B62-57E066A30253}</Project>
+      <Name>RSGeWebService</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Utilities\Utilities.csproj">
       <Project>{542D61AE-7B3A-43F8-A804-1F2AACDA8396}</Project>
@@ -245,6 +278,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pencil_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\RSGE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RSGE\WayBillService.disco" />
+    <None Include="Service References\RSGE\WayBillService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RSGE\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RSGE\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\System.Xml.XmlElement.datasource" />
+    <None Include="Service References\RSGE\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

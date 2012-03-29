@@ -10,6 +10,7 @@ using ProductInfo;
 using Data_Visualization;
 using Utilities;
 using System.IO;
+using RSGeWebService;
 
 namespace ProductInfo_UI
 {
@@ -65,6 +66,8 @@ namespace ProductInfo_UI
         public static DataProvider conn = new DataProvider();
         public bool pi_authenticated = false;
 
+        //TODO: real rs.ge username/password instead of qqq/qqq
+        public static RSGeConnection rsge = new RSGeConnection(conn, "qqq", "qqq");
 
         public static BackgroundWorker WorkerThread = new BackgroundWorker();
 
@@ -182,7 +185,7 @@ namespace ProductInfo_UI
             all_suppliers = conn.AllSuppliers();
 
             all_buyers = conn.AllBuyers();
-
+            
             if (all_buyers.Length > 0)
             {
                 cmb_xelze_myidveli.Items.Clear();

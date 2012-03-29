@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductInfo UI", "ProductIn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProvider", "..\ProductInfo Data Provider\ProductInfo Data Provider\DataProvider.csproj", "{8010A30B-3C7B-47C1-866C-B78A4C9527F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSGeWebService", "RSGeConnector\RSGeWebService.csproj", "{2651C9E8-C6BE-4D32-9B62-57E066A30253}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSGeWebService", "..\RSGeConnector\RSGeWebService.csproj", "{2651C9E8-C6BE-4D32-9B62-57E066A30253}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
