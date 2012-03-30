@@ -231,6 +231,7 @@
             // 
             // cb_rs_trans_type_id
             // 
+            this.cb_rs_trans_type_id.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_rs_trans_type_id.FormattingEnabled = true;
             this.cb_rs_trans_type_id.Location = new System.Drawing.Point(281, 414);
             this.cb_rs_trans_type_id.Name = "cb_rs_trans_type_id";

@@ -3436,7 +3436,7 @@ namespace ProductInfo
         {
             Buyer bycode_buyer = new Buyer();
 
-            SqlCommand prodbybarcode_cmd = new SqlCommand("SELECT * FROM buyer WHERE id_code = N'" +
+            SqlCommand prodbybarcode_cmd = new SqlCommand("SELECT * FROM buyers WHERE id_code = N'" +
                  arg_buyer_ident.Replace("'", "") + "';", DataProvider.SqlLink);
             prodbybarcode_cmd.CommandType = CommandType.Text;
             prodbybarcode_cmd.CommandTimeout = 300;

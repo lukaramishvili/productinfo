@@ -68,6 +68,7 @@ namespace ProductInfo_UI
                     ProductInfo_Main_Form.rsge.GetSUserId());
             XmlElement resultSendWaybill 
                 = ProductInfo_Main_Form.rsge.SaveWaybill(xmlSellingZed);
+            MessageBox.Show(resultSendWaybill.OuterXml);
             //TODO: receive results in xml, parse and display results
         }
     }
