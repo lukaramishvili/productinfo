@@ -890,26 +890,35 @@ namespace ProductInfo_UI
 
         private void btn_rs_ge_send_Click(object sender, EventArgs e)
         {
-            DataProvider.PaymentType paying_method_now = DataProvider.PaymentType.Nagdi;
-            if ("ნაღდი" == ckb_pay_method.Text)
+            if (false == (buyer_chooser.SelectedIndex >= 0 && buyer_chooser.SelectedIndex < all_buyers.Length))
             {
-                paying_method_now = DataProvider.PaymentType.Nagdi;
+                MessageBox.Show("მყიდველის ველი ცარიელია!");
+                return;
             }
-            else if ("კონსიგნაცია" == ckb_pay_method.Text)
+            else
             {
-                paying_method_now = DataProvider.PaymentType.Konsignacia;
+
+                DataProvider.PaymentType paying_method_now = DataProvider.PaymentType.Nagdi;
+                if ("ნაღდი" == ckb_pay_method.Text)
+                {
+                    paying_method_now = DataProvider.PaymentType.Nagdi;
+                }
+                else if ("კონსიგნაცია" == ckb_pay_method.Text)
+                {
+                    paying_method_now = DataProvider.PaymentType.Konsignacia;
+                }
+                else if ("უნაღდო" == ckb_pay_method.Text)
+                {
+                    paying_method_now = DataProvider.PaymentType.Unagdo;
+                }
+                Zednadebi zed_to_send = new Zednadebi("", zed_dro_datechooser.Value,
+                    add_rem_af_seria.Text, add_rem_af_nomeri.Text, DataProvider.OperationType.Sell,
+                    all_buyers[buyer_chooser.SelectedIndex].saidentifikacio_kodi, paying_method_now);
+                zed_to_send.OrderedItemList = GetAllEnteredRemainders();
+                SendSoldZedToRS frmSendZedToRS = new SendSoldZedToRS();
+                frmSendZedToRS.InitSendZed(zed_to_send);
+                frmSendZedToRS.ShowDialog();
             }
-            else if ("უნაღდო" == ckb_pay_method.Text)
-            {
-                paying_method_now = DataProvider.PaymentType.Unagdo;
-            }
-            Zednadebi zed_to_send = new Zednadebi("", zed_dro_datechooser.Value,
-                add_rem_af_seria.Text, add_rem_af_nomeri.Text, DataProvider.OperationType.Sell,
-                buyer_chooser.SelectedValue.ToString(), paying_method_now);
-            zed_to_send.OrderedItemList = GetAllEnteredRemainders();
-            SendSoldZedToRS frmSendZedToRS = new SendSoldZedToRS();
-            frmSendZedToRS.InitSendZed(zed_to_send);
-            frmSendZedToRS.ShowDialog();
         }
 
 

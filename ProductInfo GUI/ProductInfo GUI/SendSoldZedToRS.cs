@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.Collections;
 using ProductInfo;
 
 namespace ProductInfo_UI
@@ -22,6 +23,15 @@ namespace ProductInfo_UI
 
         private void SendSoldZedToRS_Load(object sender, EventArgs e)
         {
+            cb_rs_trans_type_id.Items.Add(new DictionaryEntry(1, "საავტომობილო"));
+            cb_rs_trans_type_id.Items.Add(new DictionaryEntry(2, "სარკინიგზო"));
+            cb_rs_trans_type_id.Items.Add(new DictionaryEntry(3, "საავიაციო"));
+            cb_rs_trans_type_id.Items.Add(new DictionaryEntry(4, "სხვა"));
+            cb_rs_trans_type_id.Items.Add(new DictionaryEntry(5, "მისაბმელი"));
+            cb_rs_trans_type_id.ValueMember = "Key";
+            cb_rs_trans_type_id.DisplayMember = "Value";
+            cb_rs_trans_type_id.DataSource = cb_rs_trans_type_id.Items;
+            //
             if (null == zedToSend)
             {
                 MessageBox.Show("ზედნადები არასწორადაა გადაცემული!");
