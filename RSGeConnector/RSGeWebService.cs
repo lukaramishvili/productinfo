@@ -32,6 +32,83 @@ namespace RSGeWebService
             soap_pass = arg_password;
         }
 
+        public static Dictionary<int, string> initWbErrorDict()
+        {
+            Dictionary<int, string> dictretval = new Dictionary<int, string>();
+            dictretval[-1001] = "ზედნადების ტიპი არასწორია";
+dictretval[-1028] = "წაშლილ ზედნადებში ვერ დაარედაქტირებთ და ვერც წაშლით";
+dictretval[-1002] = "ტრანსპორტირების ტიპი არასწორია";
+dictretval[-1014] = "მძღოლი არ მოიძებნა;  chek_driver_tin=1 ";
+dictretval[-1015] = "reception_info დიდია";
+dictretval[-1016] = "receiver_info დიდია";
+dictretval[-1017] = "delivery_date მეტია მინდინარე თარიღზე";
+dictretval[-1003] = "buyer_name აუცილებელია chek_buyer_tin=0";
+dictretval[-1018] = "delivery_date ნაკლებია begin_date თარიღზე";
+dictretval[-1004] = "მყიდველი აუცილებელია ყოველთვის გარდა შიდაგადაზიდვისას";
+dictretval[-1019] = "სტატუსი არასწორია";
+dictretval[-1020] = "შეუნახავს ვერ წაშლი";
+dictretval[-1021] = "შეუნახავს ვერ გააუქმებ";
+dictretval[-1022] = "გამყიდველი ლიკვიდირებულია";
+dictretval[-1005] = "მყიდვევლი არ მოიძებნა თუ   chek_buyer_tin=1";
+dictretval[-1006] = "მყიდვევლი ლიკვიდირებულია ან კოდი გაუქმებულია";
+dictretval[-1007] = "start_address დიდია";
+dictretval[-1023] = "ქვეზედნადებისთვის მშობელი აუცილებელია";
+dictretval[-1008] = "driver_tin დიდია";
+dictretval[-1027] = "დასრულებულის რედაქტირებას ვე გააკეთებთ";
+dictretval[-1009] = "start_address აუცილებელია";
+dictretval[-1010] = "end_address დიდია";
+dictretval[-1029] = "გაუქმებულს ზედნადებში ვერ დაარედაქტირებთ და ვერც წაშლით";
+dictretval[-1030] = "მშობელ ზედნადებს ვე გააუქმებთ თუ ქვე ზედნადები აქვს";
+dictretval[-1011] = "end_address აუცილებელია თუ ტრანსპორტირებაა";
+dictretval[-1024] = "მშობელი არ მოიძებნა ან მშობელი აქტივირებული არ არის";
+dictretval[-1025] = "ქვე ზედნადები მარტო დისტრიბუციაზე იწერება";
+dictretval[-1026] = "მანქანია ნომერი არასწორია";
+dictretval[-1012] = "მძღოლი აუცილებელია ტრანსპორტირების ტიპის ყველა ზედნადებზე";
+dictretval[-1013] = "მძღოლის სახელი აუცილებელია  chek_buyer_tin=0  ტრანსპორტირების ტიპის ყველა ზედნადებზე";
+dictretval[-2003] = "unit_id არასწორია";
+dictretval[-2004] = "unit_txt აუცილებელია როცა unit_id = 99";
+dictretval[-2005] = "რაოდენობა 0-ზე მედი უნდა";
+dictretval[-2006] = "ქონების სტატუსი არასწორია";
+dictretval[-2007] = "price არის აუცილებელი გარდა შიდაგადაზიდვის ";
+dictretval[-2008] = "აქციზის ID არქასწორია";
+dictretval[-2002] = "vat_type არასწორია";
+dictretval[-2001] = "w_name დიდია";
+dictretval[-3006] = "ანგარიშფაქტურა და ზედნადები სხვადასხვა გადამხდელზეა გამოწერილი";
+dictretval[-3004] = "გამყიდველი არ არის დღგს გადამხდელი";
+dictretval[-3005] = "მყიდველი არ არის გადამხელი ან რეგისრირებული არ არის დეკლარირებაში";
+dictretval[-3003] = "ზედნადები არ არის დახურული";
+dictretval[-3002] = "გამყიდველი არ არის დეცლარირებაში რეგისტრირებული";
+dictretval[-3001] = "ზედნადები არ მოიძებნა";
+dictretval[-1034] = "აქტივაციის თარიღი  ნაკლებია შექმნის თარიღზე";
+dictretval[-2] = "ზოგადი შეცდომა (არამთელი რიცხვებს გამყოფად წერტილი უნდა ქონდეთ)";
+dictretval[-1036] = "ტრანსპორტირების გარეშე  შემთხვევაში დაწყების და დარულების ადგილი უნდა ემთხვეოდეს";
+dictretval[-1031] = "გადაგზავნილს ვერ წაშლით";
+dictretval[-1032] = "ქვე ზედდებულს ძირითადად ვერ გახდი";
+dictretval[-1033] = "გამოწერილ ზედნადებს ქვე ზედნადებად ვერ გადააკეთებ";
+dictretval[-1035] = "შიდაგადაზიდვის დროს მყიდველის საიდენტიფიკაციო კოდი ცარიელი ან გამყიდველის კოდი უნდა იყოს მითითებული";
+dictretval[-1] = "გაურკვეველი შეცდომა (გადაამოწმეთ თარიღების ფორმატი)";
+dictretval[-100] = "სერვისის მომხმარებელი ან პაროლი არასწორია";
+dictretval[-101] = "გამომწერის un_id განსხვავდება XML-ში მითითებული seler_un_id -ის გან ";
+dictretval[-1037] = "თუ ტრანსპორტირების ტიპი არის სხვა მიუთითეთ TRANS_TXT";
+dictretval[-2009] = "მშობელ ზედნადებში არ არის შესაბამისი საქონელი";
+dictretval[-102] = "შეცდომა მოხდა XML-ის პარსირებისას ან SELLER_UN_ID ტეგი არ გაქვთ";
+            return dictretval;
+        }
+
+        public static Dictionary<int, string> wbErrorDict = initWbErrorDict();
+
+        public static string GetWBError(int nError)
+        {
+            if (wbErrorDict.ContainsKey(nError))
+            {
+                return wbErrorDict[nError].ToString();
+            }
+            else
+            {
+                return nError.ToString();
+            }
+        }
+
         string zedtemplate = @"
             <WAYBILL>
 <SUB_WAYBILLS></SUB_WAYBILLS>
@@ -145,7 +222,7 @@ namespace RSGeWebService
         /// <param name="arg_trans_txt"></param>
         /// <param name="arg_comment"></param>
         /// <returns></returns>
-        public XmlNode PrepareZednadebi(Zednadebi arg_zed,
+        public XmlElement PrepareZednadebi(Zednadebi arg_zed,
             int arg_id,
             DataProvider.OperationType arg_type,
             Buyer arg_buyer,
@@ -230,7 +307,7 @@ namespace RSGeWebService
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(sxmlzed);
             XmlNode waybill = doc.SelectSingleNode("/WAYBILL");
-            return waybill;
+            return (XmlElement)waybill;
         }
 
         public XmlElement PrepareSoldZednadebiEasy(Zednadebi arg_zed,
@@ -242,7 +319,7 @@ namespace RSGeWebService
             int arg_s_user_id
             )
         {
-            return (XmlElement)PrepareZednadebi(arg_zed,
+            return PrepareZednadebi(arg_zed,
                 arg_id,
                 arg_zed.operation_type,
                 arg_buyer,
