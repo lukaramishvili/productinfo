@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a9050c36-33ec-4b0d-9bbb-fbaf4e20f2ee" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a617a589-79ae-4ae2-aebb-ee4e0462aa36" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -20,8 +20,8 @@
     <MetadataSource Address="http://services.rs.ge/WayBillService/WayBillService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WayBillService.disco" MetadataType="Disco" ID="a3d31c45-c987-4b40-8b16-95b1cd0b6820" SourceId="1" SourceUrl="http://services.rs.ge/WayBillService/WayBillService.asmx?disco" />
-    <MetadataFile FileName="WayBillService.wsdl" MetadataType="Wsdl" ID="a4daabb0-745f-405e-8cc8-452e54a60700" SourceId="1" SourceUrl="http://services.rs.ge/WayBillService/WayBillService.asmx?wsdl" />
+    <MetadataFile FileName="WayBillService.disco" MetadataType="Disco" ID="2dc03722-e6e1-4565-baa0-aa46f0752362" SourceId="1" SourceUrl="http://services.rs.ge/WayBillService/WayBillService.asmx?disco" />
+    <MetadataFile FileName="WayBillService.wsdl" MetadataType="Wsdl" ID="4cf5e9c9-a655-495e-afcd-6c054085fa55" SourceId="1" SourceUrl="http://services.rs.ge/WayBillService/WayBillService.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
