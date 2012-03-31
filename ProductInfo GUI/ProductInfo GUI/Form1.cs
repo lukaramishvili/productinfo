@@ -67,7 +67,7 @@ namespace ProductInfo_UI
         public bool pi_authenticated = false;
 
         //TODO: real rs.ge username/password instead of qqq/qqq
-        public static RSGeConnection rsge = new RSGeConnection(conn, "qqq", "qqq");
+        public static RSGeConnection rsge = new RSGeConnection(conn, "ekolari_userblowfish", "ekolari_passblowfish");
 
         public static BackgroundWorker WorkerThread = new BackgroundWorker();
 

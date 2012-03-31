@@ -108,6 +108,12 @@
     <Compile Include="EditSoldRemainder.Designer.cs">
       <DependentUpon>EditSoldRemainder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FindIncomingWaybill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindIncomingWaybill.Designer.cs">
+      <DependentUpon>FindIncomingWaybill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditSoldRemainder.resx">
       <DependentUpon>EditSoldRemainder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindIncomingWaybill.resx">
+      <DependentUpon>FindIncomingWaybill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -283,6 +292,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\System.Xml.XmlElement.datasource" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Service References\RSGE\" />
   </ItemGroup>
   <ItemGroup>
@@ -296,7 +308,6 @@
     <None Include="Service References\RSGE\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\DataSources\System.Xml.XmlElement.datasource" />
     <None Include="Service References\RSGE\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

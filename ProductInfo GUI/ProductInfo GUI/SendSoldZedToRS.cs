@@ -12,12 +12,18 @@ using ProductInfo;
 
 namespace ProductInfo_UI
 {
+
     public partial class SendSoldZedToRS : Form
     {
         public SendSoldZedToRS()
         {
             InitializeComponent();
         }
+
+        public event WaybillSaveSuccessHandler evtSaveSuccess;
+        public WaybillSuccessArgs eWbSuccess = null;
+        public delegate void WaybillSaveSuccessHandler
+            (SendSoldZedToRS frmSoldZed, WaybillSuccessArgs eWbSuccess);
 
         Zednadebi zedToSend = null;
 
@@ -89,10 +95,15 @@ namespace ProductInfo_UI
             switch (errCode)
             {
                 case 0:
-                    string sWaybillNumber 
+                    string sWaybillNumber
                         = resultSendWaybill.SelectSingleNode("/WAYBILL_NUMBER").InnerText;
-                    MessageBox.Show("ზედნადების rs.ge-ზე დამახსოვრება ნომრით \""
-                        + sWaybillNumber + "\" წარმატებით დასრულდა!");
+                    int idWaybillInsertID
+                        = Utilities.Utilities.ParseInt
+                            (resultSendWaybill.SelectSingleNode("/ID").InnerText);
+                    eWbSuccess.sInsertedZedIdent = sWaybillNumber;
+                    //raise saved success event
+                    evtSaveSuccess(this, eWbSuccess);
+                    this.Close();
                     break;
                 default:
                     MessageBox.Show("შეცდომა " + errCode.ToString() + ", "
@@ -106,6 +117,35 @@ namespace ProductInfo_UI
         private void txt_end_address_TextChanged(object sender, EventArgs e)
         {
 
+        }
+    }
+
+
+    public class WaybillSuccessArgs : EventArgs
+    {
+        private string _sInsertedZedIdent = "";
+        public string sInsertedZedIdent
+        {
+            set
+            {
+                _sInsertedZedIdent = value;
+            }
+            get
+            {
+                return this._sInsertedZedIdent;
+            }
+        }
+        private int _idRSInsertedWaybillID = -1;
+        public int idRSInsertedWaybillID
+        {
+            set
+            {
+                _idRSInsertedWaybillID = value;
+            }
+            get
+            {
+                return this._idRSInsertedWaybillID;
+            }
         }
     }
 }

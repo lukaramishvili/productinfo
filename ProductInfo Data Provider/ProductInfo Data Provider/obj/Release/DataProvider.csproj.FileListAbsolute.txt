@@ -16,9 +16,9 @@ D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo MSSQL Da
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Data Provider\obj\Release\ResolveAssemblyReference.cache
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Data Provider\obj\Release\DataProvider.dll
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Data Provider\obj\Release\DataProvider.pdb
-D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Provider\obj\Release\ResolveAssemblyReference.cache
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\DataProvider.dll.config
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\DataProvider.dll
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\DataProvider.pdb
+D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Provider\obj\Release\ResolveAssemblyReference.cache
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Provider\obj\Release\DataProvider.dll
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo Data Provider\ProductInfo Data Provider\obj\Release\DataProvider.pdb

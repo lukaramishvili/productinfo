@@ -11,7 +11,7 @@ namespace RSGeWebService
 {
     public class RSGeConnection
     {
-        public WayBillsSoapClient client = new WayBillsSoapClient();
+        public WayBillsSoapClient client = new WayBillsSoapClient("RSGE.WayBillsSoap", "http://services.rs.ge/WayBillService/WayBillService.asmx");
         public string soap_user = "";
         public string soap_pass = "";
 
@@ -349,6 +349,14 @@ dictretval[-102] = "შეცდომა მოხდა XML-ის პარ�
         public XmlElement SaveWaybill(XmlElement arg_wb)
         {
             return client.save_waybill(soap_user, soap_pass, arg_wb);
+        }
+
+        public Zednadebi LoadWaybill(int Waybill_ID)
+        {
+            XmlElement xmlZedFromRS
+                = client.get_waybill(soap_user, soap_pass, Waybill_ID);
+            //TODO: .SelectSingleNode("/ID"), ("GOODS_LIST") etc
+            return null;
         }
 
         //

@@ -161,6 +161,12 @@ namespace ProductInfo_UI
 
         private void submit_btn_Click(object sender, EventArgs e)
         {
+            submit_btn_Click();
+        }
+
+        private void submit_btn_Click()
+        {
+
             submit_clicked = true;
 
             Zednadebi gayidva_zed = null;
@@ -895,6 +901,11 @@ namespace ProductInfo_UI
                 MessageBox.Show("მყიდველის ველი ცარიელია!");
                 return;
             }
+            else if (false)
+            {
+                MessageBox.Show("Zednadebi is not saveable, compared to database!");
+                return;
+            }
             else
             {
 
@@ -917,6 +928,17 @@ namespace ProductInfo_UI
                 zed_to_send.OrderedItemList = GetAllEnteredRemainders();
                 SendSoldZedToRS frmSendZedToRS = new SendSoldZedToRS();
                 frmSendZedToRS.InitSendZed(zed_to_send);
+                frmSendZedToRS.evtSaveSuccess += new SendSoldZedToRS.WaybillSaveSuccessHandler(delegate(SendSoldZedToRS frmSoldZed, WaybillSuccessArgs eWbSuccess)
+                {
+                    MessageBox.Show("ზედნადების rs.ge-ზე დამახსოვრება ნომრით \""
+                        + eWbSuccess.sInsertedZedIdent + "\" წარმატებით დასრულდა!");
+                    zed_ident_code_txt.Enabled = false;
+                    buyer_chooser.Enabled = false;
+                    zed_dro_datechooser.Enabled = false;
+                    add_remainders_list.Enabled = false;
+                    zed_ident_code_txt.Text = eWbSuccess.sInsertedZedIdent;
+                    //click submit btn
+                });
                 frmSendZedToRS.ShowDialog();
             }
         }

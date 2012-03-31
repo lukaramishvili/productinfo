@@ -88,8 +88,16 @@ namespace RSGeConnector.RSGE {
         RSGeConnector.RSGE.ref_waybillResponse ref_waybill(RSGeConnector.RSGE.ref_waybillRequest request);
         
         // CODEGEN: Generating message contract since element name su from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ref_waybill_vd", ReplyAction="*")]
+        RSGeConnector.RSGE.ref_waybill_vdResponse ref_waybill_vd(RSGeConnector.RSGE.ref_waybill_vdRequest request);
+        
+        // CODEGEN: Generating message contract since element name su from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/del_waybill", ReplyAction="*")]
         RSGeConnector.RSGE.del_waybillResponse del_waybill(RSGeConnector.RSGE.del_waybillRequest request);
+        
+        // CODEGEN: Generating message contract since element name su from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/confirm_waybill", ReplyAction="*")]
+        RSGeConnector.RSGE.confirm_waybillResponse confirm_waybill(RSGeConnector.RSGE.confirm_waybillRequest request);
         
         // CODEGEN: Generating message contract since element name su from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/save_invoice", ReplyAction="*")]
@@ -1614,6 +1622,82 @@ namespace RSGeConnector.RSGE {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ref_waybill_vdRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ref_waybill_vd", Namespace="http://tempuri.org/", Order=0)]
+        public RSGeConnector.RSGE.ref_waybill_vdRequestBody Body;
+        
+        public ref_waybill_vdRequest() {
+        }
+        
+        public ref_waybill_vdRequest(RSGeConnector.RSGE.ref_waybill_vdRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ref_waybill_vdRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string su;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string sp;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public int waybill_id;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string comment;
+        
+        public ref_waybill_vdRequestBody() {
+        }
+        
+        public ref_waybill_vdRequestBody(string su, string sp, int waybill_id, string comment) {
+            this.su = su;
+            this.sp = sp;
+            this.waybill_id = waybill_id;
+            this.comment = comment;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ref_waybill_vdResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ref_waybill_vdResponse", Namespace="http://tempuri.org/", Order=0)]
+        public RSGeConnector.RSGE.ref_waybill_vdResponseBody Body;
+        
+        public ref_waybill_vdResponse() {
+        }
+        
+        public ref_waybill_vdResponse(RSGeConnector.RSGE.ref_waybill_vdResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ref_waybill_vdResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int ref_waybill_vdResult;
+        
+        public ref_waybill_vdResponseBody() {
+        }
+        
+        public ref_waybill_vdResponseBody(int ref_waybill_vdResult) {
+            this.ref_waybill_vdResult = ref_waybill_vdResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class del_waybillRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="del_waybill", Namespace="http://tempuri.org/", Order=0)]
@@ -1680,6 +1764,78 @@ namespace RSGeConnector.RSGE {
         
         public del_waybillResponseBody(int del_waybillResult) {
             this.del_waybillResult = del_waybillResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class confirm_waybillRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="confirm_waybill", Namespace="http://tempuri.org/", Order=0)]
+        public RSGeConnector.RSGE.confirm_waybillRequestBody Body;
+        
+        public confirm_waybillRequest() {
+        }
+        
+        public confirm_waybillRequest(RSGeConnector.RSGE.confirm_waybillRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class confirm_waybillRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string su;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string sp;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public int waybill_id;
+        
+        public confirm_waybillRequestBody() {
+        }
+        
+        public confirm_waybillRequestBody(string su, string sp, int waybill_id) {
+            this.su = su;
+            this.sp = sp;
+            this.waybill_id = waybill_id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class confirm_waybillResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="confirm_waybillResponse", Namespace="http://tempuri.org/", Order=0)]
+        public RSGeConnector.RSGE.confirm_waybillResponseBody Body;
+        
+        public confirm_waybillResponse() {
+        }
+        
+        public confirm_waybillResponse(RSGeConnector.RSGE.confirm_waybillResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class confirm_waybillResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool confirm_waybillResult;
+        
+        public confirm_waybillResponseBody() {
+        }
+        
+        public confirm_waybillResponseBody(bool confirm_waybillResult) {
+            this.confirm_waybillResult = confirm_waybillResult;
         }
     }
     
@@ -3021,6 +3177,22 @@ namespace RSGeConnector.RSGE {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RSGeConnector.RSGE.ref_waybill_vdResponse RSGeConnector.RSGE.WayBillsSoap.ref_waybill_vd(RSGeConnector.RSGE.ref_waybill_vdRequest request) {
+            return base.Channel.ref_waybill_vd(request);
+        }
+        
+        public int ref_waybill_vd(string su, string sp, int waybill_id, string comment) {
+            RSGeConnector.RSGE.ref_waybill_vdRequest inValue = new RSGeConnector.RSGE.ref_waybill_vdRequest();
+            inValue.Body = new RSGeConnector.RSGE.ref_waybill_vdRequestBody();
+            inValue.Body.su = su;
+            inValue.Body.sp = sp;
+            inValue.Body.waybill_id = waybill_id;
+            inValue.Body.comment = comment;
+            RSGeConnector.RSGE.ref_waybill_vdResponse retVal = ((RSGeConnector.RSGE.WayBillsSoap)(this)).ref_waybill_vd(inValue);
+            return retVal.Body.ref_waybill_vdResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         RSGeConnector.RSGE.del_waybillResponse RSGeConnector.RSGE.WayBillsSoap.del_waybill(RSGeConnector.RSGE.del_waybillRequest request) {
             return base.Channel.del_waybill(request);
         }
@@ -3033,6 +3205,21 @@ namespace RSGeConnector.RSGE {
             inValue.Body.waybill_id = waybill_id;
             RSGeConnector.RSGE.del_waybillResponse retVal = ((RSGeConnector.RSGE.WayBillsSoap)(this)).del_waybill(inValue);
             return retVal.Body.del_waybillResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RSGeConnector.RSGE.confirm_waybillResponse RSGeConnector.RSGE.WayBillsSoap.confirm_waybill(RSGeConnector.RSGE.confirm_waybillRequest request) {
+            return base.Channel.confirm_waybill(request);
+        }
+        
+        public bool confirm_waybill(string su, string sp, int waybill_id) {
+            RSGeConnector.RSGE.confirm_waybillRequest inValue = new RSGeConnector.RSGE.confirm_waybillRequest();
+            inValue.Body = new RSGeConnector.RSGE.confirm_waybillRequestBody();
+            inValue.Body.su = su;
+            inValue.Body.sp = sp;
+            inValue.Body.waybill_id = waybill_id;
+            RSGeConnector.RSGE.confirm_waybillResponse retVal = ((RSGeConnector.RSGE.WayBillsSoap)(this)).confirm_waybill(inValue);
+            return retVal.Body.confirm_waybillResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

@@ -728,10 +728,14 @@ namespace ProductInfo_UI
 
         private void btn_get_from_rs_ge_Click(object sender, EventArgs e)
         {
-            //placeholder for zednadebi downloaded from rs.ge
-            Zednadebi zed = ProductInfo_Main_Form.conn.GetZednadebi("001", DataProvider.OperationType.Buy.ToString(), "123123123");
             ChooseRSIncomingZed frmRcvZed = new ChooseRSIncomingZed();
-            frmRcvZed.InitIncomingZed(zed);
+            frmRcvZed.evtWaybillChosen += new ChooseRSIncomingZed.WaybillChosenHandler
+                (delegate(ChooseRSIncomingZed frmChooseRSIncomingZed, 
+                    WBChosenEventArgs eWbSuccess)
+            {
+                Zednadebi zedloadedetcetc = eWbSuccess.WBChosenZed;
+                MessageBox.Show("TODO: load zed and rems into datagridview");
+            });
             frmRcvZed.ShowDialog();
         }
 
