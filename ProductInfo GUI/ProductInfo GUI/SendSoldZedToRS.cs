@@ -74,7 +74,7 @@ namespace ProductInfo_UI
             //delivery_date is not needed when first saving zednadebi
             XmlElement xmlSellingZed
                 = ProductInfo_Main_Form.rsge.PrepareZednadebi(
-                    zedToSend, 0, (DataProvider.OperationType)cb_rs_trans_type_id.SelectedValue,
+                    zedToSend, 0, (DataProvider.OperationType)cb_rs_wb_type.SelectedValue,
                     zed_buyer, (ck_buyer_is_georgian.Checked ? 1 : 0),
                     txt_start_address.Text, txt_end_address.Text,
                     txt_driver_ident.Text, (ck_driver_is_georgian.Checked ? 1 : 0),
