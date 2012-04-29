@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Collections;
+using System.IO;
 using ProductInfo;
 
 namespace ProductInfo_UI
@@ -21,7 +22,6 @@ namespace ProductInfo_UI
         }
 
         public event WaybillSaveSuccessHandler evtSaveSuccess;
-        public WaybillSuccessArgs eWbSuccess = null;
         public delegate void WaybillSaveSuccessHandler
             (SendSoldZedToRS frmSoldZed, WaybillSuccessArgs eWbSuccess);
 
@@ -46,6 +46,9 @@ namespace ProductInfo_UI
             cb_rs_wb_type.ValueMember = "Key";
             cb_rs_wb_type.DisplayMember = "Value";
             cb_rs_wb_type.DataSource = cb_rs_wb_type.Items;
+            //
+            dt_begin_date.Value = DateTime.Now.AddMinutes(-5);
+            dt_delivery_date.Value = DateTime.Now.AddMinutes(-5);
             //
             cb_rs_wb_type.SelectedValue = DataProvider.OperationType.Sell;
             //
@@ -74,9 +77,9 @@ namespace ProductInfo_UI
 
         private void btnSendZedToRS_Click(object sender, EventArgs e)
         {
-            Buyer zed_buyer 
+            Buyer zed_buyer
                 = ProductInfo_Main_Form.conn.BuyerByIdentCode(zedToSend.buyer_saident);
-            
+
             //delivery_date is not needed when first saving zednadebi
             XmlElement xmlSellingZed
                 = ProductInfo_Main_Form.rsge.PrepareZednadebi(
@@ -85,13 +88,44 @@ namespace ProductInfo_UI
                     txt_start_address.Text, txt_end_address.Text,
                     txt_driver_ident.Text, (ck_driver_is_georgian.Checked ? 1 : 0),
                     txt_driver_name.Text, Utilities.Utilities.ParseDecimal(txt_transp_cost.Text),
-                    "", "", DateTime.Now, 1, ProductInfo_Main_Form.rsge.GetSellerUnId(), 0,
+                    "", "", dt_delivery_date.Value, 1, ProductInfo_Main_Form.rsge.GetSellerUnId(), 0,
                     txt_car_number.Text, ProductInfo_Main_Form.rsge.GetSUserId(), dt_begin_date.Value,
-                    (ck_trans_cost_payer.Checked ? 1 : 2), (int)cb_rs_trans_type_id.SelectedValue, 
+                    (ck_trans_cost_payer.Checked ? 1 : 2), (int)cb_rs_trans_type_id.SelectedValue,
                     txt_transp_type_name.Text, "");
-            XmlElement resultSendWaybill 
+            XmlElement resultSendWaybill
                 = ProductInfo_Main_Form.rsge.SaveWaybill(xmlSellingZed);
             int errCode = Utilities.Utilities.ParseInt(resultSendWaybill.SelectSingleNode("/STATUS").InnerText);
+
+            //========================================start logging xml========================================
+            try
+            {
+                if (!Directory.Exists(@".\RSLOG"))
+                {
+                    Directory.CreateDirectory(@".\RSLOG");
+                }
+                File.WriteAllText(@".\RSLOG\" + DateTime.Now.Day.ToString()
+                    + "-" + DateTime.Now.Month.ToString()
+                    + "-" + DateTime.Now.Year.ToString()
+                    + "-" + DateTime.Now.Month.ToString()
+                    + "-" + DateTime.Now.Hour.ToString()
+                    + "-" + DateTime.Now.Minute.ToString()
+                    + "-" + DateTime.Now.Second.ToString()
+                    + "-" + "request.xml.txt", xmlSellingZed.OuterXml, Encoding.UTF8);
+                File.WriteAllText(@".\RSLOG\" + DateTime.Now.Day.ToString()
+                    + "-" + DateTime.Now.Month.ToString()
+                    + "-" + DateTime.Now.Year.ToString()
+                    + "-" + DateTime.Now.Month.ToString()
+                    + "-" + DateTime.Now.Hour.ToString()
+                    + "-" + DateTime.Now.Minute.ToString()
+                    + "-" + DateTime.Now.Second.ToString()
+                    + "-" + "response.xml.txt", resultSendWaybill.OuterXml, Encoding.UTF8);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //========================================end logging xml========================================
+
             switch (errCode)
             {
                 case 0:
@@ -100,6 +134,8 @@ namespace ProductInfo_UI
                     int idWaybillInsertID
                         = Utilities.Utilities.ParseInt
                             (resultSendWaybill.SelectSingleNode("/ID").InnerText);
+                    WaybillSuccessArgs eWbSuccess
+                        = new WaybillSuccessArgs();
                     eWbSuccess.sInsertedZedIdent = sWaybillNumber;
                     //raise saved success event
                     evtSaveSuccess(this, eWbSuccess);

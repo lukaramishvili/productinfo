@@ -66,8 +66,8 @@ namespace ProductInfo_UI
         public static DataProvider conn = new DataProvider();
         public bool pi_authenticated = false;
 
-        //TODO: real rs.ge username/password instead of qqq/qqq
         public static RSGeConnection rsge = new RSGeConnection(conn, "ekolari_userblowfish", "ekolari_passblowfish");
+        //public static RSGeConnection rsge = new RSGeConnection(conn, "www", "www");
 
         public static BackgroundWorker WorkerThread = new BackgroundWorker();
 
@@ -3291,6 +3291,53 @@ namespace ProductInfo_UI
         void editsoldrem_frm_FormClosed()
         {
             throw new NotImplementedException();
+        }
+
+        private void cmi_sold_zed_add_rs_af_Click(object sender, EventArgs e)
+        {
+            int WaybillIDForThisZed;
+            if (0 < sold_zed_list.SelectedItems.Count && "ჯამი" != sold_zed_list.SelectedItems[0].Text
+                && Regex.IsMatch(sold_zed_list.SelectedItems[0].SubItems[sold_z_ident_code_col.Index].Text, @"^\d+$")
+                && 0 == rsge.GetSoldZednadebiWaybillID(sold_zed_list.SelectedItems[0].SubItems[sold_z_ident_code_col.Index].Text,
+                                                        out WaybillIDForThisZed))
+            {
+                int InvoiceIDForThisZed;
+                info resultAddInvoice = rsge.AddInvoiceForZednadebi(WaybillIDForThisZed, out InvoiceIDForThisZed);
+                if (0 == resultAddInvoice.errcode)
+                {
+                    Zednadebi ZedWeWant = conn.GetZednadebi(sold_zed_list.SelectedItems[0].SubItems[sold_z_ident_code_col.Index].Text,
+                                                            "Sell",
+                                                            null);
+                    if (null != ZedWeWant)
+                    {
+                        AngarishFaqtura AFToAdd = new AngarishFaqtura("ეა–05", InvoiceIDForThisZed.ToString(), ZedWeWant.dro,
+                            ZedWeWant.operation_type, ZedWeWant.supplier_saident);
+                        //Zednadebi.buyer_ident is set only for sold zeds; for bought zeds, only supplier_ident is set.
+                        if ((0 == conn.AddAngarishFaqtura(AFToAdd).errcode)
+                            && (0 == conn.UpdateZednadebi(ZedWeWant.zednadebis_nomeri, ZedWeWant.zednadebis_nomeri, ZedWeWant.operation_type.ToString(),
+                            ZedWeWant.buyer_saident, ZedWeWant.dro, AFToAdd.seria, AFToAdd.af_nomeri, ZedWeWant.dro).errcode))
+                        {
+                            MessageBox.Show("ამ ზედნადებისთვის ა/ფ გამოწერილია!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("ზედნადებისთვის ა/ფ–ს მითითება ვერ მოხერხდა!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("ზედნადები ბაზაში არ მოიძებნა!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ამ ზედნადებისთვის ა/ფ–ს გამოწერა ვერ მოხერხდა. \nშეცდომის დეტალები: " + resultAddInvoice.details, resultAddInvoice.errcode.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("ასეთი ზედნადები ვერ მოიძებნა!");
+            }
         }
 
 

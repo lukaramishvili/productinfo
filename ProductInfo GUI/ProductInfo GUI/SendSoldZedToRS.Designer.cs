@@ -43,7 +43,6 @@
             this.txt_transp_cost = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_car_number = new System.Windows.Forms.TextBox();
-            this.dt_begin_date = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.ck_trans_cost_payer = new System.Windows.Forms.CheckBox();
             this.cb_rs_trans_type_id = new System.Windows.Forms.ComboBox();
@@ -52,12 +51,15 @@
             this.txt_transp_type_name = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cb_rs_wb_type = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dt_delivery_date = new System.Windows.Forms.DateTimePicker();
+            this.dt_begin_date = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // btnSendZedToRS
             // 
             this.btnSendZedToRS.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendZedToRS.Location = new System.Drawing.Point(164, 623);
+            this.btnSendZedToRS.Location = new System.Drawing.Point(253, 623);
             this.btnSendZedToRS.Name = "btnSendZedToRS";
             this.btnSendZedToRS.Size = new System.Drawing.Size(100, 48);
             this.btnSendZedToRS.TabIndex = 0;
@@ -121,7 +123,7 @@
             this.ck_driver_is_georgian.Checked = true;
             this.ck_driver_is_georgian.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ck_driver_is_georgian.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ck_driver_is_georgian.Location = new System.Drawing.Point(12, 216);
+            this.ck_driver_is_georgian.Location = new System.Drawing.Point(12, 226);
             this.ck_driver_is_georgian.Name = "ck_driver_is_georgian";
             this.ck_driver_is_georgian.Size = new System.Drawing.Size(238, 22);
             this.ck_driver_is_georgian.TabIndex = 8;
@@ -131,7 +133,7 @@
             // txt_driver_name
             // 
             this.txt_driver_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_driver_name.Location = new System.Drawing.Point(281, 252);
+            this.txt_driver_name.Location = new System.Drawing.Point(281, 262);
             this.txt_driver_name.Name = "txt_driver_name";
             this.txt_driver_name.Size = new System.Drawing.Size(335, 26);
             this.txt_driver_name.TabIndex = 7;
@@ -140,7 +142,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 256);
+            this.label3.Location = new System.Drawing.Point(9, 266);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 18);
             this.label3.TabIndex = 9;
@@ -149,7 +151,7 @@
             // txt_driver_ident
             // 
             this.txt_driver_ident.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_driver_ident.Location = new System.Drawing.Point(281, 172);
+            this.txt_driver_ident.Location = new System.Drawing.Point(281, 182);
             this.txt_driver_ident.Name = "txt_driver_ident";
             this.txt_driver_ident.Size = new System.Drawing.Size(335, 26);
             this.txt_driver_ident.TabIndex = 11;
@@ -158,7 +160,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 180);
+            this.label2.Location = new System.Drawing.Point(9, 190);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(219, 18);
             this.label2.TabIndex = 10;
@@ -168,7 +170,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 296);
+            this.label4.Location = new System.Drawing.Point(9, 306);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 18);
             this.label4.TabIndex = 13;
@@ -177,7 +179,7 @@
             // txt_transp_cost
             // 
             this.txt_transp_cost.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_transp_cost.Location = new System.Drawing.Point(281, 292);
+            this.txt_transp_cost.Location = new System.Drawing.Point(281, 302);
             this.txt_transp_cost.Name = "txt_transp_cost";
             this.txt_transp_cost.Size = new System.Drawing.Size(335, 26);
             this.txt_transp_cost.TabIndex = 12;
@@ -186,7 +188,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(9, 337);
+            this.label5.Location = new System.Drawing.Point(9, 347);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 18);
             this.label5.TabIndex = 15;
@@ -195,25 +197,16 @@
             // txt_car_number
             // 
             this.txt_car_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_car_number.Location = new System.Drawing.Point(281, 333);
+            this.txt_car_number.Location = new System.Drawing.Point(281, 343);
             this.txt_car_number.Name = "txt_car_number";
             this.txt_car_number.Size = new System.Drawing.Size(335, 26);
             this.txt_car_number.TabIndex = 14;
-            // 
-            // dt_begin_date
-            // 
-            this.dt_begin_date.CustomFormat = "ddMMMMyyyy, hh:mm:ss";
-            this.dt_begin_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dt_begin_date.Location = new System.Drawing.Point(281, 376);
-            this.dt_begin_date.Name = "dt_begin_date";
-            this.dt_begin_date.Size = new System.Drawing.Size(335, 20);
-            this.dt_begin_date.TabIndex = 16;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 378);
+            this.label6.Location = new System.Drawing.Point(9, 392);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(132, 18);
             this.label6.TabIndex = 17;
@@ -225,7 +218,7 @@
             this.ck_trans_cost_payer.Checked = true;
             this.ck_trans_cost_payer.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ck_trans_cost_payer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ck_trans_cost_payer.Location = new System.Drawing.Point(12, 419);
+            this.ck_trans_cost_payer.Location = new System.Drawing.Point(12, 465);
             this.ck_trans_cost_payer.Name = "ck_trans_cost_payer";
             this.ck_trans_cost_payer.Size = new System.Drawing.Size(341, 22);
             this.ck_trans_cost_payer.TabIndex = 18;
@@ -236,7 +229,7 @@
             // 
             this.cb_rs_trans_type_id.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_rs_trans_type_id.FormattingEnabled = true;
-            this.cb_rs_trans_type_id.Location = new System.Drawing.Point(281, 455);
+            this.cb_rs_trans_type_id.Location = new System.Drawing.Point(281, 501);
             this.cb_rs_trans_type_id.Name = "cb_rs_trans_type_id";
             this.cb_rs_trans_type_id.Size = new System.Drawing.Size(121, 21);
             this.cb_rs_trans_type_id.TabIndex = 19;
@@ -245,7 +238,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(7, 497);
+            this.label7.Location = new System.Drawing.Point(7, 543);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(221, 18);
             this.label7.TabIndex = 20;
@@ -255,7 +248,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(9, 458);
+            this.label8.Location = new System.Drawing.Point(9, 504);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(159, 18);
             this.label8.TabIndex = 21;
@@ -264,7 +257,7 @@
             // txt_transp_type_name
             // 
             this.txt_transp_type_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_transp_type_name.Location = new System.Drawing.Point(281, 493);
+            this.txt_transp_type_name.Location = new System.Drawing.Point(281, 539);
             this.txt_transp_type_name.Name = "txt_transp_type_name";
             this.txt_transp_type_name.Size = new System.Drawing.Size(335, 26);
             this.txt_transp_type_name.TabIndex = 22;
@@ -288,11 +281,41 @@
             this.cb_rs_wb_type.Size = new System.Drawing.Size(251, 21);
             this.cb_rs_wb_type.TabIndex = 23;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(12, 431);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(144, 18);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "დასრულების თარიღი";
+            // 
+            // dt_delivery_date
+            // 
+            this.dt_delivery_date.CustomFormat = "ddMMMMyyyy, HH:mm:ss";
+            this.dt_delivery_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dt_delivery_date.Location = new System.Drawing.Point(281, 431);
+            this.dt_delivery_date.Name = "dt_delivery_date";
+            this.dt_delivery_date.Size = new System.Drawing.Size(335, 20);
+            this.dt_delivery_date.TabIndex = 25;
+            // 
+            // dt_begin_date
+            // 
+            this.dt_begin_date.CustomFormat = "ddMMMMyyyy, HH:mm:ss";
+            this.dt_begin_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dt_begin_date.Location = new System.Drawing.Point(281, 390);
+            this.dt_begin_date.Name = "dt_begin_date";
+            this.dt_begin_date.Size = new System.Drawing.Size(335, 20);
+            this.dt_begin_date.TabIndex = 16;
+            // 
             // SendSoldZedToRS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 683);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.dt_delivery_date);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cb_rs_wb_type);
             this.Controls.Add(this.txt_transp_type_name);
@@ -342,7 +365,6 @@
         private System.Windows.Forms.TextBox txt_transp_cost;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_car_number;
-        private System.Windows.Forms.DateTimePicker dt_begin_date;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox ck_trans_cost_payer;
         private System.Windows.Forms.ComboBox cb_rs_trans_type_id;
@@ -351,5 +373,8 @@
         private System.Windows.Forms.TextBox txt_transp_type_name;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cb_rs_wb_type;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker dt_delivery_date;
+        private System.Windows.Forms.DateTimePicker dt_begin_date;
     }
 }

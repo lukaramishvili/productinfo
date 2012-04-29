@@ -71,6 +71,10 @@
       <Project>{8010A30B-3C7B-47C1-866C-B78A4C9527F4}</Project>
       <Name>DataProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{542D61AE-7B3A-43F8-A804-1F2AACDA8396}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

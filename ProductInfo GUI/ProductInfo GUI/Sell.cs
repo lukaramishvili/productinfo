@@ -524,7 +524,9 @@ namespace ProductInfo_UI
                 }
             }
 
-            if (add_remainders_list.Columns[sell_rem_piece_count_col.Index].Index == e.ColumnIndex && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value && null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_barcode_col.Index].Value)
+            if (add_remainders_list.Columns[sell_rem_piece_count_col.Index].Index == e.ColumnIndex 
+                && null != add_remainders_list.Rows[e.RowIndex].Cells[e.ColumnIndex].Value && null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_barcode_col.Index].Value
+                && null != add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_storeid_col.Index].Value)
             {
                 int CurrentStoreID = Int32.Parse(add_remainders_list.Rows[e.RowIndex].Cells[sell_rem_storeid_col.Index].Value.ToString());
                 IEnumerable<Remainder> query = new List<Remainder>();
@@ -932,10 +934,12 @@ namespace ProductInfo_UI
                 {
                     MessageBox.Show("ზედნადების rs.ge-ზე დამახსოვრება ნომრით \""
                         + eWbSuccess.sInsertedZedIdent + "\" წარმატებით დასრულდა!");
+                    /*
                     zed_ident_code_txt.Enabled = false;
                     buyer_chooser.Enabled = false;
                     zed_dro_datechooser.Enabled = false;
                     add_remainders_list.Enabled = false;
+                    */
                     zed_ident_code_txt.Text = eWbSuccess.sInsertedZedIdent;
                     //click submit btn
                 });

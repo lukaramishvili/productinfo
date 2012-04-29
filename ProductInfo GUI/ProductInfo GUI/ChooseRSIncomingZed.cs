@@ -19,7 +19,6 @@ namespace ProductInfo_UI
         }
 
         public event WaybillChosenHandler evtWaybillChosen;
-        public WBChosenEventArgs eWbChosen = null;
         public delegate void WaybillChosenHandler
             (ChooseRSIncomingZed frmChooseRSIncomingZed, WBChosenEventArgs eWbSuccess);
 
@@ -29,6 +28,8 @@ namespace ProductInfo_UI
             //TODO: generate zednadebi from textboxes/table_incoming_zeds,
             //then assign that zednadebi to WBChosenZed,
             //and then raise event
+            WBChosenEventArgs eWbChosen
+                = new WBChosenEventArgs();
             eWbChosen.WBChosenZed = null;
             //raise waybill selected event
             evtWaybillChosen(this, eWbChosen);

@@ -3336,14 +3336,20 @@ namespace ProductInfo
         public Zednadebi GetZednadebi(string arg_zed_ident, string arg_operation, string arg_client_ident)
         {
             Zednadebi ret_zed = null;
+            //we can omit client_ident if zed type is one of selling types; sold zed ident codes are always unique
+            bool fIncludeBuyerCode = (arg_client_ident != null) && (arg_operation != OperationType.Sell.ToString())
+                 && (arg_operation != OperationType.SellTransporting.ToString()) && (arg_operation != OperationType.Distribucia.ToString())
+                 && (arg_operation != OperationType.ShidaGadazidva.ToString());
             //
-            SqlCommand cmd = new SqlCommand("SELECT * FROM zednadebi where id_code = @zed_ident AND operation = @operation AND client_id = @client_ident;", SqlLink);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM zednadebi where id_code = @zed_ident AND operation = @operation "
+                + (fIncludeBuyerCode ? " AND client_id = @client_ident;" : ""), 
+                SqlLink);
             cmd.Parameters.Add("@zed_ident",SqlDbType.NVarChar, arg_zed_ident.Length);
             cmd.Parameters.Add("@operation",SqlDbType.NVarChar, arg_operation.Length);
-            cmd.Parameters.Add("@client_ident", SqlDbType.NVarChar, arg_client_ident.Length);
+            if (fIncludeBuyerCode) { cmd.Parameters.Add("@client_ident", SqlDbType.NVarChar, arg_client_ident.Length); }
             cmd.Parameters["@zed_ident"].Value = arg_zed_ident;
             cmd.Parameters["@operation"].Value = arg_operation;
-            cmd.Parameters["@client_ident"].Value = arg_client_ident;
+            if (fIncludeBuyerCode) { cmd.Parameters["@client_ident"].Value = arg_client_ident; }
             cmd.Prepare();
             SqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
@@ -3454,6 +3460,56 @@ namespace ProductInfo
 
             return bycode_buyer;
         }
+
+        public info AddAngarishFaqtura(AngarishFaqtura af_to_add)
+        {
+            info return_info = info.niy();
+            if (null != af_to_add)
+            {
+                SqlCommand addAF_sql = new SqlCommand("AddAngarishFaqtura", SqlLink);
+                addAF_sql.CommandType = CommandType.StoredProcedure;
+                addAF_sql.CommandTimeout = 300;
+                addAF_sql.Parameters.Add(new SqlParameter("@nomeri", af_to_add.af_nomeri));
+                addAF_sql.Parameters.Add(new SqlParameter("@seria", af_to_add.seria));
+                addAF_sql.Parameters.Add(new SqlParameter("@dro", af_to_add.dro));
+                addAF_sql.Parameters.Add(new SqlParameter("@operation", af_to_add.operation_type.ToString()));
+                addAF_sql.Parameters.Add(new SqlParameter("@client_ident", af_to_add.supplier_saident));
+
+                SqlParameter addAFRetVal = new SqlParameter("@Return_Value", DbType.Int32);
+                addAFRetVal.Direction = ParameterDirection.ReturnValue;
+                addAF_sql.Parameters.Add(addAFRetVal);
+
+                SqlDataReader addAF_rdr = addAF_sql.ExecuteReader();
+                while (addAF_rdr.Read())
+                {
+                }
+                addAF_rdr.Close();
+                return_info.errcode = (int)addAFRetVal.Value;
+                //check for errors
+                switch (return_info.errcode)
+                {
+                    case 0:
+                        return_info.details = "ა/ფ დამატებულია!";
+                        break;
+                    case 1:
+                        return_info.details = "გადაცემულია არასწორი არგუმენტები!";
+                        break;
+                    case 183:
+                        return_info.details = "ა/ფ დამატება საჭირო არ არის, უკვე არსებობს!";
+                        return_info.errcode = 0;//if error code was 183, then a/f already added; it's a success
+                        break;
+                    case 404:
+                        return_info.details = "ინფორმაცია არ მოიძებნა!";
+                        break;
+                }
+            }
+            else
+            {
+                return_info = new info("გადაცემულია არასწორი არგუმენტები (null)!", 1);
+            }
+            return return_info;
+        }
+
     } //DataProvider Class
 
 

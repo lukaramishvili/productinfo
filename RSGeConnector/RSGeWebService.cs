@@ -6,6 +6,7 @@ using RSGeConnector.RSGE;
 using System.Xml;
 using System.IO;
 using ProductInfo;
+using Utilities;
 
 namespace RSGeWebService
 {
@@ -184,10 +185,10 @@ namespace RSGeWebService
             ret = ret.Replace("{REM_NAME}", arg_prod.name);
             ret = ret.Replace("{UNIT_ID}", arg_unit_id.ToString());
             ret = ret.Replace("{UNIT_TXT}", arg_unit_txt.ToString());
-            ret = ret.Replace("{QUANTITY}", arg_rem.initial_pieces.ToString());
-            ret = ret.Replace("{PRICE}", arg_rem.sell_price.ToString());
+            ret = ret.Replace("{QUANTITY}", Utilities.Utilities.StringFromDecimal(Math.Round(arg_rem.initial_pieces,3)));
+            ret = ret.Replace("{PRICE}", Utilities.Utilities.StringFromDecimal(Math.Round(arg_rem.sell_price,3)));
             ret = ret.Replace("{STATUS}", arg_status.ToString());
-            ret = ret.Replace("{AMOUNT}", (arg_rem.sell_price * arg_rem.initial_pieces).ToString());
+            ret = ret.Replace("{AMOUNT}", Utilities.Utilities.StringFromDecimal(Math.Round((arg_rem.sell_price * arg_rem.initial_pieces),3)));
             ret = ret.Replace("{BAR_CODE}", arg_rem.product_barcode);
             ret = ret.Replace("{A_ID}", arg_a_id.ToString());
             ret = ret.Replace("{VAT_TYPE}", (arg_prod.usesVAT ? 0 : 2).ToString());
@@ -276,7 +277,7 @@ namespace RSGeWebService
             sxmlzed = sxmlzed.Replace("{DRIVER_TIN}", arg_driver_tin.ToString());
             sxmlzed = sxmlzed.Replace("{CHEK_DRIVER_TIN}", arg_chek_driver_tin.ToString());
             sxmlzed = sxmlzed.Replace("{DRIVER_NAME}", arg_driver_name.ToString());
-            sxmlzed = sxmlzed.Replace("{TRANSPORT_COAST}", arg_transport_coast.ToString());
+            sxmlzed = sxmlzed.Replace("{TRANSPORT_COAST}", Utilities.Utilities.StringFromDecimal(Math.Round(arg_transport_coast,3)));
             sxmlzed = sxmlzed.Replace("{RECEPTION_INFO}", arg_reception_info.ToString());
             sxmlzed = sxmlzed.Replace("{RECEIVER_INFO}", arg_receiver_info.ToString());
             string delivery_date_tag = "<DELIVERY_DATE/>";
@@ -284,6 +285,12 @@ namespace RSGeWebService
             {
                 case 0:
                 case 1:
+                    if (DataProvider.OperationType.SellTransporting == arg_type)
+                    {
+                        delivery_date_tag
+                            = "<DELIVERY_DATE>" + arg_delivery_date.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss"
+                                , culture) + "</DELIVERY_DATE>";
+                    }
                     break;
                 case 2:
                     delivery_date_tag
@@ -295,7 +302,7 @@ namespace RSGeWebService
             sxmlzed = sxmlzed.Replace("{STATUS}", arg_status.ToString());
             sxmlzed = sxmlzed.Replace("{SELLER_UN_ID}", arg_seller_un_id.ToString());
             sxmlzed = sxmlzed.Replace("{PAR_ID}", arg_par_id.ToString());
-            sxmlzed = sxmlzed.Replace("{FULL_AMOUNT}", dRemsFullAmount.ToString());
+            sxmlzed = sxmlzed.Replace("{FULL_AMOUNT}", Utilities.Utilities.StringFromDecimal(Math.Round(dRemsFullAmount)));
             sxmlzed = sxmlzed.Replace("{CAR_NUMBER}", arg_car_number.ToString());
             sxmlzed = sxmlzed.Replace("{WAYBILL_NUMBER}", arg_zed.zednadebis_nomeri);
             sxmlzed = sxmlzed.Replace("{S_USER_ID}", arg_s_user_id.ToString());
@@ -357,6 +364,57 @@ namespace RSGeWebService
                 = client.get_waybill(soap_user, soap_pass, Waybill_ID);
             //TODO: .SelectSingleNode("/ID"), ("GOODS_LIST") etc
             return null;
+        }
+
+        public info AddInvoiceForZednadebi(int Waybill_ID, out int outInvoiceID)
+        {
+            int retErrorCode;
+            string sErrorMessage = "ოპერაცია არ დაწყებულა!";
+            switch (client.save_invoice(soap_user, soap_pass, Waybill_ID, 0, out outInvoiceID))
+            {
+                case 1:
+                    //success; return
+                    retErrorCode = 0;
+                    sErrorMessage = "ოპერაცია წარმატებით დასრულდა!";
+                    break;
+                case -1:
+                    retErrorCode = -1;
+                    sErrorMessage = "მოხდა შეცდომა. ოპერაცია ვერ განხორციელდა!";
+                    break;
+                case -101:
+                    //sxvisi zednadebia
+                    retErrorCode = -101;
+                    sErrorMessage = "ზედნადები ამ კოდით ეკუთვნის სხვას!";
+                    break;
+                case -100:
+                    //momxmarebeli/paroli arascoria
+                    retErrorCode = -100;
+                    sErrorMessage = "მომხმარებლის სახელი/პაროლი არასწორია!";
+                    break;
+                default:
+                    //unknown error
+                    retErrorCode = -1;
+                    sErrorMessage = "უცნობი შეცდომა. ოპერაცია ვერ განხორციელდა!";
+                    break;
+            }
+            return new info(sErrorMessage, retErrorCode);
+        }
+
+        public int GetSoldZednadebiWaybillID(string sZedIdent, out int WaybillID)
+        {
+            XmlElement xmlWaybill = client.get_waybills(soap_user, soap_pass, null, null, null
+                , null, null, null, null, null, null, null, null, null, sZedIdent, null, null, null, null);
+            WaybillID = (null == xmlWaybill.SelectSingleNode("/WAYBILL/ID"))
+                ? -1
+                : Utilities.Utilities.ParseInt(xmlWaybill.SelectSingleNode("/WAYBILL/ID").InnerText);
+            if (WaybillID > 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return 404;
+            }
         }
 
         //

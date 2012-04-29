@@ -194,6 +194,8 @@ namespace ProductInfo_UI
             this.sold_cost_col = new System.Windows.Forms.ColumnHeader();
             this.sold_cost_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
             this.sold_price_col = new System.Windows.Forms.ColumnHeader();
+            this.sold_sell_price_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
+            this.sold_price_onlyVAT_col = new System.Windows.Forms.ColumnHeader();
             this.sold_income_col = new System.Windows.Forms.ColumnHeader();
             this.sold_roi_col = new System.Windows.Forms.ColumnHeader();
             this.sold_price_diff_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
@@ -302,8 +304,7 @@ namespace ProductInfo_UI
             this.tb_until_datepicker = new System.Windows.Forms.DateTimePicker();
             this.tb_since_lbl = new System.Windows.Forms.ToolStripLabel();
             this.tb_until_lbl = new System.Windows.Forms.ToolStripLabel();
-            this.sold_sell_price_withoutVAT_col = new System.Windows.Forms.ColumnHeader();
-            this.sold_price_onlyVAT_col = new System.Windows.Forms.ColumnHeader();
+            this.cmi_sold_zed_add_rs_af = new System.Windows.Forms.ToolStripMenuItem();
             this.main_menu.SuspendLayout();
             this.toolbar.SuspendLayout();
             this.status_bar.SuspendLayout();
@@ -1201,37 +1202,38 @@ namespace ProductInfo_UI
             this.cm_sold_zednadebi.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmi_sold_zed_details,
             this.cmi_sold_zed_payfor,
+            this.cmi_sold_zed_add_rs_af,
             this.cmi_zed_print,
             this.cmi_sold_zed_remove});
             this.cm_sold_zednadebi.Name = "cm_sold_zednadebi";
-            this.cm_sold_zednadebi.Size = new System.Drawing.Size(172, 92);
+            this.cm_sold_zednadebi.Size = new System.Drawing.Size(183, 136);
             // 
             // cmi_sold_zed_details
             // 
             this.cmi_sold_zed_details.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.cmi_sold_zed_details.Name = "cmi_sold_zed_details";
-            this.cmi_sold_zed_details.Size = new System.Drawing.Size(171, 22);
+            this.cmi_sold_zed_details.Size = new System.Drawing.Size(182, 22);
             this.cmi_sold_zed_details.Text = "დეტალური სია";
             this.cmi_sold_zed_details.Click += new System.EventHandler(this.cmi_sold_zed_details_Click);
             // 
             // cmi_sold_zed_payfor
             // 
             this.cmi_sold_zed_payfor.Name = "cmi_sold_zed_payfor";
-            this.cmi_sold_zed_payfor.Size = new System.Drawing.Size(171, 22);
+            this.cmi_sold_zed_payfor.Size = new System.Drawing.Size(182, 22);
             this.cmi_sold_zed_payfor.Text = "ვალის დაფარვა";
             this.cmi_sold_zed_payfor.Click += new System.EventHandler(this.cmi_sold_zed_payfor_Click);
             // 
             // cmi_zed_print
             // 
             this.cmi_zed_print.Name = "cmi_zed_print";
-            this.cmi_zed_print.Size = new System.Drawing.Size(171, 22);
+            this.cmi_zed_print.Size = new System.Drawing.Size(182, 22);
             this.cmi_zed_print.Text = "ამობეჭდვა";
             this.cmi_zed_print.Click += new System.EventHandler(this.cmi_zed_print_Click);
             // 
             // cmi_sold_zed_remove
             // 
             this.cmi_sold_zed_remove.Name = "cmi_sold_zed_remove";
-            this.cmi_sold_zed_remove.Size = new System.Drawing.Size(171, 22);
+            this.cmi_sold_zed_remove.Size = new System.Drawing.Size(182, 22);
             this.cmi_sold_zed_remove.Text = "ზედნადების ამოშლა";
             this.cmi_sold_zed_remove.Click += new System.EventHandler(this.cmi_sold_zed_remove_Click);
             // 
@@ -1625,6 +1627,15 @@ namespace ProductInfo_UI
             // 
             this.sold_price_col.Text = "გასაყიდი ფასი";
             this.sold_price_col.Width = 102;
+            // 
+            // sold_sell_price_withoutVAT_col
+            // 
+            this.sold_sell_price_withoutVAT_col.Text = "გას. ფასი დღგ–ს გარეშე";
+            // 
+            // sold_price_onlyVAT_col
+            // 
+            this.sold_price_onlyVAT_col.Text = "გას. ფასი დღგ";
+            this.sold_price_onlyVAT_col.Width = 100;
             // 
             // sold_income_col
             // 
@@ -2417,14 +2428,12 @@ namespace ProductInfo_UI
             this.tb_until_lbl.Size = new System.Drawing.Size(30, 22);
             this.tb_until_lbl.Text = "–მდე";
             // 
-            // sold_sell_price_withoutVAT_col
+            // cmi_sold_zed_add_rs_af
             // 
-            this.sold_sell_price_withoutVAT_col.Text = "გას. ფასი დღგ–ს გარეშე";
-            // 
-            // sold_price_onlyVAT_col
-            // 
-            this.sold_price_onlyVAT_col.Text = "გას. ფასი დღგ";
-            this.sold_price_onlyVAT_col.Width = 100;
+            this.cmi_sold_zed_add_rs_af.Name = "cmi_sold_zed_add_rs_af";
+            this.cmi_sold_zed_add_rs_af.Size = new System.Drawing.Size(182, 22);
+            this.cmi_sold_zed_add_rs_af.Text = "rs.ge-ზე ა/ფ გამოწერა";
+            this.cmi_sold_zed_add_rs_af.Click += new System.EventHandler(this.cmi_sold_zed_add_rs_af_Click);
             // 
             // ProductInfo_Main_Form
             // 
@@ -2755,6 +2764,7 @@ namespace ProductInfo_UI
         private ColumnHeader def_remaining_col;
         private ColumnHeader sold_sell_price_withoutVAT_col;
         private ColumnHeader sold_price_onlyVAT_col;
+        private ToolStripMenuItem cmi_sold_zed_add_rs_af;
 
 
 

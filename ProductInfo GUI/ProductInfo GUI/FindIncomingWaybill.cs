@@ -17,7 +17,6 @@ namespace ProductInfo_UI
         }
 
         public event WaybillIDSelectedHandler evtWaybillIDSelected;
-        public WBIDSelectedEventArgs eWBIDSelected = null;
         public delegate void WaybillIDSelectedHandler
             (FindIncomingWaybill frmFindIncomingWaybill, WBIDSelectedEventArgs eWBIDSelected);
 
@@ -30,6 +29,8 @@ namespace ProductInfo_UI
             //TODO: select one chosen waybill ID from listview
             //and assign to eWBIDSelected.Waybill_ID instead of 0
             //raise Waybill_ID selected event
+            WBIDSelectedEventArgs eWBIDSelected
+                = new WBIDSelectedEventArgs();
             eWBIDSelected.Waybill_ID = 0;
             evtWaybillIDSelected(this, eWBIDSelected);
         }

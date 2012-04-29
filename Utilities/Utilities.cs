@@ -82,6 +82,26 @@ namespace Utilities
             return retVal;
         }
 
+        public static string StringFromDecimal(decimal arg)
+        {
+            string retVal = "0.0";
+
+            System.Globalization.NumberFormatInfo decimal_fmt = new System.Globalization.NumberFormatInfo();
+            decimal_fmt.NumberDecimalSeparator = ".";
+            decimal_fmt.NumberGroupSeparator = "";
+            try
+            {
+                retVal = arg.ToString(decimal_fmt);
+            }
+            catch (FormatException)
+            {
+            }
+            catch (OverflowException)
+            {
+            }
+            return retVal;
+        }
+
         public static int ParseInt(string arg)
         {
             int retVal = 0;
