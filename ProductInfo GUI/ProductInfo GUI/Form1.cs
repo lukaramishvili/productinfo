@@ -67,7 +67,7 @@ namespace ProductInfo_UI
         public bool pi_authenticated = false;
 
         public static RSGeConnection rsge = new RSGeConnection(conn, "ekolari_userblowfish", "ekolari_passblowfish");
-        //public static RSGeConnection rsge = new RSGeConnection(conn, "www", "www");
+        //public static RSGeConnection rsge = new RSGeConnection(conn, "eee111", "eee111");
 
         public static BackgroundWorker WorkerThread = new BackgroundWorker();
 
@@ -3313,6 +3313,8 @@ namespace ProductInfo_UI
                         AngarishFaqtura AFToAdd = new AngarishFaqtura("ეა–05", InvoiceIDForThisZed.ToString(), ZedWeWant.dro,
                             ZedWeWant.operation_type, ZedWeWant.supplier_saident);
                         //Zednadebi.buyer_ident is set only for sold zeds; for bought zeds, only supplier_ident is set.
+                        //update zednadebi only after a/f is added, to retain referential integrity 
+                        //(to avoid situation where zed refers to nonexistent a/f)
                         if ((0 == conn.AddAngarishFaqtura(AFToAdd).errcode)
                             && (0 == conn.UpdateZednadebi(ZedWeWant.zednadebis_nomeri, ZedWeWant.zednadebis_nomeri, ZedWeWant.operation_type.ToString(),
                             ZedWeWant.buyer_saident, ZedWeWant.dro, AFToAdd.seria, AFToAdd.af_nomeri, ZedWeWant.dro).errcode))
