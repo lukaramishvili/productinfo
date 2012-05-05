@@ -3311,7 +3311,7 @@ namespace ProductInfo_UI
                     if (null != ZedWeWant)
                     {
                         AngarishFaqtura AFToAdd = new AngarishFaqtura("ეა–05", InvoiceIDForThisZed.ToString(), ZedWeWant.dro,
-                            ZedWeWant.operation_type, ZedWeWant.supplier_saident);
+                            ZedWeWant.operation_type, ZedWeWant.buyer_saident);
                         //Zednadebi.buyer_ident is set only for sold zeds; for bought zeds, only supplier_ident is set.
                         //update zednadebi only after a/f is added, to retain referential integrity 
                         //(to avoid situation where zed refers to nonexistent a/f)

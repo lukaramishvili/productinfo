@@ -212,7 +212,15 @@ namespace ProductInfo
             this.af_nomeri = nomeri_arg;
             this.dro = dro_arg;
             this.operation_type = op_type_arg;
-            this.supplier_saident = supplier_saident_arg;
+            if (DataProvider.OperationType.Buy == op_type_arg)
+            {
+                this.supplier_saident = supplier_saident_arg;
+            }
+            //else means op_type_arg==Sell
+            else
+            {
+                this.buyer_saident = supplier_saident_arg;
+            }
 
         }
     }//AngarishFaqtura Class
@@ -3395,14 +3403,22 @@ namespace ProductInfo
                 }
                 rdrnextRem.Close();
             }
-            else if ("Sell" == arg_operation)//TODO: can we safely include this? || "SellTransporting" == arg_operation || "Distribucia" == arg_operation
+            //TODO: can we safely include this? || "SellTransporting" == arg_operation || "Distribucia" == arg_operation
+            else if ("Sell" == arg_operation)
             {
-                SqlCommand cmdSoldRems = new SqlCommand("SELECT sold.piece_count, sold.piece_price, r.* FROM SoldRemainders sold, SellOrder so, remainders r WHERE sold.remainder_id = r.id AND sold.SellOrder_id = so.id AND so.zednadebis_nomeri = @zed_ident AND so.buyer_ident_code = @client_ident;", SqlLink);
+                SqlCommand cmdSoldRems = new SqlCommand("SELECT sold.piece_count, sold.piece_price, r.* "
+                    + " FROM SoldRemainders sold, SellOrder so, remainders r "
+                    + " WHERE sold.remainder_id = r.id AND sold.SellOrder_id = so.id "
+                    + " AND so.zednadebis_nomeri = @zed_ident "
+                    + ((null != arg_client_ident) ? " AND so.buyer_ident_code = @client_ident " : "")
+                    + ";"
+                    , SqlLink);
                 cmdSoldRems.Parameters.Add("@zed_ident", SqlDbType.NVarChar, arg_zed_ident.Length);
-                cmdSoldRems.Parameters.Add("@client_ident", SqlDbType.NVarChar, arg_client_ident.Length);
+                if (null != arg_client_ident) { cmdSoldRems.Parameters.Add("@client_ident", SqlDbType.NVarChar, arg_client_ident.Length); }
                 cmdSoldRems.Parameters["@zed_ident"].Value = arg_zed_ident;
-                cmdSoldRems.Parameters["@client_ident"].Value = arg_client_ident;
+                if (null != arg_client_ident) { cmdSoldRems.Parameters["@client_ident"].Value = arg_client_ident; }
                 cmdSoldRems.Prepare();
+
                 SqlDataReader rdrnextSoldRem = cmdSoldRems.ExecuteReader();
                 while (rdrnextSoldRem.Read())
                 {
@@ -3473,7 +3489,15 @@ namespace ProductInfo
                 addAF_sql.Parameters.Add(new SqlParameter("@seria", af_to_add.seria));
                 addAF_sql.Parameters.Add(new SqlParameter("@dro", af_to_add.dro));
                 addAF_sql.Parameters.Add(new SqlParameter("@operation", af_to_add.operation_type.ToString()));
-                addAF_sql.Parameters.Add(new SqlParameter("@client_ident", af_to_add.supplier_saident));
+                if (DataProvider.OperationType.Buy == af_to_add.operation_type)
+                {
+                    addAF_sql.Parameters.Add(new SqlParameter("@client_ident", af_to_add.supplier_saident));
+                }
+                //else means operation_type==Sell, so client_id is contained in .buyer_saident
+                else
+                {
+                    addAF_sql.Parameters.Add(new SqlParameter("@client_ident", af_to_add.buyer_saident));
+                }
 
                 SqlParameter addAFRetVal = new SqlParameter("@Return_Value", DbType.Int32);
                 addAFRetVal.Direction = ParameterDirection.ReturnValue;

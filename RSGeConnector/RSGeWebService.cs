@@ -370,7 +370,8 @@ namespace RSGeWebService
         {
             int retErrorCode;
             string sErrorMessage = "ოპერაცია არ დაწყებულა!";
-            switch (client.save_invoice(soap_user, soap_pass, Waybill_ID, 0, out outInvoiceID))
+            int RSGESaveInvoice = client.save_invoice(soap_user, soap_pass, Waybill_ID, 0, out outInvoiceID);
+            switch (RSGESaveInvoice)
             {
                 case 1:
                     //success; return
@@ -392,9 +393,17 @@ namespace RSGeWebService
                     sErrorMessage = "მომხმარებლის სახელი/პაროლი არასწორია!";
                     break;
                 default:
-                    //unknown error
-                    retErrorCode = -1;
-                    sErrorMessage = "უცნობი შეცდომა. ოპერაცია ვერ განხორციელდა!";
+                    if (wbErrorDict.ContainsKey(RSGESaveInvoice))
+                    {
+                        retErrorCode = 0;
+                        sErrorMessage = wbErrorDict[RSGESaveInvoice];
+                    }
+                    else
+                    {
+                        //unknown error
+                        retErrorCode = -1;
+                        sErrorMessage = "უცნობი შეცდომა. ოპერაცია ვერ განხორციელდა!";
+                    }
                     break;
             }
             return new info(sErrorMessage, retErrorCode);
