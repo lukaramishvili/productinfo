@@ -57,6 +57,7 @@
             this.sell_rem_sum_price_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sell_rem_delete_col = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_rs_ge_send = new System.Windows.Forms.Button();
             this.btn_find_buyer = new System.Windows.Forms.Button();
             this.cb_mt_store_id = new System.Windows.Forms.ComboBox();
             this.lbl_mt_store_id = new System.Windows.Forms.Label();
@@ -74,7 +75,7 @@
             this.lbl_zed_id_code = new System.Windows.Forms.Label();
             this.lbl_company_name = new System.Windows.Forms.Label();
             this.buyer_chooser = new System.Windows.Forms.ComboBox();
-            this.btn_rs_ge_send = new System.Windows.Forms.Button();
+            this.btnShidaGadazidvisFasebi = new System.Windows.Forms.Button();
             this.status_bar.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.add_remainders_list)).BeginInit();
@@ -292,6 +293,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnShidaGadazidvisFasebi);
             this.panel1.Controls.Add(this.btn_rs_ge_send);
             this.panel1.Controls.Add(this.btn_find_buyer);
             this.panel1.Controls.Add(this.cb_mt_store_id);
@@ -316,6 +318,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1004, 123);
             this.panel1.TabIndex = 7;
+            // 
+            // btn_rs_ge_send
+            // 
+            this.btn_rs_ge_send.Location = new System.Drawing.Point(516, 8);
+            this.btn_rs_ge_send.Name = "btn_rs_ge_send";
+            this.btn_rs_ge_send.Size = new System.Drawing.Size(126, 32);
+            this.btn_rs_ge_send.TabIndex = 16;
+            this.btn_rs_ge_send.Text = "rs.ge გაგზავნა";
+            this.btn_rs_ge_send.UseVisualStyleBackColor = true;
+            this.btn_rs_ge_send.Click += new System.EventHandler(this.btn_rs_ge_send_Click);
             // 
             // btn_find_buyer
             // 
@@ -494,15 +506,15 @@
             this.buyer_chooser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.buyer_chooser_KeyPress);
             this.buyer_chooser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.buyer_chooser_KeyDown);
             // 
-            // btn_rs_ge_send
+            // btnShidaGadazidvisFasebi
             // 
-            this.btn_rs_ge_send.Location = new System.Drawing.Point(516, 8);
-            this.btn_rs_ge_send.Name = "btn_rs_ge_send";
-            this.btn_rs_ge_send.Size = new System.Drawing.Size(126, 32);
-            this.btn_rs_ge_send.TabIndex = 16;
-            this.btn_rs_ge_send.Text = "rs.ge გაგზავნა";
-            this.btn_rs_ge_send.UseVisualStyleBackColor = true;
-            this.btn_rs_ge_send.Click += new System.EventHandler(this.btn_rs_ge_send_Click);
+            this.btnShidaGadazidvisFasebi.Location = new System.Drawing.Point(757, 79);
+            this.btnShidaGadazidvisFasebi.Name = "btnShidaGadazidvisFasebi";
+            this.btnShidaGadazidvisFasebi.Size = new System.Drawing.Size(141, 23);
+            this.btnShidaGadazidvisFasebi.TabIndex = 17;
+            this.btnShidaGadazidvisFasebi.Text = "შიდა გადაზიდვის ფასები";
+            this.btnShidaGadazidvisFasebi.UseVisualStyleBackColor = true;
+            this.btnShidaGadazidvisFasebi.Click += new System.EventHandler(this.btnShidaGadazidvisFasebi_Click);
             // 
             // Sell_Form
             // 
@@ -566,5 +578,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sell_rem_sum_price_col;
         private System.Windows.Forms.DataGridViewButtonColumn sell_rem_delete_col;
         private System.Windows.Forms.Button btn_rs_ge_send;
+        private System.Windows.Forms.Button btnShidaGadazidvisFasebi;
     }
 }

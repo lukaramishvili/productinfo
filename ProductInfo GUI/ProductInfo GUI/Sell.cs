@@ -947,6 +947,69 @@ namespace ProductInfo_UI
             }
         }
 
+        private void btnShidaGadazidvisFasebi_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < add_remainders_list.Rows.Count; i++)
+            {
+                if (false == add_remainders_list.Rows[i].IsNewRow)
+                {
+                    if (null != add_remainders_list.Rows[i].Cells[sell_rem_barcode_col.Index])
+                    {
+                        if (null != add_remainders_list.Rows[i].Cells[sell_rem_barcode_col.Index].Value)
+                        {
+                            //we should know how much to sell, to calculate avg price for that count
+                            if (null != add_remainders_list.Rows[i].Cells[sell_rem_piece_count_col.Index])
+                            {
+                                if (null != add_remainders_list.Rows[i].Cells[sell_rem_piece_count_col.Index].Value)
+                                {
+                                    decimal requestedCountToSell = ParseDecimal(add_remainders_list.Rows[i].Cells[sell_rem_piece_count_col.Index].Value.ToString());
+                                    string curBarcode = add_remainders_list.Rows[i].Cells[sell_rem_barcode_col.Index].Value.ToString();
+                                    if (curBarcode.Length > 0)
+                                    {
+                                        IEnumerable<Remainder> query = new List<Remainder>();
+                                        query = from r in all_rems
+                                                where r.product_barcode == curBarcode
+                                                    && r.storehouse_id == Utilities.Utilities.ParseInt((add_remainders_list.Rows[i].Cells[sell_rem_storeid_col.Index].Value ?? "0").ToString())
+                                                select r;
+                                        //we should have any, AND enough remainders to sell requested count
+                                        if (query.ToArray().Length > 0 && requestedCountToSell <= query.Sum(c => c.initial_pieces))
+                                        {
+                                            //do like the SellRemainder storproc; sell from each rem until we've sold enough
+                                            decimal sumTotal = 0.0m;
+                                            decimal cLeftToSell = requestedCountToSell;
+                                            for (int iRem = 0; iRem < query.ToArray().Length; iRem++)
+                                            {
+                                                //if we have left anything to sell
+                                                if (cLeftToSell > 0.0m)
+                                                {
+                                                    //if current remainder count is sufficient, sell wholly from this rem
+                                                    if (cLeftToSell <= query.ToArray()[iRem].remaining_pieces)
+                                                    {
+                                                        sumTotal += (cLeftToSell * query.ToArray()[iRem].buy_price);
+                                                        cLeftToSell = 0.0m;
+                                                    }
+                                                    else
+                                                    {
+                                                        sumTotal += (query.ToArray()[iRem].remaining_pieces * query.ToArray()[iRem].buy_price);
+                                                        cLeftToSell -= query.ToArray()[iRem].remaining_pieces;
+                                                    }
+                                                }
+                                            }
+                                            decimal avgPrice = sumTotal / requestedCountToSell;
+                                            //multiply each rem price to its count and then divide the sum by total count
+                                            //decimal avgPrice = query.Sum(sumPerRem => sumPerRem.buy_price * sumPerRem.initial_pieces)
+                                            //        / query.Sum(cRem => cRem.initial_pieces);
+                                            add_remainders_list.Rows[i].Cells[sell_rem_piece_price_col.Index].Value = avgPrice;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
 
         //
     }
