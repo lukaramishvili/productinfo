@@ -1733,7 +1733,6 @@ namespace ProductInfo
             BoughtZed_ret_dt.Columns.Add("მოგება");
             BoughtZed_ret_dt.Columns.Add("ღირებულება (დღგ–ს გარეშე)");
             BoughtZed_ret_dt.Columns.Add("საწყობის N.");
-            BoughtZed_ret_dt.Columns.Add("კლიენტი");
 
             SqlCommand BoughtZed_Sql = new SqlCommand("BoughtZedDetails", SqlLink);
             BoughtZed_Sql.CommandType = CommandType.StoredProcedure;

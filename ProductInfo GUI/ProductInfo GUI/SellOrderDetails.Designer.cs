@@ -61,7 +61,6 @@
             this.btnEnableEditingZedIdent = new System.Windows.Forms.Button();
             this.btn_exportCSV_SOd = new System.Windows.Forms.Button();
             this.btn_add_soldrems = new System.Windows.Forms.Button();
-            this.SOd_client_col = new System.Windows.Forms.ColumnHeader();
             this.cm_SellOrder_edit.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,8 +100,7 @@
             this.SOd_whole_price_col,
             this.SOd_mogeba_col,
             this.SOd_cost_without_col,
-            this.SOd_storeID_col,
-            this.SOd_client_col});
+            this.SOd_storeID_col});
             this.sold_rem_list.ContextMenuStrip = this.cm_SellOrder_edit;
             this.sold_rem_list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sold_rem_list.FullRowSelect = true;
@@ -337,10 +335,6 @@
             this.btn_add_soldrems.UseVisualStyleBackColor = true;
             this.btn_add_soldrems.Click += new System.EventHandler(this.btn_add_soldrems_Click);
             // 
-            // SOd_client_col
-            // 
-            this.SOd_client_col.Text = "კლიენტი";
-            // 
             // SellOrderDetails_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -407,7 +401,6 @@
         private System.Windows.Forms.Label lblZedIdent;
         private System.Windows.Forms.TextBox txtZedIdent;
         private System.Windows.Forms.Button btnEnableEditingZedIdent;
-        private System.Windows.Forms.ColumnHeader SOd_client_col;
 
     }
 }

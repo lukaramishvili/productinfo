@@ -26,7 +26,6 @@ BEGIN
 	, '--'
 	, (dbo.CostWithoutVAT(r.initial_pieces*r.buy_price,p.uses_vat)) as ghirebuleba_VAT_gareshe
 	, r.storehouse_id as store_id
-	, s.name
 	FROM (SELECT * 
 								FROM remainders
 								WHERE remainders.zednadebis_nomeri = @zed_ident
@@ -34,6 +33,4 @@ BEGIN
 								) r
 	LEFT JOIN products p
 	ON(r.product_barcode = p.barcode)
-	LEFT JOIN suppliers s
-	ON (r.supplier_ident = s.id_code)
 END
