@@ -28,3 +28,9 @@ E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\Prod
 E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Utilities\obj\Release\ResolveAssemblyReference.cache
 E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Utilities\obj\Release\Utilities.dll
 E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Utilities\obj\Release\Utilities.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\Utilities.dll.config
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\Utilities.dll
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\Utilities.pdb
+E:\Projects\ProductInfo 1.0\Utilities\obj\Release\ResolveAssemblyReference.cache
+E:\Projects\ProductInfo 1.0\Utilities\obj\Release\Utilities.dll
+E:\Projects\ProductInfo 1.0\Utilities\obj\Release\Utilities.pdb

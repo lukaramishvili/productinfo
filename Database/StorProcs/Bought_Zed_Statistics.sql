@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[Bought_Zed_Statistics]
+ALTER PROCEDURE [dbo].[Bought_Zed_Statistics]
 	--@zed_ident nvarchar(MAX) output,
 	--@tarigi datetime output,
 	--@supplier_name nvarchar(MAX) output,
@@ -25,7 +25,9 @@ BEGIN
 			af.af_seria as af_seria,
 			af.af_nomeri as af_nomeri,
 			SUM(r.buy_price*r.initial_pieces),
-			SUM(dbo.CostWithoutVAT(r.buy_price*r.initial_pieces,p.uses_vat))
+			SUM(dbo.CostWithoutVAT(r.buy_price*r.initial_pieces,p.uses_vat)),
+			--don't change the format of this string; it's used in SellOrderDetails_Form.ShowBoughtZedDetails
+			N'მომწოდებელი ' + s.name + N', ზედნადები N. ' + z.id_code
 	FROM (SELECT * FROM zednadebi WHERE zednadebi.operation='Buy' AND zednadebi.dro >= @since_date AND zednadebi.dro <= @until_date) as z
 	LEFT JOIN suppliers as s
 	ON (z.client_id = s.id_code)

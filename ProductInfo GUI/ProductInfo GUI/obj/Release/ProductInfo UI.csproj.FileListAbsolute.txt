@@ -113,3 +113,33 @@ E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\Prod
 E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.SendSoldZedToRS.resources
 E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.SplitRemainder_Form.resources
 E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo UI.csproj.GenerateResource.Cache
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\ProductInfo_UI.exe.config
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.exe
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\ProductInfo_UI.exe
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\ProductInfo_UI.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\RSGeConnector.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\Data_Visualization.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\Utilities.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\DataProvider.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ResolveAssemblyReference.cache
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.AddBuyer_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.AddProductList_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.AddRemainders_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.AddRemainderItem_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.AddSupplier_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.ChooseRSIncomingZed.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.EditCashierList_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.EditProduct_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.EditSoldRemainder_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.FindIncomingWaybill.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.ProductInfo_Main_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.MoneyTransfer_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.PrintPreview_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.AddProduct_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.Properties.Resources.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.Sell_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.SellOrderDetails_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.SendSoldZedToRS.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo_UI.SplitRemainder_Form.resources
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\obj\Release\ProductInfo UI.csproj.GenerateResource.Cache

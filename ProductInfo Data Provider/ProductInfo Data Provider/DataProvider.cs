@@ -1219,6 +1219,7 @@ namespace ProductInfo
             zeds_dt.Columns.Add("ა/ფ ნომერი");
             zeds_dt.Columns.Add("ღირ.");
             zeds_dt.Columns.Add("ღირ. დღგ–ს გარეშე");
+            zeds_dt.Columns.Add("დანიშნულება");
 
             SqlCommand zeds_statistics_sql = new SqlCommand("Bought_Zed_Statistics", SqlLink);
             zeds_statistics_sql.CommandType = CommandType.StoredProcedure;

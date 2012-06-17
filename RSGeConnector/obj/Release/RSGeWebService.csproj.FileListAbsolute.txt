@@ -27,3 +27,9 @@ E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\Prod
 E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\RSGeConnector\obj\Release\ResolveAssemblyReference.cache
 E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\RSGeConnector\obj\Release\RSGeConnector.dll
 E:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\RSGeConnector\obj\Release\RSGeConnector.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\RSGeConnector.dll.config
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\RSGeConnector.dll
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Release\RSGeConnector.pdb
+E:\Projects\ProductInfo 1.0\RSGeConnector\obj\Release\ResolveAssemblyReference.cache
+E:\Projects\ProductInfo 1.0\RSGeConnector\obj\Release\RSGeConnector.dll
+E:\Projects\ProductInfo 1.0\RSGeConnector\obj\Release\RSGeConnector.pdb

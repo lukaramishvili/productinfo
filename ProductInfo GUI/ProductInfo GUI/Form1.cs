@@ -3191,6 +3191,7 @@ namespace ProductInfo_UI
                                                          where all_s.saxeli == lvi.SubItems[zed_supplier_col.Index].Text
                                                          select all_s.saidentifikacio_kodi).ToArray()[0];
                             DataTable so_details = ProductInfo_Main_Form.conn.BoughtZedDetails(supplier_ident_str, zed_ident_str);
+                            //don't change the format of this string; it's used in dbo.Bought_Zed_Statistics
                             so_details.Columns[0].Caption = "მომწოდებელი " + supplier_name + ", ზედნადები N. " + zed_ident_str;
                             //all_zeds_names += zed_ident_str + ",";
                             all_zeds_details += DataTableToCSV(so_details);
