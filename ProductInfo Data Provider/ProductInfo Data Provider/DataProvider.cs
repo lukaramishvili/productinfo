@@ -352,7 +352,7 @@ namespace ProductInfo
         };
 
 
-        public static SqlConnection SqlLink = new SqlConnection("Data Source=ZERO\\MSSQLSERVER2008;Initial Catalog=productinfo_db;Integrated Security=True");
+        public static SqlConnection SqlLink = new SqlConnection("Data Source=LUKA-PC;Initial Catalog=productinfo_db;Integrated Security=True");
 
         /// <summary>
         /// user rights-is droebit chanacvleba. 
@@ -1733,6 +1733,7 @@ namespace ProductInfo
             BoughtZed_ret_dt.Columns.Add("მოგება");
             BoughtZed_ret_dt.Columns.Add("ღირებულება (დღგ–ს გარეშე)");
             BoughtZed_ret_dt.Columns.Add("საწყობის N.");
+            BoughtZed_ret_dt.Columns.Add("კლიენტი");
 
             SqlCommand BoughtZed_Sql = new SqlCommand("BoughtZedDetails", SqlLink);
             BoughtZed_Sql.CommandType = CommandType.StoredProcedure;
