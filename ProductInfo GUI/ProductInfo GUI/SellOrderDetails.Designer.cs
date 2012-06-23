@@ -61,6 +61,9 @@
             this.btnEnableEditingZedIdent = new System.Windows.Forms.Button();
             this.btn_exportCSV_SOd = new System.Windows.Forms.Button();
             this.btn_add_soldrems = new System.Windows.Forms.Button();
+            this.btnEnableEditingZedClient = new System.Windows.Forms.Button();
+            this.lblZedClient = new System.Windows.Forms.Label();
+            this.cbZedClient = new System.Windows.Forms.ComboBox();
             this.cm_SellOrder_edit.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -335,11 +338,46 @@
             this.btn_add_soldrems.UseVisualStyleBackColor = true;
             this.btn_add_soldrems.Click += new System.EventHandler(this.btn_add_soldrems_Click);
             // 
+            // btnEnableEditingZedClient
+            // 
+            this.btnEnableEditingZedClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnableEditingZedClient.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnEnableEditingZedClient.Image = global::ProductInfo_UI.Properties.Resources.pencil_16x16;
+            this.btnEnableEditingZedClient.Location = new System.Drawing.Point(294, 16);
+            this.btnEnableEditingZedClient.Name = "btnEnableEditingZedClient";
+            this.btnEnableEditingZedClient.Size = new System.Drawing.Size(25, 23);
+            this.btnEnableEditingZedClient.TabIndex = 21;
+            this.btnEnableEditingZedClient.UseVisualStyleBackColor = true;
+            this.btnEnableEditingZedClient.Click += new System.EventHandler(this.btnEnableEditingZedClient_Click);
+            // 
+            // lblZedClient
+            // 
+            this.lblZedClient.AutoSize = true;
+            this.lblZedClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblZedClient.Location = new System.Drawing.Point(46, 22);
+            this.lblZedClient.Name = "lblZedClient";
+            this.lblZedClient.Size = new System.Drawing.Size(56, 16);
+            this.lblZedClient.TabIndex = 19;
+            this.lblZedClient.Text = "კლიენტი";
+            // 
+            // cbZedClient
+            // 
+            this.cbZedClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbZedClient.Enabled = false;
+            this.cbZedClient.FormattingEnabled = true;
+            this.cbZedClient.Location = new System.Drawing.Point(130, 17);
+            this.cbZedClient.Name = "cbZedClient";
+            this.cbZedClient.Size = new System.Drawing.Size(163, 21);
+            this.cbZedClient.TabIndex = 22;
+            // 
             // SellOrderDetails_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(742, 610);
+            this.Controls.Add(this.cbZedClient);
+            this.Controls.Add(this.btnEnableEditingZedClient);
+            this.Controls.Add(this.lblZedClient);
             this.Controls.Add(this.btnEnableEditingZedIdent);
             this.Controls.Add(this.txtZedIdent);
             this.Controls.Add(this.lblZedIdent);
@@ -401,6 +439,9 @@
         private System.Windows.Forms.Label lblZedIdent;
         private System.Windows.Forms.TextBox txtZedIdent;
         private System.Windows.Forms.Button btnEnableEditingZedIdent;
+        private System.Windows.Forms.Button btnEnableEditingZedClient;
+        private System.Windows.Forms.Label lblZedClient;
+        private System.Windows.Forms.ComboBox cbZedClient;
 
     }
 }

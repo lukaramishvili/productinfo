@@ -962,7 +962,10 @@ namespace ProductInfo_UI
                             {
                                 if (null != add_remainders_list.Rows[i].Cells[sell_rem_piece_count_col.Index].Value)
                                 {
-                                    decimal requestedCountToSell = ParseDecimal(add_remainders_list.Rows[i].Cells[sell_rem_piece_count_col.Index].Value.ToString());
+                                    decimal piece_count_col_value = ParseDecimal(add_remainders_list.Rows[i].Cells[sell_rem_piece_count_col.Index].Value.ToString());
+                                    decimal multiply_by_pack_capacity = "ყუთები" == add_remainders_list.Rows[i].Cells[sell_rem_count_type_col.Index].Value.ToString()
+                                        ? ParseDecimal(add_remainders_list.Rows[i].Cells[sell_rem_capacity_col.Index].Value.ToString()) : 1.0m;
+                                    decimal requestedCountToSell = piece_count_col_value * multiply_by_pack_capacity;
                                     string curBarcode = add_remainders_list.Rows[i].Cells[sell_rem_barcode_col.Index].Value.ToString();
                                     if (curBarcode.Length > 0)
                                     {

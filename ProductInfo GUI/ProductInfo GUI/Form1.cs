@@ -3318,7 +3318,9 @@ namespace ProductInfo_UI
                         //(to avoid situation where zed refers to nonexistent a/f)
                         if ((0 == conn.AddAngarishFaqtura(AFToAdd).errcode)
                             && (0 == conn.UpdateZednadebi(ZedWeWant.zednadebis_nomeri, ZedWeWant.zednadebis_nomeri, ZedWeWant.operation_type.ToString(),
-                            ZedWeWant.buyer_saident, ZedWeWant.dro, AFToAdd.seria, AFToAdd.af_nomeri, ZedWeWant.dro).errcode))
+                            ZedWeWant.buyer_saident, 
+                            /* passing empty string means don't update client ident */ "", 
+                            ZedWeWant.dro, AFToAdd.seria, AFToAdd.af_nomeri, ZedWeWant.dro).errcode))
                         {
                             MessageBox.Show("ამ ზედნადებისთვის ა/ფ გამოწერილია!");
                         }

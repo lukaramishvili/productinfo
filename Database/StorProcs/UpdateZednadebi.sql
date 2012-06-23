@@ -3,12 +3,13 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[UpdateZednadebi] 
+ALTER PROCEDURE [dbo].[UpdateZednadebi] 
 	-- Add the parameters for the stored procedure here
 	  @zed_ident nvarchar(MAX)
 	, @new_zed_ident nvarchar(MAX)
 	, @operation_type nvarchar(MAX)
 	, @client_ident nvarchar(MAX)
+	, @new_client_ident nvarchar(MAX) = N''
 	, @tarigi datetime = NULL
 	, @af_seria nvarchar(MAX) = NULL
 	, @af_nomeri nvarchar(MAX) = NULL

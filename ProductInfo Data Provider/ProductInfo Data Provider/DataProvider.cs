@@ -2040,7 +2040,10 @@ namespace ProductInfo
             return ret_info;
         }
 
-        public info UpdateZednadebi(string zed_ident_arg, string new_zed_ident_arg, string operation_type_arg, string client_ident_arg, DateTime zed_tarigi_arg, string af_seria_arg, string af_nomeri_arg, DateTime af_tarigi_arg)
+        public info UpdateZednadebi(string zed_ident_arg, string new_zed_ident_arg, 
+            string operation_type_arg, string client_ident_arg, string new_client_ident_arg,
+            DateTime zed_tarigi_arg, string af_seria_arg, 
+            string af_nomeri_arg, DateTime af_tarigi_arg)
         {
             info ret_info = info.niy();
 
@@ -2052,6 +2055,7 @@ namespace ProductInfo
             updzed_sql.Parameters.Add(new SqlParameter("@new_zed_ident", new_zed_ident_arg));
             updzed_sql.Parameters.Add(new SqlParameter("@operation_type", operation_type_arg));
             updzed_sql.Parameters.Add(new SqlParameter("@client_ident", client_ident_arg));
+            updzed_sql.Parameters.Add(new SqlParameter("@new_client_ident", new_client_ident_arg));
             updzed_sql.Parameters.Add(new SqlParameter("@tarigi", zed_tarigi_arg));
             updzed_sql.Parameters.Add(new SqlParameter("@af_seria", af_seria_arg));
             updzed_sql.Parameters.Add(new SqlParameter("@af_nomeri", af_nomeri_arg));
