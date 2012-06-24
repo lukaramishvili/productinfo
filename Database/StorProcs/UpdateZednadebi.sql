@@ -107,12 +107,13 @@ DECLARE @tran_upd_zed_ret int = 0
 	--also, we can safely use @zed_ident_for_upd_client_ident here to find updatable remainders,
 	--because while it's not null and len > 1, then it's either old zed ident (@new_zed_ident equalled @zed_ident), 
 	--or it's a new, valid ident string which is already in the db thanks to upper zed ident updating code
+	--IN SHORT: use @zed_ident_for_upd_client_ident here to find zed
 	IF @new_client_ident IS NOT NULL AND LEN(@new_client_ident)>0
 	BEGIN
 		IF @operation_type = 'Buy'
 		BEGIN
 			UPDATE zednadebi SET client_id = @new_client_ident WHERE id_code = @zed_ident_for_upd_client_ident
-			IF @@ROWCOUNT = 0
+			IF @@ROWCOUNT < 1
 				SET @tran_upd_zed_ret = 500
 			--
 			UPDATE remainders set supplier_ident = @new_client_ident 
@@ -122,7 +123,15 @@ DECLARE @tran_upd_zed_ret int = 0
 		END--end updating bought zed's client ident
 		ELSE IF @operation_type = 'Sell'
 		BEGIN
-			SELECT N'TODO update sold zed`s client ident'
+			UPDATE zednadebi SET client_id = @new_client_ident WHERE id_code = @zed_ident_for_upd_client_ident
+			IF @@ROWCOUNT < 1
+				SET @tran_upd_zed_ret = 500
+			--
+			UPDATE SellOrder SET buyer_ident_code = @new_client_ident 
+				WHERE zednadebis_nomeri = @zed_ident_for_upd_client_ident AND buyer_ident_code = @client_ident
+			IF @@ROWCOUNT < 1 
+				SET @tran_upd_zed_ret = 500
+			--we don't need to update money_transfer here as money_transfer doesn't care for client ident
 		END
 	END
 	
