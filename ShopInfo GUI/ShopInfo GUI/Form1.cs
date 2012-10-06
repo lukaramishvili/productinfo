@@ -131,6 +131,7 @@ namespace ShopInfo_GUI
             {
                 sell_prodname_col.Items.Clear();
 
+                //TODO: performance problem - currently this loop executes ~10k times
                 foreach (Remainder nextRem in SellableRemainders)
                 {
                     var matchingProds = (from Product p in AllProducts
