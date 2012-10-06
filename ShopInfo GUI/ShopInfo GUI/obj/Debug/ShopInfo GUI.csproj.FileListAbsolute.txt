@@ -13,3 +13,18 @@ D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInf
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\DataProvider.pdb
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo_GUI.ShopInfo_Main_Form.resources
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo_GUI.frmShopInfoLoginForm.resources
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo GUI.exe
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo GUI.pdb
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\ShopInfo GUI.exe
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\ShopInfo GUI.pdb
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\Data_Visualization.dll
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\DataProvider.dll
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\Utilities.dll
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\Data_Visualization.pdb
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\Utilities.pdb
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\bin\Debug\DataProvider.pdb
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ResolveAssemblyReference.cache
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo_GUI.ShopInfo_Main_Form.resources
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo_GUI.frmShopInfoLoginForm.resources
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo_GUI.Properties.Resources.resources
+E:\Projects\ProductInfo 1.0\ShopInfo GUI\ShopInfo GUI\obj\Debug\ShopInfo GUI.csproj.GenerateResource.Cache

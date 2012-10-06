@@ -18,3 +18,9 @@ D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Data_Visualization\o
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Data_Visualization\obj\Debug\Data_Visualization.pdb
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Data_Visualization.dll
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Data_Visualization.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Data_Visualization.dll.config
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Data_Visualization.dll
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Data_Visualization.pdb
+E:\Projects\ProductInfo 1.0\Data_Visualization\obj\Debug\ResolveAssemblyReference.cache
+E:\Projects\ProductInfo 1.0\Data_Visualization\obj\Debug\Data_Visualization.dll
+E:\Projects\ProductInfo 1.0\Data_Visualization\obj\Debug\Data_Visualization.pdb

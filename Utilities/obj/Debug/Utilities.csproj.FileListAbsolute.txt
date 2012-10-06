@@ -10,3 +10,9 @@ D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\ProductInfo GUI\Prod
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Utilities\obj\Debug\ResolveAssemblyReference.cache
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Utilities\obj\Debug\Utilities.dll
 D:\My Documents\Visual Studio 2008\Projects\ProductInfo 1.0\Utilities\obj\Debug\Utilities.pdb
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Utilities.dll.config
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Utilities.dll
+E:\Projects\ProductInfo 1.0\ProductInfo GUI\ProductInfo GUI\bin\Debug\Utilities.pdb
+E:\Projects\ProductInfo 1.0\Utilities\obj\Debug\ResolveAssemblyReference.cache
+E:\Projects\ProductInfo 1.0\Utilities\obj\Debug\Utilities.dll
+E:\Projects\ProductInfo 1.0\Utilities\obj\Debug\Utilities.pdb
