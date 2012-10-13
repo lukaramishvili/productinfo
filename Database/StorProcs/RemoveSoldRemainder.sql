@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[RemoveSoldRemainder]
+ALTER PROCEDURE [dbo].[RemoveSoldRemainder]
 	-- Add the parameters for the stored procedure here
 	@SoldRem_ID int
 AS
@@ -14,8 +14,12 @@ BEGIN
 	
 	DECLARE @ret_val int = 0
 	
+	--return 404 if the soldrem doesnt exist
 	IF NOT (SELECT COUNT (id) FROM SoldRemainders WHERE id = @SoldRem_ID)>0
 		RETURN 404
+	
+	DECLARE @SellOrderID int
+	SET @SellOrderID = (SELECT SellOrder_id FROM SoldRemainders where id = @SoldRem_ID)
 	
     -- Insert statements for procedure here
     
@@ -31,6 +35,15 @@ BEGIN
 	UPDATE remainders SET remaining_pieces += @assoc_rem_count WHERE id = @assoc_rem_id
 	
 	DELETE TOP(1) FROM SoldRemainders WHERE id = @SoldRem_ID
+	
+	--update moneytransfer for corresponding sellorder	
+	EXEC	--@return_value = 
+		[dbo].[UpdateMTForSellOrder]
+		@SellOrderIDToUpdate = @SellOrderID
+	--finally, update sold rem statistics (gayidvebi) cache
+	EXEC	--@return_value = 
+		[dbo].[UpdatetblSold_Rem_Statistics]
+		@SellOrderIDToUpdate = @SellOrderID
 	
 	-- end trans
 	COMMIT TRANSACTION @SoldRemTranName

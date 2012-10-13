@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE FastAddShopInfoSellOrderWithPayment
+ALTER PROCEDURE FastAddShopInfoSellOrderWithPayment
 	-- SellOrder attributes
 	  @argSOdro datetime
 	, @argSObuyer_ident_code nvarchar(MAX)
@@ -116,6 +116,15 @@ BEGIN
 		, @target_ident = @SellOrderInsertID
 		, @cashbox_id = @argMTActiveCashBoxID
 		, @cashier_id = @argMTActiveCashierID
+		
+	EXEC	--@return_value = 
+		[dbo].[UpdateMTForSellOrder]
+		@SellOrderIDToUpdate = @SellOrderInsertID
+	
+	EXEC	--@return_value = 
+		[dbo].[UpdatetblSold_Rem_Statistics]
+		@SellOrderIDToUpdate = @SellOrderInsertID
+	
 	--check TransferMoney for success
 	IF @RetValOfTransferMoney > 0
 	BEGIN

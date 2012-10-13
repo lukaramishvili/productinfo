@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[UpdateSoldRemainder] 
+ALTER PROCEDURE [dbo].[UpdateSoldRemainder] 
 	  @SoldRemID int
 	, @piece_count_arg decimal(28,13)
 	, @piece_price_arg decimal(28,13)
@@ -37,9 +37,21 @@ BEGIN
 	END
 	
 	UPDATE TOP (1) SoldRemainders SET piece_count = @piece_count_arg, piece_price = @piece_price_arg WHERE id = @SoldRemID
+	DECLARE @UpdateSoldRemRowCount int = @@ROWCOUNT
+	
+	DECLARE @SellOrderID int
+	SET @SellOrderID = (SELECT SellOrder_id FROM SoldRemainders where id = @SoldRemID)
+	
+	EXEC	--@return_value = 
+		[dbo].[UpdateMTForSellOrder]
+		@SellOrderIDToUpdate = @SellOrderID
+	
+	EXEC	--@return_value = 
+		[dbo].[UpdatetblSold_Rem_Statistics]
+		@SellOrderIDToUpdate = @SellOrderID
 	
 	--
-	IF @@ROWCOUNT = 0 
+	IF @UpdateSoldRemRowCount = 0 
 	BEGIN
 		ROLLBACK TRAN @tran_name
 		RETURN 404
