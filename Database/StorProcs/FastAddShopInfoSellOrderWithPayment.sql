@@ -119,7 +119,7 @@ BEGIN
 		
 	EXEC	--@return_value = 
 		[dbo].[UpdateMTForSellOrder]
-		@SellOrderIDToUpdate = @SellOrderInsertID
+		@SellOrderID = @SellOrderInsertID
 	
 	EXEC	--@return_value = 
 		[dbo].[UpdatetblSold_Rem_Statistics]
