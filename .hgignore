@@ -1,3 +1,5 @@
+# not using anymore; moved the codebase to git
+
 glob:ProductInfo GUI/ProductInfoReports/obj/Release/ResolveAssemblyReference.cache
 glob:ProductInfo GUI/ProductInfo GUI/obj/Release/ProductInfo_UI.pdb
 glob:Utilities/obj/Release/Refactor/Utilities.dll
